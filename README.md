@@ -6,7 +6,7 @@
 
 * `ch-distributed-numpy-dataframe`：介绍 Dask 和 Xorbits 提供的分布式 NumPy 和 pandas 功能。
 
-* `ch-ray`：介绍 Ray 提供的函数。
+* `ch-ray`：介绍 Ray 架构和原理、Actor 编程模型。
 
 * `ch-ray-tune`：介绍 Ray 提供的超参数调优。
 
