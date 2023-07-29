@@ -9,6 +9,5 @@
 :maxdepth: 2
 :numbered:
 
-python-lang/index
-python-lang/python
+ch-python-lang/index
 ````

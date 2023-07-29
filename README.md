@@ -27,13 +27,13 @@ pip install git+https://github.com/d2l-ai/d2l-book
  cd distributed-python
 ```
 
-使用d2lbook工具编译HTML。 请尽量使用 `build_html.sh` 脚本进行编译，保证首页正确合并到书籍中去。
+使用 `d2lbook` 工具编译HTML。 请尽量使用 `build_html.sh` 脚本进行编译，保证首页正确合并到书籍中去。
 
 ```bash
 sh build_html.sh
 ```
 
-生成的html会在`_build/html`。
+生成的html会在 `_build/html`。
 
 如果是在本地，可以使用 Python 自带的 HTTP Server：
 
