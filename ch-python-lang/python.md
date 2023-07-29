@@ -8,7 +8,7 @@ Python 是当前最流行的编程语言，近年来一直占据 [TOBIE](https:/
 
 Python 是一种通用编程语言，可以用于各种类型的软件开发。它广泛用于数据科学、机器学习、深度学习、Web 开发、网络编程等领域。Python 还支持多种编程范式，包括过程式、面向对象和函数式编程。
 
-Python 的主要特点是其丰富的生态系统。它有大量的库，如图 numref:`python_ecosystem` 所示。
+Python 的主要特点是其丰富的生态系统。它有大量的库，如 :numref:`python_ecosystem` 所示。
 
 * NumPy 和 pandas 用于数据处理和科学计算
 * Matplotlib 用于数据可视化
