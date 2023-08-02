@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>Python 分布式编程 &#8212; Python 分布式编程 1.0.0 documentation</title>
+
+    <link rel="stylesheet" href="_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx_materialdesign_theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/fontawesome/all.css" type="text/css" />
+    <link rel="stylesheet" href="_static/fonts.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/d2l.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/d2l.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Python 编程语言" href="ch-python-lang/index.html" /> 
+  </head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer"><header class="mdl-layout__header mdl-layout__header--waterfall ">
+    <div class="mdl-layout__header-row">
+        
+        <nav class="mdl-navigation breadcrumb">
+            <a class="mdl-navigation__link is-active">Python 分布式编程</a>
+        </nav>
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation">
+        
+<form class="form-inline pull-sm-right" action="search.html" method="get">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+        <label id="quick-search-icon" class="mdl-button mdl-js-button mdl-button--icon"  for="waterfall-exp">
+          <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield__expandable-holder">
+          <input class="mdl-textfield__input" type="text" name="q"  id="waterfall-exp" placeholder="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </div>
+      </div>
+      <div class="mdl-tooltip" data-mdl-for="quick-search-icon">
+      Quick search
+      </div>
+</form>
+        
+<a id="button-show-source"
+    class="mdl-button mdl-js-button mdl-button--icon"
+    href="_sources/index.rst.txt" rel="nofollow">
+  <i class="material-icons">code</i>
+</a>
+<div class="mdl-tooltip" data-mdl-for="button-show-source">
+Show Source
+</div>
+        </nav>
+    </div>
+    <div class="mdl-layout__header-row header-links">
+      <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation">
+          
+              <a  class="mdl-navigation__link" href="https://github.com/py-101/distributed-python">
+                  <i class="fab fa-github"></i>
+                  GitHub
+              </a>
+      </nav>
+    </div>
+</header><header class="mdl-layout__drawer">
+    
+          <!-- Title -->
+      <span class="mdl-layout-title">
+          <a class="title" href="#">
+              <span class="title-text">
+                  Python 分布式编程
+              </span>
+          </a>
+      </span>
+    
+    
+      <div class="globaltoc">
+        <span class="mdl-layout-title toc">Table Of Contents</span>
+        
+        
+            
+            <nav class="mdl-navigation">
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="ch-python-lang/index.html">1. Python 编程语言</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/python.html">1.1. Python 现状及历史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/data-science.html">1.2. Python 数据科学生态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/why-slow.html">1.3. Python 性能瓶颈原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/outline.html">1.4. 本书主要内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/summary.html">1.5. 本章小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ch-ray-core/index.html">2. Ray Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch-ray-core/index.html#id1">3. Ray Core 简介</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch-ray-core/function-task.html">3.1. 分布式函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="refs.html">4. 参考文献</a></li>
+</ul>
+
+            </nav>
+        
+        </div>
+    
+</header>
+        <main class="mdl-layout__content" tabIndex="0">
+
+	<script type="text/javascript" src="_static/sphinx_materialdesign_theme.js "></script>
+    <header class="mdl-layout__drawer">
+    
+          <!-- Title -->
+      <span class="mdl-layout-title">
+          <a class="title" href="#">
+              <span class="title-text">
+                  Python 分布式编程
+              </span>
+          </a>
+      </span>
+    
+    
+      <div class="globaltoc">
+        <span class="mdl-layout-title toc">Table Of Contents</span>
+        
+        
+            
+            <nav class="mdl-navigation">
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="ch-python-lang/index.html">1. Python 编程语言</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/python.html">1.1. Python 现状及历史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/data-science.html">1.2. Python 数据科学生态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/why-slow.html">1.3. Python 性能瓶颈原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/outline.html">1.4. 本书主要内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/summary.html">1.5. 本章小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ch-ray-core/index.html">2. Ray Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch-ray-core/index.html#id1">3. Ray Core 简介</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch-ray-core/function-task.html">3.1. 分布式函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="refs.html">4. 参考文献</a></li>
+</ul>
+
+            </nav>
+        
+        </div>
+    
+</header>
+
+    <div class="document">
+        <div class="page-content" role="main">
+        
+  <div class="section" id="python">
+<h1>Python 分布式编程<a class="headerlink" href="#python" title="Permalink to this heading">¶</a></h1>
+<head>
+<style>
+h1, .side-doc-outline  {
+    display: none;
+}
+.document .page-content {
+    width: 100%;
+}
+h2, h3, h4 {
+    letter-spacing: 2px;
+}
+.mdl-grid {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 150px 0 0 0;
+}
+h2.toc {
+    padding: 150px 0 0 0;
+}
+
+.header h2 {
+    font-size: 2rem;
+    padding-bottom: 35px;
+}
+
+.header p {
+    font-size: 1.25rem;
+    letter-spacing: 0px;
+    line-height: 1.5rempx;
+    padding-bottom: 10px;
+}
+
+.header .mdl-button {
+    margin: 0px 10px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    margin: 1rem 1.5rem;
+    height: 40px;
+    width: 120px;
+}
+.author-item {
+    max-width: 300px;
+}
+.author-item h3 {
+    padding-top: 25px;
+    padding-bottom: 10px;
+}
+.author-item img {
+    border-radius: 50%;
+    width: 120px;
+}
+.authors h4 {
+    width: 100%;
+}
+
+.authors h2 {
+    padding-bottom: 18px;
+}
+
+.running-item  {
+    max-width: 300px;
+}
+
+.running-item img {
+    height: 40px;
+}
+
+.running-item p {
+    padding: 20px;
+}
+
+.running.mdl-grid {
+padding: 20px 0 0 0;
+}
+
+.logos img {
+display: inline;
+max-height: 70px;
+max-width: 100px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.logos {
+padding-top: 1em;
+padding-bottom: 2em;
+}
+
+.logos .mdl-grid {
+padding: 0;
+}
+
+.features .logos .mdl-cell {
+padding: 10px 0;
+}
+
+
+.features .mdl-cell {
+    padding: 0 36px;
+}
+.features h2, .features-2 h2 {
+    padding-bottom: 24px;
+}
+.features-2 p {
+    padding: 0 200px;
+}
+.institute.mdl-grid {
+    padding: 24px;
+}
+.institute .mdl-cell {
+    text-align: left;
+    padding: 0;
+}
+#logoimg {
+    padding-top: 0em;
+    padding-bottom: 2em;
+    width: 100%;
+}
+#map {
+    height: 400px;
+    width: 100%;
+}
+#mapimg {
+    width: 100%;
+}
+a {
+    font-size: normal;
+}
+
+@media (max-width: 1000px) {
+    .mdl-grid, h2.toc {
+        padding: 50px 0 0 0;
+    }
+    .header img, .features-2 img {
+        max-width: 300px;
+    }
+    .header .mdl-cell--1-col {
+        display: none;
+    }
+    .features img {
+        max-width: 350px;
+    }
+    .features-2 p {
+        padding: 0 24px;
+    }
+.features .mdl-cell {
+    padding: 0 8px;
+}
+}
+
+.collapsible {
+    background-color: #EEE;
+    color: black;
+    cursor: pointer;
+    padding: 6px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+}
+.collapsible-active, .collapsible:hover {
+    background-color: #DDD;
+}
+.expansion {
+    padding: 3px 6px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.cover h2 {
+    font-size: 34px;
+    margin-bottom: 0px;
+    padding-bottom: 20px;
+}
+
+.cover p.version {
+    font-size: 18px;
+    padding: 0 0 9px 0;
+
+}
+
+.cover p {
+    margin: 0;
+    padding:  20px 0 0px 0;
+    font-size: 20px;
+}
+
+</style>
+</head>
+
+<div class="mdl-grid header">
+    <div class="mdl-cell mdl-cell--3-col">
+    <img src="_images/logo.png" class="img-fluid" alt="">
+    </div>
+    <div class="mdl-cell mdl-cell--1-col">
+    </div>
+    <div class="mdl-cell mdl-cell--5-col mdl-cell--middle cover">
+    <h2 class="mdl-color-text--primary">Python 分布式编程</h2>
+    <p>开源的、面向下一代人工智能应用的 Python 分布式编程书籍</p>
+    <p><a class="github-button" href="https://github.com/py-101/distributed-python" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star openmlsys/openmlsys-zh on GitHub">Star</a></p>
+    </div>
+</div>
+
+
+<div class = "authors mdl-grid" id = "author" >
+    <div class = "author-group-title mdl-cell mdl-cell--12-col mdl-cell--top">
+    <h2>核心作者</h2>
+    </div>
+    <div class = "mdl-cell mdl-cell--3-col mdl-cell--top">
+    <div class="author-item">
+        <img src="https://avatars.githubusercontent.com/u/57242864?s=96&v=4"/>
+        <h3><a href="https://github.com/luweizheng">鲁蔚征</a></h3>
+        <p>中国人民大学</p>
+    </div>
+    </div>
+
+
+    <div class = "author-group-title mdl-cell mdl-cell--12-col mdl-cell--top">
+    <h3> 感谢来自社区的<a href="#">贡献者</a></h3>
+    <h3> 以及为本书提出宝贵意见的 <a href="https://github.com/py-101/distributed-python/issues">勘误者</a></h3>
+    <h4><a href="https://github.com/py-101/distributed-python/issues">欢迎为本书贡献</a></h4>
+    </div>
+</div>
+
+
+<h2 class="toc">目录</h2>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+    this.classList.toggle("collapsible-active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+        content.style.maxHeight = null;
+    } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+    }
+    });
+}
+</script>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+    
+    <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ch-python-lang/index.html">1. Python 编程语言</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/python.html">1.1. Python 现状及历史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/data-science.html">1.2. Python 数据科学生态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/why-slow.html">1.3. Python 性能瓶颈原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/outline.html">1.4. 本书主要内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/summary.html">1.5. 本章小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ch-ray-core/index.html">2. Ray Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch-ray-core/index.html#id1">3. Ray Core 简介</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch-ray-core/function-task.html">3.1. 分布式函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="refs.html">4. 参考文献</a></li>
+</ul>
+</div>
+</div>
+
+
+        </div>
+        <div class="side-doc-outline">
+            <div class="side-doc-outline--content"> 
+            </div>
+        </div>
+
+      <div class="clearer"></div>
+    </div><div class="pagenation">
+     <a id="button-next" href="ch-python-lang/index.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
+         <i class="pagenation-arrow-R fas fa-arrow-right fa-lg"></i>
+        <div class="pagenation-text">
+            <span class="pagenation-direction">Next</span>
+            <div>1. Python 编程语言</div>
+        </div>
+     </a>
+  </div>
+        
+        </main>
+    </div>
+  </body>
+</html>

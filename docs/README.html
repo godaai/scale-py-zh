@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>Python 分布式编程 &#8212; Python 分布式编程 1.0.0 documentation</title>
+
+    <link rel="stylesheet" href="_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx_materialdesign_theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/fontawesome/all.css" type="text/css" />
+    <link rel="stylesheet" href="_static/fonts.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/d2l.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/d2l.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer"><header class="mdl-layout__header mdl-layout__header--waterfall ">
+    <div class="mdl-layout__header-row">
+        
+        <nav class="mdl-navigation breadcrumb">
+            <a class="mdl-navigation__link is-active">Python 分布式编程</a>
+        </nav>
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation">
+        
+<form class="form-inline pull-sm-right" action="search.html" method="get">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+        <label id="quick-search-icon" class="mdl-button mdl-js-button mdl-button--icon"  for="waterfall-exp">
+          <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield__expandable-holder">
+          <input class="mdl-textfield__input" type="text" name="q"  id="waterfall-exp" placeholder="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </div>
+      </div>
+      <div class="mdl-tooltip" data-mdl-for="quick-search-icon">
+      Quick search
+      </div>
+</form>
+        
+<a id="button-show-source"
+    class="mdl-button mdl-js-button mdl-button--icon"
+    href="_sources/README.rst.txt" rel="nofollow">
+  <i class="material-icons">code</i>
+</a>
+<div class="mdl-tooltip" data-mdl-for="button-show-source">
+Show Source
+</div>
+        </nav>
+    </div>
+    <div class="mdl-layout__header-row header-links">
+      <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation">
+          
+              <a  class="mdl-navigation__link" href="https://github.com/py-101/distributed-python">
+                  <i class="fab fa-github"></i>
+                  GitHub
+              </a>
+      </nav>
+    </div>
+</header><header class="mdl-layout__drawer">
+    
+          <!-- Title -->
+      <span class="mdl-layout-title">
+          <a class="title" href="index.html">
+              <span class="title-text">
+                  Python 分布式编程
+              </span>
+          </a>
+      </span>
+    
+    
+      <div class="globaltoc">
+        <span class="mdl-layout-title toc">Table Of Contents</span>
+        
+        
+            
+            <nav class="mdl-navigation">
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="ch-python-lang/index.html">1. Python 编程语言</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/python.html">1.1. Python 现状及历史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/data-science.html">1.2. Python 数据科学生态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/why-slow.html">1.3. Python 性能瓶颈原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/outline.html">1.4. 本书主要内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/summary.html">1.5. 本章小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ch-ray-core/index.html">2. Ray Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch-ray-core/index.html#id1">3. Ray Core 简介</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch-ray-core/function-task.html">3.1. 分布式函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="refs.html">4. 参考文献</a></li>
+</ul>
+
+            </nav>
+        
+        </div>
+    
+</header>
+        <main class="mdl-layout__content" tabIndex="0">
+
+	<script type="text/javascript" src="_static/sphinx_materialdesign_theme.js "></script>
+    <header class="mdl-layout__drawer">
+    
+          <!-- Title -->
+      <span class="mdl-layout-title">
+          <a class="title" href="index.html">
+              <span class="title-text">
+                  Python 分布式编程
+              </span>
+          </a>
+      </span>
+    
+    
+      <div class="globaltoc">
+        <span class="mdl-layout-title toc">Table Of Contents</span>
+        
+        
+            
+            <nav class="mdl-navigation">
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="ch-python-lang/index.html">1. Python 编程语言</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/python.html">1.1. Python 现状及历史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/data-science.html">1.2. Python 数据科学生态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/why-slow.html">1.3. Python 性能瓶颈原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/outline.html">1.4. 本书主要内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch-python-lang/summary.html">1.5. 本章小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ch-ray-core/index.html">2. Ray Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch-ray-core/index.html#id1">3. Ray Core 简介</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch-ray-core/function-task.html">3.1. 分布式函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="refs.html">4. 参考文献</a></li>
+</ul>
+
+            </nav>
+        
+        </div>
+    
+</header>
+
+    <div class="document">
+        <div class="page-content" role="main">
+        
+  <div class="section" id="python">
+<h1>Python 分布式编程<a class="headerlink" href="#python" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="id1">
+<h2>参与编写<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="id2">
+<h3>环境安装<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<p>本书基于名为 <code class="docutils literal notranslate"><span class="pre">d2lbook</span></code> 的 Python 工具编译，并部署在GitHub Pages上。</p>
+<p>选择一个包管理工具，比如 <code class="docutils literal notranslate"><span class="pre">conda</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">venv</span></code>，安装 <code class="docutils literal notranslate"><span class="pre">d2lbook</span></code>：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/d2l-ai/d2l-book
+</pre></div>
+</div>
+<p>更多 <code class="docutils literal notranslate"><span class="pre">d2lbook</span></code> 工具的使用方法，请参考其官方文档：<a class="reference external" href="https://book.d2l.ai/">D2L-Book: A
+Toolkit for Hands-on Books</a></p>
+<p>构建 PDF 时如果有 SVG 图片需要安装 LibRsvg 来转换 SVG 图片，安装
+<code class="docutils literal notranslate"><span class="pre">librsvg</span></code> 可以通过<code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">librsvg</span></code>（如果是 macOS 可以用
+Homebrew）。</p>
+<p>构建 PDF 必须要有 LaTeX，请安装<a class="reference external" href="https://www.tug.org/texlive/">Tex
+Live</a>.</p>
+</div>
+<div class="section" id="html">
+<h3>编译HTML版本<a class="headerlink" href="#html" title="Permalink to this heading">¶</a></h3>
+<p>在编译前先 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code>
+<a class="reference external" href="https://github.com/py-101/distributed-python/">https://github.com/py-101/distributed-python/</a>，
+所有的编译命令都在这个文件目录内执行。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/py-101/distributed-python.git
+<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>distributed-python
+</pre></div>
+</div>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">d2lbook</span></code> 工具编译HTML。 请尽量使用 <code class="docutils literal notranslate"><span class="pre">build_html.sh</span></code>
+脚本进行编译，保证首页正确合并到书籍中去。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>build_html.sh
+</pre></div>
+</div>
+<p>生成的html会在 <code class="docutils literal notranslate"><span class="pre">_build/html</span></code>。</p>
+<p>如果是在本地，可以使用 Python 自带的 HTTP Server：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>_build/html
+python<span class="w"> </span>-m<span class="w"> </span>http.server
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+        </div>
+        <div class="side-doc-outline">
+            <div class="side-doc-outline--content"> 
+<div class="localtoc">
+    <p class="caption">
+      <span class="caption-text">Table Of Contents</span>
+    </p>
+    <ul>
+<li><a class="reference internal" href="#">Python 分布式编程</a><ul>
+<li><a class="reference internal" href="#id1">参与编写</a><ul>
+<li><a class="reference internal" href="#id2">环境安装</a></li>
+<li><a class="reference internal" href="#html">编译HTML版本</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+            </div>
+        </div>
+
+      <div class="clearer"></div>
+    </div><div class="pagenation">
+  </div>
+        
+        </main>
+    </div>
+  </body>
+</html>
