@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>1.1. Python 现状及历史 &#8212; Python 分布式编程 1.0.0 documentation</title>
+
+    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx_materialdesign_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fontawesome/all.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/d2l.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/d2l.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.2. Python 数据科学生态" href="data-science.html" />
+    <link rel="prev" title="1. Python 编程语言" href="index.html" /> 
+  </head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer"><header class="mdl-layout__header mdl-layout__header--waterfall ">
+    <div class="mdl-layout__header-row">
+        
+        <nav class="mdl-navigation breadcrumb">
+            <a class="mdl-navigation__link" href="index.html"><span class="section-number">1. </span>Python 编程语言</a><i class="material-icons">navigate_next</i>
+            <a class="mdl-navigation__link is-active"><span class="section-number">1.1. </span>Python 现状及历史</a>
+        </nav>
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation">
+        
+<form class="form-inline pull-sm-right" action="../search.html" method="get">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+        <label id="quick-search-icon" class="mdl-button mdl-js-button mdl-button--icon"  for="waterfall-exp">
+          <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield__expandable-holder">
+          <input class="mdl-textfield__input" type="text" name="q"  id="waterfall-exp" placeholder="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </div>
+      </div>
+      <div class="mdl-tooltip" data-mdl-for="quick-search-icon">
+      Quick search
+      </div>
+</form>
+        
+<a id="button-show-source"
+    class="mdl-button mdl-js-button mdl-button--icon"
+    href="../_sources/ch-python-lang/python.rst.txt" rel="nofollow">
+  <i class="material-icons">code</i>
+</a>
+<div class="mdl-tooltip" data-mdl-for="button-show-source">
+Show Source
+</div>
+        </nav>
+    </div>
+    <div class="mdl-layout__header-row header-links">
+      <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation">
+          
+              <a  class="mdl-navigation__link" href="https://github.com/py-101/distributed-python">
+                  <i class="fab fa-github"></i>
+                  GitHub
+              </a>
+      </nav>
+    </div>
+</header><header class="mdl-layout__drawer">
+    
+          <!-- Title -->
+      <span class="mdl-layout-title">
+          <a class="title" href="../index.html">
+              <span class="title-text">
+                  Python 分布式编程
+              </span>
+          </a>
+      </span>
+    
+    
+      <div class="globaltoc">
+        <span class="mdl-layout-title toc">Table Of Contents</span>
+        
+        
+            
+            <nav class="mdl-navigation">
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Python 编程语言</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.1. Python 现状及历史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-science.html">1.2. Python 数据科学生态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="why-slow.html">1.3. Python 性能瓶颈原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">1.4. 本书主要内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summary.html">1.5. 本章小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch-ray-core/index.html">2. Ray Core 简介</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/function-task.html">2.1. 分布式函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
+</ul>
+
+            </nav>
+        
+        </div>
+    
+</header>
+        <main class="mdl-layout__content" tabIndex="0">
+
+	<script type="text/javascript" src="../_static/sphinx_materialdesign_theme.js "></script>
+    <header class="mdl-layout__drawer">
+    
+          <!-- Title -->
+      <span class="mdl-layout-title">
+          <a class="title" href="../index.html">
+              <span class="title-text">
+                  Python 分布式编程
+              </span>
+          </a>
+      </span>
+    
+    
+      <div class="globaltoc">
+        <span class="mdl-layout-title toc">Table Of Contents</span>
+        
+        
+            
+            <nav class="mdl-navigation">
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Python 编程语言</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.1. Python 现状及历史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-science.html">1.2. Python 数据科学生态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="why-slow.html">1.3. Python 性能瓶颈原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">1.4. 本书主要内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summary.html">1.5. 本章小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch-ray-core/index.html">2. Ray Core 简介</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/function-task.html">2.1. 分布式函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
+</ul>
+
+            </nav>
+        
+        </div>
+    
+</header>
+
+    <div class="document">
+        <div class="page-content" role="main">
+        
+  <div class="section" id="python">
+<h1><span class="section-number">1.1. </span>Python 现状及历史<a class="headerlink" href="#python" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="popular-python">
+<span id="id1"></span><h2><span class="section-number">1.1.1. </span>Python：最为流行的编程语言<a class="headerlink" href="#popular-python" title="Permalink to this heading">¶</a></h2>
+<p>Python 是当前最流行的编程语言，近年来一直占据
+<a class="reference external" href="https://www.tiobe.com/tiobe-index/">TOBIE</a>
+编程语言排行榜的第一名。它由 Guido van Rossum 于 1989 年创建并于 1991
+年首次发布。Python
+的设计哲学强调代码的可读性和简洁性，语法允许程序员用更少的代码表达想法。相比其他语言如
+Java 或 C++， Python 更更简单易学。</p>
+<p>Python
+是一种通用编程语言，可以用于各种类型的软件开发。它广泛用于数据科学、机器学习、深度学习、Web
+开发、网络编程等领域。Python
+还支持多种编程范式，包括过程式、面向对象和函数式编程。</p>
+<p>Python 的主要特点是其丰富的生态系统。它有大量的库，如
+<a class="reference internal" href="#python-ecosystem"><span class="std std-numref">图1.1.1</span></a> 所示。</p>
+<ul class="simple">
+<li><p>NumPy 和 pandas 用于数据处理和科学计算</p></li>
+<li><p>Matplotlib 用于数据可视化</p></li>
+<li><p>scikit-learn 和 XGBoost 用于机器学习</p></li>
+<li><p>PyTorch 和 TensorFlow 用于深度学习</p></li>
+<li><p>django 和 Flask 用于 Web 开发</p></li>
+<li><p>SQLAlchemy 用于数据库连接</p></li>
+<li><p>Dask、 Ray 和 Xorbits 用于分布式和大数据</p></li>
+<li><p>requests 用于数据爬取和网络开发</p></li>
+</ul>
+<p>以上仅列举了 Python
+生态系统中的一小部分，还有大量库未被本书提及，以及大量的库基于这些库做了进一步的封装。这些库大大扩展了
+Python 的功能，使其能够应对各种复杂的业务场景。</p>
+<div class="figure align-default" id="id3">
+<span id="python-ecosystem"></span><a class="reference internal image-reference" href="../_images/python-ecosystem.svg"><img alt="../_images/python-ecosystem.svg" src="../_images/python-ecosystem.svg" width="800px" /></a>
+<p class="caption"><span class="caption-number">图1.1.1 </span><span class="caption-text">Python 拥有丰富的生态系统</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>Python
+又经常被称为“胶水语言”，这是因为它可以将多种编程语言编写的代码或者模块“粘合”在一起运行。Python
+的胶水特性主要表现在以下几个方面：</p>
+<ul class="simple">
+<li><p>跨平台特性：Python 可以在多种操作系统上运行，包括
+Windows、Linux、macOS 等。这使得在不同平台上开发的代码可以无缝对接。</p></li>
+<li><p>扩展性：Python 提供了丰富的接口，可以方便地调用 C、C++ 或 Java
+等其他语言编写的代码。这使得 Python 可以利用其他语言的优势，如 C、C++
+的高效性能，Java 的跨平台特性等。例如，PyTorch 主要由 C++
+编写，并提供了简单易用的 Python API；PySpark 使用 Python 调用 Java
+虚拟机上的 Spark。</p></li>
+<li><p>脚本语言特性：作为一种解释型语言，Python
+可以很方便地进行脚本编写，用于自动化和快速原型开发。这使得 Python
+可以方便地将各种任务“粘合”在一起。</p></li>
+</ul>
+<p>综上，Python 在近些年来逐渐流行，主要因为：</p>
+<ul class="simple">
+<li><p>Python 对初学者非常友好。Python
+的语法简单直观，几乎就像是用英语写的，学习曲线平缓，这使得它成为许多初学者学习编程的首选语言。</p></li>
+<li><p>Python 丰富的生态系统，尤其 Python
+社区在数据科学、机器学习和人工智能领域提供了众多包，这些包或者是被科学家用于数据分析建模，或者被广泛部署在工业界的生产系统，经受了学术圈和工业界的检验。</p></li>
+<li><p>Python 语言的“胶水”特性。Python
+近似脚本语言的特点，可以将不同操作系统、编程语言和任务粘合在一起，快速开发一个原型系统。</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">1.1.2. </span>Python 历史<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>Python 是由荷兰人 Guido van Rossum 开发。1989
+年的圣诞节期间，为了在阿姆斯特丹打发时间，他决定开发一个新的脚本解释程序，作为
+ABC 语言（一个源自荷兰的编程语言）的一种继承。之所以选中 Python
+作为程序的名字，是因为他是蒙提·派森的飞行马戏团（Monty Python’s Flying
+Circus）的忠实粉丝。蒙提·派森的飞行马戏团是一部由英国的喜剧团体蒙提·派森（Monty
+Python）制作的电视节目。这个节目以其独特的幽默风格和创新的电视制作技术而闻名，影响了许多后来的喜剧表演和电视节目。节目的内容包括各种荒诞和讽刺的短剧，以及动画插图。这些短剧通常打破了传统的喜剧规则，避免了常规的“冲突-解决”情节结构，而是采用了一种无厘头和不可预测的风格。在设计
+Python 这门语言时，Guido van Rossum
+希望这门语言既能够强大，又能够容易上手，还要足够有趣。他希望用户在使用
+Python
+编程时，能够有像看蒙提·派森的飞行马戏团那样的愉快体验。因此，Python 之父
+Guido van Rossum 将新创建的语言以此命名，也是在向这个节目致敬。</p>
+<p>Python 2.0 于 2000 年 10 月 16
+日发布，增加了完整的垃圾回收机制，并且支持
+Unicode。同时，整个开发过程更加透明，社区对开发进度的影响逐渐扩大。</p>
+<p>Python 3.0 于 2008 年 12 月 3 日发布，此版不完全兼容之前的 Python
+源代码，是一个破坏性的更新。</p>
+<p>Python 2.x 在 2020 年 1 月 1
+日之后，将不再有任何更新，包括安全补丁。因此，在 Python 社区，所有使用
+Python 2.x 的用户都被强烈建议升级到 Python 3。</p>
+</div>
+</div>
+
+
+        </div>
+        <div class="side-doc-outline">
+            <div class="side-doc-outline--content"> 
+<div class="localtoc">
+    <p class="caption">
+      <span class="caption-text">Table Of Contents</span>
+    </p>
+    <ul>
+<li><a class="reference internal" href="#">1.1. Python 现状及历史</a><ul>
+<li><a class="reference internal" href="#popular-python">1.1.1. Python：最为流行的编程语言</a></li>
+<li><a class="reference internal" href="#id2">1.1.2. Python 历史</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+            </div>
+        </div>
+
+      <div class="clearer"></div>
+    </div><div class="pagenation">
+     <a id="button-prev" href="index.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="P">
+         <i class="pagenation-arrow-L fas fa-arrow-left fa-lg"></i>
+         <div class="pagenation-text">
+            <span class="pagenation-direction">Previous</span>
+            <div>1. Python 编程语言</div>
+         </div>
+     </a>
+     <a id="button-next" href="data-science.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
+         <i class="pagenation-arrow-R fas fa-arrow-right fa-lg"></i>
+        <div class="pagenation-text">
+            <span class="pagenation-direction">Next</span>
+            <div>1.2. Python 数据科学生态</div>
+        </div>
+     </a>
+  </div>
+        
+        </main>
+    </div>
+  </body>
+</html>
