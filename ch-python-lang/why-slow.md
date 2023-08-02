@@ -24,3 +24,7 @@ Python 语言一个广为诟病的问题是全局解释器锁（Global Interpret
 GIL 是 CPython 中实现的一种同步机制，用来防止多个线程同时执行 Python 程序。CPython 是 Python 语言的默认实现，也是最广泛使用的实现。它是用 C 语言编写的，因此得名 CPython。当人们在没有特别指明的情况下谈论“Python”，通常是指 CPython。除了 CPython，还有一些其他的 Python 实现，如 Jython（用 Java 实现的 Python）、IronPython（用 .NET 实现的 Python）等。这些实现都遵循同样的 Python 语言规范，但可能在性能、兼容性和可用的库等方面有所不同。
 
 GIL 名称中带 “锁” 这个字，也就是说它给多线程实现加了一把锁。GIL 这种机制确保了任何时候都只有一个线程在执行，从而避免了多线程之间的数据竞争和状态不一致的问题。然而，在当前主流的多核 CPU 处理器上，CPython 不能利用多个核心进行并行计算，这对于很多计算密集的应用来是一个瓶颈。
+
+GIL 锁的问题严重拖累了机器学习等科学计算，例如 pandas 往往只能利用现代多核 CPU 的一个核心。
+
+幸运的是，GIL 已经确定将在未来被移除出 CPython 。由于 Python 在人工智能领域的大规模应用，尤其是 PyTorch 极度依赖原生的 Python 实现，来自 Meta 的开发者提出了去除 GIL 的提案，并已经被 Python 社区接受。未来几年，Python 社区将分阶段逐步移除 GIL。

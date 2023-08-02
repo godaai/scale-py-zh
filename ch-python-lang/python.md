@@ -2,13 +2,13 @@ Python 现状及历史
 ---------------
 
 ### Python：最为流行的编程语言
-:label:`popular_python`
+:label:`popular-python`
 
 Python 是当前最流行的编程语言，近年来一直占据 [TOBIE](https://www.tiobe.com/tiobe-index/) 编程语言排行榜的第一名。它由 Guido van Rossum 于 1989 年创建并于 1991 年首次发布。Python 的设计哲学强调代码的可读性和简洁性，语法允许程序员用更少的代码表达想法。相比其他语言如 Java 或 C++， Python 更更简单易学。
 
 Python 是一种通用编程语言，可以用于各种类型的软件开发。它广泛用于数据科学、机器学习、深度学习、Web 开发、网络编程等领域。Python 还支持多种编程范式，包括过程式、面向对象和函数式编程。
 
-Python 的主要特点是其丰富的生态系统。它有大量的库，如 :numref:`python_ecosystem` 所示。
+Python 的主要特点是其丰富的生态系统。它有大量的库，如 :numref:`python-ecosystem` 所示。
 
 * NumPy 和 pandas 用于数据处理和科学计算
 * Matplotlib 用于数据可视化
@@ -23,7 +23,7 @@ Python 的主要特点是其丰富的生态系统。它有大量的库，如 :nu
 
 ![Python 拥有丰富的生态系统](../img/ch-python-lang/python-ecosystem.svg)
 :width:`800px`
-:label:`python_ecosystem`
+:label:`python-ecosystem`
 
 Python 又经常被称为“胶水语言”，这是因为它可以将多种编程语言编写的代码或者模块“粘合”在一起运行。Python 的胶水特性主要表现在以下几个方面：
 

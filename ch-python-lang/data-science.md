@@ -3,7 +3,7 @@ Python 数据科学生态
 
 ### 数据科学编程语言
 
-在 :numref:`popular_python` 提到，Python 是数据科学领域最受欢迎的编程语言之一，主要因其开源免费的特性、简洁易懂的语法和丰富的科学计算库。同样是面向数据科学的编程语言，R、Scala、MATLAB、Mathematica 的流行度和影响力远不及 Python。
+在 :numref:`popular-python` 提到，Python 是数据科学领域最受欢迎的编程语言之一，主要因其开源免费的特性、简洁易懂的语法和丰富的科学计算库。同样是面向数据科学的编程语言，R、Scala、MATLAB、Mathematica 的流行度和影响力远不及 Python。
 
 * R 语言主要用于统计分析和可视化，也是一门开源的编程语言。R 语言社区提供了大量的统计和可视化的包，使得它在统计学、经济学、管理学等方向上被广泛使用。然而，R 的语法和数据结构相比 Python 更具有挑战性，对初学者不太友好。R 语言上目前没有可以与 Python 社区中的 PyTorch 、TensorFlow 竞争的包，其对深度学习支持不及 Python。
 
@@ -15,11 +15,11 @@ Python 数据科学生态
 
 #### NumPy
 
-NumPy 可用于处理多维数组的数值计算，它底层是一个多维数组 `ndarray`。基于 `ndarray`，用户可以进行数学、线性代数、傅里叶变换等科学计算。NumPy 是整个 Python 科学计算社区的基石，如 SciPy、 pandas、Matplotlib 等库均基于 NumPy 的功能构建。NumPy 提供的功能与 MATLAB 提供的数组和矩阵操作非常相似，因此 NumPy 经常被认为是付费的 MATLAB 的开源替代。 :numref:`numpy_overview` 展示了 NumPy 的 `ndarray` 数据结构和主要 API。
+NumPy 可用于处理多维数组的数值计算，它底层是一个多维数组 `ndarray`。基于 `ndarray`，用户可以进行数学、线性代数、傅里叶变换等科学计算。NumPy 是整个 Python 科学计算社区的基石，如 SciPy、 pandas、Matplotlib 等库均基于 NumPy 的功能构建。NumPy 提供的功能与 MATLAB 提供的数组和矩阵操作非常相似，因此 NumPy 经常被认为是付费的 MATLAB 的开源替代。 :numref:`numpy-overview` 展示了 NumPy 的 `ndarray` 数据结构和主要 API。
 
 ![NumPy ndarray 数据结构和主要 API](../img/ch-python-lang/numpy-overview.webp)
 :width:`800px`
-:label:`numpy_overview`
+:label:`numpy-overview`
 
 NumPy 的 `ndarray` 是基于内存的，其底层主要使用 C 语言实现，面向 CPU（Central Processing Unit，中央处理器） 进行了深度优化。一些复杂的运算（如矩阵乘法、快速傅里叶变换等）则使用了优秀的底层计算库，例如 OpenBLAS。总体上讲，相对其他竞品，NumPy 拥有不错的性能。
 

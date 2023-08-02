@@ -11,5 +11,7 @@
 
 ch-python-lang/index
 
+ch-ray-core/index
+
 refs
 ````
