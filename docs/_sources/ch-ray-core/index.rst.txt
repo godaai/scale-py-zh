@@ -24,4 +24,5 @@ Python 计算任务是异步执行的。Ray
 .. toctree::
    :maxdepth: 2
 
-   function-task
+   remote-task
+   object-store

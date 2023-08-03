@@ -38,7 +38,7 @@
 
 -  生成斐波那契数列
 -  使用蒙特卡洛方法计算 :math:`\pi`
--  并行化地图片处理
+-  分布式图片处理
 
 .. raw:: latex
 
@@ -116,7 +116,7 @@
                 </tr>
                 <tr>
         <td style="text-align: left"><b>Dashboard:</b></td>
-        <td style="text-align: left"><b><a href="http://127.0.0.1:8266" target="_blank">http://127.0.0.1:8266</a></b></td>
+        <td style="text-align: left"><b><a href="http://127.0.0.1:8265" target="_blank">http://127.0.0.1:8265</a></b></td>
     </tr>
     
             </table>
@@ -150,7 +150,7 @@
 
 .. code:: python
 
-    SEQUENCE_SIZE = 100000
+    SEQUENCE_SIZE = 200000
     
     def generate_fibonacci(sequence_size):
         fibonacci = []
@@ -212,8 +212,8 @@ Ray 帮我们做了底层的分布式与调度这些工作。
 .. parsed-literal::
     :class: output
 
-    CPU times: user 2.17 s, sys: 1.7 s, total: 3.87 s
-    Wall time: 3.89 s
+    CPU times: user 8.2 s, sys: 7.39 s, total: 15.6 s
+    Wall time: 15.8 s
 
 
 
@@ -225,7 +225,7 @@ Ray 帮我们做了底层的分布式与调度这些工作。
 .. parsed-literal::
     :class: output
 
-    [100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000]
+    [200000, 200000, 200000, 200000, 200000, 200000, 200000, 200000]
 
 
 
@@ -259,8 +259,8 @@ Ray 帮我们做了底层的分布式与调度这些工作。
 .. parsed-literal::
     :class: output
 
-    CPU times: user 151 ms, sys: 232 ms, total: 384 ms
-    Wall time: 3.83 s
+    CPU times: user 554 ms, sys: 1.13 s, total: 1.68 s
+    Wall time: 15.9 s
 
 
 
@@ -272,9 +272,12 @@ Ray 帮我们做了底层的分布式与调度这些工作。
 .. parsed-literal::
     :class: output
 
-    [100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000]
+    [200000, 200000, 200000, 200000, 200000, 200000, 200000, 200000]
 
 
+
+这个例子中，计算复杂度不够大，你可以试着将 ``SEQUENCE_SIZE``
+改为更大的值，对比一下性能。
 
 原生 Python 函数与 Ray 的区别
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -306,5 +309,172 @@ Ray 函数\ ``func_name.remote()``
 会等待后台计算结果执行完，将结果返回给调用者。\ ``ray.get(ObjectRef)``
 是一个一个阻塞调用。
 
-案例2：使用蒙特卡洛方法计算 :math:`\pi`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+案例2：蒙特卡洛估计 :math:`\pi`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+接下来我们使用蒙特卡洛方法来估计 :math:`\pi`\ 。如
+:numref:`square-circle`: 我们在一个 :math:`2 \times 2`
+的正方形中随机撒点，正方形内有一个半径为1的圆。所撒的点以一定概率落在圆内，假定我们已知落在圆内的概率是
+:math:`\frac{\pi}{4}`\ ，我们可以根据随机撒点的概率情况推算出
+:math:`\pi` 的值。根据概率论相关知识，撒的点越多，概率越接近真实值。
+
+.. _square-circle:
+
+.. figure:: ../img/ch-ray-core/square-circle.png
+   :width: 800px
+
+   在正方形内随机撒点，这些点有一定概率落在圆内
+
+
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    NUM_SAMPLING_TASKS = os.cpu_count()
+    NUM_SAMPLES_PER_TASK = 10_000_000
+    TOTAL_NUM_SAMPLES = NUM_SAMPLING_TASKS * NUM_SAMPLES_PER_TASK
+
+我们定义一个 Python 原生函数，计算落在圆内的概率。我们共随机采样
+``num_samples`` 次，或者说一共撒 ``num_samples``
+个点。每次撒点其实就是对横纵坐标 ``x`` 和 ``y`` 生成 :math:`[-1, 1]`
+区间内的随机值。如果该点在圆内，则该点距圆心（坐标轴原点）距离小于等于1。math
+库中的
+`math.hypot <https://docs.python.org/3/library/math.html#math.hypot>`__
+可以计算距离。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    def sampling_task(num_samples: int, task_id: int, verbose=True) -> int:
+        num_inside = 0
+        for i in range(num_samples):
+            x, y = random.uniform(-1, 1), random.uniform(-1, 1)
+            # 判断点在圆内
+            if math.hypot(x, y) <= 1:
+                num_inside += 1
+        if verbose:
+            print(f"Task id: {task_id} | Samples in the circle: {num_inside}")
+        return num_inside
+
+我们定义一个顺序执行的 Python 原生函数，共顺序调用
+``NUM_SAMPLING_TASKS`` 次。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    def run_serial(sample_size) -> List[int]:
+        results = [sampling_task(sample_size, i+1) for i in range(NUM_SAMPLING_TASKS)]
+        return results
+
+我们再定义一个 Ray Task：只需要增加 ``@ray.remote`` 装饰器。记得 Ray
+Task 是异步执行的，Ray Task 调用之后会立即返回一个 Future
+ObjectRef，需要使用 ``ray.get()`` 获取实际计算结果。\ ``ray.get()``
+会等待计算结束，并返回实际结果。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    @ray.remote
+    def sample_task_distribute(sample_size, i) -> object:
+        return sampling_task(sample_size, i)
+    
+    def run_disributed(sample_size) -> List[int]:
+        results = ray.get([
+                sample_task_distribute.remote(sample_size, i+1) for i in range(NUM_SAMPLING_TASKS)
+            ])
+        return results
+
+以上两类函数获取了落在圆内的概率，再计算 :math:`\pi`\ ：
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    def calculate_pi(results: List[int]) -> float:
+        total_num_inside = sum(results)
+        pi = (total_num_inside * 4) / TOTAL_NUM_SAMPLES
+        return pi
+
+顺序执行的时间：
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    %%time
+    results = run_serial(NUM_SAMPLES_PER_TASK)
+    pi = calculate_pi(results)
+    print(f"Estimated value of π is: {pi:5f}")
+
+
+.. raw:: latex
+
+   \diilbookstyleoutputcell
+
+.. parsed-literal::
+    :class: output
+
+    Task id: 1 | Samples in the circle: 7854578
+    Task id: 2 | Samples in the circle: 7854041
+    Task id: 3 | Samples in the circle: 7855394
+    Task id: 4 | Samples in the circle: 7853893
+    Task id: 5 | Samples in the circle: 7852025
+    Task id: 6 | Samples in the circle: 7852742
+    Task id: 7 | Samples in the circle: 7855600
+    Task id: 8 | Samples in the circle: 7852844
+    Estimated value of π is: 3.141556
+    CPU times: user 53.3 s, sys: 2.04 s, total: 55.3 s
+    Wall time: 55.9 s
+
+
+使用 Ray Task 分布式执行执行的时间：
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    %%time
+    results = run_disributed(NUM_SAMPLES_PER_TASK)
+    pi = calculate_pi(results)
+    print(f"Estimated value of π is: {pi:5f}")
+
+
+.. raw:: latex
+
+   \diilbookstyleoutputcell
+
+.. parsed-literal::
+    :class: output
+
+    (sample_task_distribute pid=85925) Task id: 1 | Samples in the circle: 7853955
+    (sample_task_distribute pid=85926) Task id: 7 | Samples in the circle: 7856070
+    (sample_task_distribute pid=85922) Task id: 4 | Samples in the circle: 7854498
+    (sample_task_distribute pid=85923) Task id: 8 | Samples in the circle: 7852945
+    (sample_task_distribute pid=85920) Task id: 6 | Samples in the circle: 7854359
+    (sample_task_distribute pid=85921) Task id: 2 | Samples in the circle: 7854742
+    (sample_task_distribute pid=85924) Task id: 5 | Samples in the circle: 7853765
+    Estimated value of π is: 3.141652
+    CPU times: user 1.14 s, sys: 2.28 s, total: 3.42 s
+    Wall time: 34.3 s
+
+
+案例3：分布式图片处理
+~~~~~~~~~~~~~~~~~~~~~

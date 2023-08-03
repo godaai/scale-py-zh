@@ -1,0 +1,799 @@
+
+分布式函数
+----------
+
+被 Ray 加速的函数又被称为 Task。Ray Task
+是无状态的，无状态的意思是的执行只依赖函数的输入和输出，不依赖其他第三方的中间变量。
+
+顺序执行与分布式执行
+~~~~~~~~~~~~~~~~~~~~
+
+一个原生的 Python 函数如果使用 ``for``
+循环多次执行，将以顺序的方式，依次执行，如 :numref:`serial-timeline`
+所示。
+
+.. _serial-timeline:
+
+.. figure:: ../img/ch-ray-core/serial-timeline.png
+   :width: 800px
+
+   顺序执行的时间轴示意图
+
+
+
+与原生 Python 函数顺序不同的是，Ray
+可以将函数的执行分布式到集群中的多个计算节点上，如
+:numref:`distributed-timeline` 所示。
+
+.. _distributed-timeline:
+
+.. figure:: ../img/ch-ray-core/distributed-timeline.png
+   :width: 800px
+
+   分布式执行的时间轴示意图
+
+
+
+接下来将以三个案例来演示如何将 Python 函数横向扩展到 Ray 集群上：
+
+-  生成斐波那契数列
+-  使用蒙特卡洛方法计算 :math:`\pi`
+-  分布式图片处理
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    import logging
+    import math
+    import os
+    import random
+    import time
+    from pathlib import Path
+    from typing import List, Tuple
+    import numpy as np
+    import pandas as pd
+    import ray
+    import tqdm
+
+启动 Ray 集群
+~~~~~~~~~~~~~
+
+在正式使用 Ray 的分布式功能之前，首先要启动一个 Ray 集群。启动 Ray
+集群的方式有很多种，我们可以使用 ``ray.init()``
+函数，先在自己的个人电脑上启动一个 Ray 集群，以便后续的演示。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    if ray.is_initialized:
+        ray.shutdown()
+    ray.init(logging_level=logging.ERROR)
+
+
+
+
+.. raw:: html
+
+    <div>
+        <div style="margin-left: 50px;display: flex;flex-direction: row;align-items: center">
+            <h3 style="color: var(--jp-ui-font-color0)">Ray</h3>
+            <svg version="1.1" id="ray" width="3em" viewBox="0 0 144.5 144.6" style="margin-left: 3em;margin-right: 3em">
+                <g id="layer-1">
+                    <path fill="#00a2e9" class="st0" d="M97.3,77.2c-3.8-1.1-6.2,0.9-8.3,5.1c-3.5,6.8-9.9,9.9-17.4,9.6S58,88.1,54.8,81.2c-1.4-3-3-4-6.3-4.1
+                        c-5.6-0.1-9.9,0.1-13.1,6.4c-3.8,7.6-13.6,10.2-21.8,7.6C5.2,88.4-0.4,80.5,0,71.7c0.1-8.4,5.7-15.8,13.8-18.2
+                        c8.4-2.6,17.5,0.7,22.3,8c1.3,1.9,1.3,5.2,3.6,5.6c3.9,0.6,8,0.2,12,0.2c1.8,0,1.9-1.6,2.4-2.8c3.5-7.8,9.7-11.8,18-11.9
+                        c8.2-0.1,14.4,3.9,17.8,11.4c1.3,2.8,2.9,3.6,5.7,3.3c1-0.1,2,0.1,3,0c2.8-0.5,6.4,1.7,8.1-2.7s-2.3-5.5-4.1-7.5
+                        c-5.1-5.7-10.9-10.8-16.1-16.3C84,38,81.9,37.1,78,38.3C66.7,42,56.2,35.7,53,24.1C50.3,14,57.3,2.8,67.7,0.5
+                        C78.4-2,89,4.7,91.5,15.3c0.1,0.3,0.1,0.5,0.2,0.8c0.7,3.4,0.7,6.9-0.8,9.8c-1.7,3.2-0.8,5,1.5,7.2c6.7,6.5,13.3,13,19.8,19.7
+                        c1.8,1.8,3,2.1,5.5,1.2c9.1-3.4,17.9-0.6,23.4,7c4.8,6.9,4.6,16.1-0.4,22.9c-5.4,7.2-14.2,9.9-23.1,6.5c-2.3-0.9-3.5-0.6-5.1,1.1
+                        c-6.7,6.9-13.6,13.7-20.5,20.4c-1.8,1.8-2.5,3.2-1.4,5.9c3.5,8.7,0.3,18.6-7.7,23.6c-7.9,5-18.2,3.8-24.8-2.9
+                        c-6.4-6.4-7.4-16.2-2.5-24.3c4.9-7.8,14.5-11,23.1-7.8c3,1.1,4.7,0.5,6.9-1.7C91.7,98.4,98,92.3,104.2,86c1.6-1.6,4.1-2.7,2.6-6.2
+                        c-1.4-3.3-3.8-2.5-6.2-2.6C99.8,77.2,98.9,77.2,97.3,77.2z M72.1,29.7c5.5,0.1,9.9-4.3,10-9.8c0-0.1,0-0.2,0-0.3
+                        C81.8,14,77,9.8,71.5,10.2c-5,0.3-9,4.2-9.3,9.2c-0.2,5.5,4,10.1,9.5,10.3C71.8,29.7,72,29.7,72.1,29.7z M72.3,62.3
+                        c-5.4-0.1-9.9,4.2-10.1,9.7c0,0.2,0,0.3,0,0.5c0.2,5.4,4.5,9.7,9.9,10c5.1,0.1,9.9-4.7,10.1-9.8c0.2-5.5-4-10-9.5-10.3
+                        C72.6,62.3,72.4,62.3,72.3,62.3z M115,72.5c0.1,5.4,4.5,9.7,9.8,9.9c5.6-0.2,10-4.8,10-10.4c-0.2-5.4-4.6-9.7-10-9.7
+                        c-5.3-0.1-9.8,4.2-9.9,9.5C115,72.1,115,72.3,115,72.5z M19.5,62.3c-5.4,0.1-9.8,4.4-10,9.8c-0.1,5.1,5.2,10.4,10.2,10.3
+                        c5.6-0.2,10-4.9,9.8-10.5c-0.1-5.4-4.5-9.7-9.9-9.6C19.6,62.3,19.5,62.3,19.5,62.3z M71.8,134.6c5.9,0.2,10.3-3.9,10.4-9.6
+                        c0.5-5.5-3.6-10.4-9.1-10.8c-5.5-0.5-10.4,3.6-10.8,9.1c0,0.5,0,0.9,0,1.4c-0.2,5.3,4,9.8,9.3,10
+                        C71.6,134.6,71.7,134.6,71.8,134.6z"/>
+                </g>
+            </svg>
+            <table>
+                <tr>
+                    <td style="text-align: left"><b>Python version:</b></td>
+                    <td style="text-align: left"><b>3.10.9</b></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left"><b>Ray version:</b></td>
+                    <td style="text-align: left"><b> 2.3.0</b></td>
+                </tr>
+                <tr>
+        <td style="text-align: left"><b>Dashboard:</b></td>
+        <td style="text-align: left"><b><a href="http://127.0.0.1:8265" target="_blank">http://127.0.0.1:8265</a></b></td>
+    </tr>
+    
+            </table>
+        </div>
+    </div>
+
+
+
+
+案例1：斐波那契数列
+~~~~~~~~~~~~~~~~~~~
+
+接下来，我们用斐波那契数列的案例来演示如何使用 Ray 对 Python
+函数进行分布式的扩展。
+
+斐波那契数列的第 :math:`n` 项 :math:`F_n` 可以由它前面的两个数
+:math:`F_{n-1}` 和 :math:`F_{n-2}` 计算得到。用形式化的数学公式定义为：
+
+.. math::
+
+
+   F_n = F_{n-1} + F_{n-2}
+
+其中，\ :math:`F_0 = 0`\ ，\ :math:`F_1 = 1`\ 。
+
+下面我们使用原生的 Python 定义一个斐波那契函数。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    SEQUENCE_SIZE = 200000
+    
+    def generate_fibonacci(sequence_size):
+        fibonacci = []
+        for i in range(0, sequence_size):
+            if i < 2:
+                fibonacci.append(i)
+                continue
+            fibonacci.append(fibonacci[i-1] + fibonacci[i-2])
+        return len(fibonacci)
+
+如果我们想让这个 Python 函数被 Ray 分布式执行，只需要在函数上增加一个
+``@ray.remote`` 装饰器。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    # 在函数上增加一个 @ray.remote 装饰器
+    @ray.remote
+    def generate_fibonacci_distributed(sequence_size):
+        return generate_fibonacci(sequence_size)
+
+作为 Ray 的使用者，我们不需要关心 Task 在 Ray
+集群中是如何被分布式执行的，也不需要了解这个 Task
+被调度到哪些计算节点。所有这些分布式执行的细节都被 Ray 所隐藏，或者说
+Ray 帮我们做了底层的分布式与调度这些工作。
+
+我们比较一下顺序执行与分布式执行的效率与耗时。\ ``os.cpu_count()``
+可以得到当前个人电脑上的 CPU 核心数。顺序执行的代码使用 ``for``
+循环，多次调用生成斐波那契数列的函数。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    # 顺序执行
+    def run_local(sequence_size):
+        results = [generate_fibonacci(sequence_size) for _ in range(os.cpu_count())]
+        return results
+
+使用 Ray 进行分布式扩展，函数可并行地在多个 CPU 核心上执行。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    # 使用 Ray 进行分布式扩展
+    def run_remote(sequence_size):
+        results = ray.get([generate_fibonacci_distributed.remote(sequence_size) for _ in range(os.cpu_count())])
+        return results
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    start = time.time()
+    run_local(SEQUENCE_SIZE)
+    end = time.time()
+    elapsed_fib_serial = end - start
+    print(f"Serial | elapsed: {elapsed_fib_serial:.2f} sec")
+    
+    start = time.time()
+    run_remote(SEQUENCE_SIZE)
+    end = time.time()
+    elapsed_fib_dist = end - start
+    print(f"Distributed | elapsed: {elapsed_fib_dist:.2f} sec")
+
+
+.. raw:: latex
+
+   \diilbookstyleoutputcell
+
+.. parsed-literal::
+    :class: output
+
+    Serial | elapsed: 14.12 sec
+    Distributed | elapsed: 13.88 sec
+
+
+这个例子中，计算复杂度不够大，你可以试着将 ``SEQUENCE_SIZE``
+改为更大的值，对比一下性能。
+
+原生 Python 函数与 Ray 的区别
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+需要注意的是，使用 Ray 与原生 Python 函数稍有区别，主要体现在：
+
+-  函数调用方式
+
+原生 Python 函数，使用 ``func_name()`` 调用。在使用 Ray
+是，函数定义需要增加 ``@ray.remote`` 装饰器，调用时需要使用
+``func_name.remote()`` 的形式。
+
+-  返回值
+
+调用一个原生 Python 函数 ``func_name()``\ ，即可得到函数的返回值。在使用
+Ray 时，\ ``func_name.remote()`` 返回值是 ``ray.ObjectRef``
+类型的对象，\ ``ray.ObjectRef`` 并不是一个具体的值，而是一个
+Future（尚未完成但未来会完成的计算），需要使用 ``ray.get()``
+函数获取该调用的实际返回值。
+
+-  执行方式
+
+原生 Python 函数 ``func_name()``
+的调用是同步执行的，或者说等待结果返回才进行后续计算，又或者说这个调用是阻塞的。一个
+Ray 函数\ ``func_name.remote()``
+是异步执行的，或者说调用者不需要等待这个函数的计算真正执行完， Ray
+就立即返回了一个
+``ray.ObjectRef``\ ，函数的计算是在后台某个计算节点上执行的。\ ``ray.get(ObjectRef)``
+会等待后台计算结果执行完，将结果返回给调用者。\ ``ray.get(ObjectRef)``
+是一个一个阻塞调用。
+
+案例2：蒙特卡洛估计 :math:`\pi`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+接下来我们使用蒙特卡洛方法来估计 :math:`\pi`\ 。如
+:numref:`square-circle`: 我们在一个 :math:`2 \times 2`
+的正方形中随机撒点，正方形内有一个半径为1的圆。所撒的点以一定概率落在圆内，假定我们已知落在圆内的概率是
+:math:`\frac{\pi}{4}`\ ，我们可以根据随机撒点的概率情况推算出
+:math:`\pi` 的值。根据概率论相关知识，撒的点越多，概率越接近真实值。
+
+.. _square-circle:
+
+.. figure:: ../img/ch-ray-core/square-circle.png
+   :width: 800px
+
+   在正方形内随机撒点，这些点有一定概率落在圆内
+
+
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    NUM_SAMPLING_TASKS = os.cpu_count()
+    NUM_SAMPLES_PER_TASK = 10_000_000
+    TOTAL_NUM_SAMPLES = NUM_SAMPLING_TASKS * NUM_SAMPLES_PER_TASK
+
+我们定义一个 Python 原生函数，计算落在圆内的概率。我们共随机采样
+``num_samples`` 次，或者说一共撒 ``num_samples``
+个点。每次撒点其实就是对横纵坐标 ``x`` 和 ``y`` 生成 :math:`[-1, 1]`
+区间内的随机值。如果该点在圆内，则该点距圆心（坐标轴原点）距离小于等于1。math
+库中的
+`math.hypot <https://docs.python.org/3/library/math.html#math.hypot>`__
+可以计算距离。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    def sampling_task(num_samples: int, task_id: int, verbose=True) -> int:
+        num_inside = 0
+        for i in range(num_samples):
+            x, y = random.uniform(-1, 1), random.uniform(-1, 1)
+            # 判断点在圆内
+            if math.hypot(x, y) <= 1:
+                num_inside += 1
+        if verbose:
+            print(f"Task id: {task_id} | Samples in the circle: {num_inside}")
+        return num_inside
+
+我们定义一个顺序执行的 Python 原生函数，共顺序调用
+``NUM_SAMPLING_TASKS`` 次。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    def run_serial(sample_size) -> List[int]:
+        results = [sampling_task(sample_size, i+1) for i in range(NUM_SAMPLING_TASKS)]
+        return results
+
+我们再定义一个 Ray Task：只需要增加 ``@ray.remote`` 装饰器。记得 Ray
+Task 是异步执行的，Ray Task 调用之后会立即返回一个 Future
+ObjectRef，需要使用 ``ray.get()`` 获取实际计算结果。\ ``ray.get()``
+会等待计算结束，并返回实际结果。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    @ray.remote
+    def sample_task_distribute(sample_size, i) -> object:
+        return sampling_task(sample_size, i)
+    
+    def run_disributed(sample_size) -> List[int]:
+        results = ray.get([
+                sample_task_distribute.remote(sample_size, i+1) for i in range(NUM_SAMPLING_TASKS)
+            ])
+        return results
+
+以上两类函数获取了落在圆内的概率，再计算 :math:`\pi`\ ：
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    def calculate_pi(results: List[int]) -> float:
+        total_num_inside = sum(results)
+        pi = (total_num_inside * 4) / TOTAL_NUM_SAMPLES
+        return pi
+
+顺序执行与 Ray 分布式执行执行的耗时对比：
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    start = time.time()
+    results = run_serial(NUM_SAMPLES_PER_TASK)
+    pi = calculate_pi(results)
+    end = time.time()
+    elapsed_pi_serial = end - start
+    print(f"Serial | estimated value of π is: {pi:5f}, elapsed: {elapsed_pi_serial:.2f} sec")
+    
+    start = time.time()
+    results = run_disributed(NUM_SAMPLES_PER_TASK)
+    pi = calculate_pi(results)
+    end = time.time()
+    elapsed_pi_dist = end - start
+    print(f"Distributed | estimated value of π is: {pi:5f}, elapsed: {elapsed_pi_dist:.2f} sec")
+
+
+.. raw:: latex
+
+   \diilbookstyleoutputcell
+
+.. parsed-literal::
+    :class: output
+
+    Task id: 1 | Samples in the circle: 7853098
+    Task id: 2 | Samples in the circle: 7854985
+    Task id: 3 | Samples in the circle: 7853756
+    Task id: 4 | Samples in the circle: 7851068
+    Task id: 5 | Samples in the circle: 7851407
+    Task id: 6 | Samples in the circle: 7852987
+    Task id: 7 | Samples in the circle: 7855916
+    Task id: 8 | Samples in the circle: 7852873
+    Serial | estimated value of π is: 3.141304, elapsed: 50.96 sec
+    Distributed | estimated value of π is: 3.141433, elapsed: 16.75 sec
+
+
+案例3：分布式图片处理
+~~~~~~~~~~~~~~~~~~~~~
+
+接下来我们模拟一个更加计算密集的分布式图片预处理的任务。所处理内容均为高清像素图片，大概3-5MB。这些图片数据预处理工作在当前人工智能场景下非常普遍：
+
+-  使用 PIL 库加载图片，并对图片进行模糊（Blur）处理。
+-  使用 PyTorch 的 ``torchvision``
+   库中的预处理工具，处理后的图片被转换成 ``Tensor``\ 。
+-  对 ``Tensor`` 进行矩阵乘法等计算。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    import matplotlib.pyplot as plt
+    import requests
+    import torch
+    from PIL import Image
+    from torchvision import transforms as T
+    
+    URLS = [
+         'https://images.pexels.com/photos/305821/pexels-photo-305821.jpeg',
+         'https://images.pexels.com/photos/509922/pexels-photo-509922.jpeg',
+         'https://images.pexels.com/photos/325812/pexels-photo-325812.jpeg',
+         'https://images.pexels.com/photos/1252814/pexels-photo-1252814.jpeg',
+         'https://images.pexels.com/photos/1420709/pexels-photo-1420709.jpeg',
+         'https://images.pexels.com/photos/963486/pexels-photo-963486.jpeg',
+         'https://images.pexels.com/photos/1557183/pexels-photo-1557183.jpeg',
+         'https://images.pexels.com/photos/3023211/pexels-photo-3023211.jpeg',
+         'https://images.pexels.com/photos/1031641/pexels-photo-1031641.jpeg',
+         'https://images.pexels.com/photos/439227/pexels-photo-439227.jpeg',
+         'https://images.pexels.com/photos/696644/pexels-photo-696644.jpeg',
+         'https://images.pexels.com/photos/911254/pexels-photo-911254.jpeg',
+         'https://images.pexels.com/photos/1001990/pexels-photo-1001990.jpeg',
+         'https://images.pexels.com/photos/3518623/pexels-photo-3518623.jpeg',
+         'https://images.pexels.com/photos/916044/pexels-photo-916044.jpeg',
+         'https://images.pexels.com/photos/2253879/pexels-photo-2253879.jpeg',
+         'https://images.pexels.com/photos/3316918/pexels-photo-3316918.jpeg',
+         'https://images.pexels.com/photos/942317/pexels-photo-942317.jpeg',
+         'https://images.pexels.com/photos/1090638/pexels-photo-1090638.jpeg',
+         'https://images.pexels.com/photos/1279813/pexels-photo-1279813.jpeg',
+         'https://images.pexels.com/photos/434645/pexels-photo-434645.jpeg',
+         'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg',
+         'https://images.pexels.com/photos/1080696/pexels-photo-1080696.jpeg',
+         'https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg',
+         'https://images.pexels.com/photos/421927/pexels-photo-421927.jpeg',
+         'https://images.pexels.com/photos/302428/pexels-photo-302428.jpeg',
+         'https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg',
+         'https://images.pexels.com/photos/3685175/pexels-photo-3685175.jpeg',
+         'https://images.pexels.com/photos/2885578/pexels-photo-2885578.jpeg',
+         'https://images.pexels.com/photos/3530116/pexels-photo-3530116.jpeg',
+         'https://images.pexels.com/photos/9668911/pexels-photo-9668911.jpeg',
+         'https://images.pexels.com/photos/14704971/pexels-photo-14704971.jpeg',
+         'https://images.pexels.com/photos/13865510/pexels-photo-13865510.jpeg',
+         'https://images.pexels.com/photos/6607387/pexels-photo-6607387.jpeg',
+         'https://images.pexels.com/photos/13716813/pexels-photo-13716813.jpeg',
+         'https://images.pexels.com/photos/14690500/pexels-photo-14690500.jpeg',
+         'https://images.pexels.com/photos/14690501/pexels-photo-14690501.jpeg',
+         'https://images.pexels.com/photos/14615366/pexels-photo-14615366.jpeg',
+         'https://images.pexels.com/photos/14344696/pexels-photo-14344696.jpeg',
+         'https://images.pexels.com/photos/14661919/pexels-photo-14661919.jpeg',
+         'https://images.pexels.com/photos/5977791/pexels-photo-5977791.jpeg',
+         'https://images.pexels.com/photos/5211747/pexels-photo-5211747.jpeg',
+         'https://images.pexels.com/photos/5995657/pexels-photo-5995657.jpeg',
+         'https://images.pexels.com/photos/8574183/pexels-photo-8574183.jpeg',
+         'https://images.pexels.com/photos/14690503/pexels-photo-14690503.jpeg',
+         'https://images.pexels.com/photos/2100941/pexels-photo-2100941.jpeg',
+         'https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg',
+         'https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg',
+         'https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg',
+         'https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg',
+         'https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg',
+         'https://www.nasa.gov/centers/stennis/images/content/702979main_SSC-2012-01487.jpg',
+         'https://live.staticflickr.com/2443/3984080835_71b0426844_b.jpg',
+         'https://www.aero.jaxa.jp/eng/facilities/aeroengine/images/th_aeroengine05.jpg',
+         'https://images.pexels.com/photos/370717/pexels-photo-370717.jpeg',
+         'https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg',
+         'https://images.pexels.com/photos/11374974/pexels-photo-11374974.jpeg',
+         'https://images.pexels.com/photos/408951/pexels-photo-408951.jpeg',
+         'https://images.pexels.com/photos/3889870/pexels-photo-3889870.jpeg',
+         'https://images.pexels.com/photos/1774389/pexels-photo-1774389.jpeg',
+         'https://images.pexels.com/photos/3889854/pexels-photo-3889854.jpeg',
+         'https://images.pexels.com/photos/2196578/pexels-photo-2196578.jpeg',
+         'https://images.pexels.com/photos/2885320/pexels-photo-2885320.jpeg',
+         'https://images.pexels.com/photos/7189303/pexels-photo-7189303.jpeg',
+         'https://images.pexels.com/photos/9697598/pexels-photo-9697598.jpeg',
+         'https://images.pexels.com/photos/6431298/pexels-photo-6431298.jpeg',
+         'https://images.pexels.com/photos/7131157/pexels-photo-7131157.jpeg',
+         'https://images.pexels.com/photos/4840134/pexels-photo-4840134.jpeg',
+         'https://images.pexels.com/photos/5359974/pexels-photo-5359974.jpeg',
+         'https://images.pexels.com/photos/3889854/pexels-photo-3889854.jpeg',
+         'https://images.pexels.com/photos/1753272/pexels-photo-1753272.jpeg',
+         'https://images.pexels.com/photos/2328863/pexels-photo-2328863.jpeg',
+         'https://images.pexels.com/photos/6102161/pexels-photo-6102161.jpeg',
+         'https://images.pexels.com/photos/6101986/pexels-photo-6101986.jpeg',
+         'https://images.pexels.com/photos/3334492/pexels-photo-3334492.jpeg',
+         'https://images.pexels.com/photos/5708915/pexels-photo-5708915.jpeg',
+         'https://images.pexels.com/photos/5708913/pexels-photo-5708913.jpeg',
+         'https://images.pexels.com/photos/6102436/pexels-photo-6102436.jpeg',
+         'https://images.pexels.com/photos/6102144/pexels-photo-6102144.jpeg',
+         'https://images.pexels.com/photos/6102003/pexels-photo-6102003.jpeg',
+         'https://images.pexels.com/photos/6194087/pexels-photo-6194087.jpeg',
+         'https://images.pexels.com/photos/5847900/pexels-photo-5847900.jpeg',
+         'https://images.pexels.com/photos/1671479/pexels-photo-1671479.jpeg',
+         'https://images.pexels.com/photos/3335507/pexels-photo-3335507.jpeg',
+         'https://images.pexels.com/photos/6102522/pexels-photo-6102522.jpeg',
+         'https://images.pexels.com/photos/6211095/pexels-photo-6211095.jpeg',
+         'https://images.pexels.com/photos/720347/pexels-photo-720347.jpeg',
+         'https://images.pexels.com/photos/3516015/pexels-photo-3516015.jpeg',
+         'https://images.pexels.com/photos/3325717/pexels-photo-3325717.jpeg',
+         'https://images.pexels.com/photos/849835/pexels-photo-849835.jpeg',
+         'https://images.pexels.com/photos/302743/pexels-photo-302743.jpeg',
+         'https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg',
+         'https://images.pexels.com/photos/259620/pexels-photo-259620.jpeg',
+         'https://images.pexels.com/photos/300857/pexels-photo-300857.jpeg',
+         'https://images.pexels.com/photos/789380/pexels-photo-789380.jpeg',
+         'https://images.pexels.com/photos/735987/pexels-photo-735987.jpeg',
+         'https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg',
+         'https://images.pexels.com/photos/300857/pexels-photo-300857.jpeg',
+         'https://images.pexels.com/photos/760971/pexels-photo-760971.jpeg',
+         'https://images.pexels.com/photos/789382/pexels-photo-789382.jpeg',
+         'https://images.pexels.com/photos/33041/antelope-canyon-lower-canyon-arizona.jpg',
+         'https://images.pexels.com/photos/1004665/pexels-photo-1004665.jpeg'
+    ]
+    
+    # 图片将下载到该文件夹
+    DATA_DIR = Path(os.getcwd() + "/function-task-images")
+    
+    THUMB_SIZE = (64, 64)
+    
+    def display_random_images(image_list: List[str], n: int=3) -> None:
+        """
+        随机选择图片并展示出来
+        """
+        random_samples_idx = random.sample(range(len(image_list)), k=n)
+        plt.figure(figsize=(16, 8))
+        for i, targ_sample in enumerate(random_samples_idx):
+            plt.subplot(1, n, i+1)
+            img = Image.open(image_list[targ_sample])
+            img_as_array = np.asarray(img)
+            plt.imshow(img_as_array)
+            title = f"\nshape: {img.size}"
+            plt.axis("off")
+            plt.title(title)
+        plt.show()
+    
+    def download_images(url: str, data_dir: str) -> None:
+        """
+        下载图片
+        """
+        img_data = requests.get(url).content
+        img_name = url.split("/")[4]
+        img_name = f"{data_dir}/{img_name}.jpg"
+        with open(img_name, 'wb+') as f:
+            f.write(img_data)
+    
+    @ray.remote
+    def augment_image_distributed(image_ref: object, fetch_image) -> List[object]:
+        return transform_image(image_ref, fetch_image=fetch_image)
+    
+    def run_serially(img_list_refs: List) -> List[Tuple[int, float]]:
+        transform_results = [transform_image(image_ref, fetch_image=True) for image_ref in tqdm.tqdm(img_list_refs)]
+        return transform_results
+    
+    def run_distributed(img_list_refs:List[object]) ->  List[Tuple[int, float]]:
+        return ray.get([augment_image_distributed.remote(img, False) for img in tqdm.tqdm(img_list_refs)])
+
+
+.. raw:: latex
+
+   \diilbookstyleoutputcell
+
+.. parsed-literal::
+    :class: output
+
+    (sample_task_distribute pid=36826) Task id: 4 | Samples in the circle: 7853238
+    (sample_task_distribute pid=36829) Task id: 2 | Samples in the circle: 7854137
+    (sample_task_distribute pid=36823) Task id: 7 | Samples in the circle: 7853980
+    (sample_task_distribute pid=36824) Task id: 1 | Samples in the circle: 7853933
+    (sample_task_distribute pid=36825) Task id: 3 | Samples in the circle: 7853931
+    (sample_task_distribute pid=36828) Task id: 5 | Samples in the circle: 7851152
+    (sample_task_distribute pid=36827) Task id: 6 | Samples in the circle: 7855578
+    (sample_task_distribute pid=36821) Task id: 8 | Samples in the circle: 7852702
+
+
+我们将图片放在 Ray 的分布式对象存储中（Object Store），如
+:numref:`put-get-object-store` 分布式的 Object Store
+可以允许集群上多个计算节点共享数据。这里使用 ``ray.get()`` 和
+``ray.put()`` 向 Object Store 上读写数据，我们将在
+:numref:`object-store` 中详细解释 Object Store 的使用方法。
+
+.. _put-get-object-store:
+
+.. figure:: ../img/ch-ray-core/put-get-object-store.png
+   :width: 800px
+
+   Object Store 在多个计算节点上共享数据
+
+
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    def insert_into_object_store(img_name: str):
+        """
+        将图片插入 Object Store
+        """
+    
+        img = Image.open(img_name)
+        img_ref = ray.put(img)
+        return img_ref
+
+计算密集型函数
+``transform_image``\ ，模拟了深度学习中经常使用的图片数据预处理操作。对于顺序执行部分，我们需要使用
+``ray.get()`` 从 Object Store 中将图片数据拉取。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    def transform_image(img_ref: object, fetch_image=True, verbose=False):
+        """
+        图片预处理函数，模拟图片读取，torchvision 数据预处理和 Tensor 矩阵乘法等计算密集型任务
+        """
+    
+        # 顺序执行时，需要将图片从 Ojbect Store 中拉取
+        if fetch_image:
+            orig_img = ray.get(img_ref)
+        else:
+            orig_img = img_ref
+        before_shape = orig_img.size
+    
+        # torchvision 提供的一系列数据预处理操作
+        gray_img = T.Grayscale()(orig_img)
+    
+        cropper = T.RandomCrop(size=(224, 224))
+        crops = [cropper(orig_img) for _ in range(4)]
+    
+        augmentor = T.TrivialAugmentWide(num_magnitude_bins=31)
+        augmented_img = augmentor(orig_img)
+    
+        # 将图片转换成 Tensor
+        tensor = torch.tensor(np.asarray(augmented_img))
+        t_tensor = torch.transpose(tensor, 0, 1)
+    
+        # 进行矩阵乘法等计算密集型任务
+        random.seed(42)
+        for _ in range(3):
+            tensor.pow(3).sum()
+            t_tensor.pow(3).sum()
+            torch.mul(tensor, random.randint(2, 10))
+            torch.mul(t_tensor, random.randint(2, 10))
+            torch.mul(tensor, tensor)
+            torch.mul(t_tensor, t_tensor)
+    
+        # 将数据增广后的图片转换为缩略图
+        augmented_img.thumbnail(THUMB_SIZE)
+        after_shape = augmented_img.size
+        if verbose:
+            print(f"original shape:{before_shape}, image tensor shape:{tensor.size()} transpose shape:{t_tensor.size()}")
+    
+        return before_shape, after_shape
+
+下载并随机展示图片：
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    if not os.path.exists(DATA_DIR):
+        os.mkdir(DATA_DIR)
+        print(f"downloading images ...")
+        for url in tqdm.tqdm(URLS):
+            download_images(url, DATA_DIR)
+    
+    image_list = list(DATA_DIR.glob("*.jpg"))
+    images_list_refs = [insert_into_object_store(image) for
+                      image in image_list]
+    
+    display_random_images(image_list, n=5)
+
+
+.. raw:: latex
+
+   \diilbookstyleoutputcell
+
+.. parsed-literal::
+    :class: output
+
+    (raylet) Spilled 2163 MiB, 49 objects, write throughput 1311 MiB/s. Set RAY_verbose_spill_logs=0 to disable this message.
+
+
+
+.. figure:: output_remote-task_11a7d2_32_1.png
+
+
+比较顺序执行与分布式执行的耗时：
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    # 顺序执行
+    print(f"\nRunning {len(images_list_refs)} images serially....")
+    start = time.time()
+    serial_results = run_serially(images_list_refs)
+    end = time.time()
+    elapsed_img_serial = end - start
+    print(f"Serial transformations of {len(images_list_refs)} images: {elapsed_img_serial:.2f} sec")
+    
+    # 使用 Ray 分布式执行
+    print(f"\nRunning {len(images_list_refs)} images distributed....")
+    start = time.time()
+    distributed_results = run_distributed(images_list_refs)
+    end = time.time()
+    elapsed_img_dist = end - start
+    print(f"Distributed transformations of {len(images_list_refs)} images: {elapsed_img_dist:.2f} sec")
+
+
+.. raw:: latex
+
+   \diilbookstyleoutputcell
+
+.. parsed-literal::
+    :class: output
+
+    
+    Running 77 images serially....
+    100%|█████████████████████████████████████████████████████████████| 77/77 [01:50<00:00,  1.44s/it]
+    Serial transformations of 77 images: 110.75 sec
+    
+    Running 77 images distributed....
+    100%|███████████████████████████████████████████████████████████| 77/77 [00:00<00:00, 1458.48it/s]
+    Distributed transformations of 77 images: 92.28 sec
+
+
+三个案例运行结束，我们比较一下 Ray 的分布式执行效率。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    from IPython import display
+    
+    display.set_matplotlib_formats('svg')
+    
+    data = {'workload': ["fib", "pi", "img"],
+            'serial' : [elapsed_fib_serial, elapsed_pi_serial, elapsed_img_serial],
+            'distributed': [elapsed_fib_dist, elapsed_pi_dist, elapsed_img_dist]}
+    
+    df = pd.DataFrame(data)
+    df.plot(x="workload", y=["serial", "distributed"], kind="bar")
+    plt.ylabel('Time(sec)', fontsize=12)
+    plt.xlabel('Workload', fontsize=12)
+    plt.grid(False)
+    plt.show()
+
+
+
+.. figure:: output_remote-task_11a7d2_36_0.svg
+
+
+最后还有一个需要注意的地方，当不需要计算时，使用 ``ray.shutdown()`` 将
+Ray 关闭，否则 Ray 进程会一直在你的个人电脑上运行。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: python
+
+    ray.shutdown()

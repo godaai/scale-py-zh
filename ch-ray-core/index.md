@@ -14,5 +14,6 @@ Ray 可以将 Python 函数或者类等计算任务横向扩展到多个计算�
 ```toc
 :maxdepth: 2
 
-function-task
+remote-task
+object-store
 ```
