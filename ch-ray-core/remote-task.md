@@ -33,19 +33,21 @@ from pathlib import Path
 from typing import List, Tuple
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt 
-
-import ray
-
+import matplotlib.pyplot as plt
 from PIL import Image
 import torch
 import torchvision
 from torchvision import transforms as T
+%matplotlib inline
+import matplotlib_inline
+matplotlib_inline.backend_inline.set_matplotlib_formats('svg')
+
+import ray
 ```
 
 ### 启动 Ray 集群
 
-在正式使用 Ray 的分布式功能之前，首先要启动一个 Ray 集群。启动 Ray 集群的方式有很多种，我们可以使用 `ray.init()` 函数，先在自己的个人电脑上启动一个 Ray 集群，以便后续的演示。
+在正式使用 Ray 的分布式功能之前，首先要启动一个 Ray 集群。启动 Ray 集群的方式有很多种，我们可以使用 `ray.init()` 函数，先上启动一个单节点的 Ray 集群，以便后续的演示。这个单节点的 Ray 集群运行在执行这个 Python 任务的电脑上。
 
 ```{.python .input}
 # Hide outputs
@@ -90,7 +92,7 @@ def generate_fibonacci_distributed(sequence_size):
 
 作为 Ray 的使用者，我们不需要关心 Task 在 Ray 集群中是如何被分布式执行的，也不需要了解这个 Task 被调度到哪些计算节点。所有这些分布式执行的细节都被 Ray 所隐藏，或者说 Ray 帮我们做了底层的分布式与调度这些工作。
 
-我们比较一下顺序执行与分布式执行的效率与耗时。`os.cpu_count()` 可以得到当前个人电脑上的 CPU 核心数。顺序执行的代码使用 `for` 循环，多次调用生成斐波那契数列的函数。
+我们比较一下顺序执行与分布式执行的效率与耗时。`os.cpu_count()` 可以得到当前的 CPU 核心数。顺序执行的代码使用 `for` 循环，多次调用生成斐波那契数列的函数。
 
 ```{.python .input}
 # 顺序执行
@@ -231,38 +233,29 @@ print(f"Distributed :: random samples: {NUM_SAMPLES_PER_TASK}, estimated value o
 随机生成图片数据集，图片大小为 $3000 \times 3000$，并保存成 jpg 格式。
 
 ```{.python .input}
+# Hide outputs
 NUM_IMAGES = 50
 # 图片将生成至该文件夹
-DATA_DIR = Path(os.getcwd() + "/fake")
+DATA_DIR = Path(os.getcwd() + "/data/fake-images")
 
 if not DATA_DIR.exists():
     # 目录不存在，创建目录
-    os.mkdir(DATA_DIR)
+    DATA_DIR.mkdir(parents=True)
     print(f'Creating directory: {DATA_DIR}.')
     
     # 随机生成图片数据集
     # dataset 是一个 List
     # 每个元素为 （Image, Label）
     dataset = torchvision.datasets.FakeData(size=NUM_IMAGES, image_size=(3, 3000, 3000))
-    for i in range(100):
+    for i in range(NUM_IMAGES):
         dest = DATA_DIR / f"{str(i)}.jpg"
         dataset[i][0].save(dest, quality=60)
-
-@ray.remote
-def augment_image_distributed(image_ref: object) -> List[object]:
-    return transform_image(image_ref)
-
-def run_serially(img_list_refs: List) -> List[object]:
-    transform_results = [transform_image(image_ref) for image_ref in tqdm.tqdm(img_list_refs)]
-    return transform_results
-
-def run_distributed(img_list_refs:List[object]) ->  List[object]:
-    return ray.get([augment_image_distributed.remote(img, False) for img in tqdm.tqdm(img_list_refs)])
 ```
 
 计算密集型函数 `transform_image`，模拟了深度学习中经常使用的图片数据预处理和数据增强操作。
 
 ```{.python .input}
+# Hide outputs
 def transform_image(img: object):
     """
     图片预处理函数: 使用 torchvision 提供数据增强等转换操作
@@ -323,9 +316,6 @@ print(f"Distributed :: transformations of {len(image_path_list)} images, {elapse
 三个案例运行结束我们比较一下 Ray 的分布式执行效率。这三个任务都有各自特色，其中斐波那契数列的计算相对简单，主要使用 Python 提供的原生功能（列表、加法）；模拟 $\pi$ 任务调用了 `random` 和 `math` 两个 Python 标准库；图片处理任务调用了更加复杂的第三方库 `torch` ，`torchvision` 和 `pillow`，其中 `pillow` 和 `torch` 的底层实现都更加复杂。 
 
 ```{.python .input}
-from IPython import display
-display.set_matplotlib_formats('svg')
-
 data = {'workload': ["fib", "pi", "img"],
         'serial' : [elapsed_fib_serial, elapsed_pi_serial, elapsed_img_serial],
         'distributed': [elapsed_fib_dist, elapsed_pi_dist, elapsed_img_dist]}
@@ -338,7 +328,7 @@ plt.grid(False)
 plt.show()
 ```
 
-最后还有一个需要注意的地方，当不需要计算时，使用 `ray.shutdown()` 将 Ray 关闭，否则 Ray 进程会一直在你的个人电脑上运行。
+最后还有一个需要注意的地方，当不需要计算时，使用 `ray.shutdown()` 将 Ray 关闭，否则 Ray 进程会一直在执行这个 Python 任务的电脑上运行。
 
 ```{.python .input}
 ray.shutdown()

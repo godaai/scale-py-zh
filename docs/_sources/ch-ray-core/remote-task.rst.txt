@@ -55,21 +55,24 @@
     from typing import List, Tuple
     import numpy as np
     import pandas as pd
-    import matplotlib.pyplot as plt 
-    
-    import ray
-    
+    import matplotlib.pyplot as plt
     from PIL import Image
     import torch
     import torchvision
     from torchvision import transforms as T
+    %matplotlib inline
+    import matplotlib_inline
+    matplotlib_inline.backend_inline.set_matplotlib_formats('svg')
+    
+    import ray
 
 启动 Ray 集群
 ~~~~~~~~~~~~~
 
 在正式使用 Ray 的分布式功能之前，首先要启动一个 Ray 集群。启动 Ray
 集群的方式有很多种，我们可以使用 ``ray.init()``
-函数，先在自己的个人电脑上启动一个 Ray 集群，以便后续的演示。
+函数，先上启动一个单节点的 Ray 集群，以便后续的演示。这个单节点的 Ray
+集群运行在执行这个 Python 任务的电脑上。
 
 .. raw:: latex
 
@@ -135,7 +138,7 @@
 Ray 帮我们做了底层的分布式与调度这些工作。
 
 我们比较一下顺序执行与分布式执行的效率与耗时。\ ``os.cpu_count()``
-可以得到当前个人电脑上的 CPU 核心数。顺序执行的代码使用 ``for``
+可以得到当前的 CPU 核心数。顺序执行的代码使用 ``for``
 循环，多次调用生成斐波那契数列的函数。
 
 .. raw:: latex
@@ -190,19 +193,8 @@ Ray 帮我们做了底层的分布式与调度这些工作。
 .. parsed-literal::
     :class: output
 
-    (raylet) /Users/luweizheng/anaconda3/envs/tpch/lib/python3.10/site-packages/ray/dashboard/agent.py:51: DeprecationWarning: There is no current event loop
-    (raylet)   aiogrpc.init_grpc_aio()
-
-
-.. raw:: latex
-
-   \diilbookstyleoutputcell
-
-.. parsed-literal::
-    :class: output
-
-    Serial :: fibonacci sequence 200000 elapsed: 14.63 sec
-    Distributed :: fibonacci sequence 200000 elapsed: 13.46 sec
+    Serial :: fibonacci sequence 200000 elapsed: 13.80 sec
+    Distributed :: fibonacci sequence 200000 elapsed: 11.99 sec
 
 
 这个例子中，计算复杂度不够大，你可以试着将 ``SEQUENCE_SIZE``
@@ -368,21 +360,22 @@ ObjectRef，需要使用 ``ray.get()`` 获取实际计算结果。\ ``ray.get()`
 .. parsed-literal::
     :class: output
 
-    Task id: 1 | Samples in the circle: 7854413
-    Task id: 2 | Samples in the circle: 7855132
-    Task id: 3 | Samples in the circle: 7854543
-    Task id: 4 | Samples in the circle: 7853813
-    Task id: 5 | Samples in the circle: 7855452
-    Task id: 6 | Samples in the circle: 7853341
-    Task id: 7 | Samples in the circle: 7855532
-    Task id: 8 | Samples in the circle: 7852291
-    Serial :: random samples: 10000000, estimated value of π is: 3.141726, elapsed: 55.24 sec
-    (sample_task_distribute pid=51782) Task id: 5 | Samples in the circle: 7854580
-    (sample_task_distribute pid=51783) Task id: 4 | Samples in the circle: 7853478
-    (sample_task_distribute pid=51781) Task id: 6 | Samples in the circle: 7853740
-    (sample_task_distribute pid=51777) Task id: 3 | Samples in the circle: 7854530
-    (sample_task_distribute pid=51779) Task id: 2 | Samples in the circle: 7853791
-    Distributed :: random samples: 10000000, estimated value of π is: 3.141589, elapsed: 18.43 sec
+    Task id: 1 | Samples in the circle: 7850591
+    Task id: 2 | Samples in the circle: 7852795
+    Task id: 3 | Samples in the circle: 7853927
+    Task id: 4 | Samples in the circle: 7855488
+    Task id: 5 | Samples in the circle: 7853323
+    Task id: 6 | Samples in the circle: 7854469
+    Task id: 7 | Samples in the circle: 7853227
+    Task id: 8 | Samples in the circle: 7853763
+    Serial :: random samples: 10000000, estimated value of π is: 3.141379, elapsed: 51.46 sec
+    (sample_task_distribute pid=12229) Task id: 3 | Samples in the circle: 7855086
+    (sample_task_distribute pid=12225) Task id: 4 | Samples in the circle: 7854553
+    (sample_task_distribute pid=12224) Task id: 1 | Samples in the circle: 7853134
+    (sample_task_distribute pid=12223) Task id: 7 | Samples in the circle: 7851408
+    (sample_task_distribute pid=12228) Task id: 8 | Samples in the circle: 7852294
+    (sample_task_distribute pid=12227) Task id: 6 | Samples in the circle: 7853251
+    Distributed :: random samples: 10000000, estimated value of π is: 3.141337, elapsed: 16.43 sec
 
 
 案例3：分布式图片处理
@@ -404,33 +397,23 @@ ObjectRef，需要使用 ``ray.get()`` 获取实际计算结果。\ ``ray.get()`
 
 .. code:: ipython3
 
+    # Hide outputs
     NUM_IMAGES = 50
     # 图片将生成至该文件夹
-    DATA_DIR = Path(os.getcwd() + "/fake")
+    DATA_DIR = Path(os.getcwd() + "/data/fake-images")
     
     if not DATA_DIR.exists():
         # 目录不存在，创建目录
-        os.mkdir(DATA_DIR)
+        DATA_DIR.mkdir(parents=True)
         print(f'Creating directory: {DATA_DIR}.')
         
         # 随机生成图片数据集
         # dataset 是一个 List
         # 每个元素为 （Image, Label）
         dataset = torchvision.datasets.FakeData(size=NUM_IMAGES, image_size=(3, 3000, 3000))
-        for i in range(100):
+        for i in range(NUM_IMAGES):
             dest = DATA_DIR / f"{str(i)}.jpg"
             dataset[i][0].save(dest, quality=60)
-    
-    @ray.remote
-    def augment_image_distributed(image_ref: object) -> List[object]:
-        return transform_image(image_ref)
-    
-    def run_serially(img_list_refs: List) -> List[object]:
-        transform_results = [transform_image(image_ref) for image_ref in tqdm.tqdm(img_list_refs)]
-        return transform_results
-    
-    def run_distributed(img_list_refs:List[object]) ->  List[object]:
-        return ray.get([augment_image_distributed.remote(img, False) for img in tqdm.tqdm(img_list_refs)])
 
 计算密集型函数
 ``transform_image``\ ，模拟了深度学习中经常使用的图片数据预处理和数据增强操作。
@@ -441,6 +424,7 @@ ObjectRef，需要使用 ``ray.get()`` 获取实际计算结果。\ ``ray.get()`
 
 .. code:: ipython3
 
+    # Hide outputs
     def transform_image(img: object):
         """
         图片预处理函数: 使用 torchvision 提供数据增强等转换操作
@@ -453,19 +437,6 @@ ObjectRef，需要使用 ``ray.get()`` 获取实际计算结果。\ ``ray.get()`
         img = T.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))(img)
     
         return img
-
-
-.. raw:: latex
-
-   \diilbookstyleoutputcell
-
-.. parsed-literal::
-    :class: output
-
-    (sample_task_distribute pid=51784) Task id: 1 | Samples in the circle: 7853997
-    (sample_task_distribute pid=51785) Task id: 7 | Samples in the circle: 7855663
-    (sample_task_distribute pid=51780) Task id: 8 | Samples in the circle: 7852008
-
 
 定义顺序执行函数和分布式执行函数：
 
@@ -526,10 +497,10 @@ ObjectRef，需要使用 ``ray.get()`` 获取实际计算结果。\ ``ray.get()`
 .. parsed-literal::
     :class: output
 
-    Running 100 images serially....
-    Serial :: transformations of 100 images, 16.96 sec
-    Running 100 images distributed....
-    Distributed :: transformations of 100 images, 8.47 sec
+    Running 50 images serially....
+    Serial :: transformations of 50 images, 7.91 sec
+    Running 50 images distributed....
+    Distributed :: transformations of 50 images, 5.04 sec
 
 
 三个案例运行结束我们比较一下 Ray
@@ -546,9 +517,6 @@ Python 提供的原生功能（列表、加法）；模拟 :math:`\pi` 任务调
 
 .. code:: ipython3
 
-    from IPython import display
-    display.set_matplotlib_formats('svg')
-    
     data = {'workload': ["fib", "pi", "img"],
             'serial' : [elapsed_fib_serial, elapsed_pi_serial, elapsed_img_serial],
             'distributed': [elapsed_fib_dist, elapsed_pi_dist, elapsed_img_dist]}
@@ -561,23 +529,12 @@ Python 提供的原生功能（列表、加法）；模拟 :math:`\pi` 任务调
     plt.show()
 
 
-.. raw:: latex
 
-   \diilbookstyleoutputcell
-
-.. parsed-literal::
-    :class: output
-
-    /var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_51368/3294090461.py:2: DeprecationWarning: `set_matplotlib_formats` is deprecated since IPython 7.23, directly use `matplotlib_inline.backend_inline.set_matplotlib_formats()`
-      display.set_matplotlib_formats('svg')
-
-
-
-.. figure:: output_remote-task_11a7d2_34_1.svg
+.. figure:: output_remote-task_11a7d2_34_0.svg
 
 
 最后还有一个需要注意的地方，当不需要计算时，使用 ``ray.shutdown()`` 将
-Ray 关闭，否则 Ray 进程会一直在你的个人电脑上运行。
+Ray 关闭，否则 Ray 进程会一直在执行这个 Python 任务的电脑上运行。
 
 .. raw:: latex
 
