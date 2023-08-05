@@ -1,5 +1,5 @@
 
-.. _object-store:
+.. _remote-object:
 
 分布式对象存储
 ==============

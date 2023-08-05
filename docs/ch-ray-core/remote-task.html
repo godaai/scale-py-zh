@@ -27,7 +27,7 @@
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.2. 分布式对象存储" href="object-store.html" />
+    <link rel="next" title="3. 参考文献" href="../refs.html" />
     <link rel="prev" title="2. Ray Core 简介" href="index.html" /> 
   </head>
 <body>
@@ -106,7 +106,6 @@ Show Source
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Ray Core 简介</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. 分布式函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="object-store.html">2.2. 分布式对象存储</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
@@ -149,7 +148,6 @@ Show Source
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Ray Core 简介</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. 分布式函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="object-store.html">2.2. 分布式对象存储</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
@@ -190,7 +188,7 @@ Show Source
 <li><p>使用蒙特卡洛方法计算 <span class="math notranslate nohighlight">\(\pi\)</span></p></li>
 <li><p>分布式图片处理</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">random</span>
@@ -199,8 +197,14 @@ Show Source
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
 <span class="kn">import</span> <span class="nn">ray</span>
-<span class="kn">import</span> <span class="nn">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torchvision</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span> <span class="k">as</span> <span class="n">T</span>
 </pre></div>
 </div>
 </div>
@@ -209,52 +213,13 @@ Show Source
 <p>在正式使用 Ray 的分布式功能之前，首先要启动一个 Ray 集群。启动 Ray
 集群的方式有很多种，我们可以使用 <code class="docutils literal notranslate"><span class="pre">ray.init()</span></code>
 函数，先在自己的个人电脑上启动一个 Ray 集群，以便后续的演示。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">ray</span><span class="o">.</span><span class="n">is_initialized</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hide outputs</span>
+<span class="k">if</span> <span class="n">ray</span><span class="o">.</span><span class="n">is_initialized</span><span class="p">:</span>
     <span class="n">ray</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
 <span class="n">ray</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">logging_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
 </pre></div>
 </div>
-<div>
-    <div style="margin-left: 50px;display: flex;flex-direction: row;align-items: center">
-        <h3 style="color: var(--jp-ui-font-color0)">Ray</h3>
-        <svg version="1.1" id="ray" width="3em" viewBox="0 0 144.5 144.6" style="margin-left: 3em;margin-right: 3em">
-            <g id="layer-1">
-                <path fill="#00a2e9" class="st0" d="M97.3,77.2c-3.8-1.1-6.2,0.9-8.3,5.1c-3.5,6.8-9.9,9.9-17.4,9.6S58,88.1,54.8,81.2c-1.4-3-3-4-6.3-4.1
-                    c-5.6-0.1-9.9,0.1-13.1,6.4c-3.8,7.6-13.6,10.2-21.8,7.6C5.2,88.4-0.4,80.5,0,71.7c0.1-8.4,5.7-15.8,13.8-18.2
-                    c8.4-2.6,17.5,0.7,22.3,8c1.3,1.9,1.3,5.2,3.6,5.6c3.9,0.6,8,0.2,12,0.2c1.8,0,1.9-1.6,2.4-2.8c3.5-7.8,9.7-11.8,18-11.9
-                    c8.2-0.1,14.4,3.9,17.8,11.4c1.3,2.8,2.9,3.6,5.7,3.3c1-0.1,2,0.1,3,0c2.8-0.5,6.4,1.7,8.1-2.7s-2.3-5.5-4.1-7.5
-                    c-5.1-5.7-10.9-10.8-16.1-16.3C84,38,81.9,37.1,78,38.3C66.7,42,56.2,35.7,53,24.1C50.3,14,57.3,2.8,67.7,0.5
-                    C78.4-2,89,4.7,91.5,15.3c0.1,0.3,0.1,0.5,0.2,0.8c0.7,3.4,0.7,6.9-0.8,9.8c-1.7,3.2-0.8,5,1.5,7.2c6.7,6.5,13.3,13,19.8,19.7
-                    c1.8,1.8,3,2.1,5.5,1.2c9.1-3.4,17.9-0.6,23.4,7c4.8,6.9,4.6,16.1-0.4,22.9c-5.4,7.2-14.2,9.9-23.1,6.5c-2.3-0.9-3.5-0.6-5.1,1.1
-                    c-6.7,6.9-13.6,13.7-20.5,20.4c-1.8,1.8-2.5,3.2-1.4,5.9c3.5,8.7,0.3,18.6-7.7,23.6c-7.9,5-18.2,3.8-24.8-2.9
-                    c-6.4-6.4-7.4-16.2-2.5-24.3c4.9-7.8,14.5-11,23.1-7.8c3,1.1,4.7,0.5,6.9-1.7C91.7,98.4,98,92.3,104.2,86c1.6-1.6,4.1-2.7,2.6-6.2
-                    c-1.4-3.3-3.8-2.5-6.2-2.6C99.8,77.2,98.9,77.2,97.3,77.2z M72.1,29.7c5.5,0.1,9.9-4.3,10-9.8c0-0.1,0-0.2,0-0.3
-                    C81.8,14,77,9.8,71.5,10.2c-5,0.3-9,4.2-9.3,9.2c-0.2,5.5,4,10.1,9.5,10.3C71.8,29.7,72,29.7,72.1,29.7z M72.3,62.3
-                    c-5.4-0.1-9.9,4.2-10.1,9.7c0,0.2,0,0.3,0,0.5c0.2,5.4,4.5,9.7,9.9,10c5.1,0.1,9.9-4.7,10.1-9.8c0.2-5.5-4-10-9.5-10.3
-                    C72.6,62.3,72.4,62.3,72.3,62.3z M115,72.5c0.1,5.4,4.5,9.7,9.8,9.9c5.6-0.2,10-4.8,10-10.4c-0.2-5.4-4.6-9.7-10-9.7
-                    c-5.3-0.1-9.8,4.2-9.9,9.5C115,72.1,115,72.3,115,72.5z M19.5,62.3c-5.4,0.1-9.8,4.4-10,9.8c-0.1,5.1,5.2,10.4,10.2,10.3
-                    c5.6-0.2,10-4.9,9.8-10.5c-0.1-5.4-4.5-9.7-9.9-9.6C19.6,62.3,19.5,62.3,19.5,62.3z M71.8,134.6c5.9,0.2,10.3-3.9,10.4-9.6
-                    c0.5-5.5-3.6-10.4-9.1-10.8c-5.5-0.5-10.4,3.6-10.8,9.1c0,0.5,0,0.9,0,1.4c-0.2,5.3,4,9.8,9.3,10
-                    C71.6,134.6,71.7,134.6,71.8,134.6z"/>
-            </g>
-        </svg>
-        <table>
-            <tr>
-                <td style="text-align: left"><b>Python version:</b></td>
-                <td style="text-align: left"><b>3.10.9</b></td>
-            </tr>
-            <tr>
-                <td style="text-align: left"><b>Ray version:</b></td>
-                <td style="text-align: left"><b> 2.3.0</b></td>
-            </tr>
-            <tr>
-    <td style="text-align: left"><b>Dashboard:</b></td>
-    <td style="text-align: left"><b><a href="http://127.0.0.1:8265" target="_blank">http://127.0.0.1:8265</a></b></td>
-</tr>
-
-        </table>
-    </div>
-</div></div>
+</div>
 <div class="section" id="id3">
 <h2><span class="section-number">2.1.3. </span>案例1：斐波那契数列<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
 <p>接下来，我们用斐波那契数列的案例来演示如何使用 Ray 对 Python
@@ -265,9 +230,7 @@ Show Source
 <span class="eqno">(2.1.1)<a class="headerlink" href="#equation-ch-ray-core-remote-task-0" title="Permalink to this equation">¶</a></span>\[F_n = F_{n-1} + F_{n-2}\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(F_0 = 0\)</span>，<span class="math notranslate nohighlight">\(F_1 = 1\)</span>。</p>
 <p>下面我们使用原生的 Python 定义一个斐波那契函数。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SEQUENCE_SIZE</span> <span class="o">=</span> <span class="mi">200000</span>
-
-<span class="k">def</span> <span class="nf">generate_fibonacci</span><span class="p">(</span><span class="n">sequence_size</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_fibonacci</span><span class="p">(</span><span class="n">sequence_size</span><span class="p">):</span>
     <span class="n">fibonacci</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sequence_size</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
@@ -279,7 +242,7 @@ Show Source
 </div>
 <p>如果我们想让这个 Python 函数被 Ray 分布式执行，只需要在函数上增加一个
 <code class="docutils literal notranslate"><span class="pre">&#64;ray.remote</span></code> 装饰器。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 在函数上增加一个 @ray.remote 装饰器</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 在函数上增加一个 @ray.remote 装饰器</span>
 <span class="nd">@ray</span><span class="o">.</span><span class="n">remote</span>
 <span class="k">def</span> <span class="nf">generate_fibonacci_distributed</span><span class="p">(</span><span class="n">sequence_size</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">generate_fibonacci</span><span class="p">(</span><span class="n">sequence_size</span><span class="p">)</span>
@@ -292,34 +255,40 @@ Ray 帮我们做了底层的分布式与调度这些工作。</p>
 <p>我们比较一下顺序执行与分布式执行的效率与耗时。<code class="docutils literal notranslate"><span class="pre">os.cpu_count()</span></code>
 可以得到当前个人电脑上的 CPU 核心数。顺序执行的代码使用 <code class="docutils literal notranslate"><span class="pre">for</span></code>
 循环，多次调用生成斐波那契数列的函数。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 顺序执行</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 顺序执行</span>
 <span class="k">def</span> <span class="nf">run_local</span><span class="p">(</span><span class="n">sequence_size</span><span class="p">):</span>
     <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">generate_fibonacci</span><span class="p">(</span><span class="n">sequence_size</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())]</span>
     <span class="k">return</span> <span class="n">results</span>
 </pre></div>
 </div>
 <p>使用 Ray 进行分布式扩展，函数可并行地在多个 CPU 核心上执行。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用 Ray 进行分布式扩展</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用 Ray 进行分布式扩展</span>
 <span class="k">def</span> <span class="nf">run_remote</span><span class="p">(</span><span class="n">sequence_size</span><span class="p">):</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="n">generate_fibonacci_distributed</span><span class="o">.</span><span class="n">remote</span><span class="p">(</span><span class="n">sequence_size</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())])</span>
     <span class="k">return</span> <span class="n">results</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SEQUENCE_SIZE</span> <span class="o">=</span> <span class="mi">200000</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">run_local</span><span class="p">(</span><span class="n">SEQUENCE_SIZE</span><span class="p">)</span>
 <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">elapsed_fib_serial</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Serial | elapsed: </span><span class="si">{</span><span class="n">elapsed_fib_serial</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> sec&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Serial :: fibonacci sequence </span><span class="si">{</span><span class="n">SEQUENCE_SIZE</span><span class="si">}</span><span class="s2"> elapsed: </span><span class="si">{</span><span class="n">elapsed_fib_serial</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> sec&quot;</span><span class="p">)</span>
 
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">run_remote</span><span class="p">(</span><span class="n">SEQUENCE_SIZE</span><span class="p">)</span>
 <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">elapsed_fib_dist</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distributed | elapsed: </span><span class="si">{</span><span class="n">elapsed_fib_dist</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> sec&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distributed :: fibonacci sequence </span><span class="si">{</span><span class="n">SEQUENCE_SIZE</span><span class="si">}</span><span class="s2"> elapsed: </span><span class="si">{</span><span class="n">elapsed_fib_dist</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> sec&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Serial</span> <span class="o">|</span> <span class="n">elapsed</span><span class="p">:</span> <span class="mf">14.12</span> <span class="n">sec</span>
-<span class="n">Distributed</span> <span class="o">|</span> <span class="n">elapsed</span><span class="p">:</span> <span class="mf">13.88</span> <span class="n">sec</span>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">raylet</span><span class="p">)</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">luweizheng</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">tpch</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">ray</span><span class="o">/</span><span class="n">dashboard</span><span class="o">/</span><span class="n">agent</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span> <span class="ne">DeprecationWarning</span><span class="p">:</span> <span class="n">There</span> <span class="ow">is</span> <span class="n">no</span> <span class="n">current</span> <span class="n">event</span> <span class="n">loop</span>
+<span class="p">(</span><span class="n">raylet</span><span class="p">)</span>   <span class="n">aiogrpc</span><span class="o">.</span><span class="n">init_grpc_aio</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Serial</span> <span class="p">::</span> <span class="n">fibonacci</span> <span class="n">sequence</span> <span class="mi">200000</span> <span class="n">elapsed</span><span class="p">:</span> <span class="mf">14.63</span> <span class="n">sec</span>
+<span class="n">Distributed</span> <span class="p">::</span> <span class="n">fibonacci</span> <span class="n">sequence</span> <span class="mi">200000</span> <span class="n">elapsed</span><span class="p">:</span> <span class="mf">13.46</span> <span class="n">sec</span>
 </pre></div>
 </div>
 <p>这个例子中，计算复杂度不够大，你可以试着将 <code class="docutils literal notranslate"><span class="pre">SEQUENCE_SIZE</span></code>
@@ -332,7 +301,7 @@ Ray 帮我们做了底层的分布式与调度这些工作。</p>
 <li><p>函数调用方式</p></li>
 </ul>
 <p>原生 Python 函数，使用 <code class="docutils literal notranslate"><span class="pre">func_name()</span></code> 调用。在使用 Ray
-是，函数定义需要增加 <code class="docutils literal notranslate"><span class="pre">&#64;ray.remote</span></code> 装饰器，调用时需要使用
+时，函数定义需要增加 <code class="docutils literal notranslate"><span class="pre">&#64;ray.remote</span></code> 装饰器，调用时需要使用
 <code class="docutils literal notranslate"><span class="pre">func_name.remote()</span></code> 的形式。</p>
 <ul class="simple">
 <li><p>返回值</p></li>
@@ -365,7 +334,7 @@ Ray 函数<code class="docutils literal notranslate"><span class="pre">func_name
 <span id="square-circle"></span><a class="reference internal image-reference" href="../_images/square-circle.png"><img alt="../_images/square-circle.png" src="../_images/square-circle.png" style="width: 800px;" /></a>
 <p class="caption"><span class="caption-number">图2.1.3 </span><span class="caption-text">在正方形内随机撒点，这些点有一定概率落在圆内</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">NUM_SAMPLING_TASKS</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NUM_SAMPLING_TASKS</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
 <span class="n">NUM_SAMPLES_PER_TASK</span> <span class="o">=</span> <span class="mi">10_000_000</span>
 <span class="n">TOTAL_NUM_SAMPLES</span> <span class="o">=</span> <span class="n">NUM_SAMPLING_TASKS</span> <span class="o">*</span> <span class="n">NUM_SAMPLES_PER_TASK</span>
 </pre></div>
@@ -377,7 +346,7 @@ Ray 函数<code class="docutils literal notranslate"><span class="pre">func_name
 库中的
 <a class="reference external" href="https://docs.python.org/3/library/math.html#math.hypot">math.hypot</a>
 可以计算距离。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sampling_task</span><span class="p">(</span><span class="n">num_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sampling_task</span><span class="p">(</span><span class="n">num_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">num_inside</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_samples</span><span class="p">):</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -391,7 +360,7 @@ Ray 函数<code class="docutils literal notranslate"><span class="pre">func_name
 </div>
 <p>我们定义一个顺序执行的 Python 原生函数，共顺序调用
 <code class="docutils literal notranslate"><span class="pre">NUM_SAMPLING_TASKS</span></code> 次。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run_serial</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run_serial</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
     <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">sampling_task</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NUM_SAMPLING_TASKS</span><span class="p">)]</span>
     <span class="k">return</span> <span class="n">results</span>
 </pre></div>
@@ -400,7 +369,7 @@ Ray 函数<code class="docutils literal notranslate"><span class="pre">func_name
 Task 是异步执行的，Ray Task 调用之后会立即返回一个 Future
 ObjectRef，需要使用 <code class="docutils literal notranslate"><span class="pre">ray.get()</span></code> 获取实际计算结果。<code class="docutils literal notranslate"><span class="pre">ray.get()</span></code>
 会等待计算结束，并返回实际结果。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@ray</span><span class="o">.</span><span class="n">remote</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@ray</span><span class="o">.</span><span class="n">remote</span>
 <span class="k">def</span> <span class="nf">sample_task_distribute</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">sampling_task</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
 
@@ -412,330 +381,160 @@ ObjectRef，需要使用 <code class="docutils literal notranslate"><span class=
 </pre></div>
 </div>
 <p>以上两类函数获取了落在圆内的概率，再计算 <span class="math notranslate nohighlight">\(\pi\)</span>：</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_pi</span><span class="p">(</span><span class="n">results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_pi</span><span class="p">(</span><span class="n">results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="n">total_num_inside</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
     <span class="n">pi</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_num_inside</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="n">TOTAL_NUM_SAMPLES</span>
     <span class="k">return</span> <span class="n">pi</span>
 </pre></div>
 </div>
 <p>顺序执行与 Ray 分布式执行执行的耗时对比：</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">run_serial</span><span class="p">(</span><span class="n">NUM_SAMPLES_PER_TASK</span><span class="p">)</span>
 <span class="n">pi</span> <span class="o">=</span> <span class="n">calculate_pi</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">elapsed_pi_serial</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Serial | estimated value of π is: </span><span class="si">{</span><span class="n">pi</span><span class="si">:</span><span class="s2">5f</span><span class="si">}</span><span class="s2">, elapsed: </span><span class="si">{</span><span class="n">elapsed_pi_serial</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> sec&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Serial :: random samples: </span><span class="si">{</span><span class="n">NUM_SAMPLES_PER_TASK</span><span class="si">}</span><span class="s2">, estimated value of π is: </span><span class="si">{</span><span class="n">pi</span><span class="si">:</span><span class="s2">5f</span><span class="si">}</span><span class="s2">, elapsed: </span><span class="si">{</span><span class="n">elapsed_pi_serial</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> sec&quot;</span><span class="p">)</span>
 
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">run_disributed</span><span class="p">(</span><span class="n">NUM_SAMPLES_PER_TASK</span><span class="p">)</span>
 <span class="n">pi</span> <span class="o">=</span> <span class="n">calculate_pi</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">elapsed_pi_dist</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distributed | estimated value of π is: </span><span class="si">{</span><span class="n">pi</span><span class="si">:</span><span class="s2">5f</span><span class="si">}</span><span class="s2">, elapsed: </span><span class="si">{</span><span class="n">elapsed_pi_dist</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> sec&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distributed :: random samples: </span><span class="si">{</span><span class="n">NUM_SAMPLES_PER_TASK</span><span class="si">}</span><span class="s2">, estimated value of π is: </span><span class="si">{</span><span class="n">pi</span><span class="si">:</span><span class="s2">5f</span><span class="si">}</span><span class="s2">, elapsed: </span><span class="si">{</span><span class="n">elapsed_pi_dist</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> sec&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7853098</span>
-<span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">2</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7854985</span>
-<span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">3</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7853756</span>
-<span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">4</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7851068</span>
-<span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">5</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7851407</span>
-<span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">6</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7852987</span>
-<span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">7</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7855916</span>
-<span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7852873</span>
-<span class="n">Serial</span> <span class="o">|</span> <span class="n">estimated</span> <span class="n">value</span> <span class="n">of</span> <span class="n">π</span> <span class="ow">is</span><span class="p">:</span> <span class="mf">3.141304</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">:</span> <span class="mf">50.96</span> <span class="n">sec</span>
-<span class="n">Distributed</span> <span class="o">|</span> <span class="n">estimated</span> <span class="n">value</span> <span class="n">of</span> <span class="n">π</span> <span class="ow">is</span><span class="p">:</span> <span class="mf">3.141433</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">:</span> <span class="mf">16.75</span> <span class="n">sec</span>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7854413</span>
+<span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">2</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7855132</span>
+<span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">3</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7854543</span>
+<span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">4</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7853813</span>
+<span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">5</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7855452</span>
+<span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">6</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7853341</span>
+<span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">7</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7855532</span>
+<span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7852291</span>
+<span class="n">Serial</span> <span class="p">::</span> <span class="n">random</span> <span class="n">samples</span><span class="p">:</span> <span class="mi">10000000</span><span class="p">,</span> <span class="n">estimated</span> <span class="n">value</span> <span class="n">of</span> <span class="n">π</span> <span class="ow">is</span><span class="p">:</span> <span class="mf">3.141726</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">:</span> <span class="mf">55.24</span> <span class="n">sec</span>
+<span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">51782</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">5</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7854580</span>
+<span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">51783</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">4</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7853478</span>
+<span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">51781</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">6</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7853740</span>
+<span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">51777</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">3</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7854530</span>
+<span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">51779</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">2</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7853791</span>
+<span class="n">Distributed</span> <span class="p">::</span> <span class="n">random</span> <span class="n">samples</span><span class="p">:</span> <span class="mi">10000000</span><span class="p">,</span> <span class="n">estimated</span> <span class="n">value</span> <span class="n">of</span> <span class="n">π</span> <span class="ow">is</span><span class="p">:</span> <span class="mf">3.141589</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">:</span> <span class="mf">18.43</span> <span class="n">sec</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id4">
 <h2><span class="section-number">2.1.6. </span>案例3：分布式图片处理<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
-<p>接下来我们模拟一个更加计算密集的分布式图片预处理的任务。所处理内容均为高清像素图片，大概3-5MB。这些图片数据预处理工作在当前人工智能场景下非常普遍：</p>
+<p>接下来我们模拟一个更加计算密集的分布式图片预处理的任务。所处理内容均为高清像素图片，大概4MB。这些图片数据预处理工作在当前人工智能场景下非常普遍。接下来的任务主要包括：</p>
 <ul class="simple">
-<li><p>使用 PIL 库加载图片，并对图片进行模糊（Blur）处理。</p></li>
-<li><p>使用 PyTorch 的 <code class="docutils literal notranslate"><span class="pre">torchvision</span></code>
-库中的预处理工具，处理后的图片被转换成 <code class="docutils literal notranslate"><span class="pre">Tensor</span></code>。</p></li>
-<li><p>对 <code class="docutils literal notranslate"><span class="pre">Tensor</span></code> 进行矩阵乘法等计算。</p></li>
+<li><p>使用 PyTorch 的 <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> 库中工具，随机生成图片数据集。</p></li>
+<li><p>使用 PIL 库加载图片。</p></li>
+<li><p>使用 <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> 库中的预处理和数据增强，处理后的图片被转换成
+<code class="docutils literal notranslate"><span class="pre">Tensor</span></code>。</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span> <span class="k">as</span> <span class="n">T</span>
+<p>随机生成图片数据集，图片大小为 <span class="math notranslate nohighlight">\(3000 \times 3000\)</span>，并保存成 jpg
+格式。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NUM_IMAGES</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="c1"># 图片将生成至该文件夹</span>
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/fake&quot;</span><span class="p">)</span>
 
-<span class="n">URLS</span> <span class="o">=</span> <span class="p">[</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/305821/pexels-photo-305821.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/509922/pexels-photo-509922.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/325812/pexels-photo-325812.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/1252814/pexels-photo-1252814.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/1420709/pexels-photo-1420709.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/963486/pexels-photo-963486.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/1557183/pexels-photo-1557183.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/3023211/pexels-photo-3023211.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/1031641/pexels-photo-1031641.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/439227/pexels-photo-439227.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/696644/pexels-photo-696644.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/911254/pexels-photo-911254.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/1001990/pexels-photo-1001990.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/3518623/pexels-photo-3518623.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/916044/pexels-photo-916044.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/2253879/pexels-photo-2253879.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/3316918/pexels-photo-3316918.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/942317/pexels-photo-942317.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/1090638/pexels-photo-1090638.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/1279813/pexels-photo-1279813.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/434645/pexels-photo-434645.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/1080696/pexels-photo-1080696.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/421927/pexels-photo-421927.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/302428/pexels-photo-302428.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/3685175/pexels-photo-3685175.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/2885578/pexels-photo-2885578.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/3530116/pexels-photo-3530116.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/9668911/pexels-photo-9668911.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/14704971/pexels-photo-14704971.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/13865510/pexels-photo-13865510.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/6607387/pexels-photo-6607387.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/13716813/pexels-photo-13716813.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/14690500/pexels-photo-14690500.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/14690501/pexels-photo-14690501.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/14615366/pexels-photo-14615366.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/14344696/pexels-photo-14344696.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/14661919/pexels-photo-14661919.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/5977791/pexels-photo-5977791.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/5211747/pexels-photo-5211747.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/5995657/pexels-photo-5995657.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/8574183/pexels-photo-8574183.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/14690503/pexels-photo-14690503.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/2100941/pexels-photo-2100941.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://www.nasa.gov/centers/stennis/images/content/702979main_SSC-2012-01487.jpg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://live.staticflickr.com/2443/3984080835_71b0426844_b.jpg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://www.aero.jaxa.jp/eng/facilities/aeroengine/images/th_aeroengine05.jpg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/370717/pexels-photo-370717.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/11374974/pexels-photo-11374974.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/408951/pexels-photo-408951.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/3889870/pexels-photo-3889870.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/1774389/pexels-photo-1774389.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/3889854/pexels-photo-3889854.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/2196578/pexels-photo-2196578.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/2885320/pexels-photo-2885320.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/7189303/pexels-photo-7189303.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/9697598/pexels-photo-9697598.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/6431298/pexels-photo-6431298.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/7131157/pexels-photo-7131157.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/4840134/pexels-photo-4840134.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/5359974/pexels-photo-5359974.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/3889854/pexels-photo-3889854.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/1753272/pexels-photo-1753272.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/2328863/pexels-photo-2328863.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/6102161/pexels-photo-6102161.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/6101986/pexels-photo-6101986.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/3334492/pexels-photo-3334492.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/5708915/pexels-photo-5708915.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/5708913/pexels-photo-5708913.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/6102436/pexels-photo-6102436.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/6102144/pexels-photo-6102144.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/6102003/pexels-photo-6102003.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/6194087/pexels-photo-6194087.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/5847900/pexels-photo-5847900.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/1671479/pexels-photo-1671479.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/3335507/pexels-photo-3335507.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/6102522/pexels-photo-6102522.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/6211095/pexels-photo-6211095.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/720347/pexels-photo-720347.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/3516015/pexels-photo-3516015.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/3325717/pexels-photo-3325717.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/849835/pexels-photo-849835.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/302743/pexels-photo-302743.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/259620/pexels-photo-259620.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/300857/pexels-photo-300857.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/789380/pexels-photo-789380.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/735987/pexels-photo-735987.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/300857/pexels-photo-300857.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/760971/pexels-photo-760971.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/789382/pexels-photo-789382.jpeg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/33041/antelope-canyon-lower-canyon-arizona.jpg&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;https://images.pexels.com/photos/1004665/pexels-photo-1004665.jpeg&#39;</span>
-<span class="p">]</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">DATA_DIR</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="c1"># 目录不存在，创建目录</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Creating directory: </span><span class="si">{</span><span class="n">DATA_DIR</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
 
-<span class="c1"># 图片将下载到该文件夹</span>
-<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/function-task-images&quot;</span><span class="p">)</span>
-
-<span class="n">THUMB_SIZE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">display_random_images</span><span class="p">(</span><span class="n">image_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    随机选择图片并展示出来</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">random_samples_idx</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">image_list</span><span class="p">)),</span> <span class="n">k</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">targ_sample</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">random_samples_idx</span><span class="p">):</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_list</span><span class="p">[</span><span class="n">targ_sample</span><span class="p">])</span>
-        <span class="n">img_as_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_as_array</span><span class="p">)</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">shape: </span><span class="si">{</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="k">def</span> <span class="nf">download_images</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    下载图片</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">img_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
-    <span class="n">img_name</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">4</span><span class="p">]</span>
-    <span class="n">img_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">img_name</span><span class="si">}</span><span class="s2">.jpg&quot;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">img_name</span><span class="p">,</span> <span class="s1">&#39;wb+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">img_data</span><span class="p">)</span>
+    <span class="c1"># 随机生成图片数据集</span>
+    <span class="c1"># dataset 是一个 List</span>
+    <span class="c1"># 每个元素为 （Image, Label）</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">FakeData</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">NUM_IMAGES</span><span class="p">,</span> <span class="n">image_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="mi">3000</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="n">dest</span> <span class="o">=</span> <span class="n">DATA_DIR</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="si">}</span><span class="s2">.jpg&quot;</span>
+        <span class="n">dataset</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
 
 <span class="nd">@ray</span><span class="o">.</span><span class="n">remote</span>
-<span class="k">def</span> <span class="nf">augment_image_distributed</span><span class="p">(</span><span class="n">image_ref</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">fetch_image</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
-    <span class="k">return</span> <span class="n">transform_image</span><span class="p">(</span><span class="n">image_ref</span><span class="p">,</span> <span class="n">fetch_image</span><span class="o">=</span><span class="n">fetch_image</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">augment_image_distributed</span><span class="p">(</span><span class="n">image_ref</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="n">transform_image</span><span class="p">(</span><span class="n">image_ref</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">run_serially</span><span class="p">(</span><span class="n">img_list_refs</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
-    <span class="n">transform_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">transform_image</span><span class="p">(</span><span class="n">image_ref</span><span class="p">,</span> <span class="n">fetch_image</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">image_ref</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">img_list_refs</span><span class="p">)]</span>
+<span class="k">def</span> <span class="nf">run_serially</span><span class="p">(</span><span class="n">img_list_refs</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+    <span class="n">transform_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">transform_image</span><span class="p">(</span><span class="n">image_ref</span><span class="p">)</span> <span class="k">for</span> <span class="n">image_ref</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">img_list_refs</span><span class="p">)]</span>
     <span class="k">return</span> <span class="n">transform_results</span>
 
-<span class="k">def</span> <span class="nf">run_distributed</span><span class="p">(</span><span class="n">img_list_refs</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span>  <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+<span class="k">def</span> <span class="nf">run_distributed</span><span class="p">(</span><span class="n">img_list_refs</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span>  <span class="n">List</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
     <span class="k">return</span> <span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="n">augment_image_distributed</span><span class="o">.</span><span class="n">remote</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">img_list_refs</span><span class="p">)])</span>
 </pre></div>
 </div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">36826</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">4</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7853238</span>
-<span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">36829</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">2</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7854137</span>
-<span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">36823</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">7</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7853980</span>
-<span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">36824</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7853933</span>
-<span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">36825</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">3</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7853931</span>
-<span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">36828</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">5</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7851152</span>
-<span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">36827</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">6</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7855578</span>
-<span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">36821</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7852702</span>
-</pre></div>
-</div>
-<p>我们将图片放在 Ray 的分布式对象存储中（Object Store），如
-<a class="reference internal" href="#put-get-object-store"><span class="std std-numref">图2.1.4</span></a> 分布式的 Object Store
-可以允许集群上多个计算节点共享数据。这里使用 <code class="docutils literal notranslate"><span class="pre">ray.get()</span></code> 和
-<code class="docutils literal notranslate"><span class="pre">ray.put()</span></code> 向 Object Store 上读写数据，我们将在
-<a class="reference internal" href="object-store.html#object-store"><span class="std std-numref">2.2节</span></a> 中详细解释 Object Store 的使用方法。</p>
-<div class="figure align-default" id="id8">
-<span id="put-get-object-store"></span><a class="reference internal image-reference" href="../_images/put-get-object-store.png"><img alt="../_images/put-get-object-store.png" src="../_images/put-get-object-store.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-number">图2.1.4 </span><span class="caption-text">Object Store 在多个计算节点上共享数据</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">insert_into_object_store</span><span class="p">(</span><span class="n">img_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    将图片插入 Object Store</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_name</span><span class="p">)</span>
-    <span class="n">img_ref</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">img_ref</span>
-</pre></div>
-</div>
 <p>计算密集型函数
-<code class="docutils literal notranslate"><span class="pre">transform_image</span></code>，模拟了深度学习中经常使用的图片数据预处理操作。对于顺序执行部分，我们需要使用
-<code class="docutils literal notranslate"><span class="pre">ray.get()</span></code> 从 Object Store 中将图片数据拉取。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transform_image</span><span class="p">(</span><span class="n">img_ref</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">fetch_image</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<code class="docutils literal notranslate"><span class="pre">transform_image</span></code>，模拟了深度学习中经常使用的图片数据预处理和数据增强操作。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transform_image</span><span class="p">(</span><span class="n">img</span><span class="p">:</span> <span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    图片预处理函数，模拟图片读取，torchvision 数据预处理和 Tensor 矩阵乘法等计算密集型任务</span>
+<span class="sd">    图片预处理函数: 使用 torchvision 提供数据增强等转换操作</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1"># 顺序执行时，需要将图片从 Ojbect Store 中拉取</span>
-    <span class="k">if</span> <span class="n">fetch_image</span><span class="p">:</span>
-        <span class="n">orig_img</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">img_ref</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">orig_img</span> <span class="o">=</span> <span class="n">img_ref</span>
-    <span class="n">before_shape</span> <span class="o">=</span> <span class="n">orig_img</span><span class="o">.</span><span class="n">size</span>
 
     <span class="c1"># torchvision 提供的一系列数据预处理操作</span>
-    <span class="n">gray_img</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">Grayscale</span><span class="p">()(</span><span class="n">orig_img</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">RandomHorizontalFlip</span><span class="p">()(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">RandomCrop</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="mi">4</span><span class="p">)(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">()(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))(</span><span class="n">img</span><span class="p">)</span>
 
-    <span class="n">cropper</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">RandomCrop</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">))</span>
-    <span class="n">crops</span> <span class="o">=</span> <span class="p">[</span><span class="n">cropper</span><span class="p">(</span><span class="n">orig_img</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
-
-    <span class="n">augmentor</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">TrivialAugmentWide</span><span class="p">(</span><span class="n">num_magnitude_bins</span><span class="o">=</span><span class="mi">31</span><span class="p">)</span>
-    <span class="n">augmented_img</span> <span class="o">=</span> <span class="n">augmentor</span><span class="p">(</span><span class="n">orig_img</span><span class="p">)</span>
-
-    <span class="c1"># 将图片转换成 Tensor</span>
-    <span class="n">tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">augmented_img</span><span class="p">))</span>
-    <span class="n">t_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-    <span class="c1"># 进行矩阵乘法等计算密集型任务</span>
-    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-        <span class="n">tensor</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-        <span class="n">t_tensor</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-        <span class="n">torch</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-        <span class="n">torch</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">t_tensor</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-        <span class="n">torch</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">tensor</span><span class="p">)</span>
-        <span class="n">torch</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">t_tensor</span><span class="p">,</span> <span class="n">t_tensor</span><span class="p">)</span>
-
-    <span class="c1"># 将数据增广后的图片转换为缩略图</span>
-    <span class="n">augmented_img</span><span class="o">.</span><span class="n">thumbnail</span><span class="p">(</span><span class="n">THUMB_SIZE</span><span class="p">)</span>
-    <span class="n">after_shape</span> <span class="o">=</span> <span class="n">augmented_img</span><span class="o">.</span><span class="n">size</span>
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;original shape:</span><span class="si">{</span><span class="n">before_shape</span><span class="si">}</span><span class="s2">, image tensor shape:</span><span class="si">{</span><span class="n">tensor</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="si">}</span><span class="s2"> transpose shape:</span><span class="si">{</span><span class="n">t_tensor</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">before_shape</span><span class="p">,</span> <span class="n">after_shape</span>
+    <span class="k">return</span> <span class="n">img</span>
 </pre></div>
 </div>
-<p>下载并随机展示图片：</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">):</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;downloading images ...&quot;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">URLS</span><span class="p">):</span>
-        <span class="n">download_images</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">DATA_DIR</span><span class="p">)</span>
-
-<span class="n">image_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.jpg&quot;</span><span class="p">))</span>
-<span class="n">images_list_refs</span> <span class="o">=</span> <span class="p">[</span><span class="n">insert_into_object_store</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="k">for</span>
-                  <span class="n">image</span> <span class="ow">in</span> <span class="n">image_list</span><span class="p">]</span>
-
-<span class="n">display_random_images</span><span class="p">(</span><span class="n">image_list</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">51784</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7853997</span>
+<span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">51785</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">7</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7855663</span>
+<span class="p">(</span><span class="n">sample_task_distribute</span> <span class="n">pid</span><span class="o">=</span><span class="mi">51780</span><span class="p">)</span> <span class="n">Task</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">8</span> <span class="o">|</span> <span class="n">Samples</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">circle</span><span class="p">:</span> <span class="mi">7852008</span>
 </pre></div>
 </div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">raylet</span><span class="p">)</span> <span class="n">Spilled</span> <span class="mi">2163</span> <span class="n">MiB</span><span class="p">,</span> <span class="mi">49</span> <span class="n">objects</span><span class="p">,</span> <span class="n">write</span> <span class="n">throughput</span> <span class="mi">1311</span> <span class="n">MiB</span><span class="o">/</span><span class="n">s</span><span class="o">.</span> <span class="n">Set</span> <span class="n">RAY_verbose_spill_logs</span><span class="o">=</span><span class="mi">0</span> <span class="n">to</span> <span class="n">disable</span> <span class="n">this</span> <span class="n">message</span><span class="o">.</span>
+<p>定义顺序执行函数和分布式执行函数：</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hide outputs</span>
+<span class="k">def</span> <span class="nf">augment_image_serial</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">transform_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+<span class="nd">@ray</span><span class="o">.</span><span class="n">remote</span>
+<span class="k">def</span> <span class="nf">augment_image_distributed</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">transform_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">run_serially</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+    <span class="n">transform_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">augment_image_serial</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">transform_results</span>
+
+<span class="k">def</span> <span class="nf">run_distributed</span><span class="p">(</span><span class="n">dataset</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span>  <span class="n">List</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="n">augment_image_distributed</span><span class="o">.</span><span class="n">remote</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">])</span>
 </pre></div>
-</div>
-<div class="figure align-default">
-<img alt="../_images/output_remote-task_11a7d2_32_1.png" src="../_images/output_remote-task_11a7d2_32_1.png" />
 </div>
 <p>比较顺序执行与分布式执行的耗时：</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 顺序执行</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Running </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">images_list_refs</span><span class="p">)</span><span class="si">}</span><span class="s2"> images serially....&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_path_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.jpg&quot;</span><span class="p">))</span>
+
+<span class="c1"># 顺序执行</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">image_path_list</span><span class="p">)</span><span class="si">}</span><span class="s2"> images serially....&quot;</span><span class="p">)</span>
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">serial_results</span> <span class="o">=</span> <span class="n">run_serially</span><span class="p">(</span><span class="n">images_list_refs</span><span class="p">)</span>
+<span class="n">serial_results</span> <span class="o">=</span> <span class="n">run_serially</span><span class="p">(</span><span class="n">image_path_list</span><span class="p">)</span>
 <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">elapsed_img_serial</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Serial transformations of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">images_list_refs</span><span class="p">)</span><span class="si">}</span><span class="s2"> images: </span><span class="si">{</span><span class="n">elapsed_img_serial</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> sec&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Serial :: transformations of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">image_path_list</span><span class="p">)</span><span class="si">}</span><span class="s2"> images, </span><span class="si">{</span><span class="n">elapsed_img_serial</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> sec&quot;</span><span class="p">)</span>
 
-<span class="c1"># 使用 Ray 分布式执行</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Running </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">images_list_refs</span><span class="p">)</span><span class="si">}</span><span class="s2"> images distributed....&quot;</span><span class="p">)</span>
+<span class="c1"># # 使用 Ray 分布式执行</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">image_path_list</span><span class="p">)</span><span class="si">}</span><span class="s2"> images distributed....&quot;</span><span class="p">)</span>
 <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">distributed_results</span> <span class="o">=</span> <span class="n">run_distributed</span><span class="p">(</span><span class="n">images_list_refs</span><span class="p">)</span>
+<span class="n">distributed_results</span> <span class="o">=</span> <span class="n">run_distributed</span><span class="p">(</span><span class="n">image_path_list</span><span class="p">)</span>
 <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">elapsed_img_dist</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distributed transformations of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">images_list_refs</span><span class="p">)</span><span class="si">}</span><span class="s2"> images: </span><span class="si">{</span><span class="n">elapsed_img_dist</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> sec&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distributed :: transformations of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">image_path_list</span><span class="p">)</span><span class="si">}</span><span class="s2"> images, </span><span class="si">{</span><span class="n">elapsed_img_dist</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> sec&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span>Running 77 images serially....
-100%|█████████████████████████████████████████████████████████████| 77/77 [01:50&lt;00:00,  1.44s/it]
-Serial transformations of 77 images: 110.75 sec
-
-Running 77 images distributed....
-100%|███████████████████████████████████████████████████████████| 77/77 [00:00&lt;00:00, 1458.48it/s]
-Distributed transformations of 77 images: 92.28 sec
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Running</span> <span class="mi">100</span> <span class="n">images</span> <span class="n">serially</span><span class="o">....</span>
+<span class="n">Serial</span> <span class="p">::</span> <span class="n">transformations</span> <span class="n">of</span> <span class="mi">100</span> <span class="n">images</span><span class="p">,</span> <span class="mf">16.96</span> <span class="n">sec</span>
+<span class="n">Running</span> <span class="mi">100</span> <span class="n">images</span> <span class="n">distributed</span><span class="o">....</span>
+<span class="n">Distributed</span> <span class="p">::</span> <span class="n">transformations</span> <span class="n">of</span> <span class="mi">100</span> <span class="n">images</span><span class="p">,</span> <span class="mf">8.47</span> <span class="n">sec</span>
 </pre></div>
 </div>
-<p>三个案例运行结束，我们比较一下 Ray 的分布式执行效率。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
-
+<p>三个案例运行结束我们比较一下 Ray
+的分布式执行效率。这三个任务都有各自特色，其中斐波那契数列的计算相对简单，主要使用
+Python 提供的原生功能（列表、加法）；模拟 <span class="math notranslate nohighlight">\(\pi\)</span> 任务调用了
+<code class="docutils literal notranslate"><span class="pre">random</span></code> 和 <code class="docutils literal notranslate"><span class="pre">math</span></code> 两个 Python
+标准库；图片处理任务调用了更加复杂的第三方库 <code class="docutils literal notranslate"><span class="pre">torch</span></code>
+，<code class="docutils literal notranslate"><span class="pre">torchvision</span></code> 和 <code class="docutils literal notranslate"><span class="pre">pillow</span></code>，其中 <code class="docutils literal notranslate"><span class="pre">pillow</span></code> 和 <code class="docutils literal notranslate"><span class="pre">torch</span></code>
+的底层实现都更加复杂。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
 <span class="n">display</span><span class="o">.</span><span class="n">set_matplotlib_formats</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;workload&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;fib&quot;</span><span class="p">,</span> <span class="s2">&quot;pi&quot;</span><span class="p">,</span> <span class="s2">&quot;img&quot;</span><span class="p">],</span>
@@ -750,11 +549,13 @@ Distributed transformations of 77 images: 92.28 sec
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+<pre class="output literal-block">/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_51368/3294090461.py:2: DeprecationWarning: <cite>set_matplotlib_formats</cite> is deprecated since IPython 7.23, directly use <cite>matplotlib_inline.backend_inline.set_matplotlib_formats()</cite>
+  display.set_matplotlib_formats('svg')</pre>
 <div class="figure align-default">
-<img alt="../_images/output_remote-task_11a7d2_36_0.svg" src="../_images/output_remote-task_11a7d2_36_0.svg" /></div>
+<img alt="../_images/output_remote-task_11a7d2_34_1.svg" src="../_images/output_remote-task_11a7d2_34_1.svg" /></div>
 <p>最后还有一个需要注意的地方，当不需要计算时，使用 <code class="docutils literal notranslate"><span class="pre">ray.shutdown()</span></code> 将
 Ray 关闭，否则 Ray 进程会一直在你的个人电脑上运行。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ray</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ray</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -793,11 +594,11 @@ Ray 关闭，否则 Ray 进程会一直在你的个人电脑上运行。</p>
             <div>2. Ray Core 简介</div>
          </div>
      </a>
-     <a id="button-next" href="object-store.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
+     <a id="button-next" href="../refs.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
          <i class="pagenation-arrow-R fas fa-arrow-right fa-lg"></i>
         <div class="pagenation-text">
             <span class="pagenation-direction">Next</span>
-            <div>2.2. 分布式对象存储</div>
+            <div>3. 参考文献</div>
         </div>
      </a>
   </div>
