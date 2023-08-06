@@ -26,7 +26,7 @@
     <script src="../_static/d2l.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.1. 分布式函数" href="remote-task.html" />
+    <link rel="next" title="2.1. 分布式函数" href="remote-function.html" />
     <link rel="prev" title="1.5. 本章小结" href="../ch-python-lang/summary.html" /> 
   </head>
 <body>
@@ -103,7 +103,9 @@ Show Source
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2. Ray Core 简介</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="remote-task.html">2.1. 分布式函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-function.html">2.1. 分布式函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-object.html">2.2. 分布式对象存储</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-class.html">2.3. 分布式类</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
@@ -145,7 +147,9 @@ Show Source
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2. Ray Core 简介</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="remote-task.html">2.1. 分布式函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-function.html">2.1. 分布式函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-object.html">2.2. 分布式对象存储</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-class.html">2.3. 分布式类</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
@@ -169,7 +173,7 @@ Python 计算任务是异步执行的。Ray
 <ul class="simple">
 <li><p>任务（Task）：面向函数（Function）的接口，用于定义一个函数，该函数可以在集群中分布式地执行。</p></li>
 <li><p>行动者（Actor）：面向类（Class）的接口，用于定义一个类，该类可以在集群中分布式地执行。</p></li>
-<li><p>对象（Object）：分布式的对象，对象不可变（Immutable），用于在任务和
+<li><p>对象（Object）：分布式的对象，对象不可变（Immutable），用于在 Task 和
 Actor 之间传递数据。</p></li>
 </ul>
 <div class="figure align-default" id="id1">
@@ -178,13 +182,24 @@ Actor 之间传递数据。</p></li>
 </div>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="remote-task.html">2.1. 分布式函数</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="remote-task.html#id2">2.1.1. 顺序执行与分布式执行</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-task.html#ray">2.1.2. 启动 Ray 集群</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-task.html#id3">2.1.3. 案例1：斐波那契数列</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-task.html#python-ray">2.1.4. 原生 Python 函数与 Ray 的区别</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-task.html#pi">2.1.5. 案例2：蒙特卡洛估计 <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-task.html#id4">2.1.6. 案例3：分布式图片处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="remote-function.html">2.1. 分布式函数</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="remote-function.html#id2">2.1.1. 顺序执行与分布式执行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-function.html#ray">2.1.2. 启动 Ray 集群</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-function.html#id3">2.1.3. 案例1：斐波那契数列</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-function.html#python-ray">2.1.4. 原生 Python 函数与 Ray 的区别</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-function.html#pi">2.1.5. 案例2：蒙特卡洛估计 <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-function.html#id4">2.1.6. 案例3：分布式图片处理</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="remote-object.html">2.2. 分布式对象存储</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="remote-object.html#ray-put-ray-get">2.2.1. ray.put() 与 ray.get()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-object.html#id2">2.2.2. 对数据进行转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-object.html#id3">2.2.3. 传递参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-object.html#id6">2.2.4. 底层实现</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="remote-class.html">2.3. 分布式类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="remote-class.html#id3">2.3.1. 案例1：分布式计数器</a></li>
 </ul>
 </li>
 </ul>
@@ -207,7 +222,7 @@ Actor 之间传递数据。</p></li>
             <div>1.5. 本章小结</div>
          </div>
      </a>
-     <a id="button-next" href="remote-task.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
+     <a id="button-next" href="remote-function.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
          <i class="pagenation-arrow-R fas fa-arrow-right fa-lg"></i>
         <div class="pagenation-text">
             <span class="pagenation-direction">Next</span>

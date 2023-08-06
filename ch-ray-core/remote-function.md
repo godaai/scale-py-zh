@@ -1,7 +1,7 @@
-分布式函数
---------
+# 分布式函数
+:label:`remote-function`
 
-被 Ray 加速的函数又被称为 Task。Ray Task 是无状态的，无状态的意思是的执行只依赖函数的输入和输出，不依赖其他第三方的中间变量。
+被 Ray 加速的函数可以被运行在远程的 Ray 集群上，被称为远程函数（Remote Function）又被称为任务（Task）。Remote Function 是无状态的，无状态的意思是的执行只依赖函数的输入和输出，不依赖其他第三方的中间变量。
 
 ### 顺序执行与分布式执行
 
@@ -181,7 +181,7 @@ def run_serial(sample_size) -> List[int]:
     return results
 ```
 
-我们再定义一个 Ray Task：只需要增加 `@ray.remote` 装饰器。记得 Ray Task 是异步执行的，Ray Task 调用之后会立即返回一个 Future ObjectRef，需要使用 `ray.get()` 获取实际计算结果。`ray.get()` 会等待计算结束，并返回实际结果。
+我们再定义一个 Remote Function：只需要增加 `@ray.remote` 装饰器。记得 Remote Function 是异步执行的，Remote Function 被调用之后会立即返回一个 Future ObjectRef，需要使用 `ray.get()` 获取实际计算结果。`ray.get()` 会等待计算结束，并返回实际结果。
 
 ```{.python .input}
 @ray.remote

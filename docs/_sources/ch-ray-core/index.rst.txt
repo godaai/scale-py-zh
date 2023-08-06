@@ -9,7 +9,7 @@ Python 计算任务是异步执行的。Ray
 
 -  任务（Task）：面向函数（Function）的接口，用于定义一个函数，该函数可以在集群中分布式地执行。
 -  行动者（Actor）：面向类（Class）的接口，用于定义一个类，该类可以在集群中分布式地执行。
--  对象（Object）：分布式的对象，对象不可变（Immutable），用于在任务和
+-  对象（Object）：分布式的对象，对象不可变（Immutable），用于在 Task 和
    Actor 之间传递数据。
 
 .. _ray-core-apis:
@@ -24,5 +24,6 @@ Python 计算任务是异步执行的。Ray
 .. toctree::
    :maxdepth: 2
 
-   remote-task
-   object-store
+   remote-function
+   remote-object
+   remote-class

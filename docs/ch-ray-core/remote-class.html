@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>2.3. 分布式类 &#8212; Python 分布式编程 1.0.0 documentation</title>
+
+    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx_materialdesign_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fontawesome/all.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/d2l.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/d2l.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. 参考文献" href="../refs.html" />
+    <link rel="prev" title="2.2. 分布式对象存储" href="remote-object.html" /> 
+  </head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer"><header class="mdl-layout__header mdl-layout__header--waterfall ">
+    <div class="mdl-layout__header-row">
+        
+        <nav class="mdl-navigation breadcrumb">
+            <a class="mdl-navigation__link" href="index.html"><span class="section-number">2. </span>Ray Core 简介</a><i class="material-icons">navigate_next</i>
+            <a class="mdl-navigation__link is-active"><span class="section-number">2.3. </span>分布式类</a>
+        </nav>
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation">
+        
+<form class="form-inline pull-sm-right" action="../search.html" method="get">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+        <label id="quick-search-icon" class="mdl-button mdl-js-button mdl-button--icon"  for="waterfall-exp">
+          <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield__expandable-holder">
+          <input class="mdl-textfield__input" type="text" name="q"  id="waterfall-exp" placeholder="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </div>
+      </div>
+      <div class="mdl-tooltip" data-mdl-for="quick-search-icon">
+      Quick search
+      </div>
+</form>
+        
+<a id="button-show-source"
+    class="mdl-button mdl-js-button mdl-button--icon"
+    href="../_sources/ch-ray-core/remote-class.rst.txt" rel="nofollow">
+  <i class="material-icons">code</i>
+</a>
+<div class="mdl-tooltip" data-mdl-for="button-show-source">
+Show Source
+</div>
+        </nav>
+    </div>
+    <div class="mdl-layout__header-row header-links">
+      <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation">
+          
+              <a  class="mdl-navigation__link" href="https://github.com/py-101/distributed-python">
+                  <i class="fab fa-github"></i>
+                  GitHub
+              </a>
+      </nav>
+    </div>
+</header><header class="mdl-layout__drawer">
+    
+          <!-- Title -->
+      <span class="mdl-layout-title">
+          <a class="title" href="../index.html">
+              <span class="title-text">
+                  Python 分布式编程
+              </span>
+          </a>
+      </span>
+    
+    
+      <div class="globaltoc">
+        <span class="mdl-layout-title toc">Table Of Contents</span>
+        
+        
+            
+            <nav class="mdl-navigation">
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ch-python-lang/index.html">1. Python 编程语言</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/python.html">1.1. Python 现状及历史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/data-science.html">1.2. Python 数据科学生态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/why-slow.html">1.3. Python 性能瓶颈原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/outline.html">1.4. 本书主要内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/summary.html">1.5. 本章小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Ray Core 简介</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="remote-function.html">2.1. 分布式函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-object.html">2.2. 分布式对象存储</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.3. 分布式类</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
+</ul>
+
+            </nav>
+        
+        </div>
+    
+</header>
+        <main class="mdl-layout__content" tabIndex="0">
+
+	<script type="text/javascript" src="../_static/sphinx_materialdesign_theme.js "></script>
+    <header class="mdl-layout__drawer">
+    
+          <!-- Title -->
+      <span class="mdl-layout-title">
+          <a class="title" href="../index.html">
+              <span class="title-text">
+                  Python 分布式编程
+              </span>
+          </a>
+      </span>
+    
+    
+      <div class="globaltoc">
+        <span class="mdl-layout-title toc">Table Of Contents</span>
+        
+        
+            
+            <nav class="mdl-navigation">
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ch-python-lang/index.html">1. Python 编程语言</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/python.html">1.1. Python 现状及历史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/data-science.html">1.2. Python 数据科学生态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/why-slow.html">1.3. Python 性能瓶颈原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/outline.html">1.4. 本书主要内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/summary.html">1.5. 本章小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Ray Core 简介</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="remote-function.html">2.1. 分布式函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-object.html">2.2. 分布式对象存储</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.3. 分布式类</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
+</ul>
+
+            </nav>
+        
+        </div>
+    
+</header>
+
+    <div class="document">
+        <div class="page-content" role="main">
+        
+  <div class="section" id="remote-class">
+<span id="id1"></span><h1><span class="section-number">2.3. </span>分布式类<a class="headerlink" href="#remote-class" title="Permalink to this heading">¶</a></h1>
+<p><a class="reference internal" href="remote-function.html#remote-function"><span class="std std-numref">2.1节</span></a> 展示了如何将一个无状态的函数扩展到 Ray
+集群上进行分布式计算，但实际的场景中，我们经常需要进行有状态的计算。最简单的有状态计算包括维护一个计数器，每遇到某种条件，计数器加一。这类有状态的计算对于给定的输入，不一定得到确定的输出。单机场景我们可以使用
+Python 的类（Class）来实现，计数器可作为类的成员变量。Ray 可以将 Python
+类拓展到集群上，即远程类（Remote Class），又被称为行动者（Actor）。Actor
+的名字来自 Actor 编程模型
+<span id="id2">(<a class="reference internal" href="../refs.html#id8" title="Hewitt, C., Bishop, P. B., &amp; Steiger, R. (1973). A universal modular ACTOR formalism for artificial intelligence. Proceedings of the 3rd International Joint Conference on Artificial Intelligence. Standford, CA, USA, August 20-23, 1973 (pp. 235–245). William Kaufmann.">Hewitt <em>et al.</em>, 1973</a>)</span>，这是一个典型的分布式计算编程模型，被广泛应用在大数据和人工智能领域，但
+Actor 编程模型比较抽象，我们先从计数器的案例来入手。</p>
+<div class="section" id="id3">
+<h2><span class="section-number">2.3.1. </span>案例1：分布式计数器<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>Ray 的 Remote Class 也使用 <code class="docutils literal notranslate"><span class="pre">ray.remote()</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@ray</span><span class="o">.</span><span class="n">remote</span>
+<span class="k">class</span> <span class="nc">Counter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">get_counter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+</pre></div>
+</div>
+<p>使用 Ray 创建一个 <code class="docutils literal notranslate"><span class="pre">Counter</span></code> 类的分布式实例，或者说创建一个
+Actor，需要在类名 <code class="docutils literal notranslate"><span class="pre">Counter</span></code> 后面加上
+<code class="docutils literal notranslate"><span class="pre">remote()</span></code>。这样创建的类就是一个分布式的 Actor。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="o">.</span><span class="n">remote</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>接下来我们要使用 <code class="docutils literal notranslate"><span class="pre">Counter</span></code> 类的计数功能：<code class="docutils literal notranslate"><span class="pre">increment()</span></code>
+方法，我们也要在方法后面添加 <code class="docutils literal notranslate"><span class="pre">remote()</span></code>。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">obj_ref</span> <span class="o">=</span> <span class="n">counter</span><span class="o">.</span><span class="n">increment</span><span class="o">.</span><span class="n">remote</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">obj_ref</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>我们可以用同一个类创建不同的 Actor 实例，不同 Actor
+之间的成员函数调用可以被并行化执行的，但同一个 Actor
+的成员函数调用是顺序执行的。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 创建 10 个 Actor 实例</span>
+<span class="n">counters</span> <span class="o">=</span> <span class="p">[</span><span class="n">Counter</span><span class="o">.</span><span class="n">remote</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+
+<span class="c1"># 对每个 Actor 进行 increment 操作</span>
+<span class="c1"># 这些操作可以分布式执行</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="n">c</span><span class="o">.</span><span class="n">increment</span><span class="o">.</span><span class="n">remote</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">counters</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>同一个 Actor 实例是互相共享状态的，所谓共享状态是指，Actor
+可能被分布式地调度，无论调度到哪个计算节点，对 Actor
+实例的任何操作都像对单机 Python
+类和实例的操作一样，对象实例的成员变量的数据是可被访问、修改以及实时更新的。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 对第一个 Actor 进行5次 increment 操作</span>
+<span class="c1"># 这5次 increment 操作是顺序执行的，5次操作共享状态数据 `value`</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="n">counters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">increment</span><span class="o">.</span><span class="n">remote</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+        </div>
+        <div class="side-doc-outline">
+            <div class="side-doc-outline--content"> 
+<div class="localtoc">
+    <p class="caption">
+      <span class="caption-text">Table Of Contents</span>
+    </p>
+    <ul>
+<li><a class="reference internal" href="#">2.3. 分布式类</a><ul>
+<li><a class="reference internal" href="#id3">2.3.1. 案例1：分布式计数器</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+            </div>
+        </div>
+
+      <div class="clearer"></div>
+    </div><div class="pagenation">
+     <a id="button-prev" href="remote-object.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="P">
+         <i class="pagenation-arrow-L fas fa-arrow-left fa-lg"></i>
+         <div class="pagenation-text">
+            <span class="pagenation-direction">Previous</span>
+            <div>2.2. 分布式对象存储</div>
+         </div>
+     </a>
+     <a id="button-next" href="../refs.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
+         <i class="pagenation-arrow-R fas fa-arrow-right fa-lg"></i>
+        <div class="pagenation-text">
+            <span class="pagenation-direction">Next</span>
+            <div>3. 参考文献</div>
+        </div>
+     </a>
+  </div>
+        
+        </main>
+    </div>
+  </body>
+</html>

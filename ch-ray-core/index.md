@@ -5,7 +5,7 @@ Ray 可以将 Python 函数或者类等计算任务横向扩展到多个计算�
 
 * 任务（Task）：面向函数（Function）的接口，用于定义一个函数，该函数可以在集群中分布式地执行。
 * 行动者（Actor）：面向类（Class）的接口，用于定义一个类，该类可以在集群中分布式地执行。
-* 对象（Object）：分布式的对象，对象不可变（Immutable），用于在任务和 Actor 之间传递数据。
+* 对象（Object）：分布式的对象，对象不可变（Immutable），用于在 Task 和 Actor 之间传递数据。
 
 ![Ray Core 核心API](../img/ch-ray-core/ray-apis.png)
 :width:`800px`
@@ -14,6 +14,7 @@ Ray 可以将 Python 函数或者类等计算任务横向扩展到多个计算�
 ```toc
 :maxdepth: 2
 
-remote-task
-object-store
+remote-function
+remote-object
+remote-class
 ```
