@@ -297,7 +297,7 @@ Remote Object 可以通过 ``RefObjectID`` 在 Task、Actor 之间传递。
 .. parsed-literal::
     :class: output
 
-    (echo pid=59316) current value of argument x: [0, 1, 2, 3, 4]
+    (echo pid=43989) current value of argument x: [0, 1, 2, 3, 4]
 
 
 
@@ -331,7 +331,7 @@ Remote Object 可以通过 ``RefObjectID`` 在 Task、Actor 之间传递。
 
 .. code:: ipython3
 
-    echo.remote({"obj": x_obj_ref})
+    ray.get(echo.remote({"obj": x_obj_ref}))
 
 
 
@@ -343,7 +343,7 @@ Remote Object 可以通过 ``RefObjectID`` 在 Task、Actor 之间传递。
 .. parsed-literal::
     :class: output
 
-    ObjectRef(c54e76759b2a0c10ffffffffffffffffffffffff0100000001000000)
+    {'obj': ObjectRef(00ffffffffffffffffffffffffffffffffffffff0100000010000000)}
 
 
 
@@ -353,7 +353,7 @@ Remote Object 可以通过 ``RefObjectID`` 在 Task、Actor 之间传递。
 
 .. code:: ipython3
 
-    echo.remote([x_obj_ref])
+    ray.get(echo.remote([x_obj_ref]))
 
 
 
@@ -365,7 +365,7 @@ Remote Object 可以通过 ``RefObjectID`` 在 Task、Actor 之间传递。
 .. parsed-literal::
     :class: output
 
-    ObjectRef(239c2f70c73fbf73ffffffffffffffffffffffff0100000001000000)
+    [ObjectRef(00ffffffffffffffffffffffffffffffffffffff0100000010000000)]
 
 
 

@@ -176,8 +176,8 @@ Python 的类（Class）来实现，计数器可作为类的成员变量。Ray �
 Actor 编程模型比较抽象，我们先从计数器的案例来入手。</p>
 <div class="section" id="id3">
 <h2><span class="section-number">2.3.1. </span>案例1：分布式计数器<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
-<p>Ray 的 Remote Class 也使用 <code class="docutils literal notranslate"><span class="pre">ray.remote()</span></code></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@ray</span><span class="o">.</span><span class="n">remote</span>
+<p>Ray 的 Remote Class 也使用 <code class="docutils literal notranslate"><span class="pre">ray.remote()</span></code> 来装饰。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@ray</span><span class="o">.</span><span class="n">remote</span>
 <span class="k">class</span> <span class="nc">Counter</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
@@ -190,25 +190,30 @@ Actor 编程模型比较抽象，我们先从计数器的案例来入手。</p>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
 </pre></div>
 </div>
-<p>使用 Ray 创建一个 <code class="docutils literal notranslate"><span class="pre">Counter</span></code> 类的分布式实例，或者说创建一个
-Actor，需要在类名 <code class="docutils literal notranslate"><span class="pre">Counter</span></code> 后面加上
-<code class="docutils literal notranslate"><span class="pre">remote()</span></code>。这样创建的类就是一个分布式的 Actor。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="o">.</span><span class="n">remote</span><span class="p">()</span>
+<p>使用 Ray 创建一个类名为 <code class="docutils literal notranslate"><span class="pre">Counter</span></code> 的 Remote Class，需要在类名
+<code class="docutils literal notranslate"><span class="pre">Counter</span></code> 后面加上 <code class="docutils literal notranslate"><span class="pre">remote()</span></code>。这样创建的类就是一个分布式的
+Actor。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="o">.</span><span class="n">remote</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>接下来我们要使用 <code class="docutils literal notranslate"><span class="pre">Counter</span></code> 类的计数功能：<code class="docutils literal notranslate"><span class="pre">increment()</span></code>
-方法，我们也要在方法后面添加 <code class="docutils literal notranslate"><span class="pre">remote()</span></code>。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">obj_ref</span> <span class="o">=</span> <span class="n">counter</span><span class="o">.</span><span class="n">increment</span><span class="o">.</span><span class="n">remote</span><span class="p">()</span>
+函数，我们也要在函数后面添加 <code class="docutils literal notranslate"><span class="pre">remote()</span></code> ，即
+<code class="docutils literal notranslate"><span class="pre">对象实例.函数名.remote()</span></code>。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obj_ref</span> <span class="o">=</span> <span class="n">counter</span><span class="o">.</span><span class="n">increment</span><span class="o">.</span><span class="n">remote</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">obj_ref</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">raylet</span><span class="p">)</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">luweizheng</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">tpch</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">ray</span><span class="o">/</span><span class="n">dashboard</span><span class="o">/</span><span class="n">agent</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span> <span class="ne">DeprecationWarning</span><span class="p">:</span> <span class="n">There</span> <span class="ow">is</span> <span class="n">no</span> <span class="n">current</span> <span class="n">event</span> <span class="n">loop</span>
+<span class="p">(</span><span class="n">raylet</span><span class="p">)</span>   <span class="n">aiogrpc</span><span class="o">.</span><span class="n">init_grpc_aio</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
 </pre></div>
 </div>
 <p>我们可以用同一个类创建不同的 Actor 实例，不同 Actor
-之间的成员函数调用可以被并行化执行的，但同一个 Actor
+之间的成员函数调用可以被并行化执行，但同一个 Actor
 的成员函数调用是顺序执行的。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 创建 10 个 Actor 实例</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 创建 10 个 Actor 实例</span>
 <span class="n">counters</span> <span class="o">=</span> <span class="p">[</span><span class="n">Counter</span><span class="o">.</span><span class="n">remote</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
 
 <span class="c1"># 对每个 Actor 进行 increment 操作</span>
@@ -224,8 +229,8 @@ Actor，需要在类名 <code class="docutils literal notranslate"><span class="
 可能被分布式地调度，无论调度到哪个计算节点，对 Actor
 实例的任何操作都像对单机 Python
 类和实例的操作一样，对象实例的成员变量的数据是可被访问、修改以及实时更新的。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 对第一个 Actor 进行5次 increment 操作</span>
-<span class="c1"># 这5次 increment 操作是顺序执行的，5次操作共享状态数据 `value`</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 对第一个 Actor 进行5次 increment 操作</span>
+<span class="c1"># 这5次 increment 操作是顺序执行的，5次操作共享状态数据 value</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="n">counters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">increment</span><span class="o">.</span><span class="n">remote</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
@@ -233,6 +238,151 @@ Actor，需要在类名 <code class="docutils literal notranslate"><span class="
 <div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="actor">
+<h2><span class="section-number">2.3.2. </span>Actor 编程模型<a class="headerlink" href="#actor" title="Permalink to this heading">¶</a></h2>
+<p>Actor
+编程模型是一种分布式编程的范式，每门编程语言或框架有自己的实现。Actor
+编程模型的基本要素是 Actor 实例，即每个 Actor
+对象都是唯一的。我们可以把单个 Actor
+实例理解成单个带地址信息的进程。每个 Actor
+都拥有地址信息，我们就可以从别的 Actor 向这个 Actor
+发送信息，就像我们通过手机号或电子邮件地址互相发送信息一样。一个 Actor
+可以有一个地址，也可以有多个地址，多个 Actor
+可以共享同一个地址，拥有多少个地址主要取决于我们想以怎样的方式收发数据。多个
+Actor
+共享同一个地址，就像公司里有一个群组邮箱，群组包含了多个人，有个对外的公共的地址，向这个群组发邮件，群组中的每个人都可以收到消息。</p>
+<p>拥有地址和内存空间，Actor 可以做以下事情：</p>
+<ul class="simple">
+<li><p>存储数据，比如状态数据</p></li>
+<li><p>从别的 Actor 接收消息</p></li>
+<li><p>向别的 Actor 接收消息</p></li>
+<li><p>创建新的 Actor</p></li>
+</ul>
+<p>Actor 存储的状态数据只能由 Actor 自己来管理，不能被其他 Actor
+修改。这有点像面向对象编程语言中类的实例，如果想修改实例的数据，一般通过实例的成员函数。如果我们想修改
+Actor 里面存储的状态数据，应该向 Actor 发送消息，Actor
+接收到消息，并基于自己存储的数据，做出决策：决定修改状态数据，或者再向其他
+Actor 发送消息。比如，刚才的计数器案例中，Actor 收到 <code class="docutils literal notranslate"><span class="pre">increment()</span></code>
+的消息，并根据自己存储的状态，做自增操作。</p>
+<p>为了保证 Actor 编程模型分布式环境下状态的一致性，对同一个 Actor
+多次发送同样请求，多次请求是顺序执行的。就像计数器案例中，对同一个 Actor
+进行5次 <code class="docutils literal notranslate"><span class="pre">increment()</span></code> 操作，这5次操作是顺序执行的。</p>
+<p>Actor 编程模型是消息驱动的，给某个 Actor
+发送消息，它就会对该消息进行响应，修改自身的状态或者继续给其他 Actor
+发送消息。Actor
+编程模型不需要显式地在多个进程之间同步数据，因此也没有锁的问题以及同步等待的时间。Actor
+编程模型可被用于大量异步操作的场景。</p>
+</div>
+<div class="section" id="id4">
+<h2><span class="section-number">2.3.3. </span>案例2：排行榜<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>接下来我们基于 Actor
+实现一个更加复杂的案例：成绩排行榜。这个排行榜的状态是一个键值对，名为
+<code class="docutils literal notranslate"><span class="pre">self.board</span></code>，键是名字（<code class="docutils literal notranslate"><span class="pre">name</span></code>），是一个 <code class="docutils literal notranslate"><span class="pre">str</span></code>
+类型，值是分数（<code class="docutils literal notranslate"><span class="pre">score</span></code>），是一个 <code class="docutils literal notranslate"><span class="pre">float</span></code> 类型。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@ray</span><span class="o">.</span><span class="n">remote</span>
+<span class="k">class</span> <span class="nc">Ranking</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimal_score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">60.0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minimal</span> <span class="o">=</span> <span class="n">minimal_score</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">board</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">score</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">score</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">minimal</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">score</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">board</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The data type of score should be float but we receive </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span>
+
+    <span class="k">def</span> <span class="nf">top</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">))</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="n">n</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;The board is empty.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span>
+</pre></div>
+</div>
+<p>在这个排行榜的例子中，一共三个函数：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__()</span></code> ：构造器。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">add()</span></code>：添加一条新记录，同时对输入进行解析，如果 <code class="docutils literal notranslate"><span class="pre">score</span></code>
+不能转换成 <code class="docutils literal notranslate"><span class="pre">float</span></code> 会抛出异常；并对已有记录排序。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pop()</span></code>：删除最大值的那条记录，如果 <code class="docutils literal notranslate"><span class="pre">self.board</span></code>
+为空，会抛出异常。</p></li>
+</ul>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">.remote()</span></code> 函数来创建这个 Remote Class 对应的 Actor 实例。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 创建排行榜</span>
+<span class="n">ranking</span> <span class="o">=</span> <span class="n">Ranking</span><span class="o">.</span><span class="n">remote</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>这里的 <code class="docutils literal notranslate"><span class="pre">ranking</span></code> 是一个 Actor 的引用（Actor Handle），有点像
+<code class="docutils literal notranslate"><span class="pre">ObjectRef</span></code>，我们用 <code class="docutils literal notranslate"><span class="pre">ranking</span></code> 这个 Actor Handle 来管理这个
+Actor。一旦 Actor Handle 被销毁，对应的 Actor 以及其状态也被销毁。</p>
+<p>我们可以创建多个 Actor 实例，每个实例管理自己的状态。还可以用
+<code class="docutils literal notranslate"><span class="pre">ActorClass.options</span></code> 给这些 Actor 实例设置一些选项，起名字，设置
+CPU、GPU 计算资源等。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 创建一个数学排行榜 math_ranking</span>
+<span class="c1"># 它与刚创建的 ranking 相互独立</span>
+<span class="n">math_ranking</span> <span class="o">=</span> <span class="n">Ranking</span><span class="o">.</span><span class="n">remote</span><span class="p">(</span><span class="n">minimal_score</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+
+<span class="c1"># 创建一个化学排行榜 chem_ranking</span>
+<span class="c1"># 并且有一个名字</span>
+<span class="n">chem_ranking</span> <span class="o">=</span> <span class="n">Ranking</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Chemistry&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">remote</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>有了名字之后，就可以通过 <code class="docutils literal notranslate"><span class="pre">ray.get_actor()</span></code> 来获取 Actor Handle，</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 获取名为 Chemistry 的 Actor Handle</span>
+<span class="n">cr</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">get_actor</span><span class="p">(</span><span class="s2">&quot;Chemistry&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>向 <code class="docutils literal notranslate"><span class="pre">ranking</span></code> 排行榜内添加新记录，即调用 <code class="docutils literal notranslate"><span class="pre">add()</span></code>
+函数。调用类成员函数，都要记得加上 <code class="docutils literal notranslate"><span class="pre">.remote()</span></code> ，否则会报错。</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 增加新记录</span>
+<span class="n">ranking</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">remote</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="n">ranking</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">remote</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current ranking: </span><span class="si">{</span><span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ranking</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">remote</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Current</span> <span class="n">ranking</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ranking</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">remote</span><span class="p">(</span><span class="s2">&quot;Mark&quot;</span><span class="p">,</span> <span class="s1">&#39;a88&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;Bob&#39;</span><span class="p">:</span> <span class="mf">60.0</span><span class="p">,</span> <span class="s1">&#39;Alice&#39;</span><span class="p">:</span> <span class="mf">90.0</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>在上面的案例中，有些调用会引发异常，比如插入一个字符串，Ray
+通常会处理异常并打印出来，但是为了保险起见，你也可以在调用这些 Remote
+Class 的成员方法时手动做好 <code class="docutils literal notranslate"><span class="pre">try/except</span></code> 的异常捕获：</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ranking</span><span class="o">.</span><span class="n">pop</span><span class="o">.</span><span class="n">remote</span><span class="p">())</span>
+    <span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ranking</span><span class="o">.</span><span class="n">pop</span><span class="o">.</span><span class="n">remote</span><span class="p">())</span>
+    <span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ranking</span><span class="o">.</span><span class="n">pop</span><span class="o">.</span><span class="n">remote</span><span class="p">())</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ray</span><span class="p">::</span><span class="n">Ranking</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span> <span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="mi">8063</span><span class="p">,</span> <span class="n">ip</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">Ranking</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fd752c02890</span><span class="o">&gt;</span><span class="p">)</span>
+  <span class="n">File</span> <span class="s2">&quot;/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_7536/1570506600.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">29</span><span class="p">,</span> <span class="ow">in</span> <span class="n">pop</span>
+<span class="ne">Exception</span><span class="p">:</span> <span class="n">The</span> <span class="n">board</span> <span class="ow">is</span> <span class="n">empty</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>实践上，经常创建一个 Actor 资源池（Actor Pool），Actor Pool 中有包含多个
+Actor。</p>
 </div>
 </div>
 
@@ -247,6 +397,8 @@ Actor，需要在类名 <code class="docutils literal notranslate"><span class="
     <ul>
 <li><a class="reference internal" href="#">2.3. 分布式类</a><ul>
 <li><a class="reference internal" href="#id3">2.3.1. 案例1：分布式计数器</a></li>
+<li><a class="reference internal" href="#actor">2.3.2. Actor 编程模型</a></li>
+<li><a class="reference internal" href="#id4">2.3.3. 案例2：排行榜</a></li>
 </ul>
 </li>
 </ul>

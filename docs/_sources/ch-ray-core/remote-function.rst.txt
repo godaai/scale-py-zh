@@ -197,8 +197,8 @@ Ray 帮我们做了底层的分布式与调度这些工作。
 .. parsed-literal::
     :class: output
 
-    Serial :: fibonacci sequence 200000 elapsed: 17.37 sec
-    Distributed :: fibonacci sequence 200000 elapsed: 17.60 sec
+    Serial :: fibonacci sequence 200000 elapsed: 17.70 sec
+    Distributed :: fibonacci sequence 200000 elapsed: 17.01 sec
 
 
 这个例子中，计算复杂度不够大，你可以试着将 ``SEQUENCE_SIZE``
@@ -364,21 +364,23 @@ Future ObjectRef，需要使用 ``ray.get()``
 .. parsed-literal::
     :class: output
 
-    Task id: 1 | Samples in the circle: 7854621
-    Task id: 2 | Samples in the circle: 7853682
-    Task id: 3 | Samples in the circle: 7855285
-    Task id: 4 | Samples in the circle: 7855329
-    Task id: 5 | Samples in the circle: 7854748
-    Task id: 6 | Samples in the circle: 7854955
-    Task id: 7 | Samples in the circle: 7855748
-    Task id: 8 | Samples in the circle: 7853446
-    Serial :: random samples: 10000000, estimated value of π is: 3.141891, elapsed: 56.26 sec
-    (sample_task_distribute pid=3955) Task id: 5 | Samples in the circle: 7852589
-    (sample_task_distribute pid=3956) Task id: 6 | Samples in the circle: 7853554
-    (sample_task_distribute pid=3950) Task id: 1 | Samples in the circle: 7852696
-    (sample_task_distribute pid=3954) Task id: 4 | Samples in the circle: 7854371
-    (sample_task_distribute pid=3949) Task id: 2 | Samples in the circle: 7853789
-    Distributed :: random samples: 10000000, estimated value of π is: 3.141515, elapsed: 19.13 sec
+    Task id: 1 | Samples in the circle: 7852411
+    Task id: 2 | Samples in the circle: 7855685
+    Task id: 3 | Samples in the circle: 7853874
+    Task id: 4 | Samples in the circle: 7853164
+    Task id: 5 | Samples in the circle: 7852045
+    Task id: 6 | Samples in the circle: 7852821
+    Task id: 7 | Samples in the circle: 7855745
+    Task id: 8 | Samples in the circle: 7854614
+    Serial :: random samples: 10000000, estimated value of π is: 3.141518, elapsed: 57.17 sec
+    (sample_task_distribute pid=80175) Task id: 8 | Samples in the circle: 7852710
+    (sample_task_distribute pid=80174) Task id: 6 | Samples in the circle: 7854934
+    (sample_task_distribute pid=80179) Task id: 5 | Samples in the circle: 7853162
+    (sample_task_distribute pid=80172) Task id: 3 | Samples in the circle: 7853499
+    (sample_task_distribute pid=80176) Task id: 4 | Samples in the circle: 7855644
+    (sample_task_distribute pid=80173) Task id: 7 | Samples in the circle: 7855023
+    (sample_task_distribute pid=80178) Task id: 1 | Samples in the circle: 7857718
+    Distributed :: random samples: 10000000, estimated value of π is: 3.141769, elapsed: 17.18 sec
 
 
 案例3：分布式图片处理
@@ -403,7 +405,7 @@ Future ObjectRef，需要使用 ``ray.get()``
     # Hide outputs
     NUM_IMAGES = 50
     # 图片将生成至该文件夹
-    DATA_DIR = Path(os.getcwd() + "/data/fake-images")
+    DATA_DIR = Path(os.getcwd() + "../data/fake-images")
     
     if not DATA_DIR.exists():
         # 目录不存在，创建目录
@@ -500,13 +502,10 @@ Future ObjectRef，需要使用 ``ray.get()``
 .. parsed-literal::
     :class: output
 
-    (sample_task_distribute pid=3953) Task id: 7 | Samples in the circle: 7852434
     Running 50 images serially....
-    (sample_task_distribute pid=3951) Task id: 8 | Samples in the circle: 7854384
-    (sample_task_distribute pid=3948) Task id: 3 | Samples in the circle: 7856486
-    Serial :: transformations of 50 images, 8.33 sec
+    Serial :: transformations of 50 images, 16.02 sec
     Running 50 images distributed....
-    Distributed :: transformations of 50 images, 5.65 sec
+    Distributed :: transformations of 50 images, 6.60 sec
 
 
 三个案例运行结束我们比较一下 Ray

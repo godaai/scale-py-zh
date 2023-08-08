@@ -17,13 +17,13 @@ Actor 编程模型比较抽象，我们先从计数器的案例来入手。
 ~~~~~~~~~~~~~~~~~~~
 
 
-Ray 的 Remote Class 也使用 ``ray.remote()``
+Ray 的 Remote Class 也使用 ``ray.remote()`` 来装饰。
 
 .. raw:: latex
 
    \diilbookstyleinputcell
 
-.. code:: python
+.. code:: ipython3
 
     @ray.remote
     class Counter:
@@ -37,29 +37,41 @@ Ray 的 Remote Class 也使用 ``ray.remote()``
         def get_counter(self):
             return self.value
 
-使用 Ray 创建一个 ``Counter`` 类的分布式实例，或者说创建一个
-Actor，需要在类名 ``Counter`` 后面加上
-``remote()``\ 。这样创建的类就是一个分布式的 Actor。
+使用 Ray 创建一个类名为 ``Counter`` 的 Remote Class，需要在类名
+``Counter`` 后面加上 ``remote()``\ 。这样创建的类就是一个分布式的
+Actor。
 
 .. raw:: latex
 
    \diilbookstyleinputcell
 
-.. code:: python
+.. code:: ipython3
 
     counter = Counter.remote()
 
 接下来我们要使用 ``Counter`` 类的计数功能：\ ``increment()``
-方法，我们也要在方法后面添加 ``remote()``\ 。
+函数，我们也要在函数后面添加 ``remote()`` ，即
+``对象实例.函数名.remote()``\ 。
 
 .. raw:: latex
 
    \diilbookstyleinputcell
 
-.. code:: python
+.. code:: ipython3
 
     obj_ref = counter.increment.remote()
     print(ray.get(obj_ref))
+
+
+.. raw:: latex
+
+   \diilbookstyleoutputcell
+
+.. parsed-literal::
+    :class: output
+
+    (raylet) /Users/luweizheng/anaconda3/envs/tpch/lib/python3.10/site-packages/ray/dashboard/agent.py:51: DeprecationWarning: There is no current event loop
+    (raylet)   aiogrpc.init_grpc_aio()
 
 
 .. raw:: latex
@@ -73,14 +85,14 @@ Actor，需要在类名 ``Counter`` 后面加上
 
 
 我们可以用同一个类创建不同的 Actor 实例，不同 Actor
-之间的成员函数调用可以被并行化执行的，但同一个 Actor
+之间的成员函数调用可以被并行化执行，但同一个 Actor
 的成员函数调用是顺序执行的。
 
 .. raw:: latex
 
    \diilbookstyleinputcell
 
-.. code:: python
+.. code:: ipython3
 
     # 创建 10 个 Actor 实例
     counters = [Counter.remote() for _ in range(10)]
@@ -110,10 +122,10 @@ Actor，需要在类名 ``Counter`` 后面加上
 
    \diilbookstyleinputcell
 
-.. code:: python
+.. code:: ipython3
 
     # 对第一个 Actor 进行5次 increment 操作
-    # 这5次 increment 操作是顺序执行的，5次操作共享状态数据 `value`
+    # 这5次 increment 操作是顺序执行的，5次操作共享状态数据 value
     results = ray.get([counters[0].increment.remote() for _ in range(5)])
     print(results)
 
@@ -127,4 +139,223 @@ Actor，需要在类名 ``Counter`` 后面加上
 
     [2, 3, 4, 5, 6]
 
+
+Actor 编程模型
+~~~~~~~~~~~~~~
+
+Actor
+编程模型是一种分布式编程的范式，每门编程语言或框架有自己的实现。Actor
+编程模型的基本要素是 Actor 实例，即每个 Actor
+对象都是唯一的。我们可以把单个 Actor
+实例理解成单个带地址信息的进程。每个 Actor
+都拥有地址信息，我们就可以从别的 Actor 向这个 Actor
+发送信息，就像我们通过手机号或电子邮件地址互相发送信息一样。一个 Actor
+可以有一个地址，也可以有多个地址，多个 Actor
+可以共享同一个地址，拥有多少个地址主要取决于我们想以怎样的方式收发数据。多个
+Actor
+共享同一个地址，就像公司里有一个群组邮箱，群组包含了多个人，有个对外的公共的地址，向这个群组发邮件，群组中的每个人都可以收到消息。
+
+拥有地址和内存空间，Actor 可以做以下事情：
+
+-  存储数据，比如状态数据
+-  从别的 Actor 接收消息
+-  向别的 Actor 接收消息
+-  创建新的 Actor
+
+Actor 存储的状态数据只能由 Actor 自己来管理，不能被其他 Actor
+修改。这有点像面向对象编程语言中类的实例，如果想修改实例的数据，一般通过实例的成员函数。如果我们想修改
+Actor 里面存储的状态数据，应该向 Actor 发送消息，Actor
+接收到消息，并基于自己存储的数据，做出决策：决定修改状态数据，或者再向其他
+Actor 发送消息。比如，刚才的计数器案例中，Actor 收到 ``increment()``
+的消息，并根据自己存储的状态，做自增操作。
+
+为了保证 Actor 编程模型分布式环境下状态的一致性，对同一个 Actor
+多次发送同样请求，多次请求是顺序执行的。就像计数器案例中，对同一个 Actor
+进行5次 ``increment()`` 操作，这5次操作是顺序执行的。
+
+Actor 编程模型是消息驱动的，给某个 Actor
+发送消息，它就会对该消息进行响应，修改自身的状态或者继续给其他 Actor
+发送消息。Actor
+编程模型不需要显式地在多个进程之间同步数据，因此也没有锁的问题以及同步等待的时间。Actor
+编程模型可被用于大量异步操作的场景。
+
+案例2：排行榜
+~~~~~~~~~~~~~
+
+接下来我们基于 Actor
+实现一个更加复杂的案例：成绩排行榜。这个排行榜的状态是一个键值对，名为
+``self.board``\ ，键是名字（\ ``name``\ ），是一个 ``str``
+类型，值是分数（\ ``score``\ ），是一个 ``float`` 类型。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: ipython3
+
+    @ray.remote
+    class Ranking:
+        def __init__(self, minimal_score: float = 60.0):
+            self.minimal = minimal_score
+            self.board = dict()
+    
+        def add(self, name: str, score: float) -> Dict[str, float]:
+            try:
+                score = float(score)
+                if score < self.minimal:
+                    return
+                if name in self.board:
+                    self.board[name] = max(score, self.board[name])
+                else:
+                    self.board[name] = score
+                self.board = dict(sorted(self.board.items(), key=lambda item: item[1]))
+                return self.board
+            except Exception as e:
+                print(f"The data type of score should be float but we receive {type(score)}.")
+                return self.board
+    
+        def top(self, n: int = 1) -> List[Tuple[str, float]]:
+            n = min(n, len(self.board))
+            results = list(self.board.items())[:n]
+            return results
+    
+        def pop(self) -> Dict[str, float]:
+            if len(self.board) <= 0:
+                raise Exception("The board is empty.")
+            else:
+                _, _ = self.board.popitem()
+            return self.board
+
+在这个排行榜的例子中，一共三个函数：
+
+-  ``__init__()`` ：构造器。
+-  ``add()``\ ：添加一条新记录，同时对输入进行解析，如果 ``score``
+   不能转换成 ``float`` 会抛出异常；并对已有记录排序。
+-  ``pop()``\ ：删除最大值的那条记录，如果 ``self.board``
+   为空，会抛出异常。
+
+使用 ``.remote()`` 函数来创建这个 Remote Class 对应的 Actor 实例。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: ipython3
+
+    # 创建排行榜
+    ranking = Ranking.remote()
+
+这里的 ``ranking`` 是一个 Actor 的引用（Actor Handle），有点像
+``ObjectRef``\ ，我们用 ``ranking`` 这个 Actor Handle 来管理这个
+Actor。一旦 Actor Handle 被销毁，对应的 Actor 以及其状态也被销毁。
+
+我们可以创建多个 Actor 实例，每个实例管理自己的状态。还可以用
+``ActorClass.options`` 给这些 Actor 实例设置一些选项，起名字，设置
+CPU、GPU 计算资源等。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: ipython3
+
+    # 创建一个数学排行榜 math_ranking
+    # 它与刚创建的 ranking 相互独立
+    math_ranking = Ranking.remote(minimal_score=80)
+    
+    # 创建一个化学排行榜 chem_ranking
+    # 并且有一个名字
+    chem_ranking = Ranking.options(name="Chemistry").remote()
+
+有了名字之后，就可以通过 ``ray.get_actor()`` 来获取 Actor Handle，
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: ipython3
+
+    # 获取名为 Chemistry 的 Actor Handle
+    cr = ray.get_actor("Chemistry")
+
+向 ``ranking`` 排行榜内添加新记录，即调用 ``add()``
+函数。调用类成员函数，都要记得加上 ``.remote()`` ，否则会报错。
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: ipython3
+
+    # 增加新记录
+    ranking.add.remote("Alice", 90)
+    ranking.add.remote("Bob", 60)
+    
+    print(f"Current ranking: {ray.get(ranking.top.remote(3))}")
+
+
+.. raw:: latex
+
+   \diilbookstyleoutputcell
+
+.. parsed-literal::
+    :class: output
+
+    Current ranking: [('Bob', 60.0), ('Alice', 90.0)]
+
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: ipython3
+
+    ray.get(ranking.add.remote("Mark", 'a88'))
+
+
+
+
+.. raw:: latex
+
+   \diilbookstyleoutputcell
+
+.. parsed-literal::
+    :class: output
+
+    {'Bob': 60.0, 'Alice': 90.0}
+
+
+
+在上面的案例中，有些调用会引发异常，比如插入一个字符串，Ray
+通常会处理异常并打印出来，但是为了保险起见，你也可以在调用这些 Remote
+Class 的成员方法时手动做好 ``try/except`` 的异常捕获：
+
+.. raw:: latex
+
+   \diilbookstyleinputcell
+
+.. code:: ipython3
+
+    try:
+        ray.get(ranking.pop.remote())
+        ray.get(ranking.pop.remote())
+        ray.get(ranking.pop.remote())
+    except Exception as e:
+        print(e)
+
+
+.. raw:: latex
+
+   \diilbookstyleoutputcell
+
+.. parsed-literal::
+    :class: output
+
+    ray::Ranking.pop() (pid=8063, ip=127.0.0.1, repr=<__main__.Ranking object at 0x7fd752c02890>)
+      File "/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_7536/1570506600.py", line 29, in pop
+    Exception: The board is empty.
+
+
+实践上，经常创建一个 Actor 资源池（Actor Pool），Actor Pool 中有包含多个
+Actor。
 

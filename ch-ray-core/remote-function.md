@@ -236,7 +236,7 @@ print(f"Distributed :: random samples: {NUM_SAMPLES_PER_TASK}, estimated value o
 # Hide outputs
 NUM_IMAGES = 50
 # 图片将生成至该文件夹
-DATA_DIR = Path(os.getcwd() + "/data/fake-images")
+DATA_DIR = Path(os.getcwd() + "../data/fake-images")
 
 if not DATA_DIR.exists():
     # 目录不存在，创建目录

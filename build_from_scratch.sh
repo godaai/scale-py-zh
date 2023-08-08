@@ -2,6 +2,7 @@
 
 set -e
 
+# remove all intermediate files
 rm -rf _build/rst _build/html
 d2lbook build rst
 cp static/frontpage.html _build/rst/

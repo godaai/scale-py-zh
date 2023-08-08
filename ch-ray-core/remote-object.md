@@ -111,11 +111,11 @@ ray.get(echo.remote(x))
 * `RefObjectID` 被包裹在一个 `list` 中，比如：`.remote([x_obj_ref])`
 
 ```{.python .input}
-echo.remote({"obj": x_obj_ref})
+ray.get(echo.remote({"obj": x_obj_ref}))
 ```
 
 ```{.python .input}
-echo.remote([x_obj_ref])
+ray.get(echo.remote([x_obj_ref]))
 ```
 
 ### 底层实现

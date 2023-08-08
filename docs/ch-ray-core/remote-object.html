@@ -318,7 +318,7 @@ Remote Object 进行转换操作，生成新的 Remote Object。</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">echo</span><span class="o">.</span><span class="n">remote</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">echo</span> <span class="n">pid</span><span class="o">=</span><span class="mi">59316</span><span class="p">)</span> <span class="n">current</span> <span class="n">value</span> <span class="n">of</span> <span class="n">argument</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">echo</span> <span class="n">pid</span><span class="o">=</span><span class="mi">43989</span><span class="p">)</span> <span class="n">current</span> <span class="n">value</span> <span class="n">of</span> <span class="n">argument</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
@@ -336,16 +336,16 @@ Remote Object 进行转换操作，生成新的 Remote Object。</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">RefObjectID</span></code> 被包裹在一个 <code class="docutils literal notranslate"><span class="pre">list</span></code>
 中，比如：<code class="docutils literal notranslate"><span class="pre">.remote([x_obj_ref])</span></code></p></li>
 </ul>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span><span class="o">.</span><span class="n">remote</span><span class="p">({</span><span class="s2">&quot;obj&quot;</span><span class="p">:</span> <span class="n">x_obj_ref</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">echo</span><span class="o">.</span><span class="n">remote</span><span class="p">({</span><span class="s2">&quot;obj&quot;</span><span class="p">:</span> <span class="n">x_obj_ref</span><span class="p">}))</span>
 </pre></div>
 </div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ObjectRef</span><span class="p">(</span><span class="n">c54e76759b2a0c10ffffffffffffffffffffffff0100000001000000</span><span class="p">)</span>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;obj&#39;</span><span class="p">:</span> <span class="n">ObjectRef</span><span class="p">(</span><span class="mi">00</span><span class="n">ffffffffffffffffffffffffffffffffffffff0100000010000000</span><span class="p">)}</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span><span class="o">.</span><span class="n">remote</span><span class="p">([</span><span class="n">x_obj_ref</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">echo</span><span class="o">.</span><span class="n">remote</span><span class="p">([</span><span class="n">x_obj_ref</span><span class="p">]))</span>
 </pre></div>
 </div>
-<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ObjectRef</span><span class="p">(</span><span class="mi">239</span><span class="n">c2f70c73fbf73ffffffffffffffffffffffff0100000001000000</span><span class="p">)</span>
+<div class="output highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">ObjectRef</span><span class="p">(</span><span class="mi">00</span><span class="n">ffffffffffffffffffffffffffffffffffffff0100000010000000</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
