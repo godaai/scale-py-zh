@@ -1,1 +1,4 @@
 d2lbook
+dask[complete]
+ray
+xorbits

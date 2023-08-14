@@ -28,40 +28,63 @@
 
 ### 环境安装
 
-本书基于名为 `d2lbook` 的 Python 工具编译，并部署在GitHub Pages上。
+本书基于名为 d2lbook 的 Python 工具编译，并部署在GitHub Pages上。
 
-选择一个包管理工具，比如 `conda` 或者 `venv`，安装 `d2lbook`：
-
-```bash
-pip install git+https://github.com/d2l-ai/d2l-book
-```
-
-更多 `d2lbook` 工具的使用方法，请参考其官方文档：[D2L-Book: A Toolkit for Hands-on Books](https://book.d2l.ai/)
-
-构建 PDF 时如果有 SVG 图片需要安装 LibRsvg 来转换 SVG 图片，安装 `librsvg` 可以通过`apt-get install librsvg`（如果是 macOS 可以用 Homebrew）。
-
-构建 PDF 必须要有 LaTeX，请安装[Tex Live](https://www.tug.org/texlive/).
-
-### 编译HTML版本
-
-在编译前先 `git clone` [https://github.com/py-101/distributed-python/](https://github.com/py-101/distributed-python/)， 所有的编译命令都在这个文件目录内执行。
+* 选择一个包管理工具，比如 `conda` 或者 `venv`
+* 安装 Python >= 3.8
+* 安装 requirements.txt 中的各个依赖。包括本书各个案例所需要的工具 Dask，Ray，Xorbits 等，以及本电子书构建工具 d2lbook：
 
 ```bash
- git clone https://github.com/py-101/distributed-python.git
- cd distributed-python
+pip install -r requirements.txt
 ```
 
-使用 `d2lbook` 工具编译HTML。 请尽量使用 `build_html.sh` 脚本进行编译，保证首页正确合并到书籍中去。
+### 使用 d2lbook 构建
+
+[d2lbook]((https://book.d2l.ai/)) 主要功能是将 markdown 文件编译成各个中间文件，包括 `.ipynb` 和 `.html`。 `_build` 下面 :
+
+* `eval` 文件夹将 `.md` 文件转换为 `.ipynb`，并且运行这个 `.ipynb`，各个代码段均有运行结果。
+* `rst` 文件夹将 `.ipynb` 文件转换为 `.rst` 文件。
+* `html` 文件夹将 `.rst` 文件转换为 HTML。
+
+但实际使用起来，d2lbook 有一些小问题。d2lbook 使用了名为 [notedown](https://github.com/d2l-ai/notedown/) 工具，将 `.md` 文件运行，并转化为 `.ipynb` 文件，在调用 notedown 时，d2lbook 只使用了1个CPU核心，导致 Ray、Dask 这种需要多机并行的程序无法成功运行。
+
+解决办法：将 `_build/eval/` 内容也加进了 git 仓库，每次只对有改动的 `.md` 文件进行转换，例如，修改了 `ch-ray-core/remote-class.md`，构建时，调用该命令，重新生成这个 ：
 
 ```bash
-sh build_html.sh
+notedown ch-ray-core/remote-class.md --run --timeout=1200 > _build/eval/ch-ray-core/remote-class.ipynb
 ```
 
-生成的html会在 `_build/html`。
-
-如果是在本地，可以使用 Python 自带的 HTTP Server：
+构建 HTML 时，不需要运行 `.ipynb`， 只需从 `.ipynb` 转化为最终的 HTML。下面的命令从已经有运行结果的 `.ipynb` 转化为 HTML，并拷贝到 `docs` 目录：
 
 ```bash
-cd _build/html
-python -m http.server
+sh build_from_eval_ipynb.sh
 ```
+
+如果想从 `.md` 文件开始构建工程，可以考虑使用，可能很多 `.md` 文件无法生成 `.ipynb`：
+
+```bash
+sh build_from_scratch.md
+```
+
+### 部署到 GitHub Pages
+
+本项目的 HTML 部署在 GitHub Pages上，GitHub Pages 读取 `docs` 下内容。`build_from_eval_ipynb.sh` 脚本最后就是将最新生成的 HTML 更新到 `docs` 目录。
+
+### 启动 HTTP Server
+
+构建好 HTML 文件后，如果是在自己的个人电脑，可以使用 Python 自带的 HTTP Server，并在浏览器里打开 http://127.0.0.1:8000 查看效果。
+
+```bash
+cd docs
+python -m http.server 8000
+```
+
+### 图片
+
+图片建议下载并使用 [drawio](https://www.drawio.com/) 绘制，或者[在线](https://app.diagrams.net/)绘制，`.drawio` 绘图文件保存到项目 `drawio` 文件夹下，svg 图片保存到 `img` 文件夹下。
+
+### 构建 PDF
+
+构建 pdf 时如果有 svg 图片需要安装 LibRsvg 来转换 svg 图片，安装 `librsvg` 可以通过`apt-get install librsvg`（如果是 macOS 可以用 Homebrew）。
+
+构建 pdf 必须要有 LaTeX，请安装[Tex Live](https://www.tug.org/texlive/).

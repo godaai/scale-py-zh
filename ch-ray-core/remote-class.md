@@ -182,7 +182,57 @@ except Exception as e:
     print(e)
 ```
 
-实践上，经常创建一个 Actor 资源池（Actor Pool），Actor Pool 中有包含多个 Actor。
+### 案例3：Actor Pool
+
+实践上，经常创建一个 Actor 资源池（Actor Pool），Actor Pool 有点像 `multiprocessing.Pool`，Actor Pool 中有包含多个 Actor，每个 Actor 功能一样，而且可以分式地在多个计算节点上运行。
+
+```{.python .input}
+from ray.util import ActorPool
+
+@ray.remote
+class PoolActor:
+    def add(self, operands):
+        (a, b) = operands
+        return a + b
+    
+    def double(self, operand):
+        return operand * 2
+
+# 将创建的 Actor 添加至 ActorPool 中
+a1, a2, a3 = PoolActor.remote(), PoolActor.remote(), PoolActor.remote()
+pool = ActorPool([a1, a2, a3])
+```
+
+如果我们想调用加入到 ActorPool 中的 Actor，可以使用 `map(fn, values)` 和 `submit(fn, value)` 方法。这两个方法非常相似，所接收的参数是一个函数 `fn` 和参数 `value` 或者参数列表 `values`。`map()` 的 `values` 是一个列表，让函数并行地分发给多个 Actor 去处理；`submit()` 的 `value` 是单个值，每次从 ActorPool 中选择一个 Actor 去执行。`fn` 是一个 Lambda 表达式，或者说是一个匿名函数。这个 Lambda 表达式有两个参数：`actor` 和 `value`，`actor` 就是我们定义的单个 Actor 的函数调用，`value` 是这个函数的参数。
+
+函数的第一个参数是 ActorPool 中的 Actor，第二个参数是函数的参数。
+
+```{.python .input}
+pool.map(lambda a, v: a.double.remote(v), [3, 4, 5, 4])
+
+pool.submit(lambda a, v: a.double.remote(v), 3)
+pool.submit(lambda a, v: a.double.remote(v), 4)
+```
+
+`map()` 和 `submit()` 将计算任务提交到了 ActorPool 中，ActorPool 并不是直接返回结果，而是异步地分发给后台不同的 Actor 去执行。需要使用 `get_next()` 阻塞地返回结果。
+
+```{.python .input}
+try:
+    print(pool.get_next())
+    print(pool.get_next())
+    print(pool.get_next())
+except Exception as e:
+    print(e)
+```
+
+当然，如果已经把所有结果都取回，仍然再去 `get_next()`，将会抛出异常。
+
+在这里，`value` 只能是单个对象，不能是参数列表，如果想传入多个参数，可以把参数包裹成元组。比如 `add()` 方法对两个操作数做计算，我们把两个操作数包裹为一个元组，实现 `add()` 函数时使用 `(a, b) = operands` 解析这个元组。
+
+```{.python .input}
+pool.submit(lambda a, v: a.add.remote(v), (1, 10))
+print(pool.get_next())
+```
 
 ```{.python .input}
 # Hide code

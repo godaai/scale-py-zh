@@ -55,7 +55,7 @@ results = ray.get(tensor_obj_ref_list)
 results[0].size(), results[0]
 ```
 
-### 对数据进行转换
+### 案例1：对数据进行转换
 
 Remote Object 的数据是不可原地更改的，比如下面的操作在单机的内存上可以，但是在 Remote Object 上，不可以直接在原地对 Remote Object 做更改。
 
