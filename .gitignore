@@ -2,6 +2,7 @@
 **/__pycache__
 data/
 *.json
+*.bkp
 *.params
 *.DS_Store
 *.csv

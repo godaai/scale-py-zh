@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-    <title>2. Ray &#8212; Python 分布式编程 1.0.0 documentation</title>
+    <title>2.5. Ray 系统与设计 &#8212; Python 分布式编程 1.0.0 documentation</title>
 
     <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinx_materialdesign_theme.css" type="text/css" />
@@ -26,15 +26,16 @@
     <script src="../_static/d2l.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.1. Ray 简介" href="ray-intro.html" />
-    <link rel="prev" title="1.5. 本章小结" href="../ch-python-lang/summary.html" /> 
+    <link rel="next" title="3. 参考文献" href="../refs.html" />
+    <link rel="prev" title="2.4. 分布式类" href="remote-class.html" /> 
   </head>
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer"><header class="mdl-layout__header mdl-layout__header--waterfall ">
     <div class="mdl-layout__header-row">
         
         <nav class="mdl-navigation breadcrumb">
-            <a class="mdl-navigation__link is-active"><span class="section-number">2. </span>Ray</a>
+            <a class="mdl-navigation__link" href="index.html"><span class="section-number">2. </span>Ray Core 简介</a><i class="material-icons">navigate_next</i>
+            <a class="mdl-navigation__link is-active"><span class="section-number">2.5. </span>Ray 系统与设计</a>
         </nav>
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation">
@@ -57,7 +58,7 @@
         
 <a id="button-show-source"
     class="mdl-button mdl-js-button mdl-button--icon"
-    href="../_sources/ch-ray-core/index.rst.txt" rel="nofollow">
+    href="../_sources/ch-ray-core/ray-internal.rst.txt" rel="nofollow">
   <i class="material-icons">code</i>
 </a>
 <div class="mdl-tooltip" data-mdl-for="button-show-source">
@@ -102,12 +103,12 @@ Show Source
 <li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/summary.html">1.5. 本章小结</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Ray</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Ray Core 简介</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="ray-intro.html">2.1. Ray 简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="remote-function.html">2.2. 分布式函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="remote-object.html">2.3. 分布式对象存储</a></li>
 <li class="toctree-l2"><a class="reference internal" href="remote-class.html">2.4. 分布式类</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ray-internal.html">2.5. Ray 系统与设计</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.5. Ray 系统与设计</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
@@ -148,12 +149,12 @@ Show Source
 <li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/summary.html">1.5. 本章小结</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Ray</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Ray Core 简介</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="ray-intro.html">2.1. Ray 简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="remote-function.html">2.2. 分布式函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="remote-object.html">2.3. 分布式对象存储</a></li>
 <li class="toctree-l2"><a class="reference internal" href="remote-class.html">2.4. 分布式类</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ray-internal.html">2.5. Ray 系统与设计</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.5. Ray 系统与设计</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../refs.html">3. 参考文献</a></li>
@@ -169,38 +170,47 @@ Show Source
         <div class="page-content" role="main">
         
   <div class="section" id="ray">
-<h1><span class="section-number">2. </span>Ray<a class="headerlink" href="#ray" title="Permalink to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="ray-intro.html">2.1. Ray 简介</a></li>
-<li class="toctree-l1"><a class="reference internal" href="remote-function.html">2.2. 分布式函数</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="remote-function.html#id2">2.2.1. 顺序执行与分布式执行</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-function.html#ray">2.2.2. 启动 Ray 集群</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-function.html#id3">2.2.3. 案例1：斐波那契数列</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-function.html#python-ray">2.2.4. 原生 Python 函数与 Ray 的区别</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-function.html#pi">2.2.5. 案例2：蒙特卡洛估计 <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-function.html#id4">2.2.6. 案例3：分布式图片处理</a></li>
+<span id="ray-internal"></span><h1><span class="section-number">2.5. </span>Ray 系统与设计<a class="headerlink" href="#ray" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="id1">
+<h2><span class="section-number">2.5.1. </span>Ray 集群<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>如 <a class="reference internal" href="#ray-cluster"><span class="std std-numref">图2.5.1</span></a> 所示，Ray
+集群由一系列计算节点组成，其中两类关键的节点：头节点（Head
+node）和工作节点（Worker
+node）。这些节点可以部署在虚拟机、容器或者是裸金属服务器上。</p>
+<div class="figure align-default" id="id2">
+<span id="ray-cluster"></span><a class="reference internal image-reference" href="../_images/ray-cluster.svg"><img alt="../_images/ray-cluster.svg" src="../_images/ray-cluster.svg" width="800px" /></a>
+<p class="caption"><span class="caption-number">图2.5.1 </span><span class="caption-text">Ray 集群</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>所有节点上都运行着一些进程：</p>
+<ul class="simple">
+<li><p>Worker</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="remote-object.html">2.3. 分布式对象存储</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="remote-object.html#ray-put-ray-get">2.3.1. ray.put() 与 ray.get()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-object.html#id2">2.3.2. 案例1：对数据进行转换</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-object.html#id3">2.3.3. 传递参数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-object.html#id6">2.3.4. 底层实现</a></li>
+<p>每个计算节点上运行着一个或多个 Worker 进程，Worker
+进程负责计算任务的运行。每个 Worker 进程运行特定的计算任务。Worker
+进程或者是无状态的，即可以被反复执行 Remote Function 对应的
+Task；又或者是一个 Actor，即只能执行有状态的 Remote Class
+的方法。默认情况下，Worker 的数量等于其所在的计算节点的 CPU 核数。</p>
+<ul class="simple">
+<li><p>Raylet</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="remote-class.html">2.4. 分布式类</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="remote-class.html#id3">2.4.1. 案例1：分布式计数器</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-class.html#actor">2.4.2. Actor 编程模型</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-class.html#id4">2.4.3. 案例2：排行榜</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-class.html#actor-pool">2.4.4. 案例3：Actor Pool</a></li>
+<p>每个计算节点上运行着一个 Raylet。与一个计算节点上运行多个 Worker
+进程不同，每个计算节点上只有一个 Raylet 进程，或者说 Raylet 被多个
+Worker 进程所共享。Raylet
+主要有两个组件：一个调度器（Scheduler），负责资源管理、任务分配等。各个计算节点上的
+Scheduler 共同组成了整个 Ray
+集群的分布式调度器；一个基于共享内存的对象存储（Share-memory Object
+Store），负责本地的数据存储，各个计算节点上的 Object Store 共同组成了
+Ray 的分布式对象存储。</p>
+<p>从 <a class="reference internal" href="#ray-cluster"><span class="std std-numref">图2.5.1</span></a> 中也可以看到，头节点还多了：</p>
+<ul class="simple">
+<li><p>Global Control Service（GCS）</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ray-internal.html">2.5. Ray 系统与设计</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ray-internal.html#id1">2.5.1. Ray 集群</a></li>
+<p>GCS 是 Ray 集群的全局的元数据管理服务，这里的元数据信息比如某个 Actor
+被分配到哪个计算节点上。它管理的元数据是所有 Worker 共享的。</p>
+<ul class="simple">
+<li><p>Driver</p></li>
 </ul>
-</li>
-</ul>
+<p>Driver 执行一些顶层的应用，比如，作为 Python 入口的 <code class="docutils literal notranslate"><span class="pre">__main__</span></code> 函数。</p>
 </div>
 </div>
 
@@ -208,23 +218,35 @@ Show Source
         </div>
         <div class="side-doc-outline">
             <div class="side-doc-outline--content"> 
+<div class="localtoc">
+    <p class="caption">
+      <span class="caption-text">Table Of Contents</span>
+    </p>
+    <ul>
+<li><a class="reference internal" href="#">2.5. Ray 系统与设计</a><ul>
+<li><a class="reference internal" href="#id1">2.5.1. Ray 集群</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
             </div>
         </div>
 
       <div class="clearer"></div>
     </div><div class="pagenation">
-     <a id="button-prev" href="../ch-python-lang/summary.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="P">
+     <a id="button-prev" href="remote-class.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="P">
          <i class="pagenation-arrow-L fas fa-arrow-left fa-lg"></i>
          <div class="pagenation-text">
             <span class="pagenation-direction">Previous</span>
-            <div>1.5. 本章小结</div>
+            <div>2.4. 分布式类</div>
          </div>
      </a>
-     <a id="button-next" href="ray-intro.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
+     <a id="button-next" href="../refs.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
          <i class="pagenation-arrow-R fas fa-arrow-right fa-lg"></i>
         <div class="pagenation-text">
             <span class="pagenation-direction">Next</span>
-            <div>2.1. Ray 简介</div>
+            <div>3. 参考文献</div>
         </div>
      </a>
   </div>
