@@ -5,7 +5,7 @@
    :file: frontpage.html
 ```
 
-````toc
+```toc
 :maxdepth: 2
 :numbered:
 
@@ -13,5 +13,9 @@ ch-python-lang/index
 
 ch-ray-core/index
 
+ch-ray-air/index
+
+ch-mpi4py/index
+
 refs
-````
+```

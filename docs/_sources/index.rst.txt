@@ -15,4 +15,8 @@ Python 分布式编程
 
    ch-ray-core/index
 
+   ch-ray-air/index
+
+   ch-mpi4py/index
+
    refs

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-    <title>2.1. Ray 简介 &#8212; Python 分布式编程 1.0.0 documentation</title>
+    <title>4. mpi4py &#8212; Python 分布式编程 1.0.0 documentation</title>
 
     <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinx_materialdesign_theme.css" type="text/css" />
@@ -26,16 +26,15 @@
     <script src="../_static/d2l.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.2. 分布式函数" href="remote-function.html" />
-    <link rel="prev" title="2. Ray" href="index.html" /> 
+    <link rel="next" title="4.1. MPI" href="mpi-intro.html" />
+    <link rel="prev" title="3.1. Ray Data" href="../ch-ray-air/ray-data.html" /> 
   </head>
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer"><header class="mdl-layout__header mdl-layout__header--waterfall ">
     <div class="mdl-layout__header-row">
         
         <nav class="mdl-navigation breadcrumb">
-            <a class="mdl-navigation__link" href="index.html"><span class="section-number">2. </span>Ray</a><i class="material-icons">navigate_next</i>
-            <a class="mdl-navigation__link is-active"><span class="section-number">2.1. </span>Ray 简介</a>
+            <a class="mdl-navigation__link is-active"><span class="section-number">4. </span>mpi4py</a>
         </nav>
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation">
@@ -58,7 +57,7 @@
         
 <a id="button-show-source"
     class="mdl-button mdl-js-button mdl-button--icon"
-    href="../_sources/ch-ray-core/ray-intro.rst.txt" rel="nofollow">
+    href="../_sources/ch-mpi4py/index.rst.txt" rel="nofollow">
   <i class="material-icons">code</i>
 </a>
 <div class="mdl-tooltip" data-mdl-for="button-show-source">
@@ -103,20 +102,20 @@ Show Source
 <li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/summary.html">1.5. 本章小结</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Ray</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. Ray 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-function.html">2.2. 分布式函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-object.html">2.3. 分布式对象存储</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-class.html">2.4. 分布式类</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ray-internal.html">2.5. Ray 系统与设计</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ch-ray-core/index.html">2. Ray</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-intro.html">2.1. Ray 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-function.html">2.2. 分布式函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-object.html">2.3. 分布式对象存储</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-class.html">2.4. 分布式类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-internal.html">2.5. Ray 系统与设计</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ch-ray-air/index.html">3. Ray AIR</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-air/ray-data.html">3.1. Ray Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ch-mpi4py/index.html">4. mpi4py</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi4py/mpi-intro.html">4.1. MPI</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. mpi4py</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mpi-intro.html">4.1. MPI</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../refs.html">5. 参考文献</a></li>
@@ -157,20 +156,20 @@ Show Source
 <li class="toctree-l2"><a class="reference internal" href="../ch-python-lang/summary.html">1.5. 本章小结</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Ray</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. Ray 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-function.html">2.2. 分布式函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-object.html">2.3. 分布式对象存储</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-class.html">2.4. 分布式类</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ray-internal.html">2.5. Ray 系统与设计</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ch-ray-core/index.html">2. Ray</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-intro.html">2.1. Ray 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-function.html">2.2. 分布式函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-object.html">2.3. 分布式对象存储</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-class.html">2.4. 分布式类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-internal.html">2.5. Ray 系统与设计</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ch-ray-air/index.html">3. Ray AIR</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-air/ray-data.html">3.1. Ray Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ch-mpi4py/index.html">4. mpi4py</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi4py/mpi-intro.html">4.1. MPI</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. mpi4py</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mpi-intro.html">4.1. MPI</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../refs.html">5. 参考文献</a></li>
@@ -185,35 +184,13 @@ Show Source
     <div class="document">
         <div class="page-content" role="main">
         
-  <div class="section" id="ray">
-<h1><span class="section-number">2.1. </span>Ray 简介<a class="headerlink" href="#ray" title="Permalink to this heading">¶</a></h1>
-<p>Ray
-是一个可扩展的计算框架。它最初为强化学习设计，之后逐渐演变成一个面向数据科学和人工智能的框架。
-如 <a class="reference internal" href="#id1"><span class="std std-numref">图2.1.1</span></a> 所示，当前 Ray 主要由底层的 Ray Core 和上层的各类 Ray
-AIR (Artificial Intelligence Runtime) 生态组成：Ray Core 是一系列底层
-API, 可以将 Python 函数或者 Python
-类等计算任务横向扩展到多个计算节点上；在 Ray Core 之上，Ray
-封装了一些面向数据科学和人工智能的库（Ray AIR），可以进行数据的处理（Ray
-Data）、模型训练（Ray Train）、模型的超参数调优（Ray
-Tune），模型推理服务（Ray Serve），强化学习（RLib）等。</p>
-<div class="figure align-default" id="id2">
-<span id="id1"></span><a class="reference internal image-reference" href="../_images/ray.svg"><img alt="../_images/ray.svg" src="../_images/ray.svg" width="800px" /></a>
-<p class="caption"><span class="caption-number">图2.1.1 </span><span class="caption-text">Ray</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-<p>Ray Core 提供的 API 将 Python 任务横向扩展到集群上，最关键的 API
-是两个计算接口和一个数据接口，如 <a class="reference internal" href="#ray-core-apis"><span class="std std-numref">图2.1.2</span></a> 所示。</p>
-<ul class="simple">
-<li><p>任务（Task）：面向函数（Function）的接口，用于定义一个函数，该函数可以在集群中分布式地执行。</p></li>
-<li><p>行动者（Actor）：面向类（Class）的接口，用于定义一个类，该类可以在集群中分布式地执行。</p></li>
-<li><p>对象（Object）：分布式的对象，对象不可变（Immutable），用于在 Task 和
-Actor 之间传递数据。</p></li>
+  <div class="section" id="mpi4py">
+<h1><span class="section-number">4. </span>mpi4py<a class="headerlink" href="#mpi4py" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mpi-intro.html">4.1. MPI</a></li>
 </ul>
-<div class="figure align-default" id="id3">
-<span id="ray-core-apis"></span><a class="reference internal image-reference" href="../_images/ray-apis.png"><img alt="../_images/ray-apis.png" src="../_images/ray-apis.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-number">图2.1.2 </span><span class="caption-text">Ray Core 核心 API</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
-<p>上层的各类生态均基于 Ray Core 的这些底层
-API，结合各类人工智能应用编写而成。</p>
 </div>
 
 
@@ -225,18 +202,18 @@ API，结合各类人工智能应用编写而成。</p>
 
       <div class="clearer"></div>
     </div><div class="pagenation">
-     <a id="button-prev" href="index.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="P">
+     <a id="button-prev" href="../ch-ray-air/ray-data.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="P">
          <i class="pagenation-arrow-L fas fa-arrow-left fa-lg"></i>
          <div class="pagenation-text">
             <span class="pagenation-direction">Previous</span>
-            <div>2. Ray</div>
+            <div>3.1. Ray Data</div>
          </div>
      </a>
-     <a id="button-next" href="remote-function.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
+     <a id="button-next" href="mpi-intro.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
          <i class="pagenation-arrow-R fas fa-arrow-right fa-lg"></i>
         <div class="pagenation-text">
             <span class="pagenation-direction">Next</span>
-            <div>2.2. 分布式函数</div>
+            <div>4.1. MPI</div>
         </div>
      </a>
   </div>
