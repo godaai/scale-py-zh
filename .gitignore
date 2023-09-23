@@ -2,16 +2,13 @@
 **/__pycache__
 data/
 datasets/
+!docs/datasets/
 *.json
 *.params
 *.DS_Store
-*.csv
 *egg-info*
 dist*
 _build/*
-!_build/eval/
-_build/eval/*
-!_build/eval/ch-*/
 test*.md
 run.sh
 .idea
