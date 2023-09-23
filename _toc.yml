@@ -1,0 +1,29 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+# root: intro
+# chapters:
+# - file: markdown
+# - file: notebooks
+# - file: markdown-notebooks
+
+
+format: jb-book
+root: index
+parts:
+  - caption: 数据处理与计算
+    chapters:
+    - file: ch-numpy/index
+      sections:
+        - file: ch-numpy/numpy-intro
+        - file: ch-numpy/ndarray
+    
+    - file: ch-pandas/index
+      sections:
+        - file: ch-pandas/pandas-intro
+        - file: ch-pandas/series-dataframe
+        - file: ch-pandas/dataframe-slicing
+        - file: ch-pandas/data-preprocessing
+        - file: ch-pandas/dataframe-groupby
+        - file: ch-pandas/dataframe-merge-concat

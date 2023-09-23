@@ -1,0 +1,2045 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>多表操作 &#8212; Python 分布式编程</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch-pandas/dataframe-merge-concat';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="分组汇总" href="dataframe-groupby.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Python 数据科学实战
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">数据处理与计算</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-numpy/index.html">NumPy</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/numpy-intro.html">NumPy 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/ndarray.html">ndarray</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">pandas</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">pandas 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">Series 与 DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html">数据切片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">数据处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-groupby.html">分组汇总</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">多表操作</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/py-101/distributed-python" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/py-101/distributed-python/issues/new?title=Issue%20on%20page%20%2Fch-pandas/dataframe-merge-concat.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ch-pandas/dataframe-merge-concat.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>多表操作</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge">merge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">连接方式</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">其他合并方式</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concat">concat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">案例：学生成绩</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>多表操作<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>:label:<code class="docutils literal notranslate"><span class="pre">dataframe-merge-concat</span></code></p>
+<p>之前的操作主要在单个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> ，实际上，我们经常需要对多个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 联合起来进行分析。pandas 提供了多 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 之间的合并和连接的操作，分别是 <code class="docutils literal notranslate"><span class="pre">merge()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">concat()</span></code> 函数。比如，我们可以将两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 合并成一个，且保留所有的列。</p>
+<div class="section" id="merge">
+<h2>merge<a class="headerlink" href="#merge" title="Permalink to this heading">#</a></h2>
+<p>pandas 的 <code class="docutils literal notranslate"><span class="pre">merge</span></code> 操作可以合并两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>（或者称为表） ，类似于 SQL 中的 JOIN 操作。 我们可以想象成：一个大表被拆分成两个小表，两个小表都包含一些同样的数据。现在我们需要把两个小表合并，生成一个大表，大表包含了两个小表的字段。</p>
+<p><img alt="分组与汇总" src="../_images/merge.svg" />
+:width:<code class="docutils literal notranslate"><span class="pre">800px</span></code>
+:label:<code class="docutils literal notranslate"><span class="pre">merge-img</span></code></p>
+<div class="figure align-default" id="merge-img">
+<img alt="../_images/merge.svg" src="../_images/merge.svg" /><p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">对两个 DataFrame 进行 merge 操作</span><a class="headerlink" href="#merge-img" title="Permalink to this image">#</a></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># customer_prod_df</span>
+<span class="n">d1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;customer_id&#39;</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]),</span>
+  <span class="s1">&#39;product&#39;</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;Oven&#39;</span><span class="p">,</span><span class="s1">&#39;Oven&#39;</span><span class="p">,</span><span class="s1">&#39;Oven&#39;</span><span class="p">,</span><span class="s1">&#39;Television&#39;</span><span class="p">,</span><span class="s1">&#39;Television&#39;</span><span class="p">,</span><span class="s1">&#39;Television&#39;</span><span class="p">])}</span>
+<span class="n">customer_prod_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;customer_prod_df:&quot;</span><span class="p">)</span>
+<span class="n">customer_prod_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>customer_prod_df:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>product</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Oven</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Oven</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Oven</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Television</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Television</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>Television</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># customer_state_df</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;customer_id&#39;</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]),</span>
+    <span class="s1">&#39;state&#39;</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;California&#39;</span><span class="p">,</span><span class="s1">&#39;California&#39;</span><span class="p">,</span><span class="s1">&#39;Texas&#39;</span><span class="p">,</span><span class="s1">&#39;New York&#39;</span><span class="p">,</span><span class="s1">&#39;Indiana&#39;</span><span class="p">])}</span>
+<span class="n">customer_state_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;customer_state_df:&quot;</span><span class="p">)</span>
+<span class="n">customer_state_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>customer_state_df:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+      <td>Texas</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8</td>
+      <td>Indiana</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>我们先用下面的代码得到合并的结果，所使用的各类参数后面详细探讨。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inner_join_df</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">customer_prod_df</span><span class="p">,</span> <span class="n">customer_state_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<span class="n">inner_join_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>product</th>
+      <th>state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>Oven</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>Television</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+      <td>Television</td>
+      <td>Texas</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>合并两个表时，通常需要使用键（key）来判断哪些数据与哪些数据合并。比如本例中，两个表都包含 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 这个字段，<code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 可以被用来连接这两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>。相同 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 的行被合并在一起。</p>
+<p>我们回到 <code class="docutils literal notranslate"><span class="pre">merge</span></code> 函数的参数。完整的参数形式为：<code class="docutils literal notranslate"><span class="pre">pd.merge(left,</span> <span class="pre">right,</span> <span class="pre">how='inner',</span> <span class="pre">on=None,</span> <span class="pre">left_on=None,</span> <span class="pre">right_on=None,</span> <span class="pre">left_index=False,</span> <span class="pre">right_index=False,</span> <span class="pre">sort=False,suffixes=('_x','_y'))</span></code>。虽然参数很多，其实大部分时间我们主要关心的是 <code class="docutils literal notranslate"><span class="pre">left</span></code>、<code class="docutils literal notranslate"><span class="pre">right</span></code>、<code class="docutils literal notranslate"><span class="pre">how</span></code> 和 <code class="docutils literal notranslate"><span class="pre">on</span></code>。</p>
+<p><code class="docutils literal notranslate"><span class="pre">left</span></code> 与 <code class="docutils literal notranslate"><span class="pre">right</span></code> 是两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>，分别为左侧表和右侧表。</p>
+<p><code class="docutils literal notranslate"><span class="pre">on</span></code> 表示两个表依据哪个字段（或哪些字段）进行合并。这个字段或这些字段被称为键（key）。两个表的 key 字段应该是表示同一个事物。现在我们要根据 key，把两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 合并成一个更大的表。这个例子中，以 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 为字段进行合并，主要对左右两个表中相同 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 进行操作。</p>
+<p><code class="docutils literal notranslate"><span class="pre">how</span></code> 表示合并的方式。在合并过程中，左侧表和右侧表的 key 不一定都包含同样的值。比如，如果左侧表包含某个 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 但右侧表不包含这个 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>，那应该遵循什么样的逻辑去合并。<code class="docutils literal notranslate"><span class="pre">how='inner'</span></code> 是其中一种方式，叫做内连接：只有在左侧 DataFrame 和右侧 DataFrame 中 ** 都 ** 存在的行才会包含在结果中。</p>
+<p><code class="docutils literal notranslate"><span class="pre">how</span></code> 除了 <code class="docutils literal notranslate"><span class="pre">inner</span></code>，还有其他的选项：<code class="docutils literal notranslate"><span class="pre">outer</span></code>、<code class="docutils literal notranslate"><span class="pre">left</span></code> 和 <code class="docutils literal notranslate"><span class="pre">right</span></code>。</p>
+<p><img alt="合并方式" src="../_images/merge-how.svg" />
+:width:<code class="docutils literal notranslate"><span class="pre">800px</span></code>
+:label:<code class="docutils literal notranslate"><span class="pre">merge-how</span></code></p>
+<div class="section" id="id2">
+<h3>连接方式<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>外连接</p></li>
+</ul>
+<p>外连接把左右两侧所有的数据都合并到一起，如果某个表有缺失值，无法左右对齐，则填充 <code class="docutils literal notranslate"><span class="pre">NaN</span></code>。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outer_join_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">customer_prod_df</span><span class="p">,</span> <span class="n">customer_state_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+<span class="n">outer_join_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>product</th>
+      <th>state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Oven</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Oven</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Oven</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Television</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Television</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>Television</td>
+      <td>Texas</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>NaN</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>NaN</td>
+      <td>Indiana</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>左连接</p></li>
+</ul>
+<p>左侧表的数据都被保留，如果右侧表有缺失，填充 <code class="docutils literal notranslate"><span class="pre">NaN</span></code>。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">left_join_df</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">customer_prod_df</span><span class="p">,</span> <span class="n">customer_state_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">left_join_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>product</th>
+      <th>state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Oven</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Oven</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Oven</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Television</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Television</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>Television</td>
+      <td>Texas</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>右连接</p></li>
+</ul>
+<p>右侧表的数据都被保留，如果左侧表有缺失，填充 <code class="docutils literal notranslate"><span class="pre">NaN</span></code>。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">right_join_df</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">customer_prod_df</span><span class="p">,</span> <span class="n">customer_state_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;customer_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">right_join_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>product</th>
+      <th>state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>Oven</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>Television</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+      <td>Television</td>
+      <td>Texas</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7</td>
+      <td>NaN</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8</td>
+      <td>NaN</td>
+      <td>Indiana</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>其他合并方式<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>还有一些其他合并，不是根据 key 去在左右表中查找。比如，根据 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 最左侧的 index 列。<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 默认有 index 列，根据该列合并两个表，由于此时不是根据 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 来合并，合并之后保留了两个 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>，为了区别左右两表的 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>，这里加了后缀 <code class="docutils literal notranslate"><span class="pre">_x</span></code> 和 <code class="docutils literal notranslate"><span class="pre">_y</span></code>。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">customer_prod_df</span><span class="p">,</span> <span class="n">customer_state_df</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">index_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id_x</th>
+      <th>product</th>
+      <th>customer_id_y</th>
+      <th>state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Oven</td>
+      <td>2</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Oven</td>
+      <td>4</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Oven</td>
+      <td>6</td>
+      <td>Texas</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Television</td>
+      <td>7</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Television</td>
+      <td>8</td>
+      <td>Indiana</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="concat">
+<h2>concat<a class="headerlink" href="#concat" title="Permalink to this heading">#</a></h2>
+<p>与 <code class="docutils literal notranslate"><span class="pre">merge</span></code> 对表结构进行横向的操作不同，<code class="docutils literal notranslate"><span class="pre">concat</span></code> 函数默认是进行纵向的合并，也就是将多行进行 ** 堆叠式 ** 的合并。</p>
+<p>比如下面的例子，把所有的行和所有的列合并在一起，缺失的填充 <code class="docutils literal notranslate"><span class="pre">NaN</span></code>。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_concat_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">customer_prod_df</span><span class="p">,</span> <span class="n">customer_state_df</span><span class="p">])</span>
+<span class="n">row_concat_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>product</th>
+      <th>state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Oven</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Oven</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Oven</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Television</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Television</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>Television</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>NaN</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>NaN</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+      <td>NaN</td>
+      <td>Texas</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7</td>
+      <td>NaN</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8</td>
+      <td>NaN</td>
+      <td>Indiana</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>下面的例子，设定了 <code class="docutils literal notranslate"><span class="pre">join=&quot;inner&quot;</span></code>，两个表中都包含 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 字段进行了纵向合并。需要注意的是，<code class="docutils literal notranslate"><span class="pre">concat</span></code> 是进行纵向的堆叠，而没有去除重复的 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">concat_inner_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">customer_prod_df</span><span class="p">,</span> <span class="n">customer_state_df</span><span class="p">],</span> <span class="n">join</span> <span class="o">=</span> <span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<span class="n">concat_inner_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>案例：学生成绩<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<p>我们使用一个学生成绩的案例来演示如何对两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 进行 <code class="docutils literal notranslate"><span class="pre">merge</span></code>。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hide outputs</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;./data/student-score&quot;</span><span class="p">)</span>
+<span class="n">score_download_url</span> <span class="o">=</span> <span class="s2">&quot;score.csv&quot;</span>
+<span class="n">student_attr_download_url</span> <span class="o">=</span> <span class="s2">&quot;student.csv&quot;</span>
+
+<span class="n">score_file_name</span> <span class="o">=</span> <span class="n">score_download_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">student_file_name</span> <span class="o">=</span> <span class="n">student_attr_download_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">score_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">score_file_name</span><span class="p">)</span>
+<span class="n">student_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">student_file_name</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
+    <span class="c1"># 创建文件夹</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;文件夹不存在，已创建。&quot;</span><span class="p">)</span>
+
+    <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">score_download_url</span><span class="p">,</span> <span class="n">score_path</span><span class="p">)</span>
+    <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">student_attr_download_url</span><span class="p">,</span> <span class="n">student_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;数据已下载。&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;文件夹已存在，无需操作。&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>文件夹已存在，无需操作。
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;student DF:&quot;</span><span class="p">)</span>
+<span class="n">student_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">student_path</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;shape of this DF: </span><span class="si">{</span><span class="n">student_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the first 2 rows of this DF:&quot;</span><span class="p">)</span>
+<span class="n">student_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>student DF:
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;student DF:&quot;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">student_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">student_path</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;shape of this DF: </span><span class="si">{</span><span class="n">student_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the first 2 rows of this DF:&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/envs/tpch/lib/python3.10/site-packages/pandas/util/_decorators.py:311,</span> in <span class="ni">deprecate_nonkeyword_arguments.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">305</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_allow_args</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span>         <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">arguments</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">308</span>         <span class="ne">FutureWarning</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">311</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/envs/tpch/lib/python3.10/site-packages/pandas/io/parsers/readers.py:680,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">665</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">667</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span>     <span class="n">defaults</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span><span class="p">},</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">678</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">680</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/envs/tpch/lib/python3.10/site-packages/pandas/io/parsers/readers.py:575,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">572</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">574</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">575</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">577</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">578</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~/anaconda3/envs/tpch/lib/python3.10/site-packages/pandas/io/parsers/readers.py:933,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">930</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">932</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">933</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/envs/tpch/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1217,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1213</span>     <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;rb&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1214</span> <span class="c1"># error: No overload variant of &quot;get_handle&quot; matches argument types</span>
+<span class="g g-Whitespace">   </span><span class="mi">1215</span> <span class="c1"># &quot;Union[str, PathLike[str], ReadCsvBuffer[bytes], ReadCsvBuffer[str]]&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1216</span> <span class="c1"># , &quot;str&quot;, &quot;bool&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1217</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>  <span class="c1"># type: ignore[call-overload]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1218</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1219</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1220</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1221</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1222</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1223</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1224</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1225</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1226</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1227</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1228</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~/anaconda3/envs/tpch/lib/python3.10/site-packages/pandas/io/common.py:789,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">784</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">785</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">786</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">787</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">788</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">789</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">790</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">791</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">792</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">793</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">794</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">795</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">796</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">797</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">798</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/Users/luweizheng/Projects/py-101/distributed-python-zh/ch-pandas/./data/student-score/student.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;score DF:&quot;</span><span class="p">)</span>
+<span class="n">score_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">score_path</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape of this DF: </span><span class="si">{</span><span class="n">score_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the first 2 rows of this DF:&quot;</span><span class="p">)</span>
+<span class="n">score_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>score DF:
+Shape of this DF: (43, 4)
+the first 2 rows of this DF:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sno</th>
+      <th>cno</th>
+      <th>cname</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2019101103</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>78</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2019102105</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>97</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>可以看到两个表都包含了 <code class="docutils literal notranslate"><span class="pre">sno</span></code>，也就是学号，可以使用学号作为 key 进行合并。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span> <span class="o">=</span> <span class="n">student_df</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">score_df</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;sno&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;shape of this DF: </span><span class="si">{</span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the first 2 rows:&quot;</span><span class="p">)</span>
+<span class="n">merged_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shape of this DF: (44, 10)
+the first 2 rows:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sno</th>
+      <th>sname</th>
+      <th>sex</th>
+      <th>dept</th>
+      <th>major</th>
+      <th>claasno</th>
+      <th>home_address</th>
+      <th>cno</th>
+      <th>cname</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2019101101</td>
+      <td>张元</td>
+      <td>男</td>
+      <td>信息学院</td>
+      <td>计算机</td>
+      <td>1</td>
+      <td>北京市</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>89.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2019101102</td>
+      <td>李玲</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>计算机</td>
+      <td>1</td>
+      <td>天津市</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2019101103</td>
+      <td>张浩</td>
+      <td>男</td>
+      <td>信息学院</td>
+      <td>信息资源管理</td>
+      <td>2</td>
+      <td>上海市</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>78.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2019102101</td>
+      <td>王雨菲</td>
+      <td>女</td>
+      <td>财金学院</td>
+      <td>财政学</td>
+      <td>3</td>
+      <td>重庆市</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2019102102</td>
+      <td>赵靖</td>
+      <td>女</td>
+      <td>经济学院</td>
+      <td>计量经济</td>
+      <td>1</td>
+      <td>河北石家庄</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2019102103</td>
+      <td>王明</td>
+      <td>女</td>
+      <td>经济学院</td>
+      <td>计量经济</td>
+      <td>2</td>
+      <td>山西太原</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>58.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2019102104</td>
+      <td>李华</td>
+      <td>男</td>
+      <td>数学学院</td>
+      <td>应用数学</td>
+      <td>3</td>
+      <td>内蒙古呼和浩特</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2019102105</td>
+      <td>张伟</td>
+      <td>男</td>
+      <td>数学学院</td>
+      <td>应用数学</td>
+      <td>4</td>
+      <td>辽宁沈阳</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>97.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2019103101</td>
+      <td>赵娟</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>大数据</td>
+      <td>2</td>
+      <td>吉林长春</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2019103102</td>
+      <td>刘磊</td>
+      <td>男</td>
+      <td>统计学院</td>
+      <td>统计学</td>
+      <td>2</td>
+      <td>黑龙江哈尔滨</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>89.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2019103103</td>
+      <td>陈静</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>计算机</td>
+      <td>4</td>
+      <td>江苏南京</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2019103104</td>
+      <td>杨晨</td>
+      <td>男</td>
+      <td>财金学院</td>
+      <td>金融</td>
+      <td>3</td>
+      <td>浙江杭州</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>89.0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2019103105</td>
+      <td>刘洋</td>
+      <td>男</td>
+      <td>经济学院</td>
+      <td>应用经济</td>
+      <td>1</td>
+      <td>安徽合肥</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>88.0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2019103106</td>
+      <td>刘婷</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>计算机</td>
+      <td>2</td>
+      <td>福建福州</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>79.0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2019103107</td>
+      <td>李军</td>
+      <td>男</td>
+      <td>统计学院</td>
+      <td>统计学</td>
+      <td>2</td>
+      <td>江西南昌</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>78.0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2019103108</td>
+      <td>张丽</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>大数据</td>
+      <td>4</td>
+      <td>山东济南</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>98.0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2019103109</td>
+      <td>王强</td>
+      <td>男</td>
+      <td>数学学院</td>
+      <td>基础数学</td>
+      <td>3</td>
+      <td>河南郑州</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>92.0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2019103110</td>
+      <td>李萍</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>计算机</td>
+      <td>2</td>
+      <td>湖北武汉</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>82.0</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2019103111</td>
+      <td>赵鑫</td>
+      <td>男</td>
+      <td>统计学院</td>
+      <td>统计学</td>
+      <td>1</td>
+      <td>湖南长沙</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>86.0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2019103112</td>
+      <td>王霞</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>大数据</td>
+      <td>3</td>
+      <td>广东广州</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>90.0</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2019103113</td>
+      <td>张鹏</td>
+      <td>男</td>
+      <td>财金学院</td>
+      <td>财政学</td>
+      <td>2</td>
+      <td>广西南宁</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>91.0</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2019103114</td>
+      <td>陈杰</td>
+      <td>男</td>
+      <td>经济学院</td>
+      <td>应用经济</td>
+      <td>4</td>
+      <td>海南海口</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>83.0</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2019103115</td>
+      <td>刘佳</td>
+      <td>男</td>
+      <td>经济学院</td>
+      <td>计量经济</td>
+      <td>2</td>
+      <td>四川成都</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>86.0</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>2019103116</td>
+      <td>王磊</td>
+      <td>男</td>
+      <td>数学学院</td>
+      <td>应用数学</td>
+      <td>3</td>
+      <td>贵州贵阳</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>89.0</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>2019103117</td>
+      <td>杨阳</td>
+      <td>男</td>
+      <td>数学学院</td>
+      <td>计算数学</td>
+      <td>1</td>
+      <td>云南昆明</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>79.0</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2019103118</td>
+      <td>陈雪</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>大数据</td>
+      <td>4</td>
+      <td>西藏拉萨</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>2019103119</td>
+      <td>张健</td>
+      <td>男</td>
+      <td>财金学院</td>
+      <td>金融</td>
+      <td>2</td>
+      <td>陕西西安</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>87.0</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>2019103120</td>
+      <td>王梅</td>
+      <td>女</td>
+      <td>经济学院</td>
+      <td>应用经济</td>
+      <td>3</td>
+      <td>甘肃兰州</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>89.0</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>2019103121</td>
+      <td>李浩</td>
+      <td>男</td>
+      <td>数学学院</td>
+      <td>计算数学</td>
+      <td>1</td>
+      <td>青海西宁</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>2019103122</td>
+      <td>刘欣</td>
+      <td>女</td>
+      <td>信息学院</td>
+      <td>大数据</td>
+      <td>2</td>
+      <td>宁夏银川</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>84.0</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>2019103123</td>
+      <td>赵文</td>
+      <td>男</td>
+      <td>统计学院</td>
+      <td>统计学</td>
+      <td>1</td>
+      <td>新疆乌鲁木齐</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>87.0</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>2019103124</td>
+      <td>杨勇</td>
+      <td>男</td>
+      <td>信息学院</td>
+      <td>计算机</td>
+      <td>3</td>
+      <td>香港特别行政区</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>86.0</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>2019103125</td>
+      <td>王红</td>
+      <td>女</td>
+      <td>财金学院</td>
+      <td>财政学</td>
+      <td>4</td>
+      <td>澳门特别行政区</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>2019103126</td>
+      <td>张婷</td>
+      <td>女</td>
+      <td>经济学院</td>
+      <td>应用经济</td>
+      <td>1</td>
+      <td>台湾台北</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>87.0</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>2019103127</td>
+      <td>陈辉</td>
+      <td>男</td>
+      <td>财金学院</td>
+      <td>财政学</td>
+      <td>2</td>
+      <td>四川成都</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>78.0</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>2019103128</td>
+      <td>李明阳</td>
+      <td>男</td>
+      <td>经济学院</td>
+      <td>计量经济</td>
+      <td>3</td>
+      <td>广东广州</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>79.0</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>2019103129</td>
+      <td>王小芳</td>
+      <td>女</td>
+      <td>经济学院</td>
+      <td>计量经济</td>
+      <td>2</td>
+      <td>辽宁大连</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>77.0</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>2019103130</td>
+      <td>张鑫峰</td>
+      <td>男</td>
+      <td>信息学院</td>
+      <td>大数据</td>
+      <td>2</td>
+      <td>浙江宁波</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>77.0</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>2019103131</td>
+      <td>刘佳琪</td>
+      <td>女</td>
+      <td>财金学院</td>
+      <td>财政学</td>
+      <td>1</td>
+      <td>湖南长沙</td>
+      <td>CS101</td>
+      <td>程序设计</td>
+      <td>89.0</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>2019103132</td>
+      <td>陈伟杰</td>
+      <td>男</td>
+      <td>经济学院</td>
+      <td>应用经济</td>
+      <td>1</td>
+      <td>河北保定</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>83.0</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>2019103133</td>
+      <td>杨晓雨</td>
+      <td>女</td>
+      <td>经济学院</td>
+      <td>应用经济</td>
+      <td>2</td>
+      <td>河南许昌</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>91.0</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>2019103134</td>
+      <td>王宇航</td>
+      <td>男</td>
+      <td>数学学院</td>
+      <td>计算数学</td>
+      <td>3</td>
+      <td>湖南衡阳</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>2019103135</td>
+      <td>赵梦婷</td>
+      <td>女</td>
+      <td>数学学院</td>
+      <td>计算数学</td>
+      <td>4</td>
+      <td>河北沧州</td>
+      <td>CS203</td>
+      <td>数据结构与算法</td>
+      <td>92.0</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>2019103136</td>
+      <td>王鹏飞</td>
+      <td>男</td>
+      <td>统计学院</td>
+      <td>统计学</td>
+      <td>4</td>
+      <td>江西景德镇</td>
+      <td>E202</td>
+      <td>宏观经济</td>
+      <td>94.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>关于合并后的新表，列数一共10列。<code class="docutils literal notranslate"><span class="pre">student_df</span></code> 一共7列， <code class="docutils literal notranslate"><span class="pre">score_df</span></code> 一共4列，即：7 + 4 - 1，因为两个表都包含同样的一列 <code class="docutils literal notranslate"><span class="pre">sno</span></code>，所以需要减一。</p>
+<p>我们使用的是 <code class="docutils literal notranslate"><span class="pre">how='left'</span></code> 的方式进行的合并。行数一共44，这与 <code class="docutils literal notranslate"><span class="pre">student_df</span></code> 的列数一致。我们打印完整合并后的新表，可以发现，在<code class="docutils literal notranslate"><span class="pre">student_df</span></code>中包含但 <code class="docutils literal notranslate"><span class="pre">score_df</span></code> 中不包含的成绩相关的信息显示 NaN。</p>
+<p>接下来我们就可以使用各类其他分析方式，对这个新的大表进行数据分析，这里不再赘述。</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ch-pandas"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="dataframe-groupby.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">分组汇总</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge">merge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">连接方式</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">其他合并方式</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concat">concat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">案例：学生成绩</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 鲁蔚征
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
