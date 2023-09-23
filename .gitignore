@@ -2,6 +2,7 @@
 **/__pycache__
 data/
 datasets/
+docs/reports/
 !docs/datasets/
 *.json
 *.params

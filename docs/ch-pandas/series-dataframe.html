@@ -375,10 +375,14 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series">Series</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">DataFrame</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">创建 DataFrame</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pwt">案例：PWT</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">查看数据</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">DataFrame</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">创建 DataFrame</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pwt">案例：PWT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">查看数据</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -532,9 +536,8 @@ Name: my_series, dtype: float64
 <h2>DataFrame<a class="headerlink" href="#dataframe" title="Permalink to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 可以简单理解为一个 Excel 表，有很多列和很多行。
 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 的列（column）表示一个字段；<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 的行（row）表示一条数据。<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 常被用来分析像 Excel 这样的、有行和列的表格类数据。Excel 也正在兼容 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>，使得用户在 Excel 中进行 pandas 数据处理与分析。</p>
-</div>
 <div class="section" id="id1">
-<h2>创建 DataFrame<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h3>创建 DataFrame<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>创建一个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 有很多方式，比如从列表、字典、文件中读取数据，并创建一个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>。</p>
 <ul class="simple">
 <li><p>基于列表创建</p></li>
@@ -569,6 +572,7 @@ Name: my_series, dtype: float64
 <div><p>注：csv 文件一般由很多个 column 组成，使用 <code class="docutils literal notranslate"><span class="pre">pd.read_csv</span></code> 时，默认每个 column 之间的分隔符为逗号（<code class="docutils literal notranslate"><span class="pre">,</span></code>），<code class="docutils literal notranslate"><span class="pre">pd.read_table</span></code> 默认分隔符为换行符。这些函数还支持许多其他参数，可以使用 <code class="docutils literal notranslate"><span class="pre">help()</span></code> 函数查看。
 例：help(pd.read_csv)</p>
 </div></blockquote>
+</div>
 </div>
 <div class="section" id="pwt">
 <h2>案例：PWT<a class="headerlink" href="#pwt" title="Permalink to this heading">#</a></h2>
@@ -610,9 +614,8 @@ Name: my_series, dtype: float64
 </div>
 </details>
 </div>
-</div>
 <div class="section" id="id2">
-<h2>查看数据<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h3>查看数据<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>使用 <code class="docutils literal notranslate"><span class="pre">read_csv()</span></code> 读取数据。</p></li>
 </ul>
@@ -1147,6 +1150,7 @@ dtype: object
 </div>
 </div>
 </div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1212,10 +1216,14 @@ dtype: object
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series">Series</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">DataFrame</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">创建 DataFrame</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pwt">案例：PWT</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">查看数据</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">DataFrame</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">创建 DataFrame</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pwt">案例：PWT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">查看数据</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
