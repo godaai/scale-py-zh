@@ -393,14 +393,10 @@ document.write(`
                   
   <div class="tex2jax_ignore mathjax_ignore section" id="id1">
 <h1>多表操作<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
-<p>:label:<code class="docutils literal notranslate"><span class="pre">dataframe-merge-concat</span></code></p>
 <p>之前的操作主要在单个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> ，实际上，我们经常需要对多个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 联合起来进行分析。pandas 提供了多 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 之间的合并和连接的操作，分别是 <code class="docutils literal notranslate"><span class="pre">merge()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">concat()</span></code> 函数。比如，我们可以将两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 合并成一个，且保留所有的列。</p>
 <div class="section" id="merge">
 <h2>merge<a class="headerlink" href="#merge" title="Permalink to this heading">#</a></h2>
 <p>pandas 的 <code class="docutils literal notranslate"><span class="pre">merge</span></code> 操作可以合并两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>（或者称为表） ，类似于 SQL 中的 JOIN 操作。 我们可以想象成：一个大表被拆分成两个小表，两个小表都包含一些同样的数据。现在我们需要把两个小表合并，生成一个大表，大表包含了两个小表的字段。</p>
-<p><img alt="分组与汇总" src="../_images/merge.svg" />
-:width:<code class="docutils literal notranslate"><span class="pre">800px</span></code>
-:label:<code class="docutils literal notranslate"><span class="pre">merge-img</span></code></p>
 <div class="figure align-default" id="merge-img">
 <img alt="../_images/merge.svg" src="../_images/merge.svg" /><p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">对两个 DataFrame 进行 merge 操作</span><a class="headerlink" href="#merge-img" title="Permalink to this image">#</a></p>
 </div>
@@ -1113,14 +1109,18 @@ document.write(`
 <div class="section" id="id4">
 <h2>案例：学生成绩<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p>我们使用一个学生成绩的案例来演示如何对两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 进行 <code class="docutils literal notranslate"><span class="pre">merge</span></code>。</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hide outputs</span>
-<span class="kn">import</span> <span class="nn">urllib.request</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;./data/student-score&quot;</span><span class="p">)</span>
+<span class="n">folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;../data/student-score&quot;</span><span class="p">)</span>
 <span class="n">score_download_url</span> <span class="o">=</span> <span class="s2">&quot;score.csv&quot;</span>
 <span class="n">student_attr_download_url</span> <span class="o">=</span> <span class="s2">&quot;student.csv&quot;</span>
 
@@ -1147,6 +1147,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1236,7 +1237,7 @@ document.write(`
 <span class="g g-Whitespace">    </span><span class="mi">797</span>         <span class="c1"># Binary mode</span>
 <span class="g g-Whitespace">    </span><span class="mi">798</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
 
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/Users/luweizheng/Projects/py-101/distributed-python-zh/ch-pandas/./data/student-score/student.csv&#39;
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/Users/luweizheng/Projects/py-101/python-data-science/ch-pandas/../data/student-score/student.csv&#39;
 </pre></div>
 </div>
 </div>

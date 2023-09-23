@@ -392,13 +392,10 @@ document.write(`
                   
   <div class="tex2jax_ignore mathjax_ignore section" id="series-dataframe">
 <h1>Series 与 DataFrame<a class="headerlink" href="#series-dataframe" title="Permalink to this heading">#</a></h1>
-<p>:label:<code class="docutils literal notranslate"><span class="pre">series-dataframe</span></code></p>
 <p>pandas 的核心数据结构有两个： Series 和 DataFrame。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hide outputs</span>
-<span class="c1"># Hide code</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
@@ -576,13 +573,18 @@ Name: my_series, dtype: float64
 <div class="section" id="pwt">
 <h2>案例：PWT<a class="headerlink" href="#pwt" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://www.rug.nl/ggdc/productivity/pwt/">PWT</a> 是一个经济学数据库，用于比较国家和地区之间的宏观经济数据，该数据集包含了各种宏观经济指标，如国内生产总值（GDP）、人均收入、劳动力和资本等因素，以及价格水平、汇率等信息。我们先下载，并使用 pandas 简单探索该数据集。</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">urllib.request</span>
 <span class="kn">import</span> <span class="nn">zipfile</span>
 
-<span class="n">folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;./data/pwt&quot;</span><span class="p">)</span>
+<span class="n">folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;../data/pwt&quot;</span><span class="p">)</span>
 <span class="n">download_url</span> <span class="o">=</span> <span class="s2">&quot;https://www.rug.nl/ggdc/docs/pwt70_06032011version.zip&quot;</span>
 <span class="n">file_name</span> <span class="o">=</span> <span class="n">download_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
@@ -606,6 +608,7 @@ Name: my_series, dtype: float64
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 </div>
 <div class="section" id="id2">

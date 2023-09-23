@@ -391,18 +391,20 @@ document.write(`
                   
   <div class="tex2jax_ignore mathjax_ignore section" id="id1">
 <h1>数据切片<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
-<p>:label:<code class="docutils literal notranslate"><span class="pre">dataframe-slicing</span></code></p>
 <p>实际中，我们常常不是分析整个数据，而是数据中的部分子集。如何根据特定的条件获得所需要的数据是本节的主要内容。</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hide outputs</span>
-<span class="c1"># Hide code</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">urllib.request</span>
 <span class="kn">import</span> <span class="nn">zipfile</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;./data/pwt&quot;</span><span class="p">)</span>
+<span class="n">folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;../data/pwt&quot;</span><span class="p">)</span>
 <span class="n">download_url</span> <span class="o">=</span> <span class="s2">&quot;https://www.rug.nl/ggdc/docs/pwt70_06032011version.zip&quot;</span>
 <span class="n">file_name</span> <span class="o">=</span> <span class="n">download_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
@@ -428,6 +430,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="section" id="id2">
 <h2>主要方法<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
