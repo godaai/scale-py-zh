@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Python 分布式编程
+title: Python 数据科学实战
 author: 鲁蔚征
 logo: logo.png
 
@@ -21,7 +21,7 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/py-101/distributed-python  # Online location of your book
+  url: https://github.com/py-101/python-data-science  # Online location of your book
   path_to_book: docs  # Optional path to your book, relative to the repository root
   branch: main  # Which branch of the repository should be used when creating links (optional)
 

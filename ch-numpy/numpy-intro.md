@@ -6,7 +6,7 @@ NumPy 并不是第一个 Python 科学计算库，它的前身有 Numeric、Numa
 
 自从 NumPy 项目创建以来，它已经成为 Python 科学计算生态系统中的核心组件。许多其他科学计算和数据分析库，如 SciPy、pandas 和 Matplotlib，都构建在 NumPy 之上。
 
-### 安装 pandas
+## 安装 NumPy
 
 可以使用 `conda` 或者 `pip` 安装：
 

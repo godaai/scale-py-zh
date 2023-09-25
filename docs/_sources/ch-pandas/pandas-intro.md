@@ -14,6 +14,6 @@ pip install pandas -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 导入 pandas：
 
-```{.python .input}
+```
 import pandas as pd
 ```

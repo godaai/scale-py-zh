@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>多表操作 &#8212; Python 分布式编程</title>
+    <title>多表操作 &#8212; Python 数据科学实战</title>
   
   
   
@@ -64,6 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch-pandas/dataframe-merge-concat';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="数据透视" href="dataframe-pivot-melt.html" />
     <link rel="prev" title="分组汇总" href="dataframe-groupby.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -178,6 +179,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">数据处理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dataframe-groupby.html">分组汇总</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">多表操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-pivot-melt.html">数据透视</a></li>
 </ul>
 </li>
 </ul>
@@ -234,7 +236,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/py-101/distributed-python" target="_blank"
+      <li><a href="https://github.com/py-101/python-data-science" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -251,7 +253,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/py-101/distributed-python/issues/new?title=Issue%20on%20page%20%2Fch-pandas/dataframe-merge-concat.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/py-101/python-data-science/issues/new?title=Issue%20on%20page%20%2Fch-pandas/dataframe-merge-concat.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -1144,10 +1146,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>文件夹不存在，已创建。
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>数据已下载。
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>文件夹已存在，无需操作。
 </pre></div>
 </div>
 </div>
@@ -1286,7 +1285,7 @@ the first 2 rows of this DF:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span> <span class="o">=</span> <span class="n">student_df</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">score_df</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;sno&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;shape of this DF: </span><span class="si">{</span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the first 2 rows:&quot;</span><span class="p">)</span>
-<span class="n">merged_df</span>
+<span class="n">merged_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1352,552 +1351,6 @@ the first 2 rows:
       <td>数据结构与算法</td>
       <td>80.0</td>
     </tr>
-    <tr>
-      <th>2</th>
-      <td>2019101103</td>
-      <td>张浩</td>
-      <td>男</td>
-      <td>信息学院</td>
-      <td>信息资源管理</td>
-      <td>2</td>
-      <td>上海市</td>
-      <td>E202</td>
-      <td>宏观经济</td>
-      <td>78.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2019102101</td>
-      <td>王雨菲</td>
-      <td>女</td>
-      <td>财金学院</td>
-      <td>财政学</td>
-      <td>3</td>
-      <td>重庆市</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2019102102</td>
-      <td>赵靖</td>
-      <td>女</td>
-      <td>经济学院</td>
-      <td>计量经济</td>
-      <td>1</td>
-      <td>河北石家庄</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2019102103</td>
-      <td>王明</td>
-      <td>女</td>
-      <td>经济学院</td>
-      <td>计量经济</td>
-      <td>2</td>
-      <td>山西太原</td>
-      <td>CS101</td>
-      <td>程序设计</td>
-      <td>58.0</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2019102104</td>
-      <td>李华</td>
-      <td>男</td>
-      <td>数学学院</td>
-      <td>应用数学</td>
-      <td>3</td>
-      <td>内蒙古呼和浩特</td>
-      <td>CS203</td>
-      <td>数据结构与算法</td>
-      <td>80.0</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2019102105</td>
-      <td>张伟</td>
-      <td>男</td>
-      <td>数学学院</td>
-      <td>应用数学</td>
-      <td>4</td>
-      <td>辽宁沈阳</td>
-      <td>E202</td>
-      <td>宏观经济</td>
-      <td>97.0</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2019103101</td>
-      <td>赵娟</td>
-      <td>女</td>
-      <td>信息学院</td>
-      <td>大数据</td>
-      <td>2</td>
-      <td>吉林长春</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2019103102</td>
-      <td>刘磊</td>
-      <td>男</td>
-      <td>统计学院</td>
-      <td>统计学</td>
-      <td>2</td>
-      <td>黑龙江哈尔滨</td>
-      <td>CS101</td>
-      <td>程序设计</td>
-      <td>89.0</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>2019103103</td>
-      <td>陈静</td>
-      <td>女</td>
-      <td>信息学院</td>
-      <td>计算机</td>
-      <td>4</td>
-      <td>江苏南京</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>2019103104</td>
-      <td>杨晨</td>
-      <td>男</td>
-      <td>财金学院</td>
-      <td>金融</td>
-      <td>3</td>
-      <td>浙江杭州</td>
-      <td>E202</td>
-      <td>宏观经济</td>
-      <td>89.0</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>2019103105</td>
-      <td>刘洋</td>
-      <td>男</td>
-      <td>经济学院</td>
-      <td>应用经济</td>
-      <td>1</td>
-      <td>安徽合肥</td>
-      <td>CS101</td>
-      <td>程序设计</td>
-      <td>88.0</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>2019103106</td>
-      <td>刘婷</td>
-      <td>女</td>
-      <td>信息学院</td>
-      <td>计算机</td>
-      <td>2</td>
-      <td>福建福州</td>
-      <td>CS101</td>
-      <td>程序设计</td>
-      <td>79.0</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>2019103107</td>
-      <td>李军</td>
-      <td>男</td>
-      <td>统计学院</td>
-      <td>统计学</td>
-      <td>2</td>
-      <td>江西南昌</td>
-      <td>CS203</td>
-      <td>数据结构与算法</td>
-      <td>78.0</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>2019103108</td>
-      <td>张丽</td>
-      <td>女</td>
-      <td>信息学院</td>
-      <td>大数据</td>
-      <td>4</td>
-      <td>山东济南</td>
-      <td>E202</td>
-      <td>宏观经济</td>
-      <td>98.0</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>2019103109</td>
-      <td>王强</td>
-      <td>男</td>
-      <td>数学学院</td>
-      <td>基础数学</td>
-      <td>3</td>
-      <td>河南郑州</td>
-      <td>CS101</td>
-      <td>程序设计</td>
-      <td>92.0</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>2019103110</td>
-      <td>李萍</td>
-      <td>女</td>
-      <td>信息学院</td>
-      <td>计算机</td>
-      <td>2</td>
-      <td>湖北武汉</td>
-      <td>CS203</td>
-      <td>数据结构与算法</td>
-      <td>82.0</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>2019103111</td>
-      <td>赵鑫</td>
-      <td>男</td>
-      <td>统计学院</td>
-      <td>统计学</td>
-      <td>1</td>
-      <td>湖南长沙</td>
-      <td>E202</td>
-      <td>宏观经济</td>
-      <td>86.0</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>2019103112</td>
-      <td>王霞</td>
-      <td>女</td>
-      <td>信息学院</td>
-      <td>大数据</td>
-      <td>3</td>
-      <td>广东广州</td>
-      <td>CS101</td>
-      <td>程序设计</td>
-      <td>90.0</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>2019103113</td>
-      <td>张鹏</td>
-      <td>男</td>
-      <td>财金学院</td>
-      <td>财政学</td>
-      <td>2</td>
-      <td>广西南宁</td>
-      <td>CS203</td>
-      <td>数据结构与算法</td>
-      <td>91.0</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>2019103114</td>
-      <td>陈杰</td>
-      <td>男</td>
-      <td>经济学院</td>
-      <td>应用经济</td>
-      <td>4</td>
-      <td>海南海口</td>
-      <td>E202</td>
-      <td>宏观经济</td>
-      <td>83.0</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>2019103115</td>
-      <td>刘佳</td>
-      <td>男</td>
-      <td>经济学院</td>
-      <td>计量经济</td>
-      <td>2</td>
-      <td>四川成都</td>
-      <td>CS203</td>
-      <td>数据结构与算法</td>
-      <td>86.0</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>2019103116</td>
-      <td>王磊</td>
-      <td>男</td>
-      <td>数学学院</td>
-      <td>应用数学</td>
-      <td>3</td>
-      <td>贵州贵阳</td>
-      <td>E202</td>
-      <td>宏观经济</td>
-      <td>89.0</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>2019103117</td>
-      <td>杨阳</td>
-      <td>男</td>
-      <td>数学学院</td>
-      <td>计算数学</td>
-      <td>1</td>
-      <td>云南昆明</td>
-      <td>CS101</td>
-      <td>程序设计</td>
-      <td>79.0</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>2019103118</td>
-      <td>陈雪</td>
-      <td>女</td>
-      <td>信息学院</td>
-      <td>大数据</td>
-      <td>4</td>
-      <td>西藏拉萨</td>
-      <td>CS203</td>
-      <td>数据结构与算法</td>
-      <td>80.0</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>2019103119</td>
-      <td>张健</td>
-      <td>男</td>
-      <td>财金学院</td>
-      <td>金融</td>
-      <td>2</td>
-      <td>陕西西安</td>
-      <td>E202</td>
-      <td>宏观经济</td>
-      <td>87.0</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>2019103120</td>
-      <td>王梅</td>
-      <td>女</td>
-      <td>经济学院</td>
-      <td>应用经济</td>
-      <td>3</td>
-      <td>甘肃兰州</td>
-      <td>CS101</td>
-      <td>程序设计</td>
-      <td>89.0</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>2019103121</td>
-      <td>李浩</td>
-      <td>男</td>
-      <td>数学学院</td>
-      <td>计算数学</td>
-      <td>1</td>
-      <td>青海西宁</td>
-      <td>CS203</td>
-      <td>数据结构与算法</td>
-      <td>80.0</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>2019103122</td>
-      <td>刘欣</td>
-      <td>女</td>
-      <td>信息学院</td>
-      <td>大数据</td>
-      <td>2</td>
-      <td>宁夏银川</td>
-      <td>CS101</td>
-      <td>程序设计</td>
-      <td>84.0</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>2019103123</td>
-      <td>赵文</td>
-      <td>男</td>
-      <td>统计学院</td>
-      <td>统计学</td>
-      <td>1</td>
-      <td>新疆乌鲁木齐</td>
-      <td>CS203</td>
-      <td>数据结构与算法</td>
-      <td>87.0</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>2019103124</td>
-      <td>杨勇</td>
-      <td>男</td>
-      <td>信息学院</td>
-      <td>计算机</td>
-      <td>3</td>
-      <td>香港特别行政区</td>
-      <td>E202</td>
-      <td>宏观经济</td>
-      <td>86.0</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>2019103125</td>
-      <td>王红</td>
-      <td>女</td>
-      <td>财金学院</td>
-      <td>财政学</td>
-      <td>4</td>
-      <td>澳门特别行政区</td>
-      <td>CS101</td>
-      <td>程序设计</td>
-      <td>80.0</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>2019103126</td>
-      <td>张婷</td>
-      <td>女</td>
-      <td>经济学院</td>
-      <td>应用经济</td>
-      <td>1</td>
-      <td>台湾台北</td>
-      <td>CS101</td>
-      <td>程序设计</td>
-      <td>87.0</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>2019103127</td>
-      <td>陈辉</td>
-      <td>男</td>
-      <td>财金学院</td>
-      <td>财政学</td>
-      <td>2</td>
-      <td>四川成都</td>
-      <td>CS203</td>
-      <td>数据结构与算法</td>
-      <td>78.0</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>2019103128</td>
-      <td>李明阳</td>
-      <td>男</td>
-      <td>经济学院</td>
-      <td>计量经济</td>
-      <td>3</td>
-      <td>广东广州</td>
-      <td>CS101</td>
-      <td>程序设计</td>
-      <td>79.0</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>2019103129</td>
-      <td>王小芳</td>
-      <td>女</td>
-      <td>经济学院</td>
-      <td>计量经济</td>
-      <td>2</td>
-      <td>辽宁大连</td>
-      <td>CS203</td>
-      <td>数据结构与算法</td>
-      <td>77.0</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>2019103130</td>
-      <td>张鑫峰</td>
-      <td>男</td>
-      <td>信息学院</td>
-      <td>大数据</td>
-      <td>2</td>
-      <td>浙江宁波</td>
-      <td>E202</td>
-      <td>宏观经济</td>
-      <td>77.0</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>2019103131</td>
-      <td>刘佳琪</td>
-      <td>女</td>
-      <td>财金学院</td>
-      <td>财政学</td>
-      <td>1</td>
-      <td>湖南长沙</td>
-      <td>CS101</td>
-      <td>程序设计</td>
-      <td>89.0</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>2019103132</td>
-      <td>陈伟杰</td>
-      <td>男</td>
-      <td>经济学院</td>
-      <td>应用经济</td>
-      <td>1</td>
-      <td>河北保定</td>
-      <td>CS203</td>
-      <td>数据结构与算法</td>
-      <td>83.0</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>2019103133</td>
-      <td>杨晓雨</td>
-      <td>女</td>
-      <td>经济学院</td>
-      <td>应用经济</td>
-      <td>2</td>
-      <td>河南许昌</td>
-      <td>E202</td>
-      <td>宏观经济</td>
-      <td>91.0</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>2019103134</td>
-      <td>王宇航</td>
-      <td>男</td>
-      <td>数学学院</td>
-      <td>计算数学</td>
-      <td>3</td>
-      <td>湖南衡阳</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td>2019103135</td>
-      <td>赵梦婷</td>
-      <td>女</td>
-      <td>数学学院</td>
-      <td>计算数学</td>
-      <td>4</td>
-      <td>河北沧州</td>
-      <td>CS203</td>
-      <td>数据结构与算法</td>
-      <td>92.0</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td>2019103136</td>
-      <td>王鹏飞</td>
-      <td>男</td>
-      <td>统计学院</td>
-      <td>统计学</td>
-      <td>4</td>
-      <td>江西景德镇</td>
-      <td>E202</td>
-      <td>宏观经济</td>
-      <td>94.0</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
@@ -1946,6 +1399,15 @@ the first 2 rows:
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">分组汇总</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="dataframe-pivot-melt.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">数据透视</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

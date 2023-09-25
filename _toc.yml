@@ -2,14 +2,6 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-# root: intro
-# chapters:
-# - file: markdown
-# - file: notebooks
-# - file: markdown-notebooks
-
-
-format: jb-book
 root: index
 parts:
   - caption: 数据处理与计算
@@ -27,3 +19,4 @@ parts:
         - file: ch-pandas/data-preprocessing
         - file: ch-pandas/dataframe-groupby
         - file: ch-pandas/dataframe-merge-concat
+        - file: ch-pandas/dataframe-pivot-melt
