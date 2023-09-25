@@ -1745,7 +1745,7 @@ document.write(`
 </div>
 <div class="section" id="melt">
 <h2>melt<a class="headerlink" href="#melt" title="Permalink to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">melt()</span></code> 是用于将一个很宽的的表转换为长。这个函数通常用于数据重塑（data reshaping）操作，以便更容易进行数据分析和可视化。</p>
+<p><code class="docutils literal notranslate"><span class="pre">melt()</span></code> 是用于将一个很宽的的表转换为长。这个函数通常用于数据重塑（data reshaping）操作，以便更容易进行数据分析和可视化。根据其英文名，又可被理解成，将一个宽表，“融化”成一个长表。</p>
 <p>通过这种方式，可以将宽格式数据表格中的多列数据整合到一个列中，可以理解为透视表 <code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code> 的反操作。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1922,11 +1922,13 @@ document.write(`
 </div>
 <p>数据重塑时，通常需要使用 <code class="docutils literal notranslate"><span class="pre">value_vars</span></code> 来指定需要 “融化” 的列，使它们被整合为一列。比如本例中，将 Math, English,History 整合为一列： Subject 列。</p>
 <p>我们回到 <code class="docutils literal notranslate"><span class="pre">melt()</span></code> 函数的参数。完整的参数形式为:<code class="docutils literal notranslate"><span class="pre">pandas.melt(frame,</span> <span class="pre">id_vars=None,</span> <span class="pre">value_vars=None,</span> <span class="pre">var_name=None,</span> <span class="pre">value_name='value',</span> <span class="pre">col_level=None)</span></code>。</p>
-<p><code class="docutils literal notranslate"><span class="pre">frame</span></code> 指的是要进行重塑操作的 DataFrame 。</p>
-<p><code class="docutils literal notranslate"><span class="pre">id_vars</span></code> 表示需要保留的列，它们将成为长表中的行；这些列又被称为标识变量（identifier variable），不被 “融化”。</p>
-<p><code class="docutils literal notranslate"><span class="pre">value_vars</span></code> 是需要 “融化” 的列，它们将被整合成一列，并用新的列名表示。</p>
-<p><code class="docutils literal notranslate"><span class="pre">var_name</span></code> 用于存储 “融化” 后的列名的新列的名称。</p>
-<p><code class="docutils literal notranslate"><span class="pre">value_name</span></code> 用于存储 “融化” 后的值的新列的名称。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frame</span></code> 指的是要进行重塑操作的 DataFrame 。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">id_vars</span></code> 表示需要保留的列，它们将成为长表中的行；这些列又被称为标识变量（identifier variable），不被融化。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value_vars</span></code> 是需要融化的列，它们将被整合成一列，并用新的列名表示。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">var_name</span></code> 用于存储融化后的列名的新列的名称。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value_name</span></code> 用于存储融化后的值的新列的名称。</p></li>
+</ul>
 <div class="figure align-default" id="melt-img">
 <img alt="../_images/melt.svg" src="../_images/melt.svg" /><p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">melt(): 数据融化</span><a class="headerlink" href="#melt-img" title="Permalink to this image">#</a></p>
 </div>
