@@ -1,8 +1,0 @@
-
-mpi4py
-------
-
-.. toctree::
-   :maxdepth: 2
-
-   mpi-intro

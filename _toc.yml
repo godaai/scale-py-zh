@@ -1,0 +1,20 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+
+format: jb-book
+root: index
+parts:
+  - caption: Ray
+    chapters:
+    - file: ch-ray-core/index
+      sections:
+        - file: ch-ray-core/ray-intro
+        - file: ch-ray-core/remote-function
+        - file: ch-ray-core/remote-object
+        - file: ch-ray-core/remote-class
+        - file: ch-ray-core/ray-internal
+    
+    - file: ch-ray-air/index
+      sections:
+        - file: ch-ray-air/ray-data

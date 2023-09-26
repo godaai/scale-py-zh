@@ -1,4 +1,5 @@
-d2lbook
+ray[data,train,tune,rllib]
 dask[complete]
-ray
-xorbits
+matplotlib
+numpy
+pandas

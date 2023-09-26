@@ -1,8 +1,0 @@
-
-Ray AIR
--------
-
-.. toctree::
-   :maxdepth: 2
-
-   ray-data
