@@ -17,7 +17,7 @@
 
 % The SVG rendering breaks latex builds for the GitHub badge, so only include in HTML
 ```{only} html
-[![](https://img.shields.io/github/stars/py-101/distributed-python?style=social)](https://github.com/py-101/distributed-python)
+[![](https://img.shields.io/github/stars/py-101/distributed-python?style=for-the-badge)](https://github.com/py-101/distributed-python)
 ```
 
 :::
@@ -76,7 +76,7 @@
 鲁蔚征
 ^^^
 
-中国人民大学
+中国人民大学助理研究员，CCF高性能计算专业委员会执行委员，主要研究大数据与机器学习系统，《Flink原理与实践》作者。
 :::
 
 :::{grid-item-card}
@@ -86,7 +86,38 @@
 秦续业
 ^^^
 
-未来速度
+未来速度联合创始人兼 CEO，开源项目 Xorbits 负责人，前阿里巴巴技术专家，所开发的开源项目在 GitHub 上共收获 5k 星。
+:::
+
+::::
+
+## 赞赏与支持
+
+如果您觉得本书有价值，您可通过支付宝或微信赞赏。
+
+::::{card-carousel} 2
+
+:::{card}
+:margin: 3
+:class-body: text-center
+:class-header: bg-light text-center
+**支付宝**
+^^^
+```{image} ./img/donate/alipay.png
+:height: 100
+```
+:::
+
+:::{card}
+:margin: 3
+:class-body: text-center
+:class-header: bg-light text-center
+
+**微信**
+^^^
+```{image} ./img/donate/wechat.png
+:height: 100
+```
 :::
 
 ::::
