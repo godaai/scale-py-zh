@@ -1,6 +1,6 @@
 # 构建指南
 
-本书基于名为 [Jupyter Book](https://jupyterbook.org/) 的 Python 工具构建，并部署在 GitHub Pages 上。本书主要内容使用 `.ipynb` 和 `.md` 文件保存。Jupyter Book 工具可以将 `.ipynb` 或 `.md` 文件转化为 HTML 格式。可以通过以下方式构建 HTML。
+本书基于名为 [Jupyter Book](https://jupyterbook.org/) 的 Python 工具构建，并部署在 GitHub Pages 上。本书主要内容使用 `.ipynb` 和 `.md` 文件保存。Jupyter Book 工具可以将 `.ipynb` 或 `.md` 文件转化为 HTML 格式。
 
 ## 文字与代码风格指南
 
@@ -10,7 +10,7 @@
 
 参考 [Git 教程](https://git-scm.com/book/zh/v2/GitHub-对项目做出贡献) 创建 Fork，并将代码仓库克隆到本地。
 
-```git
+```bash
 git clone https://github.com/py-101/python-data-science.git
 ```
 
@@ -20,7 +20,7 @@ git clone https://github.com/py-101/python-data-science.git
 
 * 选择一个包管理工具，比如 `conda` 或者 `venv`
 * 安装 Python >= 3.8
-* 安装 requirements.txt 中的各个依赖。包括本书各个案例所需要的工具 pandas 等，以及本电子书构建工具 Jupyter Book：
+* 安装 requirements.txt 和 requirements-dev.txt 中的各个依赖。包括本书各个案例所需要的工具 pandas 等，以及本电子书构建工具 Jupyter Book：
 
 ```bash
 pip install -r requirements.txt

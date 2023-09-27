@@ -351,7 +351,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -367,6 +369,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">主要作者</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">赞赏与支持</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -378,25 +389,74 @@ document.write(`
                   
   <div class="tex2jax_ignore mathjax_ignore section" id="python">
 <h1>Python 数据科学实战<a class="headerlink" href="#python" title="Permalink to this heading">#</a></h1>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-flex-row-reverse docutils">
+<div class="sd-col sd-d-flex-column sd-col-4 sd-col-xs-4 sd-col-sm-4 sd-col-md-4 sd-col-lg-4 sd-m-auto docutils">
+</div>
+<div class="sd-col sd-d-flex-column sd-col-8 sd-col-xs-8 sd-col-sm-8 sd-col-md-8 sd-col-lg-8 sd-fs-3 docutils">
+<p>开源的、面向人文社科的、案例驱动的 Python 数据科学书籍。</p>
+<p><a class="reference external" href="https://github.com/py-101/python-data-science"><img alt="" src="https://img.shields.io/github/stars/py-101/python-data-science?style=for-the-badge" /></a></p>
+</div>
+</div>
+</div>
+<div class="sd-sphinx-override sd-cards-carousel sd-card-cols-3 docutils">
+<div class="sd-card sd-sphinx-override sd-m-3 sd-shadow-sm docutils">
+<div class="sd-card-header bg-light text-center docutils">
+<p class="sd-card-text"><strong>数据处理与计算 ✏️</strong></p>
+</div>
+<div class="sd-card-body text-center docutils">
+<p class="sd-card-text">使用NumPy 和 pandas 进行数学计算、数据预处理。使用 matplotlib 和 plotly 进行数据可视化。</p>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-m-3 sd-shadow-sm docutils">
+<div class="sd-card-header bg-light text-center docutils">
+<p class="sd-card-text"><strong>机器学习 🚀</strong></p>
+</div>
+<div class="sd-card-body text-center docutils">
+<p class="sd-card-text">使用 PyTorch、scikit-learn 和 statsmodels 进行机器学习。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>主要作者<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 text-center docutils">
+<div class="sd-row sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">鲁蔚征</p>
+</div>
+<div class="sd-card-body docutils">
+<p class="sd-card-text">中国人民大学助理研究员，CCF高性能计算专业委员会执行委员，主要研究大数据与机器学习系统，《Flink原理与实践》作者。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>赞赏与支持<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>如果您觉得本书有价值，您可通过支付宝或微信赞赏。</p>
+<div class="sd-sphinx-override sd-cards-carousel sd-card-cols-2 docutils">
+<div class="sd-card sd-sphinx-override sd-m-3 sd-shadow-sm docutils">
+<div class="sd-card-header bg-light text-center docutils">
+<p class="sd-card-text"><strong>支付宝</strong></p>
+</div>
+<div class="sd-card-body text-center docutils">
+<a class="reference internal image-reference" href="_images/alipay.png"><img alt="_images/alipay.png" src="_images/alipay.png" style="height: 100px;" /></a>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-m-3 sd-shadow-sm docutils">
+<div class="sd-card-header bg-light text-center docutils">
+<p class="sd-card-text"><strong>微信</strong></p>
+</div>
+<div class="sd-card-body text-center docutils">
+<a class="reference internal image-reference" href="_images/wechat.png"><img alt="_images/wechat.png" src="_images/wechat.png" style="height: 100px;" /></a>
+</div>
+</div>
+</div>
+</div>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">数据处理与计算</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="ch-numpy/index.html">NumPy</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ch-numpy/numpy-intro.html">NumPy 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch-numpy/ndarray.html">ndarray</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ch-pandas/index.html">pandas</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ch-pandas/pandas-intro.html">pandas 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch-pandas/series-dataframe.html">Series 与 DataFrame</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch-pandas/dataframe-slicing.html">数据切片</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch-pandas/data-preprocessing.html">数据处理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch-pandas/dataframe-groupby.html">分组汇总</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch-pandas/dataframe-merge-concat.html">多表操作</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch-pandas/dataframe-pivot-melt.html">数据透视</a></li>
-</ul>
-</li>
-</ul>
 </div>
 </div>
 
@@ -445,6 +505,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">主要作者</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">赞赏与支持</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
