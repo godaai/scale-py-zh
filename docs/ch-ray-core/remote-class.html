@@ -183,6 +183,14 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">mpi4py</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">MPI</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-intro.html">MPI 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/hello.html">背景</a></li>
+</ul>
+</li>
+</ul>
 
     </div>
 </nav></div>
@@ -392,7 +400,7 @@ document.write(`
                   
   <div class="tex2jax_ignore mathjax_ignore section" id="remote-class">
 <span id="id1"></span><h1>分布式类<a class="headerlink" href="#remote-class" title="Permalink to this heading">#</a></h1>
-<p><a class="reference internal" href="remote-function.html#remote-function"><span class="std std-ref">分布式函数</span></a> 展示了如何将一个无状态的函数扩展到 Ray 集群上进行分布式计算，但实际的场景中，我们经常需要进行有状态的计算。最简单的有状态计算包括维护一个计数器，每遇到某种条件，计数器加一。这类有状态的计算对于给定的输入，不一定得到确定的输出。单机场景我们可以使用 Python 的类（Class）来实现，计数器可作为类的成员变量。Ray 可以将 Python 类拓展到集群上，即远程类（Remote Class），又被称为行动者（Actor）。Actor 的名字来自 Actor 编程模型 <span id="id2">[]</span>，这是一个典型的分布式计算编程模型，被广泛应用在大数据和人工智能领域，但 Actor 编程模型比较抽象，我们先从计数器的案例来入手。</p>
+<p><a class="reference internal" href="remote-function.html#remote-function"><span class="std std-ref">分布式函数</span></a> 展示了如何将一个无状态的函数扩展到 Ray 集群上进行分布式计算，但实际的场景中，我们经常需要进行有状态的计算。最简单的有状态计算包括维护一个计数器，每遇到某种条件，计数器加一。这类有状态的计算对于给定的输入，不一定得到确定的输出。单机场景我们可以使用 Python 的类（Class）来实现，计数器可作为类的成员变量。Ray 可以将 Python 类拓展到集群上，即远程类（Remote Class），又被称为行动者（Actor）。Actor 的名字来自 Actor 编程模型 <span id="id2">[]</span> ，这是一个典型的分布式计算编程模型，被广泛应用在大数据和人工智能领域，但 Actor 编程模型比较抽象，我们先从计数器的案例来入手。</p>
 <div class="section" id="id3">
 <h2>案例1：分布式计数器<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_hide-cell docutils container">

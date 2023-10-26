@@ -18,3 +18,10 @@ parts:
     - file: ch-ray-air/index
       sections:
         - file: ch-ray-air/ray-data
+
+  - caption: mpi4py
+    chapters: 
+    - file: ch-mpi/index
+      sections:
+        - file: ch-mpi/mpi-intro
+        - file: ch-mpi/hello

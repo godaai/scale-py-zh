@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ray 简介 &#8212; Python 分布式编程</title>
+    <title>MPI &#8212; Python 分布式编程</title>
   
   
   
@@ -61,11 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ch-ray-core/ray-intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch-mpi/index';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="分布式函数" href="remote-function.html" />
-    <link rel="prev" title="Ray" href="index.html" />
+    <link rel="next" title="MPI 简介" href="mpi-intro.html" />
+    <link rel="prev" title="Ray Data" href="../ch-ray-air/ray-data.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -166,13 +166,13 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ray</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Ray</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Ray 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-function.html">分布式函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-object.html">分布式对象存储</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-class.html">分布式类</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ray-internal.html">Ray 系统与设计</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-core/index.html">Ray</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-intro.html">Ray 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-function.html">分布式函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-object.html">分布式对象存储</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-class.html">分布式类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-internal.html">Ray 系统与设计</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-air/index.html">Ray AIR</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -181,10 +181,10 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">mpi4py</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">MPI</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-intro.html">MPI 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/hello.html">背景</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">MPI</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="mpi-intro.html">MPI 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hello.html">MPI Hello World</a></li>
 </ul>
 </li>
 </ul>
@@ -258,7 +258,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/py-101/distributed-python/issues/new?title=Issue%20on%20page%20%2Fch-ray-core/ray-intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/py-101/distributed-python/issues/new?title=Issue%20on%20page%20%2Fch-mpi/index.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -288,7 +288,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/ch-ray-core/ray-intro.md" target="_blank"
+      <li><a href="../_sources/ch-mpi/index.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -368,7 +368,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Ray 简介</h1>
+    <h1>MPI</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -382,25 +382,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="ray">
-<h1>Ray 简介<a class="headerlink" href="#ray" title="Permalink to this heading">#</a></h1>
-<p>Ray 是一个可扩展的计算框架。它最初为强化学习设计，之后逐渐演变成一个面向数据科学和人工智能的框架。
-如 <a class="reference internal" href="#ray-ecosystem"><span class="std std-ref">Ray 生态</span></a> 所示，当前 Ray 主要由底层的 Ray Core 和上层的各类 Ray AIR (Artificial Intelligence Runtime) 生态组成：Ray Core 是一系列底层 API, 可以将 Python 函数或者 Python 类等计算任务横向扩展到多个计算节点上；在 Ray Core 之上，Ray 封装了一些面向数据科学和人工智能的库（Ray AIR），可以进行数据的处理（Ray Data）、模型训练（Ray Train）、模型的超参数调优（Ray Tune），模型推理服务（Ray Serve），强化学习（RLib）等。</p>
-<div class="figure align-default" id="ray-ecosystem">
-<a class="reference internal image-reference" href="../_images/ray.svg"><img alt="../_images/ray.svg" src="../_images/ray.svg" width="800px" /></a>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Ray 生态</span><a class="headerlink" href="#ray-ecosystem" title="Permalink to this image">#</a></p>
-</div>
-<p>Ray Core 提供的 API 将 Python 任务横向扩展到集群上，最关键的 API 是两个计算接口和一个数据接口，如 <a class="reference internal" href="#ray-core-apis"><span class="std std-ref">Ray Core 核心 API</span></a> 所示。</p>
-<ul class="simple">
-<li><p>任务（Task）：面向函数（Function）的接口，用于定义一个函数，该函数可以在集群中分布式地执行。</p></li>
-<li><p>行动者（Actor）：面向类（Class）的接口，用于定义一个类，该类可以在集群中分布式地执行。</p></li>
-<li><p>对象（Object）：分布式的对象，对象不可变（Immutable），用于在 Task 和 Actor 之间传递数据。</p></li>
+  <div class="tex2jax_ignore mathjax_ignore section" id="mpi">
+<h1>MPI<a class="headerlink" href="#mpi" title="Permalink to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mpi-intro.html">MPI 简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hello.html">MPI Hello World</a></li>
 </ul>
-<div class="figure align-default" id="ray-core-apis">
-<a class="reference internal image-reference" href="../_images/ray-apis.png"><img alt="../_images/ray-apis.png" src="../_images/ray-apis.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Ray Core 核心 API</span><a class="headerlink" href="#ray-core-apis" title="Permalink to this image">#</a></p>
 </div>
-<p>上层的各类生态均基于 Ray Core 的这些底层 API，结合各类人工智能应用编写而成。</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -416,7 +405,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./ch-ray-core"
+            path: "./ch-mpi"
         },
         predefinedOutput: true
     }
@@ -434,20 +423,20 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="../ch-ray-air/ray-data.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Ray</p>
+        <p class="prev-next-title">Ray Data</p>
       </div>
     </a>
     <a class="right-next"
-       href="remote-function.html"
+       href="mpi-intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">分布式函数</p>
+        <p class="prev-next-title">MPI 简介</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
