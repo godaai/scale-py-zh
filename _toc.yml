@@ -25,3 +25,4 @@ parts:
       sections:
         - file: ch-mpi/mpi-intro
         - file: ch-mpi/hello
+        - file: ch-mpi/point-to-point

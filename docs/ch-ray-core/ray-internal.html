@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Ray 系统与设计 &#8212; Python 分布式编程</title>
   
   
@@ -184,7 +185,8 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">MPI</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-intro.html">MPI 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/hello.html">背景</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/hello.html">MPI Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/point-to-point.html">点对点通信</a></li>
 </ul>
 </li>
 </ul>
@@ -392,15 +394,17 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="ray">
+  <section class="tex2jax_ignore mathjax_ignore" id="ray">
 <span id="ray-internal"></span><h1>Ray 系统与设计<a class="headerlink" href="#ray" title="Permalink to this heading">#</a></h1>
-<div class="section" id="id1">
+<section id="id1">
 <h2>Ray 集群<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p>如 <a class="reference internal" href="#ray-cluster"><span class="std std-ref">Ray 集群</span></a> 所示，Ray 集群由一系列计算节点组成，其中两类关键的节点：头节点（Head node）和工作节点（Worker node）。这些节点可以部署在虚拟机、容器或者是裸金属服务器上。</p>
-<div class="figure align-default" id="ray-cluster">
+<figure class="align-default" id="ray-cluster">
 <a class="reference internal image-reference" href="../_images/ray-cluster.svg"><img alt="../_images/ray-cluster.svg" src="../_images/ray-cluster.svg" width="800px" /></a>
-<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Ray 集群</span><a class="headerlink" href="#ray-cluster" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Ray 集群</span><a class="headerlink" href="#ray-cluster" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>所有节点上都运行着一些进程：</p>
 <ul class="simple">
 <li><p>Worker</p></li>
@@ -419,8 +423,8 @@ document.write(`
 <li><p>Driver</p></li>
 </ul>
 <p>Driver 执行一些顶层的应用，比如，作为 Python 入口的  <code class="docutils literal notranslate"><span class="pre">__main__</span></code> 函数。</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

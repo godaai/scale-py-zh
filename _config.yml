@@ -19,7 +19,7 @@ latex:
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
-  - refs.bib
+  - references.bib
 
 # Information about where the book exists on the web
 repository:
@@ -35,3 +35,7 @@ only_build_toc_files: true
 html:
   use_issues_button: true
   use_repository_button: true
+
+sphinx:
+  config:
+    bibtex_reference_style: author_year  # or label, super, \supercite

@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Ray 简介 &#8212; Python 分布式编程</title>
   
   
@@ -184,7 +185,8 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">MPI</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-intro.html">MPI 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/hello.html">背景</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/hello.html">MPI Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/point-to-point.html">点对点通信</a></li>
 </ul>
 </li>
 </ul>
@@ -382,26 +384,30 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="ray">
+  <section class="tex2jax_ignore mathjax_ignore" id="ray">
 <h1>Ray 简介<a class="headerlink" href="#ray" title="Permalink to this heading">#</a></h1>
 <p>Ray 是一个可扩展的计算框架。它最初为强化学习设计，之后逐渐演变成一个面向数据科学和人工智能的框架。
 如 <a class="reference internal" href="#ray-ecosystem"><span class="std std-ref">Ray 生态</span></a> 所示，当前 Ray 主要由底层的 Ray Core 和上层的各类 Ray AIR (Artificial Intelligence Runtime) 生态组成：Ray Core 是一系列底层 API, 可以将 Python 函数或者 Python 类等计算任务横向扩展到多个计算节点上；在 Ray Core 之上，Ray 封装了一些面向数据科学和人工智能的库（Ray AIR），可以进行数据的处理（Ray Data）、模型训练（Ray Train）、模型的超参数调优（Ray Tune），模型推理服务（Ray Serve），强化学习（RLib）等。</p>
-<div class="figure align-default" id="ray-ecosystem">
+<figure class="align-default" id="ray-ecosystem">
 <a class="reference internal image-reference" href="../_images/ray.svg"><img alt="../_images/ray.svg" src="../_images/ray.svg" width="800px" /></a>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Ray 生态</span><a class="headerlink" href="#ray-ecosystem" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Ray 生态</span><a class="headerlink" href="#ray-ecosystem" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Ray Core 提供的 API 将 Python 任务横向扩展到集群上，最关键的 API 是两个计算接口和一个数据接口，如 <a class="reference internal" href="#ray-core-apis"><span class="std std-ref">Ray Core 核心 API</span></a> 所示。</p>
 <ul class="simple">
 <li><p>任务（Task）：面向函数（Function）的接口，用于定义一个函数，该函数可以在集群中分布式地执行。</p></li>
 <li><p>行动者（Actor）：面向类（Class）的接口，用于定义一个类，该类可以在集群中分布式地执行。</p></li>
 <li><p>对象（Object）：分布式的对象，对象不可变（Immutable），用于在 Task 和 Actor 之间传递数据。</p></li>
 </ul>
-<div class="figure align-default" id="ray-core-apis">
+<figure class="align-default" id="ray-core-apis">
 <a class="reference internal image-reference" href="../_images/ray-apis.png"><img alt="../_images/ray-apis.png" src="../_images/ray-apis.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Ray Core 核心 API</span><a class="headerlink" href="#ray-core-apis" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Ray Core 核心 API</span><a class="headerlink" href="#ray-core-apis" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>上层的各类生态均基于 Ray Core 的这些底层 API，结合各类人工智能应用编写而成。</p>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {

@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>MPI Hello World &#8212; Python 分布式编程</title>
   
   
@@ -64,6 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch-mpi/hello';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="点对点通信" href="point-to-point.html" />
     <link rel="prev" title="MPI 简介" href="mpi-intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -184,6 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">MPI</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="mpi-intro.html">MPI 简介</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">MPI Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point-to-point.html">点对点通信</a></li>
 </ul>
 </li>
 </ul>
@@ -379,8 +382,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">通信模式</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">通信模式</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#world-rank">World 和 Rank</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">案例：Hello World</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#communicator">Communicator</a></li>
 </ul>
             </nav>
         </div>
@@ -392,27 +397,33 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="mpi-hello-world">
-<h1>MPI Hello World<a class="headerlink" href="#mpi-hello-world" title="Permalink to this heading">#</a></h1>
-<div class="section" id="id1">
-<h2>通信模式<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="mpi-hello-world">
+<span id="id1"></span><h1>MPI Hello World<a class="headerlink" href="#mpi-hello-world" title="Permalink to this heading">#</a></h1>
+<section id="id2">
+<h2>通信模式<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>MPI 提供的能力更加底层，对于通信模式，通常有两种：双边和单边。</p>
 <ul class="simple">
-<li><p>双边：通信双方均同意数据的收发。发送进程调用发送函数，接收进程调用接收函数。</p></li>
-<li><p>单边：一方远程读或者写另一方的数据，一方无需等待另一方。</p></li>
+<li><p>双边（Cooperative）：通信双方均同意数据的收发。发送进程调用发送函数，接收进程调用接收函数。</p></li>
+<li><p>单边（One-sided）：一方远程读或者写另一方的数据，一方无需等待另一方。</p></li>
 </ul>
-<div class="figure align-default" id="ray-ecosystem">
+<figure class="align-default" id="mpi-communications">
 <a class="reference internal image-reference" href="../_images/communications.svg"><img alt="../_images/communications.svg" src="../_images/communications.svg" width="600px" /></a>
-<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">两种通讯模式：双边和单边</span><a class="headerlink" href="#ray-ecosystem" title="Permalink to this image">#</a></p>
-</div>
-</div>
-<div class="section" id="world-rank">
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">两种通讯模式：双边和单边</span><a class="headerlink" href="#mpi-communications" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="world-rank">
 <h2>World 和 Rank<a class="headerlink" href="#world-rank" title="Permalink to this heading">#</a></h2>
 <p>在进行 MPI 编程时，进程之间要互相通信，我们首先要解决两个问题：在 MPI 的众多进程中，“我是谁？”，除了我，“还有谁？”。 <code class="docutils literal notranslate"><span class="pre">MPI_Comm_rank</span></code> 定义了我是谁。<code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> 定义了还有谁的问题。 开始一个 MPI 程序时，要先定义一个 World，这个世界里有 <code class="docutils literal notranslate"><span class="pre">size</span></code> 个进程，每个进程有一个识别自己的号码，这个号码被称为 Rank，Rank 是 0 到 <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">-</span> <span class="pre">1</span></code> 的整数。更严肃地阐述：</p>
 <ul class="simple">
 <li><p>MPI 中的 World 是指所有参与并行计算的进程的总集合。在一个 MPI 程序中，所有的进程都属于一个默认的通信域，这个通信域就被称为 <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code>。所有在这个通信域中的进程都可以进行通信。</p></li>
 <li><p>World 中的每个进程都有一个唯一的 Rank，Rank 用来标识进程在通信域中的位置。由于每个进程有自己的 Rank 号码，那在编程时，可以控制，使得 Rank 为 0 的进程发送数据给 Rank 为 1 的进程。</p></li>
 </ul>
+</section>
+<section id="hello-world">
+<h2>案例：Hello World<a class="headerlink" href="#hello-world" title="Permalink to this heading">#</a></h2>
+<p>下面使用一个简单的例子来演示 MPI 编程。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
 
 
@@ -423,12 +434,38 @@ document.write(`
 <span class="n">comm</span><span class="o">.</span><span class="n">Barrier</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>如果在笔记本上，启动 8 个进程，在命令行中执行：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun -n <span class="m">8</span> hello.py
+<p>在这段程序中，<code class="docutils literal notranslate"><span class="pre">print</span></code> 是上单个进程内执行的，打印出当前进程的 Rank 和主机名。<code class="docutils literal notranslate"><span class="pre">comm.Barrier()</span></code> 将每个进程做了阻断，直到所有进程执行完毕后，才会进行下面的操作。本例中，<code class="docutils literal notranslate"><span class="pre">comm.Barrier()</span></code> 后无其他操作，程序将退出。</p>
+<p>如果在个人电脑上，启动 8 个进程，在命令行中执行：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun -np <span class="m">8</span> python hello.py
 </pre></div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">mpirun</span></code> 其实不是 MPI 标准的一部分，所以不同厂商的 <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> 的参数会有一些区别。<code class="docutils literal notranslate"><span class="pre">mpirun</span></code> 命令在有的实现中等同于 <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>。相比 C/C++ 或 Fortran，mpi4py 的方便之处在于不需要使用 <code class="docutils literal notranslate"><span class="pre">mpicc</span></code> 编译器进行编译，直接执行即可。</p>
+<p>如果有一个集群，且集群挂载了一个共享的文件系统，即集群上每个节点上的特定目录的内容是一样的，<code class="docutils literal notranslate"><span class="pre">hello.py</span></code> 和 <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> 是一模一样的。可以这样拉起：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun –hosts h1:4,h2:4,h3:4,h4:4 –n <span class="m">16</span> python hello.py
+</pre></div>
 </div>
+<p>这个启动命令一共在 16 个进程上执行，16 个进程分布在 4 个计算节点上，每个节点使用了 4 个进程。如果节点比较多，还可以单独编写一个节点文件，比如命名为 <code class="docutils literal notranslate"><span class="pre">hf</span></code>，内容为：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h1</span><span class="p">:</span><span class="mi">8</span>
+<span class="n">h2</span><span class="p">:</span><span class="mi">8</span>
+</pre></div>
 </div>
+<p>这样执行：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mpirun –hostfile hf –n 16 python hello.py
+</pre></div>
+</div>
+</section>
+<section id="communicator">
+<h2>Communicator<a class="headerlink" href="#communicator" title="Permalink to this heading">#</a></h2>
+<p>刚才我们提到了 World 的概念，并使用了 <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code>，更准确地说，<code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> 是一个 Communicator。MPI 将进程划分到不同的组（Group）中，每个 Group 有不同的 Color，Group 和 Color 共同组成了 Communicator，或者说 Communicator 是 Group + Color 的名字，一个默认的 Communicator 就是 <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code>。</p>
+<p>对于一个进程，它可能在不同的 Communicator 中，因此它在不同 Communicator 中的 Rank 可能也不一样。如 <a class="reference internal" href="#mpi-communicatitor"><span class="std std-ref">Communicators</span></a> 所示，每一层可以理解为一个 Communicator，圆圈中的数字是进程在这个 Communicator 中的 Rank，每一层的进程通信是相互独立的。</p>
+<figure class="align-default" id="mpi-communicatitor">
+<a class="reference internal image-reference" href="../_images/communicators.png"><img alt="../_images/communicators.png" src="../_images/communicators.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Communicators</span><a class="headerlink" href="#mpi-communicatitor" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -469,6 +506,15 @@ document.write(`
         <p class="prev-next-title">MPI 简介</p>
       </div>
     </a>
+    <a class="right-next"
+       href="point-to-point.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">点对点通信</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -484,8 +530,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">通信模式</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">通信模式</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#world-rank">World 和 Rank</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">案例：Hello World</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#communicator">Communicator</a></li>
 </ul>
   </nav></div>
 
