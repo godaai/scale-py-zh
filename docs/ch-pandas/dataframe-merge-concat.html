@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>多表操作 &#8212; Python 数据科学实战</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -145,13 +146,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Python 数据科学实战 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Python 数据科学实战 - Home"/>`);</script>
   
   
 </a></div>
@@ -170,6 +172,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ch-numpy/index.html">NumPy</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-numpy/numpy-intro.html">NumPy 简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ch-numpy/ndarray.html">ndarray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/ndarray-slicing-index.html">切片与索引</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">pandas</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
@@ -393,15 +396,17 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>多表操作<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <p>之前的操作主要在单个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> ，实际上，我们经常需要对多个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 联合起来进行分析。pandas 提供了多 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 之间的合并和连接的操作，分别是 <code class="docutils literal notranslate"><span class="pre">merge()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">concat()</span></code> 函数。比如，我们可以将两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 合并成一个，且保留所有的列。</p>
-<div class="section" id="merge">
+<section id="merge">
 <h2>merge<a class="headerlink" href="#merge" title="Permalink to this heading">#</a></h2>
 <p>pandas 的 <code class="docutils literal notranslate"><span class="pre">merge</span></code> 操作可以合并两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>（或者称为表） ，类似于 SQL 中的 JOIN 操作。 我们可以想象成：一个大表被拆分成两个小表，两个小表都包含一些同样的数据。现在我们需要把两个小表合并，生成一个大表，大表包含了两个小表的字段。</p>
-<div class="figure align-default" id="merge-img">
-<img alt="../_images/merge.svg" src="../_images/merge.svg" /><p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">对两个 DataFrame 进行 merge 操作</span><a class="headerlink" href="#merge-img" title="Permalink to this image">#</a></p>
-</div>
+<figure class="align-default" id="merge-img">
+<img alt="../_images/merge.svg" src="../_images/merge.svg" /><figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">对两个 DataFrame 进行 merge 操作</span><a class="headerlink" href="#merge-img" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -608,7 +613,7 @@ document.write(`
 <p><img alt="合并方式" src="../_images/merge-how.svg" />
 :width:<code class="docutils literal notranslate"><span class="pre">800px</span></code>
 :label:<code class="docutils literal notranslate"><span class="pre">merge-how</span></code></p>
-<div class="section" id="id2">
+<section id="id2">
 <h3>连接方式<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>外连接</p></li>
@@ -844,8 +849,8 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="id3">
+</section>
+<section id="id3">
 <h3>其他合并方式<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>还有一些其他合并，不是根据 key 去在左右表中查找。比如，根据 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 最左侧的 index 列。<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 默认有 index 列，根据该列合并两个表，由于此时不是根据 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 来合并，合并之后保留了两个 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>，为了区别左右两表的 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>，这里加了后缀 <code class="docutils literal notranslate"><span class="pre">_x</span></code> 和 <code class="docutils literal notranslate"><span class="pre">_y</span></code>。</p>
 <div class="cell docutils container">
@@ -920,9 +925,9 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-</div>
-</div>
-<div class="section" id="concat">
+</section>
+</section>
+<section id="concat">
 <h2>concat<a class="headerlink" href="#concat" title="Permalink to this heading">#</a></h2>
 <p>与 <code class="docutils literal notranslate"><span class="pre">merge</span></code> 对表结构进行横向的操作不同，<code class="docutils literal notranslate"><span class="pre">concat</span></code> 函数默认是进行纵向的合并，也就是将多行进行 ** 堆叠式 ** 的合并。</p>
 <p>比如下面的例子，把所有的行和所有的列合并在一起，缺失的填充 <code class="docutils literal notranslate"><span class="pre">NaN</span></code>。</p>
@@ -1107,8 +1112,8 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="id4">
+</section>
+<section id="id4">
 <h2>案例：学生成绩<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p>我们使用一个学生成绩的案例来演示如何对两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 进行 <code class="docutils literal notranslate"><span class="pre">merge</span></code>。</p>
 <div class="cell tag_hide-cell docutils container">
@@ -1358,8 +1363,8 @@ the first 2 rows:
 <p>关于合并后的新表，列数一共10列。<code class="docutils literal notranslate"><span class="pre">student_df</span></code> 一共7列， <code class="docutils literal notranslate"><span class="pre">score_df</span></code> 一共4列，即：7 + 4 - 1，因为两个表都包含同样的一列 <code class="docutils literal notranslate"><span class="pre">sno</span></code>，所以需要减一。</p>
 <p>我们使用的是 <code class="docutils literal notranslate"><span class="pre">how='left'</span></code> 的方式进行的合并。行数一共44，这与 <code class="docutils literal notranslate"><span class="pre">student_df</span></code> 的列数一致。我们打印完整合并后的新表，可以发现，在<code class="docutils literal notranslate"><span class="pre">student_df</span></code>中包含但 <code class="docutils literal notranslate"><span class="pre">score_df</span></code> 中不包含的成绩相关的信息显示 NaN。</p>
 <p>接下来我们就可以使用各类其他分析方式，对这个新的大表进行数据分析，这里不再赘述。</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1478,8 +1483,8 @@ By 鲁蔚征
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

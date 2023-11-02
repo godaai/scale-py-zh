@@ -18,12 +18,16 @@ git clone https://github.com/py-101/python-data-science.git
 
 准备环境：
 
-* 选择一个包管理工具，比如 `conda` 或者 `venv`
+* 选择一个包管理工具，比如 `conda`。
 * 安装 Python >= 3.8
 * 安装 requirements.txt 和 requirements-dev.txt 中的各个依赖。包括本书各个案例所需要的工具 pandas 等，以及本电子书构建工具 Jupyter Book：
 
 ```bash
+conda create -n pyds
+source activate pyds
+conda install python=3.11
 pip install -r requirements.txt
+pip install -r requirements-dev.txt
 ```
 
 ## 构建 HTML 格式

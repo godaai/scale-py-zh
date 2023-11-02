@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>ndarray &#8212; Python 数据科学实战</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -66,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch-numpy/ndarray';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="pandas" href="../ch-pandas/index.html" />
+    <link rel="next" title="切片与索引" href="ndarray-slicing-index.html" />
     <link rel="prev" title="NumPy 简介" href="numpy-intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -147,13 +148,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Python 数据科学实战 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Python 数据科学实战 - Home"/>`);</script>
   
   
 </a></div>
@@ -172,6 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">NumPy</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="numpy-intro.html">NumPy 简介</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">ndarray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ndarray-slicing-index.html">切片与索引</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ch-pandas/index.html">pandas</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -410,7 +413,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="ndarray">
+  <section class="tex2jax_ignore mathjax_ignore" id="ndarray">
 <h1>ndarray<a class="headerlink" href="#ndarray" title="Permalink to this heading">#</a></h1>
 <p>NumPy 最核心的数据结构是多维数组（N-dimensional Array）： <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>。 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> 是由同一数据类型的数据组成的数组列表。</p>
 <div class="cell docutils container">
@@ -420,7 +423,7 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="section" id="id1">
+<section id="id1">
 <h2>创建 ndarray<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">array</span></code> 函数接收来自原生 Python 的各类数据，如列表、元组等，并转化为 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>；<code class="docutils literal notranslate"><span class="pre">array</span></code> 函数也可以接收一个 NumPy 的 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>。数组中的数据类型必须是一致的。</p>
 <div class="cell docutils container">
@@ -451,11 +454,11 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="dtype">
+</section>
+<section id="dtype">
 <h2>数据类型：dtype<a class="headerlink" href="#dtype" title="Permalink to this heading">#</a></h2>
 <p>在进一步深入了解各种创建 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> 的方式之前，我们需要了解一下数据类型的基础知识。计算机无法直接表征数值，其底层基于二进制表示数值，整数和浮点数（其实就是小数，计算机科学中一般称小数为浮点数）基于科学计数法，字符串是一个从整数到字符的映射。 NumPy 提供了不同的数据类型 <code class="docutils literal notranslate"><span class="pre">dtype</span></code>，不同的 <code class="docutils literal notranslate"><span class="pre">dtype</span></code> 所能表示的区间范围不同。比如，同为整数，就有以下几种类型，其所表示的数值区间差异较大。</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>dtype</p></th>
 <th class="head"><p>区间</p></th>
@@ -487,10 +490,10 @@ document.write(`
 <li><p>整数类型默认是 <code class="docutils literal notranslate"><span class="pre">np.int64</span></code>，但很多应用 <code class="docutils literal notranslate"><span class="pre">np.32</span></code> 就足够了。</p></li>
 <li><p>浮点数类型一般科学计算应用都使用 <code class="docutils literal notranslate"><span class="pre">np.float64</span></code>，深度学习类应用使用 <code class="docutils literal notranslate"><span class="pre">np.float32</span></code> 或者甚至更小的数据类型也足够了。</p></li>
 </ul>
-</div>
-<div class="section" id="id2">
+</section>
+<section id="id2">
 <h2>创建特定的 ndarray<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
-<div class="section" id="arange-linspace">
+<section id="arange-linspace">
 <h3>arange() 与 linspace()<a class="headerlink" href="#arange-linspace" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">arange</span></code> 和 <code class="docutils literal notranslate"><span class="pre">linspace</span></code> 函数可用于生成一个数值数组。数值从区间为 <span class="math notranslate nohighlight">\([start,stop)\)</span> 中选择，一般从 <code class="docutils literal notranslate"><span class="pre">start</span></code> 开始，到 <code class="docutils literal notranslate"><span class="pre">stop</span></code> 结束，在这个区间内生成一系列值。</p>
 <p><code class="docutils literal notranslate"><span class="pre">arange</span></code> 函数的常见形式：</p>
@@ -530,8 +533,8 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="ones-ones-like">
+</section>
+<section id="ones-ones-like">
 <h3>ones() 与 ones_like()<a class="headerlink" href="#ones-ones-like" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">np.ones(shape)</span></code> 生成 <code class="docutils literal notranslate"><span class="pre">shape</span></code> 大小的、全为 1 数组。例如，生成 <span class="math notranslate nohighlight">\(3 \times 3 \times 6\)</span> 的高维数组。</p>
 <div class="cell docutils container">
@@ -565,8 +568,8 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="zeros-zeros-like">
+</section>
+<section id="zeros-zeros-like">
 <h3>zeros() 与 zeros_like()<a class="headerlink" href="#zeros-zeros-like" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">np.zeros()</span></code> 与 <code class="docutils literal notranslate"><span class="pre">np.ones()</span></code> 类似。<code class="docutils literal notranslate"><span class="pre">np.zeros(shape)</span></code> 生成 <code class="docutils literal notranslate"><span class="pre">shape</span></code> 大小的、全为 0 的数组。</p>
 <div class="cell docutils container">
@@ -600,8 +603,8 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="full-full-like">
+</section>
+<section id="full-full-like">
 <h3>full() 与 full_like()<a class="headerlink" href="#full-full-like" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">np.full(shape,val)</span></code> 生成 <code class="docutils literal notranslate"><span class="pre">shape</span></code> 大小的、全为 <code class="docutils literal notranslate"><span class="pre">val</span></code> 的数组，即数组中每个元素值都是 <code class="docutils literal notranslate"><span class="pre">val</span></code>。</p>
 <div class="cell docutils container">
@@ -635,8 +638,8 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="eye">
+</section>
+<section id="eye">
 <h3>eye()<a class="headerlink" href="#eye" title="Permalink to this heading">#</a></h3>
 <p>np.eye(n) 创建一个 <span class="math notranslate nohighlight">\(n \times n\)</span> 单位矩阵，对角线为 1，其余为 0。</p>
 <div class="cell docutils container">
@@ -653,9 +656,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="id3">
+</section>
+</section>
+<section id="id3">
 <h2>常用属性<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>直接打印一个 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> 可以看到它的值、<code class="docutils literal notranslate"><span class="pre">dtype</span></code> 等属性。</p>
 <div class="cell docutils container">
@@ -751,11 +754,11 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id4">
+</section>
+<section id="id4">
 <h2>数组维度变换<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p>另外，我们经常要对数据进行一些变换。</p>
-<div class="section" id="id5">
+<section id="id5">
 <h3>不改变原数组<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">reshape()</span></code> 函数</p></li>
@@ -790,8 +793,8 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id6">
+</section>
+<section id="id6">
 <h3>改变原数组<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">resize()</span></code> 函数</p></li>
@@ -827,11 +830,11 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="id7">
+</section>
+</section>
+<section id="id7">
 <h2>数据类型变换<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
-<div class="section" id="astype">
+<section id="astype">
 <h3>astype()<a class="headerlink" href="#astype" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">astype(new_type)</span></code> 函数，对数组的数据类型进行类型变化，基于对原始数据的拷贝创建一个新的数组。比如，将 <code class="docutils literal notranslate"><span class="pre">np.int</span></code> 类型元素修改为 <code class="docutils literal notranslate"><span class="pre">np.float64</span></code> 类型：</p>
 <div class="cell docutils container">
@@ -849,9 +852,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="id8">
+</section>
+</section>
+<section id="id8">
 <h2>合并函数<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">np.concatenate()</span></code> 将两个或者多个数组合并成一个新数组。</p>
 <div class="cell docutils container">
@@ -871,8 +874,8 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="ndarray-python">
+</section>
+<section id="ndarray-python">
 <h2>ndarray 与 Python 列表的转换<a class="headerlink" href="#ndarray-python" title="Permalink to this heading">#</a></h2>
 <p>列表作为 Python 中原始的数据类型，运算速度慢于 NumPy。如果需要与原生 Python 语言相适配，需做转换：</p>
 <div class="cell docutils container">
@@ -887,8 +890,8 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -930,11 +933,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../ch-pandas/index.html"
+       href="ndarray-slicing-index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">pandas</p>
+        <p class="prev-next-title">切片与索引</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1022,8 +1025,8 @@ By 鲁蔚征
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

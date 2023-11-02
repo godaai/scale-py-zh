@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>数据切片 &#8212; Python 数据科学实战</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -145,13 +146,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Python 数据科学实战 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Python 数据科学实战 - Home"/>`);</script>
   
   
 </a></div>
@@ -170,6 +172,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ch-numpy/index.html">NumPy</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-numpy/numpy-intro.html">NumPy 简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ch-numpy/ndarray.html">ndarray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/ndarray-slicing-index.html">切片与索引</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">pandas</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
@@ -392,7 +395,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>数据切片<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <p>实际中，我们常常不是分析整个数据，而是数据中的部分子集。如何根据特定的条件获得所需要的数据是本节的主要内容。</p>
 <div class="cell tag_hide-cell docutils container">
@@ -435,7 +438,7 @@ document.write(`
 </div>
 </details>
 </div>
-<div class="section" id="id2">
+<section id="id2">
 <h2>主要方法<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>对 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 选择行和列，主要有几种方式：</p>
 <ul class="simple">
@@ -443,7 +446,7 @@ document.write(`
 <li><p>使用 <code class="docutils literal notranslate"><span class="pre">.iloc</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">.loc</span></code> 函数</p></li>
 <li><p>使用 <code class="docutils literal notranslate"><span class="pre">.query</span></code> 函数</p></li>
 </ul>
-<div class="section" id="id3">
+<section id="id3">
 <h3>使用 [] 进行选择<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>选择第 2 行到第 5 行（不包括第 5 行）的数据：</p>
 <div class="cell docutils container">
@@ -1302,8 +1305,8 @@ document.write(`
 <p>3827 rows × 37 columns</p>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="iloc-loc">
+</section>
+<section id="iloc-loc">
 <h3>iloc 或者 loc<a class="headerlink" href="#iloc-loc" title="Permalink to this heading">#</a></h3>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">iloc</span></code> 函数进行选择，形式应为 <code class="docutils literal notranslate"><span class="pre">.iloc[rows,</span> <span class="pre">columns]</span></code>。</p>
 <p>可以将 i 理解为 integer，即 i 是整数，表示行或者列位置（位置由被称为 index），<code class="docutils literal notranslate"><span class="pre">iloc</span></code> 即用整数来选择行或者选择列。i 从 0 开始，至 <code class="docutils literal notranslate"><span class="pre">length-1</span></code>。</p>
@@ -1623,8 +1626,8 @@ document.write(`
 </div></div></div>
 </div>
 <p>由于 <code class="docutils literal notranslate"><span class="pre">iloc</span></code> 函数只接受整数，所以不允许使用这种条件进行筛选。</p>
-</div>
-<div class="section" id="query">
+</section>
+<section id="query">
 <h3>query<a class="headerlink" href="#query" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">.query()</span></code> 函数的用法与 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 有相似之处。值得注意的是，<code class="docutils literal notranslate"><span class="pre">.query()</span></code> 函数的性能更好，在处理大规模数据时更快。</p>
 <div class="cell docutils container">
@@ -2263,9 +2266,9 @@ document.write(`
 <p>3827 rows × 37 columns</p>
 </div></div></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2383,8 +2386,8 @@ By 鲁蔚征
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>
