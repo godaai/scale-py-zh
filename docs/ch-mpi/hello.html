@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>MPI Hello World &#8212; Python 分布式编程</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -146,13 +146,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Python 分布式编程 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Python 分布式编程 - Home"/>`);</script>
   
   
 </a></div>
@@ -436,12 +437,12 @@ document.write(`
 </div>
 <p>在这段程序中，<code class="docutils literal notranslate"><span class="pre">print</span></code> 是上单个进程内执行的，打印出当前进程的 Rank 和主机名。<code class="docutils literal notranslate"><span class="pre">comm.Barrier()</span></code> 将每个进程做了阻断，直到所有进程执行完毕后，才会进行下面的操作。本例中，<code class="docutils literal notranslate"><span class="pre">comm.Barrier()</span></code> 后无其他操作，程序将退出。</p>
 <p>如果在个人电脑上，启动 8 个进程，在命令行中执行：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun -np <span class="m">8</span> python hello.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">8</span><span class="w"> </span>python<span class="w"> </span>hello.py
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">mpirun</span></code> 其实不是 MPI 标准的一部分，所以不同厂商的 <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> 的参数会有一些区别。<code class="docutils literal notranslate"><span class="pre">mpirun</span></code> 命令在有的实现中等同于 <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>。相比 C/C++ 或 Fortran，mpi4py 的方便之处在于不需要使用 <code class="docutils literal notranslate"><span class="pre">mpicc</span></code> 编译器进行编译，直接执行即可。</p>
 <p>如果有一个集群，且集群挂载了一个共享的文件系统，即集群上每个节点上的特定目录的内容是一样的，<code class="docutils literal notranslate"><span class="pre">hello.py</span></code> 和 <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> 是一模一样的。可以这样拉起：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun –hosts h1:4,h2:4,h3:4,h4:4 –n <span class="m">16</span> python hello.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>–hosts<span class="w"> </span>h1:4,h2:4,h3:4,h4:4<span class="w"> </span>–n<span class="w"> </span><span class="m">16</span><span class="w"> </span>python<span class="w"> </span>hello.py
 </pre></div>
 </div>
 <p>这个启动命令一共在 16 个进程上执行，16 个进程分布在 4 个计算节点上，每个节点使用了 4 个进程。如果节点比较多，还可以单独编写一个节点文件，比如命名为 <code class="docutils literal notranslate"><span class="pre">hf</span></code>，内容为：</p>
@@ -581,8 +582,8 @@ By 鲁蔚征
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

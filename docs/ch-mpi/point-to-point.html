@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>点对点通信 &#8212; Python 分布式编程</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -145,13 +145,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Python 分布式编程 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Python 分布式编程 - Home"/>`);</script>
   
   
 </a></div>
@@ -381,9 +382,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">发送与接收</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">案例1：发送 Python 对象</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-ndarray">案例2：发送 NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#master-worker">案例3：Master-Worker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v-s">阻塞 v.s. 非阻塞</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">阻塞</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">非阻塞</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -402,8 +409,11 @@ document.write(`
 <li><p>如何控制和识别不同的进程？比如，想让 Rank 为 0 的进程给 Rank 为 1 的进程发消息。</p></li>
 <li><p>如何控制数据的读写？多大的数据，数据类型是什么？</p></li>
 </ul>
+<section id="id2">
+<h2>发送与接收<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://mpi4py.readthedocs.io/en/latest/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.send"><code class="docutils literal notranslate"><span class="pre">Comm.send</span></code></a> 和 <a class="reference external" href="https://mpi4py.readthedocs.io/en/latest/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.recv"><code class="docutils literal notranslate"><span class="pre">Comm.recv</span></code></a> 分别用来阻塞式地发送和接收数据。</p>
 <p><code class="docutils literal notranslate"><span class="pre">Comm.send(obj,</span> <span class="pre">dest,</span> <span class="pre">tag=0)</span></code> 的参数主要是 <code class="docutils literal notranslate"><span class="pre">obj</span></code> 和 <code class="docutils literal notranslate"><span class="pre">dest</span></code>。<code class="docutils literal notranslate"><span class="pre">obj</span></code> 就是我们想要发送的数据，数据可以是 Python 内置的数据类型，比如 <code class="docutils literal notranslate"><span class="pre">list</span></code> 和 <code class="docutils literal notranslate"><span class="pre">dict</span></code> 等，也可以是 NumPy 的 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>，甚至是 GPU 上的 cupy 数据。上一节 <a class="reference internal" href="hello.html#mpi-hello-world"><span class="std std-ref">MPI Hello World</span></a> 我们介绍了 Communicator 和 Rank，可以通过 Rank 的号码来定位一个进程。<code class="docutils literal notranslate"><span class="pre">dest</span></code> 可以用 Rank 号码来表示。<code class="docutils literal notranslate"><span class="pre">tag</span></code> 主要用来标识，给程序员一个精细控制的选项，使用 <code class="docutils literal notranslate"><span class="pre">tag</span></code> 可以实现消息的有序传递和筛选。接收方可以选择只接收特定标签的消息，或者按照标签的顺序接收消息，以便更加灵活地控制消息的发送和接收过程。</p>
+</section>
 <section id="python">
 <h2>案例1：发送 Python 对象<a class="headerlink" href="#python" title="Permalink to this heading">#</a></h2>
 <p>比如，我们发送一个 Python 对象。Python 对象在通信过程中的序列化使用的是 <a class="reference external" href="https://docs.python.org/3/library/pickle.html#module-pickle">pickle</a>。</p>
@@ -422,7 +432,7 @@ document.write(`
 </pre></div>
 </div>
 <p>在命令行中这样启动：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun -np <span class="m">2</span> python send-py-object.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">2</span><span class="w"> </span>python<span class="w"> </span>send-py-object.py
 </pre></div>
 </div>
 </section>
@@ -492,6 +502,62 @@ document.write(`
 </div>
 <p>在这个例子中，<code class="docutils literal notranslate"><span class="pre">rank</span></code> 小于 <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">-</span> <span class="pre">1</span></code> 的进程是 Worker，随机生成数据，并发送出给最后一个进程（进程 Rank 号为 <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">-</span> <span class="pre">1</span></code>）。最后一个进程接收数据，并打印出接收数据的大小。</p>
 </section>
+<section id="v-s">
+<h2>阻塞 v.s. 非阻塞<a class="headerlink" href="#v-s" title="Permalink to this heading">#</a></h2>
+<section id="id3">
+<h3>阻塞<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>我们先分析一下阻塞式通信。<code class="docutils literal notranslate"><span class="pre">Send</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Recv</span></code> 这两个基于缓存的方法：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Send</span></code> 直到缓存是空的时候，也就是说缓存中的数据都被发送出去后，才返回（<code class="docutils literal notranslate"><span class="pre">return</span></code>），允许运行用户代码中剩下的业务逻辑。缓存区域可以被接下来其他的 <code class="docutils literal notranslate"><span class="pre">Send</span></code> 循环再利用。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Recv</span></code> 直到缓存区域数据到达，才返回（<code class="docutils literal notranslate"><span class="pre">return</span></code>），，允许运行用户代码中剩下的业务逻辑。</p></li>
+</ul>
+<p>如 <a class="reference internal" href="hello.html#mpi-communications"><span class="std std-ref">两种通讯模式：双边和单边</span></a> 所示，阻塞通信是数据完成传输，才会返回（<code class="docutils literal notranslate"><span class="pre">return</span></code>），否则一直在等待。</p>
+<figure class="align-default" id="blocking-communications">
+<a class="reference internal image-reference" href="../_images/blocking.svg"><img alt="../_images/blocking.svg" src="../_images/blocking.svg" width="800px" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">阻塞式通信示意图</span><a class="headerlink" href="#blocking-communications" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>阻塞式通信的代码更容易去设计，但出现问题是死锁，比如类似下面的逻辑，Rank = 1 的产生了死锁，应该将 <code class="docutils literal notranslate"><span class="pre">Send</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Recv</span></code> 调用顺序互换</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+	<span class="n">comm</span><span class="o">.</span><span class="n">Send</span><span class="p">(</span><span class="o">..</span><span class="n">to</span> <span class="n">rank</span> <span class="mf">1.</span><span class="o">.</span><span class="p">)</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">Recv</span><span class="p">(</span><span class="o">..</span><span class="kn">from</span> <span class="nn">rank</span> <span class="mf">1.</span><span class="o">.</span><span class="p">)</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span> <span class="o">&lt;-</span> <span class="n">该进程死锁</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">Send</span><span class="p">(</span><span class="o">..</span><span class="n">to</span> <span class="n">rank</span> <span class="mf">0.</span><span class="o">.</span><span class="p">)</span>       <span class="o">&lt;-</span> <span class="n">应将</span> <span class="n">Send</span> <span class="n">Revc</span> <span class="n">互换</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">Recv</span><span class="p">(</span><span class="o">..</span><span class="kn">from</span> <span class="nn">rank</span> <span class="mf">0.</span><span class="o">.</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>非阻塞<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p>非阻塞式通信调用后直接返回 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 句柄（Handle），程序员接下来再对 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 做处理，比如等待 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 涉及的数据传输完毕。非阻塞式通信有大写的 i（I） 作为前缀， <code class="docutils literal notranslate"><span class="pre">Irecv</span></code> 的函数参数与之前相差不大，只不过返回值是一个 <code class="docutils literal notranslate"><span class="pre">Request</span></code>：<code class="docutils literal notranslate"><span class="pre">Request</span> <span class="pre">=</span> <span class="pre">Isend(buf,</span> <span class="pre">dest,</span> <span class="pre">tag=0</span></code>。 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 类提供了 <code class="docutils literal notranslate"><span class="pre">wait</span></code> 方法，显示地调用 <code class="docutils literal notranslate"><span class="pre">wait()</span></code> 可以等待数据传输完毕。用 <code class="docutils literal notranslate"><span class="pre">Isend</span></code> 写的阻塞式的代码，可以改为 <code class="docutils literal notranslate"><span class="pre">Isend</span></code> + <code class="docutils literal notranslate"><span class="pre">Request.wait()</span></code> 以非阻塞方式实现。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mf">3.14</span><span class="p">}</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">isend</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sending: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">, from rank: </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sended: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">, from rank: </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">irecv</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Receiving: to rank: </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Received: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">, to rank: </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#non-blocking-communications"><span class="std std-ref">非阻塞式通信示意图</span></a> 展示非阻塞通信 <code class="docutils literal notranslate"><span class="pre">wait()</span></code> 加入后数据流的变化。</p>
+<figure class="align-default" id="non-blocking-communications">
+<a class="reference internal image-reference" href="../_images/non-blocking.svg"><img alt="../_images/non-blocking.svg" src="../_images/non-blocking.svg" width="800px" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">非阻塞式通信示意图</span><a class="headerlink" href="#non-blocking-communications" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -548,9 +614,15 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">发送与接收</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">案例1：发送 Python 对象</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-ndarray">案例2：发送 NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#master-worker">案例3：Master-Worker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v-s">阻塞 v.s. 非阻塞</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">阻塞</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">非阻塞</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
@@ -598,8 +670,8 @@ By 鲁蔚征
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>
