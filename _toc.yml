@@ -5,6 +5,12 @@
 format: jb-book
 root: index
 parts:
+  - caption: Dask
+    chapters:
+    - file: ch-dask/index
+      sections:
+        - file: ch-dask/dask-intro
+
   - caption: Ray
     chapters:
     - file: ch-ray-core/index

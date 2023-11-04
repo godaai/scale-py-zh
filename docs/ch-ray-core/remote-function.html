@@ -172,9 +172,16 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ray</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dask</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-dask/index.html">Dask</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-dask/dask-intro.html">Dask 简介</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ray</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Ray</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Ray</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="ray-intro.html">Ray 简介</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">分布式函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="remote-object.html">分布式对象存储</a></li>
@@ -182,14 +189,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="ray-internal.html">Ray 系统与设计</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-air/index.html">Ray AIR</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-air/index.html">Ray AIR</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-air/ray-data.html">Ray Data</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">mpi4py</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">MPI</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">MPI</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-intro.html">MPI 简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ch-mpi/hello.html">MPI Hello World</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ch-mpi/point-to-point.html">点对点通信</a></li>
@@ -412,18 +419,18 @@ document.write(`
 <p>被 Ray 加速的函数可以被运行在远程的 Ray 集群上，被称为远程函数（Remote Function）又被称为任务（Task）。Remote Function 是无状态的，无状态的意思是的执行只依赖函数的输入和输出，不依赖其他第三方的中间变量。</p>
 <section id="id2">
 <h2>顺序执行与分布式执行<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
-<p>一个原生的 Python 函数如果使用 <code class="docutils literal notranslate"><span class="pre">for</span></code> 循环多次执行，将以顺序的方式，依次执行，如 <a class="reference internal" href="#serial-timeline"><span class="std std-ref">顺序执行的时间轴示意图</span></a> 所示。</p>
+<p>一个原生的 Python 函数如果使用 <code class="docutils literal notranslate"><span class="pre">for</span></code> 循环多次执行，将以顺序的方式，依次执行，如 <a class="reference internal" href="#serial-timeline"><span class="std std-numref">Fig. 4</span></a> 所示。</p>
 <figure class="align-default" id="serial-timeline">
 <a class="reference internal image-reference" href="../_images/serial-timeline.png"><img alt="../_images/serial-timeline.png" src="../_images/serial-timeline.png" style="width: 800px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">顺序执行的时间轴示意图</span><a class="headerlink" href="#serial-timeline" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">顺序执行的时间轴示意图</span><a class="headerlink" href="#serial-timeline" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>与原生 Python 函数顺序不同的是，Ray 可以将函数的执行分布式到集群中的多个计算节点上，如 <a class="reference internal" href="#distributed-timeline"><span class="std std-ref">分布式执行的时间轴示意图</span></a> 所示。</p>
 <figure class="align-default" id="distributed-timeline">
 <a class="reference internal image-reference" href="../_images/distributed-timeline.png"><img alt="../_images/distributed-timeline.png" src="../_images/distributed-timeline.png" style="width: 800px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">分布式执行的时间轴示意图</span><a class="headerlink" href="#distributed-timeline" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">分布式执行的时间轴示意图</span><a class="headerlink" href="#distributed-timeline" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>接下来将以三个案例来演示如何将 Python 函数横向扩展到 Ray 集群上：</p>
@@ -593,7 +600,7 @@ F_n = F_{n-1} + F_{n-2}
 <figure class="align-default" id="square-circle">
 <a class="reference internal image-reference" href="../_images/square-circle.png"><img alt="../_images/square-circle.png" src="../_images/square-circle.png" style="width: 800px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">在正方形内随机撒点，这些点有一定概率落在圆内</span><a class="headerlink" href="#square-circle" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">在正方形内随机撒点，这些点有一定概率落在圆内</span><a class="headerlink" href="#square-circle" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="cell docutils container">

@@ -170,9 +170,16 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ray</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dask</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-dask/index.html">Dask</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-dask/dask-intro.html">Dask 简介</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ray</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-core/index.html">Ray</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-core/index.html">Ray</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-intro.html">Ray 简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-function.html">分布式函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-object.html">分布式对象存储</a></li>
@@ -180,14 +187,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-internal.html">Ray 系统与设计</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Ray AIR</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Ray AIR</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Ray Data</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">mpi4py</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">MPI</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">MPI</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-intro.html">MPI 简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ch-mpi/hello.html">MPI Hello World</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ch-mpi/point-to-point.html">点对点通信</a></li>
@@ -577,7 +584,7 @@ Airport_fee            double
 <figure class="align-default" id="map-map-batches">
 <a class="reference internal image-reference" href="../_images/map-map-batches.svg"><img alt="../_images/map-map-batches.svg" src="../_images/map-map-batches.svg" width="800px" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text">map() v.s. map_batches()</span><a class="headerlink" href="#map-map-batches" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">map() v.s. map_batches()</span><a class="headerlink" href="#map-map-batches" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p><code class="docutils literal notranslate"><span class="pre">map_batches()</span></code> 模拟的是单机处理时，对整个数据集的操作。其设计思想主要为了方便将之前编写好的、单机的程序，无缝地迁移到 Ray 上。所以，我们可以简单理解，用户先编写一个单机的程序，然后使用 Ray Data 迁移到集群上。在 <code class="docutils literal notranslate"><span class="pre">map_batches()</span></code> 上，每个批次的数据格式为 <code class="docutils literal notranslate"><span class="pre">Dict[str,</span> <span class="pre">np.ndarray]</span></code>、<code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> 或 <code class="docutils literal notranslate"><span class="pre">pyarrow.Table</span></code> 表示，分别对应使用 NumPy 、pandas 和 Arrow 时，进行单机处理的业务逻辑。<code class="docutils literal notranslate"><span class="pre">map_batches()</span></code> 的最重要的参数是一个自定义的函数 <code class="docutils literal notranslate"><span class="pre">fn</span></code>。比如，我们对 <code class="docutils literal notranslate"><span class="pre">dataset</span></code> 中过滤某个字段的值，可以看到，经过过滤之后，数据的条数大大减少。</p>

@@ -71,7 +71,7 @@ mpirun –hostfile hf –n 16 python hello.py
 
 刚才我们提到了 World 的概念，并使用了 `MPI_COMM_WORLD`，更准确地说，`MPI_COMM_WORLD` 是一个 Communicator。MPI 将进程划分到不同的组（Group）中，每个 Group 有不同的 Color，Group 和 Color 共同组成了 Communicator，或者说 Communicator 是 Group + Color 的名字，一个默认的 Communicator 就是 `MPI_COMM_WORLD`。
 
-对于一个进程，它可能在不同的 Communicator 中，因此它在不同 Communicator 中的 Rank 可能也不一样。如 {ref}`mpi-communicatitor` 所示，每一层可以理解为一个 Communicator，圆圈中的数字是进程在这个 Communicator 中的 Rank，每一层的进程通信是相互独立的。
+对于一个进程，它可能在不同的 Communicator 中，因此它在不同 Communicator 中的 Rank 可能也不一样。如 {numref}`mpi-communicatitor` 所示，每一层可以理解为一个 Communicator，圆圈中的数字是进程在这个 Communicator 中的 Rank，每一层的进程通信是相互独立的。
 
 ```{figure} ../img/ch-mpi/communicators.png
 ---

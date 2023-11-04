@@ -3,7 +3,7 @@
 
 ## Ray 集群
 
-如 {ref}`ray-cluster` 所示，Ray 集群由一系列计算节点组成，其中两类关键的节点：头节点（Head node）和工作节点（Worker node）。这些节点可以部署在虚拟机、容器或者是裸金属服务器上。
+如 {numref}`ray-cluster` 所示，Ray 集群由一系列计算节点组成，其中两类关键的节点：头节点（Head node）和工作节点（Worker node）。这些节点可以部署在虚拟机、容器或者是裸金属服务器上。
 
 ```{figure} ../img/ch-ray-core/ray-cluster.svg
 ---
@@ -23,7 +23,7 @@ Ray 集群
 
 每个计算节点上运行着一个 Raylet。与一个计算节点上运行多个 Worker 进程不同，每个计算节点上只有一个 Raylet 进程，或者说 Raylet 被多个 Worker 进程所共享。Raylet 主要有两个组件：一个调度器（Scheduler），负责资源管理、任务分配等。各个计算节点上的 Scheduler 共同组成了整个 Ray 集群的分布式调度器；一个基于共享内存的对象存储（Share-memory Object Store），负责本地的数据存储，各个计算节点上的 Object Store 共同组成了 Ray 的分布式对象存储。
 
-从 {ref}`ray-cluster` 中也可以看到，头节点还多了：
+从 {numref}`ray-cluster` 中也可以看到，头节点还多了：
 
 * Global Control Service（GCS）
 

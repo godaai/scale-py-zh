@@ -1,3 +1,4 @@
+(mpi-point2point)=
 # 点对点通信
 
 一个最简单的通信模式点对点（Point-to-Point）通信，点对点通信又分为阻塞式（Blocking）和非阻塞式（Non-Blocking）。实现点对点时主要考虑两个问题：
@@ -158,7 +159,7 @@ elif rank == 1:
     print(f"Received: {data}, to rank: {rank}.")
 ```
 
-{ref}`non-blocking-communications` 展示非阻塞通信 `wait()` 加入后数据流的变化。
+{numref}`non-blocking-communications` 展示非阻塞通信 `wait()` 加入后数据流的变化。
 
 ```{figure} ../img/ch-mpi/non-blocking.svg
 ---

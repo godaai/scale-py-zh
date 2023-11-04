@@ -166,9 +166,16 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ray</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dask</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-core/index.html">Ray</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-dask/index.html">Dask</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-dask/dask-intro.html">Dask 简介</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ray</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-core/index.html">Ray</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-intro.html">Ray 简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-function.html">分布式函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-object.html">分布式对象存储</a></li>
@@ -176,14 +183,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-internal.html">Ray 系统与设计</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-air/index.html">Ray AIR</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-air/index.html">Ray AIR</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-air/ray-data.html">Ray Data</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">mpi4py</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">MPI</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">MPI</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="mpi-intro.html">MPI 简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hello.html">MPI Hello World</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">点对点通信</a></li>
@@ -402,8 +409,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>点对点通信<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="mpi-point2point">
+<span id="id1"></span><h1>点对点通信<a class="headerlink" href="#mpi-point2point" title="Permalink to this heading">#</a></h1>
 <p>一个最简单的通信模式点对点（Point-to-Point）通信，点对点通信又分为阻塞式（Blocking）和非阻塞式（Non-Blocking）。实现点对点时主要考虑两个问题：</p>
 <ul class="simple">
 <li><p>如何控制和识别不同的进程？比如，想让 Rank 为 0 的进程给 Rank 为 1 的进程发消息。</p></li>
@@ -515,7 +522,7 @@ document.write(`
 <figure class="align-default" id="blocking-communications">
 <a class="reference internal image-reference" href="../_images/blocking.svg"><img alt="../_images/blocking.svg" src="../_images/blocking.svg" width="800px" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">阻塞式通信示意图</span><a class="headerlink" href="#blocking-communications" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">阻塞式通信示意图</span><a class="headerlink" href="#blocking-communications" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>阻塞式通信的代码更容易去设计，但出现问题是死锁，比如类似下面的逻辑，Rank = 1 的产生了死锁，应该将 <code class="docutils literal notranslate"><span class="pre">Send</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Recv</span></code> 调用顺序互换</p>
@@ -549,11 +556,11 @@ document.write(`
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Received: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">, to rank: </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="#non-blocking-communications"><span class="std std-ref">非阻塞式通信示意图</span></a> 展示非阻塞通信 <code class="docutils literal notranslate"><span class="pre">wait()</span></code> 加入后数据流的变化。</p>
+<p><a class="reference internal" href="#non-blocking-communications"><span class="std std-numref">Fig. 13</span></a> 展示非阻塞通信 <code class="docutils literal notranslate"><span class="pre">wait()</span></code> 加入后数据流的变化。</p>
 <figure class="align-default" id="non-blocking-communications">
 <a class="reference internal image-reference" href="../_images/non-blocking.svg"><img alt="../_images/non-blocking.svg" src="../_images/non-blocking.svg" width="800px" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">非阻塞式通信示意图</span><a class="headerlink" href="#non-blocking-communications" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">非阻塞式通信示意图</span><a class="headerlink" href="#non-blocking-communications" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
