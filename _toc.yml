@@ -32,3 +32,4 @@ parts:
         - file: ch-mpi/mpi-intro
         - file: ch-mpi/hello
         - file: ch-mpi/point-to-point
+        - file: ch-mpi/collective
