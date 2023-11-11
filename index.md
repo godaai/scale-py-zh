@@ -17,7 +17,7 @@
 
 % The SVG rendering breaks latex builds for the GitHub badge, so only include in HTML
 ```{only} html
-[![](https://img.shields.io/github/stars/edaai-org/distributed-python?style=for-the-badge)](https://github.com/edaai-org/distributed-python)
+[![](https://img.shields.io/github/stars/godaai/distributed-python?style=for-the-badge)](https://github.com/godaai/distributed-python)
 ```
 
 :::
