@@ -526,7 +526,7 @@ document.write(`
 <p><code class="docutils literal notranslate"><span class="pre">shuffle(x)</span></code> 方法就像扑克牌中的洗牌，可以在原地打乱对象 <code class="docutils literal notranslate"><span class="pre">x</span></code> 。如果 <code class="docutils literal notranslate"><span class="pre">x</span></code> 是多维数组，则按照第一维“洗牌”。现在，我们在 <span class="math notranslate nohighlight">\([100,400)\)</span> 范围内生成随机整数数组，并将生成的矩阵按照行“洗牌”。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;===before shuffle===&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -539,17 +539,11 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===before shuffle===
 [[108 228]
  [235 162]
- [238 180]
- [262 388]
- [360 330]
- [140 127]]
+ [238 180]]
 ===after shuffle===
-[[238 180]
- [360 330]
- [140 127]
- [235 162]
- [262 388]
- [108 228]]
+[[235 162]
+ [108 228]
+ [238 180]]
 </pre></div>
 </div>
 </div>
@@ -562,7 +556,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([7, 0, 1, 8, 3, 2, 4, 5, 9, 6])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5, 8, 2, 3, 9, 7, 6, 1, 4, 0])
 </pre></div>
 </div>
 </div>
