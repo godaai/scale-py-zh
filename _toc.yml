@@ -11,6 +11,7 @@ parts:
         - file: ch-numpy/numpy-intro
         - file: ch-numpy/ndarray
         - file: ch-numpy/ndarray-slicing-index
+        - file: ch-numpy/random
     
     - file: ch-pandas/index
       sections:
