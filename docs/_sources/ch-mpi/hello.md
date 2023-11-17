@@ -43,15 +43,15 @@ comm.Barrier()
 如果在个人电脑上，启动 8 个进程，在命令行中执行：
 
 ```bash
-mpirun -np 8 python hello.py
+mpiexec -np 8 python hello.py
 ```
 
-`mpirun` 其实不是 MPI 标准的一部分，所以不同厂商的 `mpirun` 的参数会有一些区别。`mpirun` 命令在有的实现中等同于 `mpiexec`。相比 C/C++ 或 Fortran，mpi4py 的方便之处在于不需要使用 `mpicc` 编译器进行编译，直接执行即可。
+不同厂商的 `mpiexec` 的参数会有一些区别。相比 C/C++ 或 Fortran，mpi4py 的方便之处在于不需要使用 `mpicc` 编译器进行编译，直接执行即可。
 
-如果有一个集群，且集群挂载了一个共享的文件系统，即集群上每个节点上的特定目录的内容是一样的，`hello.py` 和 `mpirun` 是一模一样的。可以这样拉起：
+如果有一个集群，且集群挂载了一个共享的文件系统，即集群上每个节点上的特定目录的内容是一样的，`hello.py` 和 `mpiexec` 是一模一样的。可以这样拉起：
 
 ```bash
-mpirun –hosts h1:4,h2:4,h3:4,h4:4 –n 16 python hello.py
+mpiexec –hosts h1:4,h2:4,h3:4,h4:4 –n 16 python hello.py
 ```
 
 这个启动命令一共在 16 个进程上执行，16 个进程分布在 4 个计算节点上，每个节点使用了 4 个进程。如果节点比较多，还可以单独编写一个节点文件，比如命名为 `hf`，内容为：
@@ -64,7 +64,7 @@ h2:8
 这样执行：
 
 ```
-mpirun –hostfile hf –n 16 python hello.py
+mpiexec –hostfile hf –n 16 python hello.py
 ```
 
 ## Communicator

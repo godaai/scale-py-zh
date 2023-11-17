@@ -62,6 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch-mpi/point-to-point';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -299,7 +301,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/ch-mpi/point-to-point.md" target="_blank"
+      <li><a href="../_sources/ch-mpi/point-to-point.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -309,7 +311,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -395,6 +397,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">案例1：发送 Python 对象</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-ndarray">案例2：发送 NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#master-worker">案例3：Master-Worker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pi">案例 4：梯形法求 <span class="math notranslate nohighlight">\(\pi\)</span> 值</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v-s">阻塞 v.s. 非阻塞</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">阻塞</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">非阻塞</a></li>
@@ -425,7 +428,7 @@ document.write(`
 </section>
 <section id="python">
 <h2>案例1：发送 Python 对象<a class="headerlink" href="#python" title="Permalink to this heading">#</a></h2>
-<p>比如，我们发送一个 Python 对象。Python 对象在通信过程中的序列化使用的是 <a class="reference external" href="https://docs.python.org/3/library/pickle.html#module-pickle">pickle</a>。</p>
+<p>比如，我们发送一个 Python 对象。Python 对象在通信过程中的序列化使用的是 <a class="reference external" href="https://docs.python.org/3/library/pickle.html#module-pickle">pickle</a>。将这份代码保存文件为 <code class="docutils literal notranslate"><span class="pre">send-py-object.py</span></code>。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
 
 <span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
@@ -441,13 +444,26 @@ document.write(`
 </pre></div>
 </div>
 <p>在命令行中这样启动：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">2</span><span class="w"> </span>python<span class="w"> </span>send-py-object.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">2</span><span class="w"> </span>python<span class="w"> </span>send-py-object.py
 </pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">2</span><span class="w"> </span>python<span class="w"> </span>send-py-object.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sended: {&#39;a&#39;: 7, &#39;b&#39;: 3.14}, from rank: 0.
+Received: {&#39;a&#39;: 7, &#39;b&#39;: 3.14}, to rank: 1.
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="numpy-ndarray">
 <h2>案例2：发送 NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code><a class="headerlink" href="#numpy-ndarray" title="Permalink to this heading">#</a></h2>
-<p>或者发送一个 NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>，如下：</p>
+<p>或者发送一个 NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>，保存如下代码为 <code class="docutils literal notranslate"><span class="pre">send-np.py</span></code> 文件：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -475,6 +491,21 @@ document.write(`
     <span class="n">comm</span><span class="o">.</span><span class="n">Recv</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Received: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">, to rank: </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 </pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">2</span><span class="w"> </span>python<span class="w"> </span>send-np.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sended: [0 1 2 3 4 5 6 7 8 9], from rank: 0.
+Sended: [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.], from rank: 0.
+Received: [0 1 2 3 4 5 6 7 8 9], to rank: 1.
+Received: [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.], to rank: 1.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -510,6 +541,100 @@ document.write(`
 </pre></div>
 </div>
 <p>在这个例子中，<code class="docutils literal notranslate"><span class="pre">rank</span></code> 小于 <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">-</span> <span class="pre">1</span></code> 的进程是 Worker，随机生成数据，并发送出给最后一个进程（进程 Rank 号为 <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">-</span> <span class="pre">1</span></code>）。最后一个进程接收数据，并打印出接收数据的大小。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">8</span><span class="w"> </span>python<span class="w"> </span>master-worker.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Worker: worker ID: 0; count: 44
+Worker: worker ID: 1; count: 37
+Worker: worker ID: 2; count: 40
+Worker: worker ID: 3; count: 24
+Worker: worker ID: 4; count: 46
+Worker: worker ID: 5; count: 99
+Worker: worker ID: 6; count: 10
+Master: worker ID: 3; count: 24
+Master: worker ID: 4; count: 46
+Master: worker ID: 5; count: 99
+Master: worker ID: 1; count: 37
+Master: worker ID: 2; count: 40
+Master: worker ID: 6; count: 10
+Master: worker ID: 0; count: 44
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pi">
+<h2>案例 4：梯形法求 <span class="math notranslate nohighlight">\(\pi\)</span> 值<a class="headerlink" href="#pi" title="Permalink to this heading">#</a></h2>
+<p>对半径为 R 的四分之一圆，我们可以采用微分方法依次排列小矩形 (类似于梯形台阶)，当矩形数量达到无穷大的 N 时, 矩形总面积就接近于真实的 1/4 圆面积。假设此时有 <code class="docutils literal notranslate"><span class="pre">size</span></code> 个进程参与计算，首先求每个进程需要处理的矩形数量 (<code class="docutils literal notranslate"><span class="pre">N/size</span></code>)。接下来，分配后 <code class="docutils literal notranslate"><span class="pre">size-1</span></code> 个进程作为 Worker，计算各自矩形面积之和发送给主进程。而第一个进程作为 Master，接收各 Worker 发送数据，汇总所有矩形面积，从而近似计算出 <span class="math notranslate nohighlight">\(\pi\)</span> 值。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+
+<span class="n">communicator</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">communicator</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>  <span class="c1"># 进程唯一的标识Rank</span>
+<span class="n">process_nums</span> <span class="o">=</span> <span class="n">communicator</span><span class="o">.</span><span class="n">Get_size</span><span class="p">()</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">参数设置：</span>
+<span class="sd">R=1</span>
+<span class="sd">N=64*1024*1024</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">rect_num</span> <span class="o">=</span> <span class="mi">64</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>
+<span class="n">rect_width</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">rect_num</span>
+<span class="n">step_size</span> <span class="o">=</span> <span class="n">rect_num</span> <span class="o">//</span> <span class="n">process_nums</span>
+
+
+<span class="k">def</span> <span class="nf">cal_rect_area</span><span class="p">(</span><span class="n">process_no</span><span class="p">,</span> <span class="n">step_size</span><span class="p">,</span> <span class="n">rect_width</span><span class="p">):</span>
+    <span class="n">total_area</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">rect_start</span> <span class="o">=</span> <span class="p">(</span><span class="n">process_no</span> <span class="o">*</span> <span class="n">step_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">rect_width</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">step_size</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">rect_start</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">rect_width</span>
+        <span class="c1"># (x,y) 对应于第i个小矩形唯一在圆弧上的顶点</span>
+        <span class="c1"># x^2+y^2=1 =&gt; y=sqrt(1-x^2)</span>
+        <span class="n">rect_length</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">total_area</span> <span class="o">+=</span> <span class="n">rect_width</span> <span class="o">*</span> <span class="n">rect_length</span>
+    <span class="k">return</span> <span class="n">total_area</span>
+
+<span class="n">total_area</span> <span class="o">=</span> <span class="n">cal_rect_area</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">step_size</span><span class="p">,</span> <span class="n">rect_width</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="c1"># Master</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">process_nums</span><span class="p">):</span>
+        <span class="n">total_area</span> <span class="o">+=</span> <span class="n">communicator</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">p_i</span> <span class="o">=</span> <span class="n">total_area</span> <span class="o">*</span> <span class="mi">4</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;模拟PI值为: </span><span class="si">{:.10f}</span><span class="s2">, 相对误差为：</span><span class="si">{:.10f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p_i</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p_i</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;并行耗时：</span><span class="si">{:.3f}</span><span class="s2">s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
+    <span class="c1"># 串行执行</span>
+    <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">total_area</span> <span class="o">=</span> <span class="n">cal_rect_area</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">rect_num</span><span class="p">,</span> <span class="n">rect_width</span><span class="p">)</span>
+    <span class="n">t3</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;串行耗时：</span><span class="si">{:.3f}</span><span class="s2">s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t3</span> <span class="o">-</span> <span class="n">t2</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Worker</span>
+    <span class="n">communicator</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">total_area</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>上述例子中，我们设置常量参数为：<code class="docutils literal notranslate"><span class="pre">R=1</span></code>, <code class="docutils literal notranslate"><span class="pre">N=64*1024*1024</span></code>，保存文件为 <code class="docutils literal notranslate"><span class="pre">rectangle_approx_pi.py</span></code>：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">8</span><span class="w"> </span>python<span class="w"> </span>rectangle_approx_pi.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>模拟PI值为: 3.1415926238, 相对误差为：0.0000000095
+并行耗时：4.343s
+串行耗时：17.679s
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="v-s">
 <h2>阻塞 v.s. 非阻塞<a class="headerlink" href="#v-s" title="Permalink to this heading">#</a></h2>
@@ -557,6 +682,21 @@ document.write(`
     <span class="n">data</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Received: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">, to rank: </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 </pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">8</span><span class="w"> </span>python<span class="w"> </span>non-blocking.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sending: {&#39;a&#39;: 7, &#39;b&#39;: 3.14}, from rank: 0.
+Sended: {&#39;a&#39;: 7, &#39;b&#39;: 3.14}, from rank: 0.
+Receiving: to rank: 1.
+Received: {&#39;a&#39;: 7, &#39;b&#39;: 3.14}, to rank: 1.
+</pre></div>
+</div>
+</div>
 </div>
 <p><a class="reference internal" href="#non-blocking-communications"><span class="std std-numref">Fig. 13</span></a> 展示非阻塞通信 <code class="docutils literal notranslate"><span class="pre">wait()</span></code> 加入后数据流的变化。</p>
 <figure class="align-default" id="non-blocking-communications">
@@ -636,6 +776,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">案例1：发送 Python 对象</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-ndarray">案例2：发送 NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#master-worker">案例3：Master-Worker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pi">案例 4：梯形法求 <span class="math notranslate nohighlight">\(\pi\)</span> 值</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v-s">阻塞 v.s. 非阻塞</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">阻塞</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">非阻塞</a></li>

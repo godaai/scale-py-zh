@@ -462,17 +462,15 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span>python<span class="w"> </span>broadcast.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span>python<span class="w"> </span>broadcast.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rank: 0, data: [0. 1. 2. 3. 4.]
+Rank: 1, data: [0. 1. 2. 3. 4.]
 Rank: 2, data: [0. 1. 2. 3. 4.]
 Rank: 3, data: [0. 1. 2. 3. 4.]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rank: 1, data: [0. 1. 2. 3. 4.]
 </pre></div>
 </div>
 </div>
@@ -512,7 +510,7 @@ Rank: 3, data: [0. 1. 2. 3. 4.]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span>python<span class="w"> </span>scatter.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span>python<span class="w"> </span>scatter.py
 </pre></div>
 </div>
 </div>
@@ -523,9 +521,9 @@ Rank: 3, data: [0. 1. 2. 3. 4.]
  [2 2 2 2 2 2 2 2]
  [3 3 3 3 3 3 3 3]]
 Rank: 0, after scatter: [0 0 0 0 0 0 0 0]
+Rank: 1, after scatter: [1 1 1 1 1 1 1 1]
 Rank: 2, after scatter: [2 2 2 2 2 2 2 2]
 Rank: 3, after scatter: [3 3 3 3 3 3 3 3]
-Rank: 1, after scatter: [1 1 1 1 1 1 1 1]
 </pre></div>
 </div>
 </div>

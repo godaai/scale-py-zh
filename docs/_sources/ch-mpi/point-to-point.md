@@ -34,7 +34,7 @@ elif rank == 1:
 在命令行中这样启动：
 
 ```bash
-mpirun -np 2 python send-py-object.py
+mpiexec -np 2 python send-py-object.py
 ```
 
 ## 案例2：发送 NumPy `ndarray`

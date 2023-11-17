@@ -445,12 +445,12 @@ document.write(`
 </div>
 <p>在这段程序中，<code class="docutils literal notranslate"><span class="pre">print</span></code> 是上单个进程内执行的，打印出当前进程的 Rank 和主机名。<code class="docutils literal notranslate"><span class="pre">comm.Barrier()</span></code> 将每个进程做了阻断，直到所有进程执行完毕后，才会进行下面的操作。本例中，<code class="docutils literal notranslate"><span class="pre">comm.Barrier()</span></code> 后无其他操作，程序将退出。</p>
 <p>如果在个人电脑上，启动 8 个进程，在命令行中执行：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">8</span><span class="w"> </span>python<span class="w"> </span>hello.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">8</span><span class="w"> </span>python<span class="w"> </span>hello.py
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">mpirun</span></code> 其实不是 MPI 标准的一部分，所以不同厂商的 <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> 的参数会有一些区别。<code class="docutils literal notranslate"><span class="pre">mpirun</span></code> 命令在有的实现中等同于 <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>。相比 C/C++ 或 Fortran，mpi4py 的方便之处在于不需要使用 <code class="docutils literal notranslate"><span class="pre">mpicc</span></code> 编译器进行编译，直接执行即可。</p>
-<p>如果有一个集群，且集群挂载了一个共享的文件系统，即集群上每个节点上的特定目录的内容是一样的，<code class="docutils literal notranslate"><span class="pre">hello.py</span></code> 和 <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> 是一模一样的。可以这样拉起：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>–hosts<span class="w"> </span>h1:4,h2:4,h3:4,h4:4<span class="w"> </span>–n<span class="w"> </span><span class="m">16</span><span class="w"> </span>python<span class="w"> </span>hello.py
+<p>不同厂商的 <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> 的参数会有一些区别。相比 C/C++ 或 Fortran，mpi4py 的方便之处在于不需要使用 <code class="docutils literal notranslate"><span class="pre">mpicc</span></code> 编译器进行编译，直接执行即可。</p>
+<p>如果有一个集群，且集群挂载了一个共享的文件系统，即集群上每个节点上的特定目录的内容是一样的，<code class="docutils literal notranslate"><span class="pre">hello.py</span></code> 和 <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> 是一模一样的。可以这样拉起：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpiexec<span class="w"> </span>–hosts<span class="w"> </span>h1:4,h2:4,h3:4,h4:4<span class="w"> </span>–n<span class="w"> </span><span class="m">16</span><span class="w"> </span>python<span class="w"> </span>hello.py
 </pre></div>
 </div>
 <p>这个启动命令一共在 16 个进程上执行，16 个进程分布在 4 个计算节点上，每个节点使用了 4 个进程。如果节点比较多，还可以单独编写一个节点文件，比如命名为 <code class="docutils literal notranslate"><span class="pre">hf</span></code>，内容为：</p>
@@ -459,7 +459,7 @@ document.write(`
 </pre></div>
 </div>
 <p>这样执行：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mpirun –hostfile hf –n 16 python hello.py
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mpiexec –hostfile hf –n 16 python hello.py
 </pre></div>
 </div>
 </section>
