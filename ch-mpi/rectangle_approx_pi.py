@@ -29,7 +29,7 @@ def cal_rect_area(process_no, step_size, rect_width):
         total_area += rect_width * rect_length
     return total_area
 
-# 在每个进程上计算
+# 在每个进程上执行计算
 total_area = cal_rect_area(rank, step_size, rect_width)
 
 if rank == 0:

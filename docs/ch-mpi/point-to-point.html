@@ -444,9 +444,6 @@ document.write(`
 </pre></div>
 </div>
 <p>在命令行中这样启动：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">2</span><span class="w"> </span>python<span class="w"> </span>send-py-object.py
-</pre></div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">2</span><span class="w"> </span>python<span class="w"> </span>send-py-object.py
@@ -601,7 +598,9 @@ Master: worker ID: 0; count: 44
         <span class="n">total_area</span> <span class="o">+=</span> <span class="n">rect_width</span> <span class="o">*</span> <span class="n">rect_length</span>
     <span class="k">return</span> <span class="n">total_area</span>
 
+<span class="c1"># 在每个进程上执行计算</span>
 <span class="n">total_area</span> <span class="o">=</span> <span class="n">cal_rect_area</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">step_size</span><span class="p">,</span> <span class="n">rect_width</span><span class="p">)</span>
+
 <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
     <span class="c1"># Master</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">process_nums</span><span class="p">):</span>
