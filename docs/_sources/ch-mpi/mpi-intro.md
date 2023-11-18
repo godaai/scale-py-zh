@@ -34,7 +34,7 @@ MPI 也可以在单机上运行，即：利用单台节点上的多个计算核�
 * 编译器 `mpicc`、`mpicxx` 和 `mpifort`，分别用来编译 C、C++、Fortran 语言编写的源代码，源代码中一部分是多机通讯，一部分是单机计算，这些编译器通常将多机通讯与单机计算的代码一起编译，并生成可执行文件。
 * 在多台节点上将并行程序拉起的 `mpirun` 或 `mpiexec`。比如，在多少台节点上拉起多少进程等，都是通过 `mpiexec` 来完成的。
 
-:::tip
+:::{note}
 在很多 MPI 实现中，`mpirun` 和 `mpiexec` 的功能几乎相同，它们都可以将并行程序拉起。有些 MPI 实现的 `mpirun` 和 `mpiexec` 背后是同一个程序。但严禁地讲，MPI 标准中只定义了 `mpiexec`，并没有定义 `mpirun`，因此，`mpiexec` 应该更通用。
 :::
 
@@ -51,7 +51,6 @@ pip install mpi4py
 ```bash
 conda install -c conda-forge mpich
 conda install -c conda-forge mpi4py
-conda install -c conda-forge ipyparallel
 ```
 
 大部分 MPI 程序均需要在命令行中先编译再拉起。为解决这个问题，我们还安装了 ipyparallel，可以在 Jupyter Notebook 中完成并行程序的拉起。

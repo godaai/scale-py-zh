@@ -39,3 +39,5 @@ html:
 sphinx:
   config:
     bibtex_reference_style: author_year  # or label, super, \supercite
+    numfig_format: {'figure': '图 %s', 'table': '表 %s',
+                 'code-block': '代码片段 %s', 'section': '章节 %s'}

@@ -6,12 +6,14 @@ format: jb-book
 root: index
 parts:
   - caption: Dask
+    numbered: 2
     chapters:
     - file: ch-dask/index
       sections:
         - file: ch-dask/dask-intro
 
   - caption: Ray
+    numbered: 2
     chapters:
     - file: ch-ray-core/index
       sections:
@@ -26,6 +28,7 @@ parts:
         - file: ch-ray-air/ray-data
 
   - caption: mpi4py
+    numbered: 2
     chapters: 
     - file: ch-mpi/index
       sections:

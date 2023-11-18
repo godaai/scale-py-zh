@@ -16,7 +16,6 @@ rect_num = 64 * 1024 * 1024
 rect_width = 1 / rect_num
 step_size = rect_num // process_nums
 
-
 def cal_rect_area(process_no, step_size, rect_width):
     total_area = 0.0
     rect_start = (process_no * step_size + 1) * rect_width
@@ -38,13 +37,8 @@ if rank == 0:
         total_area += communicator.recv(source=i)
     p_i = total_area * 4
     t1 = time.time()
-    print("模拟PI值为: {:.10f}, 相对误差为：{:.10f}".format(p_i, abs(1 - p_i / math.pi)))
-    print("并行耗时：{:.3f}s".format(t1 - t0))
-    # 串行执行
-    t2 = time.time()
-    total_area = cal_rect_area(rank, rect_num, rect_width)
-    t3 = time.time()
-    print("串行耗时：{:.3f}s".format(t3 - t2))
+    print("Simulated PI: {:.10f}, Relative Error：{:.10f}".format(p_i, abs(1 - p_i / math.pi)))
+    print("Time：{:.3f}s".format(t1 - t0))
 else:
     # Worker
     communicator.send(total_area, dest=0)
