@@ -5,6 +5,7 @@ format: jb-book
 root: index
 parts:
   - caption: 数据处理与计算
+    numbered: 2
     chapters:
     - file: ch-numpy/index
       sections:

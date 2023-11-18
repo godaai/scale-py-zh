@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>分组汇总 &#8212; Python 数据科学实战</title>
+    <title>2.5. 分组汇总 &#8212; Python 数据科学实战</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch-pandas/dataframe-groupby';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="多表操作" href="dataframe-merge-concat.html" />
-    <link rel="prev" title="数据处理" href="data-preprocessing.html" />
+    <link rel="next" title="2.6. 多表操作" href="dataframe-merge-concat.html" />
+    <link rel="prev" title="2.4. 数据处理" href="data-preprocessing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -169,21 +169,21 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">数据处理与计算</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-numpy/index.html">NumPy</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/numpy-intro.html">NumPy 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/ndarray.html">ndarray</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/ndarray-slicing-index.html">切片与索引</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/random.html">随机数生成</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-numpy/index.html">1. NumPy</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/numpy-intro.html">1.1. NumPy 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/ndarray.html">1.2. ndarray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/ndarray-slicing-index.html">1.3. 切片与索引</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/random.html">1.4. 随机数生成</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">pandas</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">pandas 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">Series 与 DataFrame</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html">数据切片</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">数据处理</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">分组汇总</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dataframe-merge-concat.html">多表操作</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dataframe-pivot-melt.html">数据透视</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">2. pandas</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">2.1. pandas 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">2.2. Series 与 DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html">2.3. 数据切片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-preprocessing.html">2.4. 数据处理</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.5. 分组汇总</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-merge-concat.html">2.6. 多表操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-pivot-melt.html">2.7. 数据透视</a></li>
 </ul>
 </li>
 </ul>
@@ -395,12 +395,12 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>分组汇总<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
-<p>实际的数据分析中，经常需要对某一类数据进行统计分析。比如，假如我们拥有全国所有人的身高和体重数据，我们想按照省份分组，统计每个省的平均身高和平均体重，这时候就需要使用分组操作。pandas 提供了 <code class="docutils literal notranslate"><span class="pre">groupby</span></code> 函数进行类似的分组汇总操作。<a class="reference internal" href="#groupby-img"><span class="std std-numref">Fig. 1</span></a> 计算平均身高的分组汇总流程，主要包括两部分：分组与汇总。其中分组阶段将同一类的内容归结到相同的组中；汇总阶段将所关心的数据进行计算，比如求和、求平均等。</p>
+<h1><span class="section-number">2.5. </span>分组汇总<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>实际的数据分析中，经常需要对某一类数据进行统计分析。比如，假如我们拥有全国所有人的身高和体重数据，我们想按照省份分组，统计每个省的平均身高和平均体重，这时候就需要使用分组操作。pandas 提供了 <code class="docutils literal notranslate"><span class="pre">groupby</span></code> 函数进行类似的分组汇总操作。<a class="reference internal" href="#groupby-img"><span class="std std-numref">图 2.1</span></a> 计算平均身高的分组汇总流程，主要包括两部分：分组与汇总。其中分组阶段将同一类的内容归结到相同的组中；汇总阶段将所关心的数据进行计算，比如求和、求平均等。</p>
 <p>按哪些字段进行分组，这些字段又被成为 ** 分组变量 **。对其他字段进行汇总，其他汇总字段被成为 ** 汇总变量 **。对汇总变量进行计算，被称为 ** 汇总统计量 **。</p>
 <figure class="align-default" id="groupby-img">
 <img alt="../_images/groupby.svg" src="../_images/groupby.svg" /><figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">分组与汇总</span><a class="headerlink" href="#groupby-img" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">图 2.1 </span><span class="caption-text">分组与汇总</span><a class="headerlink" href="#groupby-img" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="cell tag_hide-cell docutils container">
@@ -1223,7 +1223,7 @@ Name: min, Length: 11400, dtype: float64
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">数据处理</p>
+        <p class="prev-next-title"><span class="section-number">2.4. </span>数据处理</p>
       </div>
     </a>
     <a class="right-next"
@@ -1231,7 +1231,7 @@ Name: min, Length: 11400, dtype: float64
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">多表操作</p>
+        <p class="prev-next-title"><span class="section-number">2.6. </span>多表操作</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
