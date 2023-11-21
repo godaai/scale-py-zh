@@ -6,14 +6,14 @@ format: jb-book
 root: index
 parts:
   - caption: Dask
-    numbered: 2
+    numbered: true
     chapters:
     - file: ch-dask/index
       sections:
         - file: ch-dask/dask-intro
 
   - caption: Ray
-    numbered: 2
+    numbered: true
     chapters:
     - file: ch-ray-core/index
       sections:
@@ -28,11 +28,12 @@ parts:
         - file: ch-ray-air/ray-data
 
   - caption: mpi4py
-    numbered: 2
+    numbered: true
     chapters: 
     - file: ch-mpi/index
       sections:
         - file: ch-mpi/mpi-intro
-        - file: ch-mpi/hello
+        - file: ch-mpi/mpi-hello-world
         - file: ch-mpi/point-to-point
         - file: ch-mpi/collective
+        - file: ch-mpi/remote-memory-access

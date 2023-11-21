@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>4.1. MPI 简介 &#8212; Python 分布式编程</title>
+    <title>4.5. 远程内存访问 &#8212; Python 分布式编程</title>
   
   
   
@@ -62,11 +62,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ch-mpi/mpi-intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch-mpi/remote-memory-access';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.2. MPI Hello World" href="mpi-hello-world.html" />
-    <link rel="prev" title="4. MPI" href="index.html" />
+    <link rel="prev" title="4.4. 集合通信" href="collective.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -192,11 +191,11 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">mpi4py</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">4. MPI</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.1. MPI 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpi-intro.html">4.1. MPI 简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mpi-hello-world.html">4.2. MPI Hello World</a></li>
 <li class="toctree-l2"><a class="reference internal" href="point-to-point.html">4.3. 点对点通信</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collective.html">4.4. 集合通信</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-memory-access.html">4.5. 远程内存访问</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.5. 远程内存访问</a></li>
 </ul>
 </li>
 </ul>
@@ -270,7 +269,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/godaai/distributed-python/issues/new?title=Issue%20on%20page%20%2Fch-mpi/mpi-intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/godaai/distributed-python/issues/new?title=Issue%20on%20page%20%2Fch-mpi/remote-memory-access.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -300,7 +299,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/ch-mpi/mpi-intro.md" target="_blank"
+      <li><a href="../_sources/ch-mpi/remote-memory-access.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -310,7 +309,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -382,7 +381,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>MPI 简介</h1>
+    <h1>远程内存访问</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,10 +391,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.1.1. 历史</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.1.2. 标准与实现</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.1.3. 高速网络</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.1.4. 安装</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#window">4.5.1. Window</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.5.2. 创建 Window</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.5.3. 读写操作</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.5.4. 数据同步</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4.5.5. 案例：远程读写</a></li>
 </ul>
             </nav>
         </div>
@@ -407,52 +407,109 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="mpi">
-<h1><span class="section-number">4.1. </span>MPI 简介<a class="headerlink" href="#mpi" title="Permalink to this heading">#</a></h1>
-<p>Message Passing Interface（MPI）是个经典的并行计算工具，由于它的“年龄”比较老，新一代程序员很少听说过这个“老古董”，也经常忽视其重要性。但随着人工智能大模型浪潮的到来，MPI 或者基于 MPI 思想的各类通讯库再次回到人们的视线内，因为大模型必须使用并行计算框架进行跨机通信。比如，大模型训练框架 deepspeed 就使用了 mpi4py 进行多机通信。</p>
-<section id="id1">
-<h2><span class="section-number">4.1.1. </span>历史<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<p>MPI 的发展可以追溯到20世纪80年代末和90年代初，彼时已经开始出现了超级计算机，主要用于科学和工程计算，包括气象模拟、核能研究、分子建模、流体动力学等领域。与现在的大数据集群一样，超级计算机主要是一组高性能计算机组成的集群。为了完成上述科学和工程计算问题，使得程序得以在多台计算机上并行运行。MPI 出现之前，多个研究小组和机构开始独立开发并推广自己的通信库，但这导致了互操作性和可移植性的问题。因此，社区迫切需要一种标准化的方法来编写并行应用程序。</p>
-<p>1992年，图灵奖得主 Jack Dongarra 联合几位学者提出了并行计算第一个草案：MPI1。第一个标准版本 MPI 1.0 最终于 1994 年发布。之后，MPI-2、MPI-3 接连发布，来自学术界和工业界的多位专家共同参与修订，不断根据最新的并行计算需求修改 MPI 标准。</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="remote-memory-access">
+<span id="id1"></span><h1><span class="section-number">4.5. </span>远程内存访问<a class="headerlink" href="#remote-memory-access" title="Permalink to this heading">#</a></h1>
+<p><a class="reference internal" href="mpi-hello-world.html#mpi-hello-world"><span class="std std-numref">章节 4.2</span></a> 中我们介绍了两种通信模式，即双边和单边。前几章节的点对点通信和集合通信主要针对的双边通信，本节主要介绍单边通信。单边通信是进程间直接访问远程内存，又称为远程内存访问（Remote Memory Access，RMA）。</p>
+<section id="window">
+<h2><span class="section-number">4.5.1. </span>Window<a class="headerlink" href="#window" title="Permalink to this heading">#</a></h2>
+<p>任何进程所分配的内存都是私有的，即只被进程自己访问，远程内存访问要把进程自己的内存区域暴露给其他进程访问，这部分内存不再私有，而变成了公共的，需要特别处理。在 MPI 中，使用窗口（Window）定义可被远程访问的内存区域。某个内存区域被设置为允许远程访问，所有 Window 内的进程都可对这个区域进行读写。<a class="reference internal" href="#rma-window"><span class="std std-numref">图 4.12</span></a> 分别介绍了私有的内存区域和可被远程访问的 Window。mpi4py 提供了 <code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win</span></code> 类进行 Window 相关操作。</p>
+<figure class="align-default" id="rma-window">
+<a class="reference internal image-reference" href="../_images/rma-window.svg"><img alt="../_images/rma-window.svg" src="../_images/rma-window.svg" width="600px" /></a>
+<figcaption>
+<p><span class="caption-number">图 4.12 </span><span class="caption-text">进程私有内存与允许远程访问的 Window</span><a class="headerlink" href="#rma-window" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="id2">
-<h2><span class="section-number">4.1.2. </span>标准与实现<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
-<p>MPI 是一个标准，不是一个编译器或者编程语言，也不是一个具体的实现或者产品。像 Dask、Ray 这样的框架是一个具体的实现，而 MPI 不一样，MPI 是一个标准，不同厂商在这个标准下可以有自己的实现。“标准”的意思是说，MPI 定义了一些标准的函数或方法，所有的厂商都需要遵循；“实现”是说，不同软硬件厂商可以根据标准去实现底层通信。比如，如果实现一个发送数据的需求，MPI 标准中定义了 <code class="docutils literal notranslate"><span class="pre">MPI_Send</span></code> 方法，所有厂商应遵循这个标准。</p>
-<p>MPI 标准定义了：</p>
-<ul class="simple">
-<li><p>每个函数的函数名、参数列表；</p></li>
-<li><p>每个函数的语义，或者说每个函数的预期功能，又或者说每个函数能做什么、不能做什么。</p></li>
-</ul>
-<p>在具体实现上，现在常用的有 Open MPI 、MPICH、Intel MPI、Microsoft MPI 和 NVIDIA HPC-X 等。由于 MPI 是标准，因此，同样一份代码，可以被 OpenMPI 编译，也可以被 Intel MPI 编译。每个实现是由特定的厂商或开源社区开发的，因此使用起来也有一些差异。</p>
+<h2><span class="section-number">4.5.2. </span>创建 Window<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>我们可以使用 <code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Allocate</span></code> 和 <code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Create</span></code> 创建 Window。其中 <code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Allocate</span></code> 创建新的内存缓存，并且该缓存可被远程访问；<code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Create</span></code> 将现有的某个内存缓存区域设置为可远程访问。具体而言，这个区别主要体现在这两个方法的第一个参数，<code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Allocate(size)</span></code> 传入的要创建内存缓存的字节数 <code class="docutils literal notranslate"><span class="pre">size</span></code>； <code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Create(memory)</span></code> 传入的是内存地址 <code class="docutils literal notranslate"><span class="pre">memory</span></code>。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">4.1.3. </span>高速网络<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
-<p>如果进行多机并行，机器之间需要有高速互联网络，比如 ROCE（RDMA over converged Ethernet）或 InfiniBand。如果你的集群已经部署了这些硬件，并安装了某个 MPI 实现，MPI 可以充分利用这些高速网络的高带宽、低延迟的特性。这些网络大部分拥有超过 100Gbps 的带宽，但其价格也非常昂贵，通常在面向高性能计算的场景上才会配置这些网络设备。</p>
-<p>数据中心经常部署的万兆网络，带宽在 10Gbps 量级，也可以使用 MPI，并且会有一定加速效果。</p>
-<p>MPI 也可以在单机上运行，即：利用单台节点上的多个计算核心。</p>
+<h2><span class="section-number">4.5.3. </span>读写操作<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<p>创建好可远程访问的 Window 后，可以使用三类方法来向内存区域读写数据：<code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Put</span></code>，<code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Get</span></code> 和 <code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Accumulate</span></code>。这三类方法都有两个参数：<code class="docutils literal notranslate"><span class="pre">origin</span></code> 和 <code class="docutils literal notranslate"><span class="pre">target_rank</span></code>，分别表示源进程和目标进程。源进程指的是调用读写方法的进程，目标进程是远程的进程。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Win.Put</span></code> 将数据从源进程移动至目标进程。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Win.Get</span></code> 将数据从目标进程移动至源进程。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Win.Accumulate</span></code> 与 <code class="docutils literal notranslate"><span class="pre">Win.Put</span></code> 类似，也是将数据从源进程移动至目标进程，同时对源进程的数据和目标进程的数据进行了聚合操作，聚合操作的操作符包括：<code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.SUM</span></code>、<code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.PROD</span></code> 等。</p></li>
+</ul>
 </section>
 <section id="id4">
-<h2><span class="section-number">4.1.4. </span>安装<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
-<p>刚才提到，MPI 有不同的实现，即不同的 MPI 厂商一般会提供：</p>
-<ul class="simple">
-<li><p>编译器 <code class="docutils literal notranslate"><span class="pre">mpicc</span></code>、<code class="docutils literal notranslate"><span class="pre">mpicxx</span></code> 和 <code class="docutils literal notranslate"><span class="pre">mpifort</span></code>，分别用来编译 C、C++、Fortran 语言编写的源代码，源代码中一部分是多机通讯，一部分是单机计算，这些编译器通常将多机通讯与单机计算的代码一起编译，并生成可执行文件。</p></li>
-<li><p>在多台节点上将并行程序拉起的 <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> 或 <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>。比如，在多少台节点上拉起多少进程等，都是通过 <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> 来完成的。</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>在很多 MPI 实现中，<code class="docutils literal notranslate"><span class="pre">mpirun</span></code> 和 <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> 的功能几乎相同，它们都可以将并行程序拉起。有些 MPI 实现的 <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> 和 <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> 背后是同一个程序。但严禁地讲，MPI 标准中只定义了 <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>，并没有定义 <code class="docutils literal notranslate"><span class="pre">mpirun</span></code>，因此，<code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> 应该更通用。</p>
-</div>
-<p>如果使用 C/C++ 或 Fortran 这样的编译语言编写代码，一般的流程是：使用 <code class="docutils literal notranslate"><span class="pre">mpicc</span></code> 编译源代码，得到可执行文件，比如，将可执行文件命名为 <code class="docutils literal notranslate"><span class="pre">parallel.o</span></code>；使用 <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> 在多台节点上将 <code class="docutils literal notranslate"><span class="pre">parallel.o</span></code> 并行程序拉起。mpi4py 将上述的编译环节封装。</p>
-<p>如果你的集群环境已经安装了 MPI，可以先将 MPI 加载到环境变量里，然后使用 <code class="docutils literal notranslate"><span class="pre">pip</span></code> 安装：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>mpi4py
+<h2><span class="section-number">4.5.4. </span>数据同步<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<p>单机程序是顺序执行的，多机环境下，因为涉及多方数据的读写，可能会出现一些数据同步的问题，如 <a class="reference internal" href="#rma-sync-problem"><span class="std std-numref">图 4.13</span></a> 所示，如果不明确读写操作的顺序，会导致某块内存区域的数据并非为程序员所期望的结果。</p>
+<figure class="align-default" id="rma-sync-problem">
+<a class="reference internal image-reference" href="../_images/rma-sync-problem.png"><img alt="../_images/rma-sync-problem.png" src="../_images/rma-sync-problem.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">图 4.13 </span><span class="caption-text">并行数据读写时会出现数据同步的问题</span><a class="headerlink" href="#rma-sync-problem" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>为解决这个问题，需要一定的数据同步机制。MPI 一共有几类，包括主动同步（Active Target Synchronization）和被动同步（Passive Target Synchronization），如 <a class="reference internal" href="#rma-synchronization"><span class="std std-numref">图 4.14</span></a> 所示。</p>
+<figure class="align-default" id="rma-synchronization">
+<a class="reference internal image-reference" href="../_images/rma-synchronization.png"><img alt="../_images/rma-synchronization.png" src="../_images/rma-synchronization.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">图 4.14 </span><span class="caption-text">主动同步与被动同步</span><a class="headerlink" href="#rma-synchronization" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id5">
+<h2><span class="section-number">4.5.5. </span>案例：远程读写<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<p>一个完整的 RMA 程序应该包括：</p>
+<ol class="arabic simple">
+<li><p>创建 Window</p></li>
+<li><p>数据同步</p></li>
+<li><p>数据读写</p></li>
+</ol>
+<p>下面是一个案例，将其保存为 <code class="docutils literal notranslate"><span class="pre">rma_lock.py</span></code>：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+<span class="kn">from</span> <span class="nn">mpi4py.util</span> <span class="kn">import</span> <span class="n">dtlib</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+
+<span class="n">datatype</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">FLOAT</span>
+<span class="n">np_dtype</span> <span class="o">=</span> <span class="n">dtlib</span><span class="o">.</span><span class="n">to_numpy_dtype</span><span class="p">(</span><span class="n">datatype</span><span class="p">)</span>
+<span class="n">itemsize</span> <span class="o">=</span> <span class="n">datatype</span><span class="o">.</span><span class="n">Get_size</span><span class="p">()</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">win_size</span> <span class="o">=</span> <span class="n">N</span> <span class="o">*</span> <span class="n">itemsize</span> <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+<span class="n">win</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Win</span><span class="o">.</span><span class="n">Allocate</span><span class="p">(</span><span class="n">win_size</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">)</span>
+
+<span class="n">buf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np_dtype</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">buf</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">win</span><span class="o">.</span><span class="n">Lock</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">win</span><span class="o">.</span><span class="n">Put</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">target_rank</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">win</span><span class="o">.</span><span class="n">Unlock</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">Barrier</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">comm</span><span class="o">.</span><span class="n">Barrier</span><span class="p">()</span>
+    <span class="n">win</span><span class="o">.</span><span class="n">Lock</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">win</span><span class="o">.</span><span class="n">Get</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">target_rank</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">win</span><span class="o">.</span><span class="n">Unlock</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">buf</span> <span class="o">==</span> <span class="mi">42</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;win.Get successfully on Rank </span><span class="si">{</span><span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;win.Get failed on Rank </span><span class="si">{</span><span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>如果你的集群环境没有 MPI，而又对编译这些流程不熟悉，可以直接用 <code class="docutils literal notranslate"><span class="pre">conda</span></code> 安装。 使用 <code class="docutils literal notranslate"><span class="pre">conda</span></code> 安装的软件已经完成了编译过程。</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>mpich
-conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>mpi4py
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">8</span><span class="w"> </span>python<span class="w"> </span>rma_lock.py
 </pre></div>
 </div>
-<p>大部分 MPI 程序均需要在命令行中先编译再拉起。为解决这个问题，我们还安装了 ipyparallel，可以在 Jupyter Notebook 中完成并行程序的拉起。</p>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>win.Get successfully on Rank 4.
+win.Get successfully on Rank 2.
+win.Get successfully on Rank 3.
+win.Get successfully on Rank 5.
+win.Get successfully on Rank 6.
+win.Get successfully on Rank 7.
+win.Get successfully on Rank 1.
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -487,22 +544,13 @@ conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> <
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="collective.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>MPI</p>
+        <p class="prev-next-title"><span class="section-number">4.4. </span>集合通信</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="mpi-hello-world.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4.2. </span>MPI Hello World</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -519,10 +567,11 @@ conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> <
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.1.1. 历史</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.1.2. 标准与实现</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.1.3. 高速网络</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.1.4. 安装</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#window">4.5.1. Window</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.5.2. 创建 Window</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.5.3. 读写操作</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.5.4. 数据同步</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4.5.5. 案例：远程读写</a></li>
 </ul>
   </nav></div>
 
