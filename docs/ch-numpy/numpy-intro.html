@@ -186,6 +186,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../ch-pandas/dataframe-pivot-melt.html">2.7. 数据透视</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-matplotlib-seaborn/index.html">3. Matplotlib &amp; seaborn</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-intro.html">3.1. Matplotlib 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-figure-axes.html">3.2. <code class="docutils literal notranslate"><span class="pre">Figure</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Axes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-data.html">3.3. Matplotlib 输入数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-other-parameters.html">3.4. matplotlib 其他画图参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-coding-styles.html">3.5. matplotlib 编程方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-plot-types.html">3.6. 图形种类</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -287,7 +296,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/ch-numpy/numpy-intro.md" target="_blank"
+      <li><a href="../_sources/ch-numpy/numpy-intro.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -297,7 +306,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -380,6 +389,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">安装 NumPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">为什么要使用 Numpy</a></li>
 </ul>
             </nav>
         </div>
@@ -395,13 +405,18 @@ document.write(`
 <h1><span class="section-number">1.1. </span>NumPy 简介<a class="headerlink" href="#numpy" title="Permalink to this heading">#</a></h1>
 <p>Python 语言其实并不是为科学计算而设计的，到了 2000 年左右，Python 在科学计算领域变得越来越受欢迎，但缺乏一个高效的数组处理工具。Python 的列表（list）虽然灵活，但在处理大型数据集时性能不佳。</p>
 <p>NumPy 并不是第一个 Python 科学计算库，它的前身有 Numeric、Numarray 等，并借鉴 Fortran、MATLAB、和 S 语言了优点。经过了一系列的演化发展，Travis Oliphant 在 2005 年创建了 NumPy 项目，并在 2006 年发布了 NumPy 1.0。NumPy 的目标是提供高性能的多维数组对象，以及用于数组操作的丰富函数库。NumPy 引入了 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> 这一核心数据结构。</p>
-<p>自从 NumPy 项目创建以来，它已经成为 Python 科学计算生态系统中的核心组件。许多其他科学计算和数据分析库，如 SciPy、pandas 和 Matplotlib，都构建在 NumPy 之上。</p>
+<p>自从 NumPy 项目创建以来，它已经成为 Python 科学计算生态系统中的核心组件。许多其他科学计算和数据分析库，如 SciPy、pandas 和 Matplotlib，都构建在 NumPy 的基础之上。</p>
 <section id="id1">
 <h2>安装 NumPy<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p>可以使用 <code class="docutils literal notranslate"><span class="pre">conda</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">pip</span></code> 安装：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>-i<span class="w"> </span>https://pypi.tuna.tsinghua.edu.cn/simple
 </pre></div>
 </div>
+</section>
+<section id="id2">
+<h2>为什么要使用 Numpy<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>Numpy 提供大量快速有效的方法创建数组（array）并操作数组中的数值数据。
+Numpy 数组（array）比 Python 的列表（list）更快速、更紧凑，数据占用内存少，使用方便。这就允许进一步优化代码。</p>
 </section>
 </section>
 
@@ -469,6 +484,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">安装 NumPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">为什么要使用 Numpy</a></li>
 </ul>
   </nav></div>
 

@@ -188,6 +188,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../ch-pandas/dataframe-pivot-melt.html">2.7. 数据透视</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-matplotlib-seaborn/index.html">3. Matplotlib &amp; seaborn</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-intro.html">3.1. Matplotlib 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-figure-axes.html">3.2. <code class="docutils literal notranslate"><span class="pre">Figure</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Axes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-data.html">3.3. Matplotlib 输入数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-other-parameters.html">3.4. matplotlib 其他画图参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-coding-styles.html">3.5. matplotlib 编程方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-plot-types.html">3.6. 图形种类</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -381,8 +390,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">创建 ndarray</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtype">数据类型：dtype</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array">数组 array</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">创建 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtype">数据类型：`dtype``</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">创建特定的 ndarray</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arange-linspace">arange() 与 linspace()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ones-ones-like">ones() 与 ones_like()</a></li>
@@ -424,9 +434,67 @@ document.write(`
 </div>
 </div>
 </div>
+<section id="array">
+<h2>数组 array<a class="headerlink" href="#array" title="Permalink to this heading">#</a></h2>
+<p>array （或 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>） 是 NumPy 最为核心的数据结构。array 里的数据类型是一致的，比如都是整数还是浮点数，数据类型被记录在了 <code class="docutils literal notranslate"><span class="pre">dtype</span></code> 里。</p>
+<p>数组可以通过非负整数元组、布尔、另一个数组或整数进行索引。
+数组的秩 <code class="docutils literal notranslate"><span class="pre">rank</span></code> 是维数。数组的形状 <code class="docutils literal notranslate"><span class="pre">shape</span></code> 给出了数组在每个维度上的大小。</p>
+<p>生成一个 NumPy array 最简单的一种方法是从 Python 列表（list）开始。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 数组 array</span>
+<span class="n">arr1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">arr1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 3, 4])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]])</span>
+<span class="n">arr2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1,  2,  3,  4],
+       [ 5,  6,  7,  8],
+       [ 9, 10, 11, 12]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们可以使用方括号来查找数组中的元素。 NumPy 中的索引从 0 开始：如果你想索引数组中的第一个元素，那就用 0 作为索引。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">arr2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 2 3 4]
+</pre></div>
+</div>
+</div>
+</div>
+<p>array 可以是一个数组，也可以是数组的数组，即高维数组。数组中的维数和项数由其形状 <code class="docutils literal notranslate"><span class="pre">shape</span></code> 决定。数组的形状 <code class="docutils literal notranslate"><span class="pre">shape</span></code> 是一组非负整数，指定每个维度的大小。</p>
+<p>在 NumPy 中，维度被称为轴线 <code class="docutils literal notranslate"><span class="pre">axes</span></code> 。</p>
+<p>例如，这有一个二维数组:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
+ <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>这个数组有两个轴  <code class="docutils literal notranslate"><span class="pre">axes</span></code> 。第一轴的长度为 2 ，第二轴的长度为 3 。</p>
+</section>
 <section id="id1">
-<h2>创建 ndarray<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">array</span></code> 函数接收来自原生 Python 的各类数据，如列表、元组等，并转化为 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>；<code class="docutils literal notranslate"><span class="pre">array</span></code> 函数也可以接收一个 NumPy 的 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>。数组中的数据类型必须是一致的。</p>
+<h2>创建 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>array 的底层数据结构是 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>。</p>
+<p><code class="docutils literal notranslate"><span class="pre">array()</span></code> 函数接收来自原生 Python 的各类数据，如列表、元组等，并转化为 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>；<code class="docutils literal notranslate"><span class="pre">array</span></code> 函数也可以接收一个 NumPy 的 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>。数组中的数据类型必须是一致的。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 列表 list</span>
@@ -457,7 +525,7 @@ document.write(`
 </div>
 </section>
 <section id="dtype">
-<h2>数据类型：dtype<a class="headerlink" href="#dtype" title="Permalink to this heading">#</a></h2>
+<h2>数据类型：`dtype``<a class="headerlink" href="#dtype" title="Permalink to this heading">#</a></h2>
 <p>在进一步深入了解各种创建 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> 的方式之前，我们需要了解一下数据类型的基础知识。计算机无法直接表征数值，其底层基于二进制表示数值，整数和浮点数（其实就是小数，计算机科学中一般称小数为浮点数）基于科学计数法，字符串是一个从整数到字符的映射。 NumPy 提供了不同的数据类型 <code class="docutils literal notranslate"><span class="pre">dtype</span></code>，不同的 <code class="docutils literal notranslate"><span class="pre">dtype</span></code> 所能表示的区间范围不同。比如，同为整数，就有以下几种类型，其所表示的数值区间差异较大。</p>
 <table class="table">
 <thead>
@@ -496,8 +564,8 @@ document.write(`
 <h2>创建特定的 ndarray<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <section id="arange-linspace">
 <h3>arange() 与 linspace()<a class="headerlink" href="#arange-linspace" title="Permalink to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">arange</span></code> 和 <code class="docutils literal notranslate"><span class="pre">linspace</span></code> 函数可用于生成一个数值数组。数值从区间为 <span class="math notranslate nohighlight">\([start,stop)\)</span> 中选择，一般从 <code class="docutils literal notranslate"><span class="pre">start</span></code> 开始，到 <code class="docutils literal notranslate"><span class="pre">stop</span></code> 结束，在这个区间内生成一系列值。</p>
-<p><code class="docutils literal notranslate"><span class="pre">arange</span></code> 函数的常见形式：</p>
+<p><code class="docutils literal notranslate"><span class="pre">arange()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">linspace()</span></code> 函数可用于生成一个数值数组。数值从区间为 <span class="math notranslate nohighlight">\([start,stop)\)</span> 中选择，一般从 <code class="docutils literal notranslate"><span class="pre">start</span></code> 开始，到 <code class="docutils literal notranslate"><span class="pre">stop</span></code> 结束，在这个区间内生成一系列值。</p>
+<p><code class="docutils literal notranslate"><span class="pre">arange()</span></code> 函数的常见形式：</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">arange(stop)</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">arange(start,</span> <span class="pre">stop)</span></code></p></li>
@@ -518,7 +586,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">linspace</span></code> 函数生成 <code class="docutils literal notranslate"><span class="pre">num</span></code> 个均匀间隔的数值，也就是创建一个等差数列。</p>
+<p><code class="docutils literal notranslate"><span class="pre">linspace()</span></code> 函数生成 <code class="docutils literal notranslate"><span class="pre">num</span></code> 个均匀间隔的数值，也就是创建一个等差数列。</p>
 <p>常见形式：<code class="docutils literal notranslate"><span class="pre">linspace(start,</span> <span class="pre">stop,</span> <span class="pre">num)</span></code>。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -957,8 +1025,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">创建 ndarray</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtype">数据类型：dtype</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array">数组 array</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">创建 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtype">数据类型：`dtype``</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">创建特定的 ndarray</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arange-linspace">arange() 与 linspace()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ones-ones-like">ones() 与 ones_like()</a></li>

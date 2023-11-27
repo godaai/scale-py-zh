@@ -23,3 +23,12 @@ parts:
         - file: ch-pandas/dataframe-groupby
         - file: ch-pandas/dataframe-merge-concat
         - file: ch-pandas/dataframe-pivot-melt
+    
+    - file: ch-matplotlib-seaborn/index
+      sections:
+        - file: ch-matplotlib-seaborn/matplotlib-intro
+        - file: ch-matplotlib-seaborn/matplotlib-figure-axes
+        - file: ch-matplotlib-seaborn/matplotlib-data
+        - file: ch-matplotlib-seaborn/matplotlib-other-parameters
+        - file: ch-matplotlib-seaborn/matplotlib-coding-styles
+        - file: ch-matplotlib-seaborn/matplotlib-plot-types
