@@ -186,13 +186,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../ch-pandas/dataframe-pivot-melt.html">2.7. 数据透视</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-matplotlib-seaborn/index.html">3. Matplotlib &amp; seaborn</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-intro.html">3.1. Matplotlib 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-figure-axes.html">3.2. <code class="docutils literal notranslate"><span class="pre">Figure</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Axes</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-data.html">3.3. Matplotlib 输入数据</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-other-parameters.html">3.4. matplotlib 其他画图参数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-coding-styles.html">3.5. matplotlib 编程方式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-plot-types.html">3.6. 图形种类</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">数据可视化</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-matplotlib/index.html">3. Matplotlib</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-intro.html">3.1. Matplotlib 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-figure-axes.html">3.2. <code class="docutils literal notranslate"><span class="pre">Figure</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Axes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-data.html">3.3. Matplotlib 输入数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-other-parameters.html">3.4. matplotlib 其他画图参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-coding-styles.html">3.5. matplotlib 编程方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-plot-types.html">3.6. 图形种类</a></li>
 </ul>
 </li>
 </ul>
@@ -388,14 +391,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">一维数组</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">索引</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">切片</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.3.1. 一维数组</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.3.1.1. 索引</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.3.1.2. 切片</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">多维数组</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">索引</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">切片</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">1.3.2. 多维数组</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">1.3.2.1. 索引</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">1.3.2.2. 切片</a></li>
 </ul>
 </li>
 </ul>
@@ -427,7 +430,7 @@ document.write(`
 </details>
 </div>
 <section id="id2">
-<h2>一维数组<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.3.1. </span>一维数组<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 生成一维数组</span>
@@ -437,7 +440,7 @@ document.write(`
 </div>
 </div>
 <section id="id3">
-<h3>索引<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.3.1.1. </span>索引<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>假如我们想查找数组 a 中 Index 为 4 的元素，即查找第 5 个元素。刚才提到，Index 标号从 0 开始，所以 Index = 4 意味着第 5 个元素。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -453,7 +456,7 @@ document.write(`
 </div>
 </section>
 <section id="id4">
-<h3>切片<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.3.1.2. </span>切片<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <p>对数组 <code class="docutils literal notranslate"><span class="pre">a</span></code> 切片的语法为 ：<code class="docutils literal notranslate"><span class="pre">a[start：end：step]</span></code>，其中 <code class="docutils literal notranslate"><span class="pre">start</span></code> 为起始 Index，<code class="docutils literal notranslate"><span class="pre">end</span></code> 为结束 Index，<code class="docutils literal notranslate"><span class="pre">step</span></code> 为步长。切片后，我们就得到了从 <code class="docutils literal notranslate"><span class="pre">start</span></code> 开始，到 <code class="docutils literal notranslate"><span class="pre">end</span></code> 结束的子串。注意，不包括 <code class="docutils literal notranslate"><span class="pre">end</span></code>。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -470,7 +473,7 @@ document.write(`
 </section>
 </section>
 <section id="id5">
-<h2>多维数组<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.3.2. </span>多维数组<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
@@ -498,7 +501,7 @@ document.write(`
 </div>
 </div>
 <section id="id6">
-<h3>索引<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.3.2.1. </span>索引<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <p>多维数组要对每个维度分别进行索引，不同维度之间用逗号 <code class="docutils literal notranslate"><span class="pre">,</span></code> 隔开。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -538,7 +541,7 @@ document.write(`
 </div>
 </section>
 <section id="id7">
-<h3>切片<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.3.2.2. </span>切片<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
 <p>如果想切出第 0 维所有内容，可以使用冒号 <code class="docutils literal notranslate"><span class="pre">:</span></code>，表示该维度所有内容均保留。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -665,14 +668,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">一维数组</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">索引</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">切片</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.3.1. 一维数组</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.3.1.1. 索引</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.3.1.2. 切片</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">多维数组</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">索引</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">切片</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">1.3.2. 多维数组</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">1.3.2.1. 索引</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">1.3.2.2. 切片</a></li>
 </ul>
 </li>
 </ul>

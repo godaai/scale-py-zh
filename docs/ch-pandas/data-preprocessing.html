@@ -186,13 +186,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="dataframe-pivot-melt.html">2.7. 数据透视</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-matplotlib-seaborn/index.html">3. Matplotlib &amp; seaborn</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-intro.html">3.1. Matplotlib 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-figure-axes.html">3.2. <code class="docutils literal notranslate"><span class="pre">Figure</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Axes</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-data.html">3.3. Matplotlib 输入数据</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-other-parameters.html">3.4. matplotlib 其他画图参数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-coding-styles.html">3.5. matplotlib 编程方式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-plot-types.html">3.6. 图形种类</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">数据可视化</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-matplotlib/index.html">3. Matplotlib</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-intro.html">3.1. Matplotlib 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-figure-axes.html">3.2. <code class="docutils literal notranslate"><span class="pre">Figure</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Axes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-data.html">3.3. Matplotlib 输入数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-other-parameters.html">3.4. matplotlib 其他画图参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-coding-styles.html">3.5. matplotlib 编程方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-plot-types.html">3.6. 图形种类</a></li>
 </ul>
 </li>
 </ul>
@@ -388,11 +391,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">处理重复值</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">处理缺失值</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply">Apply 函数</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">更改 DataFrame</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">数据排序</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.4.1. 处理重复值</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.4.2. 处理缺失值</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply">2.4.3. Apply 函数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">2.4.4. 更改 DataFrame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.4.5. 数据排序</a></li>
 </ul>
             </nav>
         </div>
@@ -448,7 +451,7 @@ document.write(`
 </details>
 </div>
 <section id="id2">
-<h2>处理重复值<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.4.1. </span>处理重复值<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>检测数据集的记录是否存在重复，可以使用 <code class="docutils literal notranslate"><span class="pre">.duplicated</span></code> 函数进行验证，但是该函数返回的是数据集每一行的检测结果，即 n 行数据会返回 n 个布尔值。为了能够得到最直接的结果，可以使用 <code class="docutils literal notranslate"><span class="pre">any</span></code> 函数。该函数表示的是在多个条件判断中，只要有一个条件为 True，则 <code class="docutils literal notranslate"><span class="pre">any</span></code> 返回的结果为 True。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -465,7 +468,7 @@ document.write(`
 <p>如果有重复项，可以通过 <code class="docutils literal notranslate"><span class="pre">.drop_duplicated()</span></code> 删除。该函数有 inplace 参数，设置为 True 表示直接在原始数据集上做操作：<code class="docutils literal notranslate"><span class="pre">df.drop_duplicated(inplace</span> <span class="pre">=</span> <span class="pre">True)</span></code>。</p>
 </section>
 <section id="id3">
-<h2>处理缺失值<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.4.2. </span>处理缺失值<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>缺失值是指数据集中的某些观测存在遗漏。数据缺失可能有两方面原因：一方面是人为原因，如记录过程中的遗漏、个人隐私而不愿意透露等；另一方面是机器或设备的故障所导致。</p>
 <p>可以使用 <code class="docutils literal notranslate"><span class="pre">.isna()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">.isnull()</span></code> 函数查看缺失值。这两个函数返回 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 每个元素是否有缺失值，如果有缺失值，比如 N/A 或<code class="docutils literal notranslate"><span class="pre">null</span></code>，则返回 True；否则返回 False。</p>
 <p>例如：通过 <code class="docutils literal notranslate"><span class="pre">.sum()</span></code> 查看每一列的空缺值计数。</p>
@@ -541,7 +544,7 @@ dtype: int64
 <p>对于时间类型的数据集，可以用 <code class="docutils literal notranslate"><span class="pre">.fillna()</span></code> 的 <code class="docutils literal notranslate"><span class="pre">method</span></code> 参数，可以接受 <code class="docutils literal notranslate"><span class="pre">ffill</span></code> 和 <code class="docutils literal notranslate"><span class="pre">bfill</span></code> 两种值，分别代表前向填充和后向填充，使得数据前后具有连贯性，而一般的独立性样本并不适用该函数。（前向填充是指用缺失值的前一个值替换，而后向填充是指用缺失值的后一个值替换。）</p>
 </section>
 <section id="apply">
-<h2>Apply 函数<a class="headerlink" href="#apply" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.4.3. </span>Apply 函数<a class="headerlink" href="#apply" title="Permalink to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">.apply()</span></code> 函数也是一个 pandas 中常用的函数。它可以对每行 / 列（也可以对基于切片选择特定的列或行）应用一个函数并返回一个 <code class="docutils literal notranslate"><span class="pre">Series</span></code>。该函数可以是一些内置函数，如 max 函数、lambda 函数或自定义函数。</p>
 <ul class="simple">
 <li><p>max 函数</p></li>
@@ -1046,7 +1049,7 @@ dtype: float64
 <p>则返回符合条件的行和列。</p>
 </section>
 <section id="dataframe">
-<h2>更改 DataFrame<a class="headerlink" href="#dataframe" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.4.4. </span>更改 DataFrame<a class="headerlink" href="#dataframe" title="Permalink to this heading">#</a></h2>
 <p>更改 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 的部分值（行、列）在数据分析过程中十分重要。</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">.where()</span></code> 函数保留行，并用其他值替代其余行。</p></li>
@@ -1722,6 +1725,10 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_63127/832431325.py:1: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
+  df.applymap(lambda x : round(x, 2) if type(x)!=str else x)
+</pre></div>
+</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2068,7 +2075,7 @@ dtype: float64
 </div>
 </section>
 <section id="id4">
-<h2>数据排序<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.4.5. </span>数据排序<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p>在很多分析任务中，需要按照某个或某些指标对数据进行排序。pandas 在排序时，根据排序的对象不同可细分为 <code class="docutils literal notranslate"><span class="pre">sort_values</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sort_index</span></code>, 与其字面意义相一致，分别代表了对值进行排序和对索引 index 进行排序。</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">.sort_values()</span></code> 函数，按照指定列排序。</p></li>
@@ -2269,28 +2276,28 @@ dtype: float64
       <td>...</td>
     </tr>
     <tr>
-      <th>2158</th>
-      <td>China Version 1</td>
-      <td>CHN</td>
+      <th>2218</th>
+      <td>China Version 2</td>
+      <td>CH2</td>
       <td>2008</td>
       <td>1317066.000</td>
       <td>6.95</td>
       <td>Yuan Renminbi</td>
-      <td>9.719402e+06</td>
-      <td>7379.586069</td>
-      <td>7529.397258</td>
-      <td>6747.223691</td>
+      <td>10557315.23</td>
+      <td>8015.782984</td>
+      <td>8416.480345</td>
+      <td>7551.673672</td>
       <td>...</td>
-      <td>42.862836</td>
-      <td>68.760068</td>
-      <td>7132.315550</td>
-      <td>10938.84514</td>
-      <td>10929.28222</td>
+      <td>37.629450</td>
+      <td>69.883127</td>
+      <td>7777.945871</td>
+      <td>11929.04952</td>
+      <td>11929.04952</td>
       <td>NaN</td>
-      <td>10937.76354</td>
+      <td>11938.30669</td>
       <td>NaN</td>
-      <td>6635.526673</td>
-      <td>7.379586</td>
+      <td>7233.090071</td>
+      <td>8.015783</td>
     </tr>
     <tr>
       <th>2219</th>
@@ -2300,7 +2307,7 @@ dtype: float64
       <td>1323592.000</td>
       <td>6.83</td>
       <td>Yuan Renminbi</td>
-      <td>1.134246e+07</td>
+      <td>11342464.26</td>
       <td>8569.456643</td>
       <td>9227.187296</td>
       <td>8531.307128</td>
@@ -2324,7 +2331,7 @@ dtype: float64
       <td>1323592.000</td>
       <td>6.83</td>
       <td>Yuan Renminbi</td>
-      <td>1.073933e+07</td>
+      <td>10739325.58</td>
       <td>8113.773410</td>
       <td>8296.575690</td>
       <td>7651.109254</td>
@@ -2493,30 +2500,6 @@ dtype: float64
       <td>8.113773</td>
     </tr>
     <tr>
-      <th>2218</th>
-      <td>China Version 2</td>
-      <td>CH2</td>
-      <td>2008</td>
-      <td>1317066.000</td>
-      <td>6.950000</td>
-      <td>Yuan Renminbi</td>
-      <td>1.055732e+07</td>
-      <td>8015.782984</td>
-      <td>8416.480345</td>
-      <td>7551.673672</td>
-      <td>...</td>
-      <td>37.629450</td>
-      <td>69.883127</td>
-      <td>7777.945871</td>
-      <td>11929.04952</td>
-      <td>11929.04952</td>
-      <td>NaN</td>
-      <td>11938.30669</td>
-      <td>NaN</td>
-      <td>7233.090071</td>
-      <td>8.015783</td>
-    </tr>
-    <tr>
       <th>2158</th>
       <td>China Version 1</td>
       <td>CHN</td>
@@ -2539,6 +2522,30 @@ dtype: float64
       <td>NaN</td>
       <td>6635.526673</td>
       <td>7.379586</td>
+    </tr>
+    <tr>
+      <th>2218</th>
+      <td>China Version 2</td>
+      <td>CH2</td>
+      <td>2008</td>
+      <td>1317066.000</td>
+      <td>6.950000</td>
+      <td>Yuan Renminbi</td>
+      <td>1.055732e+07</td>
+      <td>8015.782984</td>
+      <td>8416.480345</td>
+      <td>7551.673672</td>
+      <td>...</td>
+      <td>37.629450</td>
+      <td>69.883127</td>
+      <td>7777.945871</td>
+      <td>11929.04952</td>
+      <td>11929.04952</td>
+      <td>NaN</td>
+      <td>11938.30669</td>
+      <td>NaN</td>
+      <td>7233.090071</td>
+      <td>8.015783</td>
     </tr>
     <tr>
       <th>2217</th>
@@ -3100,11 +3107,11 @@ dtype: float64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">处理重复值</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">处理缺失值</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply">Apply 函数</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">更改 DataFrame</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">数据排序</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.4.1. 处理重复值</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.4.2. 处理缺失值</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply">2.4.3. Apply 函数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">2.4.4. 更改 DataFrame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.4.5. 数据排序</a></li>
 </ul>
   </nav></div>
 

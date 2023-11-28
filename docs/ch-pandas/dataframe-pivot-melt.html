@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch-pandas/dataframe-pivot-melt';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Matplotlib &amp; seaborn" href="../ch-matplotlib-seaborn/index.html" />
+    <link rel="next" title="3. Matplotlib" href="../ch-matplotlib/index.html" />
     <link rel="prev" title="2.6. 多表操作" href="dataframe-merge-concat.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -186,13 +186,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">2.7. 数据透视</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-matplotlib-seaborn/index.html">3. Matplotlib &amp; seaborn</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-intro.html">3.1. Matplotlib 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-figure-axes.html">3.2. <code class="docutils literal notranslate"><span class="pre">Figure</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Axes</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-data.html">3.3. Matplotlib 输入数据</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-other-parameters.html">3.4. matplotlib 其他画图参数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-coding-styles.html">3.5. matplotlib 编程方式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-plot-types.html">3.6. 图形种类</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">数据可视化</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-matplotlib/index.html">3. Matplotlib</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-intro.html">3.1. Matplotlib 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-figure-axes.html">3.2. <code class="docutils literal notranslate"><span class="pre">Figure</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Axes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-data.html">3.3. Matplotlib 输入数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-other-parameters.html">3.4. matplotlib 其他画图参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-coding-styles.html">3.5. matplotlib 编程方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-plot-types.html">3.6. 图形种类</a></li>
 </ul>
 </li>
 </ul>
@@ -388,16 +391,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot">pivot</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-columns">index 和 columns 参数</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#values">values 参数</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggfunc">aggfunc 参数</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fill-value-margins">fill_value 和 margins 参数</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">维度交叉</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">数据筛选</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot">2.7.1. pivot</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-columns">2.7.1.1. index 和 columns 参数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#values">2.7.1.2. values 参数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggfunc">2.7.1.3. aggfunc 参数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fill-value-margins">2.7.1.4. fill_value 和 margins 参数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.7.1.5. 维度交叉</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.7.1.6. 数据筛选</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melt">melt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melt">2.7.2. melt</a></li>
 </ul>
             </nav>
         </div>
@@ -413,7 +416,7 @@ document.write(`
 <h1><span class="section-number">2.7. </span>数据透视<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">pivot()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">melt()</span></code> 是一对互逆的操作，能提供类似 Excel 数据透视表这样的功能。</p>
 <section id="pivot">
-<h2>pivot<a class="headerlink" href="#pivot" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.7.1. </span>pivot<a class="headerlink" href="#pivot" title="Permalink to this heading">#</a></h2>
 <p>在使用 Excel 这样的表格时，一个高阶的操作是使用“数据透视表”对数据进行分类汇总。pandas 的 <code class="docutils literal notranslate"><span class="pre">pivot()</span></code> 提供与 Excel 对应的数据透视的功能，它根据一个或多个列的值对数据进行重新排列和汇总，以便更好地理解数据的结构和关系。<code class="docutils literal notranslate"><span class="pre">pivot()</span></code> 能够可自定义函数进行聚合，因此功能更强大。</p>
 <div class="cell tag_hide_cell tag_hide-cell docutils container">
 <details class="hide above-input">
@@ -684,7 +687,7 @@ document.write(`
 <p>具体而言，pandas 有两个函数：<code class="docutils literal notranslate"><span class="pre">pivot()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code>，其中 <code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code> 更像 Excel 的数据透视表。</p>
 <p><code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code> 函数的完整形式为 <code class="docutils literal notranslate"><span class="pre">pd.pivot_table(data,</span> <span class="pre">values=None,</span> <span class="pre">index=None,</span> <span class="pre">columns=None,</span> <span class="pre">aggfunc='mean',</span> <span class="pre">fill_value=None,</span> <span class="pre">margins=False,</span> <span class="pre">dropna=True,</span> <span class="pre">margins_name='All',</span> <span class="pre">observed=False)</span></code> 。参数很多，只有 <code class="docutils literal notranslate"><span class="pre">data</span></code> 是唯一必需的参数，其他均有默认值，常需要设置的参数有 <code class="docutils literal notranslate"><span class="pre">values</span></code>, <code class="docutils literal notranslate"><span class="pre">index</span></code>, <code class="docutils literal notranslate"><span class="pre">columns</span></code>,<code class="docutils literal notranslate"><span class="pre">aggfunc</span></code> 等。我们先从简单的开始。</p>
 <section id="index-columns">
-<h3>index 和 columns 参数<a class="headerlink" href="#index-columns" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.7.1.1. </span>index 和 columns 参数<a class="headerlink" href="#index-columns" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">index</span></code> 和 <code class="docutils literal notranslate"><span class="pre">columns</span></code> 接收的都是字段名，它们都可用于分组。</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">index</span></code> 生成透视表的行索引，可以为多个属性。</p></li>
@@ -1128,7 +1131,7 @@ document.write(`
 <p>生成的数据透视表有两层列索引，第一层是原有的 Account、Price、Quantity 这些字段，第二层是 <code class="docutils literal notranslate"><span class="pre">columns=[&quot;Product&quot;]</span></code> 里面的值：CPU、Monitor 等。</p>
 </section>
 <section id="values">
-<h3>values 参数<a class="headerlink" href="#values" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.7.1.2. </span>values 参数<a class="headerlink" href="#values" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">values</span></code> 参数指明要聚合的列或列的列表，通常是你想要在透视表中分析的数值数据。</p>
 <p>例 4：只显示 Price 列对应的平均值。</p>
 <div class="cell docutils container">
@@ -1194,7 +1197,7 @@ document.write(`
 </div>
 </section>
 <section id="aggfunc">
-<h3>aggfunc 参数<a class="headerlink" href="#aggfunc" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.7.1.3. </span>aggfunc 参数<a class="headerlink" href="#aggfunc" title="Permalink to this heading">#</a></h3>
 <p>用于汇总数据的聚合函数，可以是字符串（如’sum’、’mean’、’count’ 等预置函数）或自定义聚合函数。</p>
 <p>例：对 Price 显示 <code class="docutils literal notranslate"><span class="pre">mean</span></code> 和 <code class="docutils literal notranslate"><span class="pre">len</span></code> 两列结果。</p>
 <div class="cell docutils container">
@@ -1277,7 +1280,7 @@ document.write(`
 </div>
 </section>
 <section id="fill-value-margins">
-<h3>fill_value 和 margins 参数<a class="headerlink" href="#fill-value-margins" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.7.1.4. </span>fill_value 和 margins 参数<a class="headerlink" href="#fill-value-margins" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">fill_value</span></code> 参数用于填充缺失值的值。<code class="docutils literal notranslate"><span class="pre">margins</span></code> 参数为布尔值，如果为 True, 则在透视表中包含行和列的总计。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1448,7 +1451,7 @@ document.write(`
 </div>
 </section>
 <section id="id2">
-<h3>维度交叉<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.7.1.5. </span>维度交叉<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>将以上参数结合起来，对 Quantity 和 Price 应用不同的聚合函数。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1617,7 +1620,7 @@ document.write(`
 </div>
 </section>
 <section id="id3">
-<h3>数据筛选<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.7.1.6. </span>数据筛选<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>建立数据透视表（pivot table）后，也可以进一步筛选数据以满足特定的条件，类似于 DataFrame 的数据切片方法中的条件索引。这里主要介绍 <code class="docutils literal notranslate"><span class="pre">query()</span></code> 函数，通过传递查询字符串来筛选数据。</p>
 <p>例 1: 筛选出 Manager 为 Debra Henley 的结果。</p>
 <div class="cell docutils container">
@@ -1853,7 +1856,7 @@ document.write(`
 </section>
 </section>
 <section id="melt">
-<h2>melt<a class="headerlink" href="#melt" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.7.2. </span>melt<a class="headerlink" href="#melt" title="Permalink to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">melt()</span></code> 是用于将一个很宽的的表转换为长。这个函数通常用于数据重塑（data reshaping）操作，以便更容易进行数据分析和可视化。根据其英文名，又可被理解成，将一个宽表，“融化”成一个长表。</p>
 <p>通过这种方式，可以将宽格式数据表格中的多列数据整合到一个列中，可以理解为透视表 <code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code> 的反操作。</p>
 <div class="cell docutils container">
@@ -2086,11 +2089,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../ch-matplotlib-seaborn/index.html"
+       href="../ch-matplotlib/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Matplotlib &amp; seaborn</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Matplotlib</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -2109,16 +2112,16 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot">pivot</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-columns">index 和 columns 参数</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#values">values 参数</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggfunc">aggfunc 参数</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fill-value-margins">fill_value 和 margins 参数</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">维度交叉</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">数据筛选</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot">2.7.1. pivot</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-columns">2.7.1.1. index 和 columns 参数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#values">2.7.1.2. values 参数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggfunc">2.7.1.3. aggfunc 参数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fill-value-margins">2.7.1.4. fill_value 和 margins 参数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.7.1.5. 维度交叉</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.7.1.6. 数据筛选</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melt">melt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melt">2.7.2. melt</a></li>
 </ul>
   </nav></div>
 

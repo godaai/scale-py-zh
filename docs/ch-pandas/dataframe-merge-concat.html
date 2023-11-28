@@ -186,13 +186,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="dataframe-pivot-melt.html">2.7. 数据透视</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-matplotlib-seaborn/index.html">3. Matplotlib &amp; seaborn</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-intro.html">3.1. Matplotlib 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-figure-axes.html">3.2. <code class="docutils literal notranslate"><span class="pre">Figure</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Axes</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-data.html">3.3. Matplotlib 输入数据</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-other-parameters.html">3.4. matplotlib 其他画图参数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-coding-styles.html">3.5. matplotlib 编程方式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-plot-types.html">3.6. 图形种类</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">数据可视化</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-matplotlib/index.html">3. Matplotlib</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-intro.html">3.1. Matplotlib 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-figure-axes.html">3.2. <code class="docutils literal notranslate"><span class="pre">Figure</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Axes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-data.html">3.3. Matplotlib 输入数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-other-parameters.html">3.4. matplotlib 其他画图参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-coding-styles.html">3.5. matplotlib 编程方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-plot-types.html">3.6. 图形种类</a></li>
 </ul>
 </li>
 </ul>
@@ -388,13 +391,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge">merge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">连接方式</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">其他合并方式</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge">2.6.1. merge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.6.1.1. 连接方式</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.6.1.2. 其他合并方式</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concat">concat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">案例：学生成绩</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concat">2.6.2. concat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.6.3. 案例：学生成绩</a></li>
 </ul>
             </nav>
         </div>
@@ -410,7 +413,7 @@ document.write(`
 <h1><span class="section-number">2.6. </span>多表操作<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <p>之前的操作主要在单个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> ，实际上，我们经常需要对多个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 联合起来进行分析。pandas 提供了多 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 之间的合并和连接的操作，分别是 <code class="docutils literal notranslate"><span class="pre">merge()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">concat()</span></code> 函数。比如，我们可以将两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 合并成一个，且保留所有的列。</p>
 <section id="merge">
-<h2>merge<a class="headerlink" href="#merge" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.6.1. </span>merge<a class="headerlink" href="#merge" title="Permalink to this heading">#</a></h2>
 <p>pandas 的 <code class="docutils literal notranslate"><span class="pre">merge</span></code> 操作可以合并两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>（或者称为表） ，类似于 SQL 中的 JOIN 操作。 我们可以想象成：一个大表被拆分成两个小表，两个小表都包含一些同样的数据。现在我们需要把两个小表合并，生成一个大表，大表包含了两个小表的字段。</p>
 <figure class="align-default" id="merge-img">
 <img alt="../_images/merge.svg" src="../_images/merge.svg" /><figcaption>
@@ -624,7 +627,7 @@ document.write(`
 :width:<code class="docutils literal notranslate"><span class="pre">800px</span></code>
 :label:<code class="docutils literal notranslate"><span class="pre">merge-how</span></code></p>
 <section id="id2">
-<h3>连接方式<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.6.1.1. </span>连接方式<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>外连接</p></li>
 </ul>
@@ -861,7 +864,7 @@ document.write(`
 </div>
 </section>
 <section id="id3">
-<h3>其他合并方式<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.6.1.2. </span>其他合并方式<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>还有一些其他合并，不是根据 key 去在左右表中查找。比如，根据 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 最左侧的 index 列。<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 默认有 index 列，根据该列合并两个表，由于此时不是根据 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 来合并，合并之后保留了两个 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>，为了区别左右两表的 <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>，这里加了后缀 <code class="docutils literal notranslate"><span class="pre">_x</span></code> 和 <code class="docutils literal notranslate"><span class="pre">_y</span></code>。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -938,7 +941,7 @@ document.write(`
 </section>
 </section>
 <section id="concat">
-<h2>concat<a class="headerlink" href="#concat" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.6.2. </span>concat<a class="headerlink" href="#concat" title="Permalink to this heading">#</a></h2>
 <p>与 <code class="docutils literal notranslate"><span class="pre">merge</span></code> 对表结构进行横向的操作不同，<code class="docutils literal notranslate"><span class="pre">concat</span></code> 函数默认是进行纵向的合并，也就是将多行进行 ** 堆叠式 ** 的合并。</p>
 <p>比如下面的例子，把所有的行和所有的列合并在一起，缺失的填充 <code class="docutils literal notranslate"><span class="pre">NaN</span></code>。</p>
 <div class="cell docutils container">
@@ -1124,7 +1127,7 @@ document.write(`
 </div>
 </section>
 <section id="id4">
-<h2>案例：学生成绩<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.6.3. </span>案例：学生成绩<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p>我们使用一个学生成绩的案例来演示如何对两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 进行 <code class="docutils literal notranslate"><span class="pre">merge</span></code>。</p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
@@ -1439,13 +1442,13 @@ the first 2 rows:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge">merge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">连接方式</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">其他合并方式</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge">2.6.1. merge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.6.1.1. 连接方式</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.6.1.2. 其他合并方式</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concat">concat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">案例：学生成绩</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concat">2.6.2. concat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.6.3. 案例：学生成绩</a></li>
 </ul>
   </nav></div>
 

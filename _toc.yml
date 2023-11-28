@@ -5,7 +5,7 @@ format: jb-book
 root: index
 parts:
   - caption: 数据处理与计算
-    numbered: 2
+    numbered: true
     chapters:
     - file: ch-numpy/index
       sections:
@@ -24,11 +24,14 @@ parts:
         - file: ch-pandas/dataframe-merge-concat
         - file: ch-pandas/dataframe-pivot-melt
     
-    - file: ch-matplotlib-seaborn/index
+  - caption: 数据可视化
+    numbered: true
+    chapters:
+    - file: ch-matplotlib/index
       sections:
-        - file: ch-matplotlib-seaborn/matplotlib-intro
-        - file: ch-matplotlib-seaborn/matplotlib-figure-axes
-        - file: ch-matplotlib-seaborn/matplotlib-data
-        - file: ch-matplotlib-seaborn/matplotlib-other-parameters
-        - file: ch-matplotlib-seaborn/matplotlib-coding-styles
-        - file: ch-matplotlib-seaborn/matplotlib-plot-types
+        - file: ch-matplotlib/matplotlib-intro
+        - file: ch-matplotlib/matplotlib-figure-axes
+        - file: ch-matplotlib/matplotlib-data
+        - file: ch-matplotlib/matplotlib-other-parameters
+        - file: ch-matplotlib/matplotlib-coding-styles
+        - file: ch-matplotlib/matplotlib-plot-types

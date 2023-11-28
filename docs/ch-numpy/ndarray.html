@@ -188,13 +188,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../ch-pandas/dataframe-pivot-melt.html">2.7. 数据透视</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-matplotlib-seaborn/index.html">3. Matplotlib &amp; seaborn</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-intro.html">3.1. Matplotlib 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-figure-axes.html">3.2. <code class="docutils literal notranslate"><span class="pre">Figure</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Axes</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-data.html">3.3. Matplotlib 输入数据</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-other-parameters.html">3.4. matplotlib 其他画图参数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-coding-styles.html">3.5. matplotlib 编程方式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-plot-types.html">3.6. 图形种类</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">数据可视化</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-matplotlib/index.html">3. Matplotlib</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-intro.html">3.1. Matplotlib 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-figure-axes.html">3.2. <code class="docutils literal notranslate"><span class="pre">Figure</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Axes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-data.html">3.3. Matplotlib 输入数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-other-parameters.html">3.4. matplotlib 其他画图参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-coding-styles.html">3.5. matplotlib 编程方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-plot-types.html">3.6. 图形种类</a></li>
 </ul>
 </li>
 </ul>
@@ -390,29 +393,29 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array">数组 array</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">创建 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtype">数据类型：`dtype``</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">创建特定的 ndarray</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arange-linspace">arange() 与 linspace()</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ones-ones-like">ones() 与 ones_like()</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zeros-zeros-like">zeros() 与 zeros_like()</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-full-like">full() 与 full_like()</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eye">eye()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array">1.2.1. 数组 array</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.2.2. 创建 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtype">1.2.3. 数据类型：<code class="docutils literal notranslate"><span class="pre">dtype</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.2.4. 创建特定的 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arange-linspace">1.2.4.1. arange() 与 linspace()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ones-ones-like">1.2.4.2. ones() 与 ones_like()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zeros-zeros-like">1.2.4.3. zeros() 与 zeros_like()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-full-like">1.2.4.4. full() 与 full_like()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eye">1.2.4.5. eye()</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">常用属性</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">数组维度变换</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">不改变原数组</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">改变原数组</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.2.5. 常用属性</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.2.6. 数组维度变换</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">1.2.6.1. 不改变原数组</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">1.2.6.2. 改变原数组</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">数据类型变换</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#astype">astype()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">1.2.7. 数据类型变换</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#astype">1.2.7.1. <code class="docutils literal notranslate"><span class="pre">astype()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">合并函数</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ndarray-python">ndarray 与 Python 列表的转换</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">1.2.8. 合并函数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ndarray-python">1.2.9. <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> 与 Python 列表的转换</a></li>
 </ul>
             </nav>
         </div>
@@ -435,10 +438,9 @@ document.write(`
 </div>
 </div>
 <section id="array">
-<h2>数组 array<a class="headerlink" href="#array" title="Permalink to this heading">#</a></h2>
-<p>array （或 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>） 是 NumPy 最为核心的数据结构。array 里的数据类型是一致的，比如都是整数还是浮点数，数据类型被记录在了 <code class="docutils literal notranslate"><span class="pre">dtype</span></code> 里。</p>
-<p>数组可以通过非负整数元组、布尔、另一个数组或整数进行索引。
-数组的秩 <code class="docutils literal notranslate"><span class="pre">rank</span></code> 是维数。数组的形状 <code class="docutils literal notranslate"><span class="pre">shape</span></code> 给出了数组在每个维度上的大小。</p>
+<h2><span class="section-number">1.2.1. </span>数组 array<a class="headerlink" href="#array" title="Permalink to this heading">#</a></h2>
+<p>数组 array （或 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>） 是 NumPy 最为核心的数据结构。array 里的数据类型是一致的，比如都是整数还是浮点数，数据类型被记录在了 <code class="docutils literal notranslate"><span class="pre">dtype</span></code> 里。</p>
+<p>数组可以通过非负整数元组、布尔、另一个数组或整数进行索引。数组的秩 <code class="docutils literal notranslate"><span class="pre">rank</span></code> 是维数。数组的形状 <code class="docutils literal notranslate"><span class="pre">shape</span></code> 给出了数组在每个维度上的大小。</p>
 <p>生成一个 NumPy array 最简单的一种方法是从 Python 列表（list）开始。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -469,7 +471,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>我们可以使用方括号来查找数组中的元素。 NumPy 中的索引从 0 开始：如果你想索引数组中的第一个元素，那就用 0 作为索引。</p>
+<p>我们可以使用方括号来查找数组中的元素，查找元素的过程又被称为索引（Indexing）。 NumPy 中的索引从 0 开始：如果你想索引数组中的第一个元素，那就用 0 作为索引。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">arr2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -492,9 +494,9 @@ document.write(`
 <p>这个数组有两个轴  <code class="docutils literal notranslate"><span class="pre">axes</span></code> 。第一轴的长度为 2 ，第二轴的长度为 3 。</p>
 </section>
 <section id="id1">
-<h2>创建 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.2.2. </span>创建 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p>array 的底层数据结构是 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>。</p>
-<p><code class="docutils literal notranslate"><span class="pre">array()</span></code> 函数接收来自原生 Python 的各类数据，如列表、元组等，并转化为 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>；<code class="docutils literal notranslate"><span class="pre">array</span></code> 函数也可以接收一个 NumPy 的 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>。数组中的数据类型必须是一致的。</p>
+<p><code class="docutils literal notranslate"><span class="pre">array()</span></code> 函数接收来自原生 Python 的各类数据，如列表、元组等，并转化为 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>；<code class="docutils literal notranslate"><span class="pre">array()</span></code> 函数也可以接收一个 NumPy 的 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>。数组中的数据类型必须是一致的。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 列表 list</span>
@@ -525,7 +527,7 @@ document.write(`
 </div>
 </section>
 <section id="dtype">
-<h2>数据类型：`dtype``<a class="headerlink" href="#dtype" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.2.3. </span>数据类型：<code class="docutils literal notranslate"><span class="pre">dtype</span></code><a class="headerlink" href="#dtype" title="Permalink to this heading">#</a></h2>
 <p>在进一步深入了解各种创建 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> 的方式之前，我们需要了解一下数据类型的基础知识。计算机无法直接表征数值，其底层基于二进制表示数值，整数和浮点数（其实就是小数，计算机科学中一般称小数为浮点数）基于科学计数法，字符串是一个从整数到字符的映射。 NumPy 提供了不同的数据类型 <code class="docutils literal notranslate"><span class="pre">dtype</span></code>，不同的 <code class="docutils literal notranslate"><span class="pre">dtype</span></code> 所能表示的区间范围不同。比如，同为整数，就有以下几种类型，其所表示的数值区间差异较大。</p>
 <table class="table">
 <thead>
@@ -561,9 +563,9 @@ document.write(`
 </ul>
 </section>
 <section id="id2">
-<h2>创建特定的 ndarray<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.2.4. </span>创建特定的 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <section id="arange-linspace">
-<h3>arange() 与 linspace()<a class="headerlink" href="#arange-linspace" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.2.4.1. </span>arange() 与 linspace()<a class="headerlink" href="#arange-linspace" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">arange()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">linspace()</span></code> 函数可用于生成一个数值数组。数值从区间为 <span class="math notranslate nohighlight">\([start,stop)\)</span> 中选择，一般从 <code class="docutils literal notranslate"><span class="pre">start</span></code> 开始，到 <code class="docutils literal notranslate"><span class="pre">stop</span></code> 结束，在这个区间内生成一系列值。</p>
 <p><code class="docutils literal notranslate"><span class="pre">arange()</span></code> 函数的常见形式：</p>
 <ul class="simple">
@@ -572,10 +574,10 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">arange(start,</span> <span class="pre">stop,</span> <span class="pre">step)</span></code></p></li>
 </ul>
 <p>其中，<code class="docutils literal notranslate"><span class="pre">step</span></code> 用于指定数值之间的间隔，默认为 1。</p>
+<p>以下两种方式是等效的。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 以下两种方式等效</span>
-<span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">stop</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -586,12 +588,11 @@ document.write(`
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">linspace()</span></code> 函数生成 <code class="docutils literal notranslate"><span class="pre">num</span></code> 个均匀间隔的数值，也就是创建一个等差数列。</p>
-<p>常见形式：<code class="docutils literal notranslate"><span class="pre">linspace(start,</span> <span class="pre">stop,</span> <span class="pre">num)</span></code>。</p>
+<p><code class="docutils literal notranslate"><span class="pre">linspace()</span></code> 函数生成 <code class="docutils literal notranslate"><span class="pre">num</span></code> 个均匀间隔的数值，也就是创建一个等差数列。常见形式：<code class="docutils literal notranslate"><span class="pre">linspace(start,</span> <span class="pre">stop,</span> <span class="pre">num)</span></code>。</p>
+<p>生成在 1 和 5 之间 5 个均匀间隔的数组：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 生成在 1 和 5 之间 5 个均匀间隔的数组</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">a</span>
 </pre></div>
 </div>
@@ -604,8 +605,8 @@ document.write(`
 </div>
 </section>
 <section id="ones-ones-like">
-<h3>ones() 与 ones_like()<a class="headerlink" href="#ones-ones-like" title="Permalink to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">np.ones(shape)</span></code> 生成 <code class="docutils literal notranslate"><span class="pre">shape</span></code> 大小的、全为 1 数组。例如，生成 <span class="math notranslate nohighlight">\(3 \times 3 \times 6\)</span> 的高维数组。</p>
+<h3><span class="section-number">1.2.4.2. </span>ones() 与 ones_like()<a class="headerlink" href="#ones-ones-like" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">np.ones(shape)</span></code> 生成 <code class="docutils literal notranslate"><span class="pre">shape</span></code> 大小的、全为 1 数组。例如，生成 <span class="math notranslate nohighlight">\(3 \times 3 \times 6\)</span> 的高维数组：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
@@ -639,7 +640,7 @@ document.write(`
 </div>
 </section>
 <section id="zeros-zeros-like">
-<h3>zeros() 与 zeros_like()<a class="headerlink" href="#zeros-zeros-like" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.2.4.3. </span>zeros() 与 zeros_like()<a class="headerlink" href="#zeros-zeros-like" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">np.zeros()</span></code> 与 <code class="docutils literal notranslate"><span class="pre">np.ones()</span></code> 类似。<code class="docutils literal notranslate"><span class="pre">np.zeros(shape)</span></code> 生成 <code class="docutils literal notranslate"><span class="pre">shape</span></code> 大小的、全为 0 的数组。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -674,7 +675,7 @@ document.write(`
 </div>
 </section>
 <section id="full-full-like">
-<h3>full() 与 full_like()<a class="headerlink" href="#full-full-like" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.2.4.4. </span>full() 与 full_like()<a class="headerlink" href="#full-full-like" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">np.full(shape,val)</span></code> 生成 <code class="docutils literal notranslate"><span class="pre">shape</span></code> 大小的、全为 <code class="docutils literal notranslate"><span class="pre">val</span></code> 的数组，即数组中每个元素值都是 <code class="docutils literal notranslate"><span class="pre">val</span></code>。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -694,7 +695,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>根据数组 <code class="docutils literal notranslate"><span class="pre">a</span></code> 的形状生成一个数组，元素值全为 <code class="docutils literal notranslate"><span class="pre">val</span></code>：</p>
+<p>根据数组 <code class="docutils literal notranslate"><span class="pre">a</span></code> 的形状生成一个数组，元素值全为 <code class="docutils literal notranslate"><span class="pre">val</span></code>。这里生成一个全为 6 的数组：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
@@ -709,8 +710,8 @@ document.write(`
 </div>
 </section>
 <section id="eye">
-<h3>eye()<a class="headerlink" href="#eye" title="Permalink to this heading">#</a></h3>
-<p>np.eye(n) 创建一个 <span class="math notranslate nohighlight">\(n \times n\)</span> 单位矩阵，对角线为 1，其余为 0。</p>
+<h3><span class="section-number">1.2.4.5. </span>eye()<a class="headerlink" href="#eye" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">np.eye(n)</span></code> 创建一个 <span class="math notranslate nohighlight">\(n \times n\)</span> 单位矩阵，对角线为 1，其余为 0。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -728,7 +729,7 @@ document.write(`
 </section>
 </section>
 <section id="id3">
-<h2>常用属性<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.2.5. </span>常用属性<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>直接打印一个 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> 可以看到它的值、<code class="docutils literal notranslate"><span class="pre">dtype</span></code> 等属性。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -825,10 +826,10 @@ document.write(`
 </div>
 </section>
 <section id="id4">
-<h2>数组维度变换<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
-<p>另外，我们经常要对数据进行一些变换。</p>
+<h2><span class="section-number">1.2.6. </span>数组维度变换<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<p>我们经常要对数据进行一些变换。</p>
 <section id="id5">
-<h3>不改变原数组<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.2.6.1. </span>不改变原数组<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">reshape()</span></code> 函数</p></li>
 </ul>
@@ -864,12 +865,15 @@ document.write(`
 </div>
 </section>
 <section id="id6">
-<h3>改变原数组<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.2.6.2. </span>改变原数组<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">resize()</span></code> 函数</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">resize(shape)</span></code> 函数，返回一个 <code class="docutils literal notranslate"><span class="pre">shape</span></code> 形状的数组，功能与 <code class="docutils literal notranslate"><span class="pre">reshape()</span></code> 函数一致，但是修改原数组。</p>
-<p>提示：当新数组可容纳数据少于原数据，按照原数据选择前 <code class="docutils literal notranslate"><span class="pre">shape</span></code> 个数据；如果多于，则新数组会按照原数组中的数据顺序进行填补。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>当新数组可容纳数据少于原数据，按照原数据选择前 <code class="docutils literal notranslate"><span class="pre">shape</span></code> 个数据；如果多于，则新数组会按照原数组中的数据顺序进行填补。</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -902,9 +906,9 @@ document.write(`
 </section>
 </section>
 <section id="id7">
-<h2>数据类型变换<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.2.7. </span>数据类型变换<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
 <section id="astype">
-<h3>astype()<a class="headerlink" href="#astype" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.2.7.1. </span><code class="docutils literal notranslate"><span class="pre">astype()</span></code><a class="headerlink" href="#astype" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">astype(new_type)</span></code> 函数，对数组的数据类型进行类型变化，基于对原始数据的拷贝创建一个新的数组。比如，将 <code class="docutils literal notranslate"><span class="pre">np.int</span></code> 类型元素修改为 <code class="docutils literal notranslate"><span class="pre">np.float64</span></code> 类型：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -924,7 +928,7 @@ document.write(`
 </section>
 </section>
 <section id="id8">
-<h2>合并函数<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.2.8. </span>合并函数<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">np.concatenate()</span></code> 将两个或者多个数组合并成一个新数组。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -945,7 +949,7 @@ document.write(`
 </div>
 </section>
 <section id="ndarray-python">
-<h2>ndarray 与 Python 列表的转换<a class="headerlink" href="#ndarray-python" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.2.9. </span><code class="docutils literal notranslate"><span class="pre">ndarray</span></code> 与 Python 列表的转换<a class="headerlink" href="#ndarray-python" title="Permalink to this heading">#</a></h2>
 <p>列表作为 Python 中原始的数据类型，运算速度慢于 NumPy。如果需要与原生 Python 语言相适配，需做转换：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1025,29 +1029,29 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array">数组 array</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">创建 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtype">数据类型：`dtype``</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">创建特定的 ndarray</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arange-linspace">arange() 与 linspace()</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ones-ones-like">ones() 与 ones_like()</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zeros-zeros-like">zeros() 与 zeros_like()</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-full-like">full() 与 full_like()</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eye">eye()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array">1.2.1. 数组 array</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.2.2. 创建 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtype">1.2.3. 数据类型：<code class="docutils literal notranslate"><span class="pre">dtype</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.2.4. 创建特定的 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arange-linspace">1.2.4.1. arange() 与 linspace()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ones-ones-like">1.2.4.2. ones() 与 ones_like()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zeros-zeros-like">1.2.4.3. zeros() 与 zeros_like()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-full-like">1.2.4.4. full() 与 full_like()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eye">1.2.4.5. eye()</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">常用属性</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">数组维度变换</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">不改变原数组</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">改变原数组</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.2.5. 常用属性</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.2.6. 数组维度变换</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">1.2.6.1. 不改变原数组</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">1.2.6.2. 改变原数组</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">数据类型变换</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#astype">astype()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">1.2.7. 数据类型变换</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#astype">1.2.7.1. <code class="docutils literal notranslate"><span class="pre">astype()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">合并函数</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ndarray-python">ndarray 与 Python 列表的转换</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">1.2.8. 合并函数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ndarray-python">1.2.9. <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> 与 Python 列表的转换</a></li>
 </ul>
   </nav></div>
 

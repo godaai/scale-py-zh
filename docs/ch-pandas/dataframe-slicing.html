@@ -186,13 +186,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="dataframe-pivot-melt.html">2.7. 数据透视</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-matplotlib-seaborn/index.html">3. Matplotlib &amp; seaborn</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-intro.html">3.1. Matplotlib 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-figure-axes.html">3.2. <code class="docutils literal notranslate"><span class="pre">Figure</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Axes</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-data.html">3.3. Matplotlib 输入数据</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-other-parameters.html">3.4. matplotlib 其他画图参数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-coding-styles.html">3.5. matplotlib 编程方式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib-seaborn/matplotlib-plot-types.html">3.6. 图形种类</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">数据可视化</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-matplotlib/index.html">3. Matplotlib</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-intro.html">3.1. Matplotlib 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-figure-axes.html">3.2. <code class="docutils literal notranslate"><span class="pre">Figure</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Axes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-data.html">3.3. Matplotlib 输入数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-other-parameters.html">3.4. matplotlib 其他画图参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-coding-styles.html">3.5. matplotlib 编程方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-plot-types.html">3.6. 图形种类</a></li>
 </ul>
 </li>
 </ul>
@@ -388,10 +391,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">主要方法</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">使用 [] 进行选择</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iloc-loc">iloc 或者 loc</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#query">query</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.3.1. 主要方法</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.3.1.1. 使用 [] 进行选择</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iloc-loc">2.3.1.2. iloc 或者 loc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#query">2.3.1.3. query</a></li>
 </ul>
 </li>
 </ul>
@@ -449,7 +452,7 @@ document.write(`
 </details>
 </div>
 <section id="id2">
-<h2>主要方法<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.3.1. </span>主要方法<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>对 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 选择行和列，主要有几种方式：</p>
 <ul class="simple">
 <li><p>使用 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 选择</p></li>
@@ -457,7 +460,7 @@ document.write(`
 <li><p>使用 <code class="docutils literal notranslate"><span class="pre">.query</span></code> 函数</p></li>
 </ul>
 <section id="id3">
-<h3>使用 [] 进行选择<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.3.1.1. </span>使用 [] 进行选择<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>选择第 2 行到第 5 行（不包括第 5 行）的数据：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1317,7 +1320,7 @@ document.write(`
 </div>
 </section>
 <section id="iloc-loc">
-<h3>iloc 或者 loc<a class="headerlink" href="#iloc-loc" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.3.1.2. </span>iloc 或者 loc<a class="headerlink" href="#iloc-loc" title="Permalink to this heading">#</a></h3>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">iloc</span></code> 函数进行选择，形式应为 <code class="docutils literal notranslate"><span class="pre">.iloc[rows,</span> <span class="pre">columns]</span></code>。</p>
 <p>可以将 i 理解为 integer，即 i 是整数，表示行或者列位置（位置由被称为 index），<code class="docutils literal notranslate"><span class="pre">iloc</span></code> 即用整数来选择行或者选择列。i 从 0 开始，至 <code class="docutils literal notranslate"><span class="pre">length-1</span></code>。</p>
 <p>例如：选择第 2 行到第 5 行（不包括第 5 行），第 0 列到第 4 列（不包括第 4 列）。</p>
@@ -1638,7 +1641,7 @@ document.write(`
 <p>由于 <code class="docutils literal notranslate"><span class="pre">iloc</span></code> 函数只接受整数，所以不允许使用这种条件进行筛选。</p>
 </section>
 <section id="query">
-<h3>query<a class="headerlink" href="#query" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.3.1.3. </span>query<a class="headerlink" href="#query" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">.query()</span></code> 函数的用法与 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 有相似之处。值得注意的是，<code class="docutils literal notranslate"><span class="pre">.query()</span></code> 函数的性能更好，在处理大规模数据时更快。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2343,10 +2346,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">主要方法</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">使用 [] 进行选择</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iloc-loc">iloc 或者 loc</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#query">query</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.3.1. 主要方法</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.3.1.1. 使用 [] 进行选择</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iloc-loc">2.3.1.2. iloc 或者 loc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#query">2.3.1.3. query</a></li>
 </ul>
 </li>
 </ul>
