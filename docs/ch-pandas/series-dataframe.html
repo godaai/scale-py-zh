@@ -394,10 +394,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series">2.2.1. Series</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">2.2.2. DataFrame</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.2.2.1. 创建 DataFrame</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.2.2.2. 计算统计量</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pwt">2.2.3. 案例：PWT</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.2.3.1. 查看数据</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.2.3.1. 查看数据</a></li>
 </ul>
 </li>
 </ul>
@@ -424,7 +425,13 @@ document.write(`
 <section id="series">
 <h2><span class="section-number">2.2.1. </span>Series<a class="headerlink" href="#series" title="Permalink to this heading">#</a></h2>
 <p>在 pandas 中，<code class="docutils literal notranslate"><span class="pre">Series</span></code> 是一种一维的带标签的 <strong>数组状</strong> 数据结构。</p>
-<p>我们首先以 4 个数创建一个 <code class="docutils literal notranslate"><span class="pre">Series</span></code>，并命名为 <code class="docutils literal notranslate"><span class="pre">my_series</span></code>。</p>
+<figure class="align-default" id="series-img">
+<a class="reference internal image-reference" href="../_images/Series.svg"><img alt="../_images/Series.svg" src="../_images/Series.svg" width="200px" /></a>
+<figcaption>
+<p><span class="caption-number">图 2.1 </span><span class="caption-text">Series</span><a class="headerlink" href="#series-img" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>我们创建一个 <code class="docutils literal notranslate"><span class="pre">Series</span></code>，这个数组有 4 个数，并命名为 <code class="docutils literal notranslate"><span class="pre">my_series</span></code>。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;my_series&#39;</span><span class="p">)</span>
@@ -432,7 +439,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">Series</span></code> 是一个数组状数据结构，数组最重要的结构是索引（index）。index 主要用于标记第几个位置存储什么数据。<code class="docutils literal notranslate"><span class="pre">pd.Series()</span></code> 中不指定 index 参数时，默认从 0 开始，逐一自增，形如： 0，1，…</p>
+<p><code class="docutils literal notranslate"><span class="pre">Series</span></code> 是一个数组状数据结构，其实就是 <a class="reference internal" href="../ch-numpy/ndarray.html#numpy-ndarray"><span class="std std-numref">章节 1.2</span></a> 中的 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>。 数组最重要的结构是索引（Index）。Index 主要用于标记第几个位置存储什么数据。<code class="docutils literal notranslate"><span class="pre">pd.Series()</span></code> 中不指定 Index 参数时，默认从 0 开始，逐一自增，形如： 0，1，…</p>
 <ul class="simple">
 <li><p>Series 支持计算操作。</p></li>
 </ul>
@@ -551,8 +558,14 @@ Name: my_series, dtype: float64
 </section>
 <section id="dataframe">
 <h2><span class="section-number">2.2.2. </span>DataFrame<a class="headerlink" href="#dataframe" title="Permalink to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 可以简单理解为一个 Excel 表，有很多列和很多行。
+<p><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 可以简单理解为一个 Excel 表，有很多列和很多行，如 <a class="reference internal" href="#dataframe-img"><span class="std std-numref">图 2.2</span></a> 所示。
 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 的列（column）表示一个字段；<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 的行（row）表示一条数据。<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 常被用来分析像 Excel 这样的、有行和列的表格类数据。Excel 也正在兼容 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>，使得用户在 Excel 中进行 pandas 数据处理与分析。</p>
+<figure class="align-default" id="dataframe-img">
+<a class="reference internal image-reference" href="../_images/DataFrame.svg"><img alt="../_images/DataFrame.svg" src="../_images/DataFrame.svg" width="400px" /></a>
+<figcaption>
+<p><span class="caption-number">图 2.2 </span><span class="caption-text">DataFrame 示意图</span><a class="headerlink" href="#dataframe-img" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <section id="id1">
 <h3><span class="section-number">2.2.2.1. </span>创建 DataFrame<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>创建一个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 有很多方式，比如从列表、字典、文件中读取数据，并创建一个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>。</p>
@@ -584,11 +597,208 @@ Name: my_series, dtype: float64
 <ul class="simple">
 <li><p>基于文件创建</p></li>
 </ul>
-<p>对于不同类型的文件，使用不同的函数，比如 <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> 读取 csv 类型的数据。<code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv('/path/to/csv')</span></code> 用来读取一个 csv 文件，<code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span>&#160; <span class="pre">pd.read_excel('/path/to/excel')</span></code> 用来读取一个 Excel 文件。</p>
+<p>如 <a class="reference internal" href="#file-img"><span class="std std-numref">图 2.3</span></a> 所示，pandas 可以读取不同类型的文件，进行处理，最后持久化地写入不同类型的文件中。</p>
+<figure class="align-default" id="file-img">
+<a class="reference internal image-reference" href="../_images/file.svg"><img alt="../_images/file.svg" src="../_images/file.svg" width="600px" /></a>
+<figcaption>
+<p><span class="caption-number">图 2.3 </span><span class="caption-text">文件读取/写入</span><a class="headerlink" href="#file-img" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>对于不同类型的文件，使用不同的函数，比如 <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> 读取 csv 类型的数据。<code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv('/path/file.csv')</span></code> 用来读取一个 csv 文件，<code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span>&#160; <span class="pre">pd.read_excel('/path/file.xlsx')</span></code> 用来读取一个 Excel 文件。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注：csv 文件一般由很多个 column 组成，使用 pd.read_csv 时，默认每个 column 之间的分隔符为逗号（,），pd.read_table 默认分隔符为换行符。这些函数还支持许多其他参数，可以使用 help() 函数查看。</p>
+<p>同样地，我们最终也可以将处理过的 DataFrame 写入文件即以文件的格式输出，例：df.to_excel(‘/path/file.xlsx’)则输出为excel文件。</p>
+</div>
+</section>
+<section id="id2">
+<h3><span class="section-number">2.2.2.2. </span>计算统计量<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>前面我们讲过对 <code class="docutils literal notranslate"><span class="pre">Series</span></code> 对象我们可以计算统计量，而 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 是由一列列 <code class="docutils literal notranslate"><span class="pre">Series</span></code> 对象构成的，自然也可以做相应的计算。</p>
+<ul class="simple">
+<li><p>对某一列计算相应统计量，本质上还是对 <code class="docutils literal notranslate"><span class="pre">Series</span></code> 对象做统计量计算，如 <a class="reference internal" href="#s1-img"><span class="std std-numref">图 2.4</span></a>。</p></li>
+</ul>
+<figure class="align-default" id="s1-img">
+<a class="reference internal image-reference" href="../_images/s1.svg"><img alt="../_images/s1.svg" src="../_images/s1.svg" width="600px" /></a>
+<figcaption>
+<p><span class="caption-number">图 2.4 </span><span class="caption-text">对 Dataframe 一列对象做统计量</span><a class="headerlink" href="#s1-img" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>例：对 <code class="docutils literal notranslate"><span class="pre">df</span></code> 的第一列求平均值。（<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 对象的切片操作后续会详细讲解。）</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------- df is -------</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------- Column1.mean() -------</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Column1&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------- df is -------
+   Column1  Column2
+0        1        3
+1        2        4
+------- Column1.mean() -------
+
+Column1    1.5
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>对某几列计算相应统计量。</p></li>
+</ul>
+<figure class="align-default" id="s2-img">
+<a class="reference internal image-reference" href="../_images/s2.svg"><img alt="../_images/s2.svg" src="../_images/s2.svg" width="600px" /></a>
+<figcaption>
+<p><span class="caption-number">图 2.5 </span><span class="caption-text">对 Dataframe 几列对象做统计量</span><a class="headerlink" href="#s2-img" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>例：对 <code class="docutils literal notranslate"><span class="pre">df</span></code> 的第一列和第二列进行描述性统计。</p>
 <blockquote>
-<div><p>注：csv 文件一般由很多个 column 组成，使用 <code class="docutils literal notranslate"><span class="pre">pd.read_csv</span></code> 时，默认每个 column 之间的分隔符为逗号（<code class="docutils literal notranslate"><span class="pre">,</span></code>），<code class="docutils literal notranslate"><span class="pre">pd.read_table</span></code> 默认分隔符为换行符。这些函数还支持许多其他参数，可以使用 <code class="docutils literal notranslate"><span class="pre">help()</span></code> 函数查看。
-例：help(pd.read_csv)</p>
+<div><p>由于这里的 <code class="docutils literal notranslate"><span class="pre">df</span></code> 只有两列，也可以直接对整个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 对象操作，即等价于 <code class="docutils literal notranslate"><span class="pre">df.describe()</span></code></p>
 </div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Column1&#39;</span><span class="p">,</span><span class="s1">&#39;Column2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Column1</th>
+      <th>Column2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>2.000000</td>
+      <td>2.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1.500000</td>
+      <td>3.500000</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.707107</td>
+      <td>0.707107</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>3.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1.250000</td>
+      <td>3.250000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1.500000</td>
+      <td>3.500000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1.750000</td>
+      <td>3.750000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2.000000</td>
+      <td>4.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>使用 <code class="docutils literal notranslate"><span class="pre">DataFrame.agg()</span></code> 方法计算特定的统计量组合。</p></li>
+</ul>
+<p>有时候我们对一列需要指定的一些统计量，对不同列又有不同的需求，则可以使用 <code class="docutils literal notranslate"><span class="pre">DataFrame.agg()</span></code> 方法，传入字典参数，<code class="docutils literal notranslate"><span class="pre">key</span></code> 为列名，<code class="docutils literal notranslate"><span class="pre">value</span></code> 为需要的统计量的列表。</p>
+<p>例：对 <code class="docutils literal notranslate"><span class="pre">df</span></code> 的第一列获得最小值 / 最大值 / 中位数 / 偏度，对第二列获得最小值 / 最大值 / 中位数 / 均值。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+    <span class="s1">&#39;Column1&#39;</span><span class="p">:[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">,</span><span class="s1">&#39;median&#39;</span><span class="p">,</span><span class="s1">&#39;skew&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Column2&#39;</span><span class="p">:[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">,</span><span class="s1">&#39;median&#39;</span><span class="p">,</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>   
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Column1</th>
+      <th>Column2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>min</th>
+      <td>1.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>median</th>
+      <td>1.5</td>
+      <td>3.5</td>
+    </tr>
+    <tr>
+      <th>skew</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>NaN</td>
+      <td>3.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 </section>
 </section>
 <section id="pwt">
@@ -631,8 +841,8 @@ Name: my_series, dtype: float64
 </div>
 </details>
 </div>
-<section id="id2">
-<h3><span class="section-number">2.2.3.1. </span>查看数据<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<section id="id3">
+<h3><span class="section-number">2.2.3.1. </span>查看数据<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>使用 <code class="docutils literal notranslate"><span class="pre">read_csv()</span></code> 读取数据。</p></li>
 </ul>
@@ -1131,6 +1341,22 @@ dtype: object
 </div>
 </div>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rename()</span></code> 函数既可以用于更改行标签，也可以用于列标签。传入一个字典，其中键为当前名称，值为新名称，以更新相应的名称。</p></li>
+</ul>
+<p>例：</p>
+<ol class="arabic simple">
+<li><p>将 year 改为 Year，country 改为 Country：</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_renamed</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;year&#39;</span><span class="p">:</span><span class="n">Year</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">:</span><span class="s1">&#39;Country&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>将所有列名改为小写：</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_renamed</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">.index</span></code> 查看数据框行名。</p></li>
 </ul>
 <div class="cell docutils container">
@@ -1235,10 +1461,11 @@ dtype: object
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series">2.2.1. Series</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">2.2.2. DataFrame</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.2.2.1. 创建 DataFrame</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.2.2.2. 计算统计量</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pwt">2.2.3. 案例：PWT</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.2.3.1. 查看数据</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.2.3.1. 查看数据</a></li>
 </ul>
 </li>
 </ul>

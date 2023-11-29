@@ -418,6 +418,13 @@ document.write(`
 <section id="pivot">
 <h2><span class="section-number">2.7.1. </span>pivot<a class="headerlink" href="#pivot" title="Permalink to this heading">#</a></h2>
 <p>在使用 Excel 这样的表格时，一个高阶的操作是使用“数据透视表”对数据进行分类汇总。pandas 的 <code class="docutils literal notranslate"><span class="pre">pivot()</span></code> 提供与 Excel 对应的数据透视的功能，它根据一个或多个列的值对数据进行重新排列和汇总，以便更好地理解数据的结构和关系。<code class="docutils literal notranslate"><span class="pre">pivot()</span></code> 能够可自定义函数进行聚合，因此功能更强大。</p>
+<p><a class="reference internal" href="#pivot-img"><span class="std std-numref">图 2.10</span></a> 是一个数据透视的示意图，下文还将展示具体的例子。</p>
+<figure class="align-default" id="pivot-img">
+<a class="reference internal image-reference" href="../_images/pivot.svg"><img alt="../_images/pivot.svg" src="../_images/pivot.svg" width="600px" /></a>
+<figcaption>
+<p><span class="caption-number">图 2.10 </span><span class="caption-text">数据透视</span><a class="headerlink" href="#pivot-img" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="cell tag_hide_cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -693,219 +700,110 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">index</span></code> 生成透视表的行索引，可以为多个属性。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">columns</span></code> 生成透视表的列索引。</p></li>
 </ul>
-<p>例 1: 按照 Name 分组，即添加 Name 的行索引。这个功能与 <code class="docutils literal notranslate"><span class="pre">groupby</span></code> 很像。这个例子中，<code class="docutils literal notranslate"><span class="pre">aggfunc</span></code> 参数没有设置，默认求平均值。</p>
+<p>例 1: 按照 Name 分组，即添加 Name 的行索引。这个功能与 <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> 很像。这个例子中，<code class="docutils literal notranslate"><span class="pre">aggfunc</span></code> 参数没有设置，默认求平均值。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">sales_df</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">sales_df</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Quantity&#39;</span><span class="p">,</span> <span class="s1">&#39;Price&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/groupby/groupby.py:1874,</span> in <span class="ni">GroupBy._agg_py_fallback</span><span class="nt">(self, how, values, ndim, alt)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1873</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1874</span>     <span class="n">res_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grouper</span><span class="o">.</span><span class="n">agg_series</span><span class="p">(</span><span class="n">ser</span><span class="p">,</span> <span class="n">alt</span><span class="p">,</span> <span class="n">preserve_dtype</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1875</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/groupby/ops.py:850,</span> in <span class="ni">BaseGrouper.agg_series</span><span class="nt">(self, obj, func, preserve_dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">848</span>     <span class="n">preserve_dtype</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="ne">--&gt; </span><span class="mi">850</span> <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aggregate_series_pure_python</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">852</span> <span class="n">npvalues</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">maybe_convert_objects</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">try_float</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/groupby/ops.py:871,</span> in <span class="ni">BaseGrouper._aggregate_series_pure_python</span><span class="nt">(self, obj, func)</span>
-<span class="g g-Whitespace">    </span><span class="mi">870</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">splitter</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">871</span>     <span class="n">res</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">872</span>     <span class="n">res</span> <span class="o">=</span> <span class="n">extract_result</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/groupby/groupby.py:2380,</span> in <span class="ni">GroupBy.mean.&lt;locals&gt;.&lt;lambda&gt;</span><span class="nt">(x)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2377</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2378</span>     <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cython_agg_general</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2379</span>         <span class="s2">&quot;mean&quot;</span><span class="p">,</span>
-<span class="ne">-&gt; </span><span class="mi">2380</span>         <span class="n">alt</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Series</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="n">numeric_only</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">2381</span>         <span class="n">numeric_only</span><span class="o">=</span><span class="n">numeric_only</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2382</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2383</span>     <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;groupby&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/series.py:6221,</span> in <span class="ni">Series.mean</span><span class="nt">(self, axis, skipna, numeric_only, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6213</span> <span class="nd">@doc</span><span class="p">(</span><span class="n">make_doc</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">6214</span> <span class="k">def</span> <span class="nf">mean</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">6215</span>     <span class="bp">self</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6219</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">6220</span> <span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">6221</span>     <span class="k">return</span> <span class="n">NDFrame</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">skipna</span><span class="p">,</span> <span class="n">numeric_only</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/generic.py:11984,</span> in <span class="ni">NDFrame.mean</span><span class="nt">(self, axis, skipna, numeric_only, **kwargs)</span>
-<span class="g g-Whitespace">  </span><span class="mi">11977</span> <span class="k">def</span> <span class="nf">mean</span><span class="p">(</span>
-<span class="g g-Whitespace">  </span><span class="mi">11978</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">  </span><span class="mi">11979</span>     <span class="n">axis</span><span class="p">:</span> <span class="n">Axis</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">  </span><span class="mi">11982</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">  </span><span class="mi">11983</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Series</span> <span class="o">|</span> <span class="nb">float</span><span class="p">:</span>
-<span class="ne">&gt; </span><span class="mi">11984</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stat_function</span><span class="p">(</span>
-<span class="g g-Whitespace">  </span><span class="mi">11985</span>         <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">nanops</span><span class="o">.</span><span class="n">nanmean</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">skipna</span><span class="p">,</span> <span class="n">numeric_only</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-<span class="g g-Whitespace">  </span><span class="mi">11986</span>     <span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/generic.py:11941,</span> in <span class="ni">NDFrame._stat_function</span><span class="nt">(self, name, func, axis, skipna, numeric_only, **kwargs)</span>
-<span class="g g-Whitespace">  </span><span class="mi">11939</span> <span class="n">validate_bool_kwarg</span><span class="p">(</span><span class="n">skipna</span><span class="p">,</span> <span class="s2">&quot;skipna&quot;</span><span class="p">,</span> <span class="n">none_allowed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="ne">&gt; </span><span class="mi">11941</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reduce</span><span class="p">(</span>
-<span class="g g-Whitespace">  </span><span class="mi">11942</span>     <span class="n">func</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span> <span class="n">numeric_only</span><span class="o">=</span><span class="n">numeric_only</span>
-<span class="g g-Whitespace">  </span><span class="mi">11943</span> <span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/series.py:6129,</span> in <span class="ni">Series._reduce</span><span class="nt">(self, op, name, axis, skipna, numeric_only, filter_type, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6125</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">6126</span>         <span class="sa">f</span><span class="s2">&quot;Series.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> does not allow </span><span class="si">{</span><span class="n">kwd_name</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">numeric_only</span><span class="si">}</span><span class="s2"> &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">6127</span>         <span class="s2">&quot;with non-numeric dtypes.&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">6128</span>     <span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">6129</span> <span class="k">return</span> <span class="n">op</span><span class="p">(</span><span class="n">delegate</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/nanops.py:147,</span> in <span class="ni">bottleneck_switch.__call__.&lt;locals&gt;.f</span><span class="nt">(values, axis, skipna, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">146</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">147</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">alt</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span> <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/nanops.py:404,</span> in <span class="ni">_datetimelike_compat.&lt;locals&gt;.new_func</span><span class="nt">(values, axis, skipna, mask, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">402</span>     <span class="n">mask</span> <span class="o">=</span> <span class="n">isna</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">404</span> <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">406</span> <span class="k">if</span> <span class="n">datetimelike</span><span class="p">:</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/nanops.py:720,</span> in <span class="ni">nanmean</span><span class="nt">(values, axis, skipna, mask)</span>
-<span class="g g-Whitespace">    </span><span class="mi">719</span> <span class="n">the_sum</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype_sum</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">720</span> <span class="n">the_sum</span> <span class="o">=</span> <span class="n">_ensure_numeric</span><span class="p">(</span><span class="n">the_sum</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">722</span> <span class="k">if</span> <span class="n">axis</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">the_sum</span><span class="p">,</span> <span class="s2">&quot;ndim&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/nanops.py:1693,</span> in <span class="ni">_ensure_numeric</span><span class="nt">(x)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1691</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1692</span>     <span class="c1"># GH#44008, GH#36703 avoid casting e.g. strings to numeric</span>
-<span class="ne">-&gt; </span><span class="mi">1693</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not convert string &#39;</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&#39; to numeric&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1694</span> <span class="k">try</span><span class="p">:</span>
-
-<span class="ne">TypeError</span>: Could not convert string &#39;John Smith&#39; to numeric
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">sales_df</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">])</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/reshape/pivot.py:99,</span> in <span class="ni">pivot_table</span><span class="nt">(data, values, index, columns, aggfunc, fill_value, margins, dropna, margins_name, observed, sort)</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="n">table</span> <span class="o">=</span> <span class="n">concat</span><span class="p">(</span><span class="n">pieces</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="n">keys</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span>     <span class="k">return</span> <span class="n">table</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;pivot_table&quot;</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">99</span> <span class="n">table</span> <span class="o">=</span> <span class="n">__internal_pivot_table</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span>     <span class="n">data</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">101</span>     <span class="n">values</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">102</span>     <span class="n">index</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span>     <span class="n">columns</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="n">aggfunc</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span>     <span class="n">fill_value</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span>     <span class="n">margins</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span>     <span class="n">dropna</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span>     <span class="n">margins_name</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span>     <span class="n">observed</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span>     <span class="n">sort</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span> <span class="k">return</span> <span class="n">table</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;pivot_table&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/reshape/pivot.py:169,</span> in <span class="ni">__internal_pivot_table</span><span class="nt">(data, values, index, columns, aggfunc, fill_value, margins, dropna, margins_name, observed, sort)</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>     <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="n">grouped</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">observed</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="n">sort</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="n">dropna</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">169</span> <span class="n">agged</span> <span class="o">=</span> <span class="n">grouped</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">aggfunc</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">171</span> <span class="k">if</span> <span class="n">dropna</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">agged</span><span class="p">,</span> <span class="n">ABCDataFrame</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">agged</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span>     <span class="n">agged</span> <span class="o">=</span> <span class="n">agged</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/groupby/generic.py:1445,</span> in <span class="ni">DataFrameGroupBy.aggregate</span><span class="nt">(self, func, engine, engine_kwargs, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1442</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;engine_kwargs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">engine_kwargs</span>
-<span class="g g-Whitespace">   </span><span class="mi">1444</span> <span class="n">op</span> <span class="o">=</span> <span class="n">GroupByApply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1445</span> <span class="n">result</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">agg</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1446</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">is_dict_like</span><span class="p">(</span><span class="n">func</span><span class="p">)</span> <span class="ow">and</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1447</span>     <span class="c1"># GH #52849</span>
-<span class="g g-Whitespace">   </span><span class="mi">1448</span>     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_index</span> <span class="ow">and</span> <span class="n">is_list_like</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/apply.py:172,</span> in <span class="ni">Apply.agg</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span>
-<span class="g g-Whitespace">    </span><span class="mi">171</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">172</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply_str</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">174</span> <span class="k">if</span> <span class="n">is_dict_like</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">175</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">agg_dict_like</span><span class="p">()</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/apply.py:586,</span> in <span class="ni">Apply.apply_str</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">584</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">585</span>             <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;axis&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axis</span>
-<span class="ne">--&gt; </span><span class="mi">586</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_str</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/apply.py:669,</span> in <span class="ni">Apply._apply_str</span><span class="nt">(self, obj, func, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">667</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">668</span> <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">669</span>     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">671</span> <span class="c1"># people may aggregate on a non-callable attribute</span>
-<span class="g g-Whitespace">    </span><span class="mi">672</span> <span class="c1"># but don&#39;t let them think they can pass args to it</span>
-<span class="g g-Whitespace">    </span><span class="mi">673</span> <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/groupby/groupby.py:2378,</span> in <span class="ni">GroupBy.mean</span><span class="nt">(self, numeric_only, engine, engine_kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2371</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_numba_agg_general</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2372</span>         <span class="n">grouped_mean</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2373</span>         <span class="n">executor</span><span class="o">.</span><span class="n">float_dtype_mapping</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2374</span>         <span class="n">engine_kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2375</span>         <span class="n">min_periods</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2376</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2377</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2378</span>     <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cython_agg_general</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2379</span>         <span class="s2">&quot;mean&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2380</span>         <span class="n">alt</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Series</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="n">numeric_only</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">2381</span>         <span class="n">numeric_only</span><span class="o">=</span><span class="n">numeric_only</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2382</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2383</span>     <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;groupby&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/groupby/groupby.py:1929,</span> in <span class="ni">GroupBy._cython_agg_general</span><span class="nt">(self, how, alt, numeric_only, min_count, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1926</span>     <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_agg_py_fallback</span><span class="p">(</span><span class="n">how</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="n">alt</span><span class="o">=</span><span class="n">alt</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1927</span>     <span class="k">return</span> <span class="n">result</span>
-<span class="ne">-&gt; </span><span class="mi">1929</span> <span class="n">new_mgr</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">grouped_reduce</span><span class="p">(</span><span class="n">array_func</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1930</span> <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrap_agged_manager</span><span class="p">(</span><span class="n">new_mgr</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1931</span> <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrap_aggregated_output</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/internals/managers.py:1428,</span> in <span class="ni">BlockManager.grouped_reduce</span><span class="nt">(self, func)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1424</span> <span class="k">if</span> <span class="n">blk</span><span class="o">.</span><span class="n">is_object</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1425</span>     <span class="c1"># split on object-dtype blocks bc some columns may raise</span>
-<span class="g g-Whitespace">   </span><span class="mi">1426</span>     <span class="c1">#  while others do not.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1427</span>     <span class="k">for</span> <span class="n">sb</span> <span class="ow">in</span> <span class="n">blk</span><span class="o">.</span><span class="n">_split</span><span class="p">():</span>
-<span class="ne">-&gt; </span><span class="mi">1428</span>         <span class="n">applied</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1429</span>         <span class="n">result_blocks</span> <span class="o">=</span> <span class="n">extend_blocks</span><span class="p">(</span><span class="n">applied</span><span class="p">,</span> <span class="n">result_blocks</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1430</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/internals/blocks.py:366,</span> in <span class="ni">Block.apply</span><span class="nt">(self, func, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">360</span> <span class="nd">@final</span>
-<span class="g g-Whitespace">    </span><span class="mi">361</span> <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Block</span><span class="p">]:</span>
-<span class="g g-Whitespace">    </span><span class="mi">362</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">363</span><span class="sd">     apply the function to my values; return a block if we are not</span>
-<span class="g g-Whitespace">    </span><span class="mi">364</span><span class="sd">     one</span>
-<span class="g g-Whitespace">    </span><span class="mi">365</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">366</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">368</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">maybe_coerce_values</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">369</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_op_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/groupby/groupby.py:1926,</span> in <span class="ni">GroupBy._cython_agg_general.&lt;locals&gt;.array_func</span><span class="nt">(values)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1923</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1924</span>     <span class="k">return</span> <span class="n">result</span>
-<span class="ne">-&gt; </span><span class="mi">1926</span> <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_agg_py_fallback</span><span class="p">(</span><span class="n">how</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="n">alt</span><span class="o">=</span><span class="n">alt</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1927</span> <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/groupby/groupby.py:1878,</span> in <span class="ni">GroupBy._agg_py_fallback</span><span class="nt">(self, how, values, ndim, alt)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1876</span>     <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;agg function failed [how-&gt;</span><span class="si">{</span><span class="n">how</span><span class="si">}</span><span class="s2">,dtype-&gt;</span><span class="si">{</span><span class="n">ser</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">]&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1877</span>     <span class="c1"># preserve the kind of exception that raised</span>
-<span class="ne">-&gt; </span><span class="mi">1878</span>     <span class="k">raise</span> <span class="nb">type</span><span class="p">(</span><span class="n">err</span><span class="p">)(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
-<span class="g g-Whitespace">   </span><span class="mi">1880</span> <span class="k">if</span> <span class="n">ser</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="nb">object</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1881</span>     <span class="n">res_values</span> <span class="o">=</span> <span class="n">res_values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="ne">TypeError</span>: agg function failed [how-&gt;mean,dtype-&gt;object]
-</pre></div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Barton LLC</th>
+      <td>35000.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Fritsch, Russel and Anderson</th>
+      <td>35000.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Herman LLC</th>
+      <td>65000.0</td>
+      <td>2.000000</td>
+    </tr>
+    <tr>
+      <th>Jerde-Hilpert</th>
+      <td>5000.0</td>
+      <td>2.000000</td>
+    </tr>
+    <tr>
+      <th>Kassulke, Ondricka and Metz</th>
+      <td>7000.0</td>
+      <td>3.000000</td>
+    </tr>
+    <tr>
+      <th>Keeling LLC</th>
+      <td>100000.0</td>
+      <td>5.000000</td>
+    </tr>
+    <tr>
+      <th>Kiehn-Spinka</th>
+      <td>65000.0</td>
+      <td>2.000000</td>
+    </tr>
+    <tr>
+      <th>Koepp Ltd</th>
+      <td>35000.0</td>
+      <td>2.000000</td>
+    </tr>
+    <tr>
+      <th>Kulas Inc</th>
+      <td>25000.0</td>
+      <td>1.500000</td>
+    </tr>
+    <tr>
+      <th>Purdy-Kunde</th>
+      <td>30000.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Stokes LLC</th>
+      <td>7500.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Trantow-Barrows</th>
+      <td>15000.0</td>
+      <td>1.333333</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
-</div>
-</div>
-<p>例 2: 按 Manager 和 Rep 分组，类似于使用 <code class="docutils literal notranslate"><span class="pre">groupby</span></code> 对两个字段 Manager 和 Rep 进行分组。</p>
+<p>例 2: 按 Manager 和 Rep 分组，类似于使用 <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> 对两个字段 Manager 和 Rep 进行分组。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">sales_df</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Manager&#39;</span><span class="p">,</span><span class="s1">&#39;Rep&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">sales_df</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Manager&#39;</span><span class="p">,</span> <span class="s1">&#39;Rep&#39;</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Quantity&#39;</span><span class="p">,</span> <span class="s1">&#39;Price&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -929,7 +827,6 @@ document.write(`
     <tr style="text-align: right;">
       <th></th>
       <th></th>
-      <th>Account</th>
       <th>Price</th>
       <th>Quantity</th>
     </tr>
@@ -938,39 +835,33 @@ document.write(`
       <th>Rep</th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th rowspan="3" valign="top">Debra Henley</th>
       <th>Craig Booker</th>
-      <td>720237.0</td>
       <td>20000.000000</td>
       <td>1.250000</td>
     </tr>
     <tr>
       <th>Daniel Hilton</th>
-      <td>194874.0</td>
       <td>38333.333333</td>
       <td>1.666667</td>
     </tr>
     <tr>
       <th>John Smith</th>
-      <td>576220.0</td>
       <td>20000.000000</td>
       <td>1.500000</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">Fred Anderson</th>
       <th>Cedric Moss</th>
-      <td>196016.5</td>
       <td>27500.000000</td>
       <td>1.250000</td>
     </tr>
     <tr>
       <th>Wendy Yule</th>
-      <td>614061.5</td>
       <td>44250.000000</td>
       <td>3.000000</td>
     </tr>
@@ -981,7 +872,7 @@ document.write(`
 <p>前面两个例子与 <code class="docutils literal notranslate"><span class="pre">groupby</span></code> 很像，第 3 个例子，增加 <code class="docutils literal notranslate"><span class="pre">columns</span></code> 这个参数，添加透视表的列 Product，把原来存在于 Product 中的数据作为列名提出来。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">sales_df</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Manager&#39;</span><span class="p">,</span><span class="s1">&#39;Rep&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Product&quot;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">sales_df</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Manager&#39;</span><span class="p">,</span><span class="s1">&#39;Rep&#39;</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Quantity&#39;</span><span class="p">,</span> <span class="s1">&#39;Price&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Product&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1009,17 +900,12 @@ document.write(`
     <tr>
       <th></th>
       <th></th>
-      <th colspan="4" halign="left">Account</th>
       <th colspan="4" halign="left">Price</th>
       <th colspan="4" halign="left">Quantity</th>
     </tr>
     <tr>
       <th></th>
       <th>Product</th>
-      <th>CPU</th>
-      <th>Maintenance</th>
-      <th>Monitor</th>
-      <th>Software</th>
       <th>CPU</th>
       <th>Maintenance</th>
       <th>Monitor</th>
@@ -1040,20 +926,12 @@ document.write(`
       <th></th>
       <th></th>
       <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th rowspan="3" valign="top">Debra Henley</th>
       <th>Craig Booker</th>
-      <td>726008.0</td>
-      <td>714466.0</td>
-      <td>NaN</td>
-      <td>714466.0</td>
       <td>32500.0</td>
       <td>5000.0</td>
       <td>NaN</td>
@@ -1065,10 +943,6 @@ document.write(`
     </tr>
     <tr>
       <th>Daniel Hilton</th>
-      <td>182863.5</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>218895.0</td>
       <td>52500.0</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1080,10 +954,6 @@ document.write(`
     </tr>
     <tr>
       <th>John Smith</th>
-      <td>740150.0</td>
-      <td>412290.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
       <td>35000.0</td>
       <td>5000.0</td>
       <td>NaN</td>
@@ -1096,10 +966,6 @@ document.write(`
     <tr>
       <th rowspan="2" valign="top">Fred Anderson</th>
       <th>Cedric Moss</th>
-      <td>152689.0</td>
-      <td>239344.0</td>
-      <td>NaN</td>
-      <td>239344.0</td>
       <td>47500.0</td>
       <td>5000.0</td>
       <td>NaN</td>
@@ -1111,10 +977,6 @@ document.write(`
     </tr>
     <tr>
       <th>Wendy Yule</th>
-      <td>709407.0</td>
-      <td>307599.0</td>
-      <td>729833.0</td>
-      <td>NaN</td>
       <td>82500.0</td>
       <td>7000.0</td>
       <td>5000.0</td>
@@ -1128,7 +990,7 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-<p>生成的数据透视表有两层列索引，第一层是原有的 Account、Price、Quantity 这些字段，第二层是 <code class="docutils literal notranslate"><span class="pre">columns=[&quot;Product&quot;]</span></code> 里面的值：CPU、Monitor 等。</p>
+<p>生成的数据透视表有两层列索引，第一层是原有的 Price、Quantity 这些字段，第二层是 <code class="docutils literal notranslate"><span class="pre">columns=[&quot;Product&quot;]</span></code> 里面的值：CPU、Monitor 等。</p>
 </section>
 <section id="values">
 <h3><span class="section-number">2.7.1.2. </span>values 参数<a class="headerlink" href="#values" title="Permalink to this heading">#</a></h3>
@@ -1136,7 +998,7 @@ document.write(`
 <p>例 4：只显示 Price 列对应的平均值。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">sales_df</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Manager&#39;</span><span class="p">,</span><span class="s1">&#39;Rep&#39;</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;Price&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">sales_df</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Manager&#39;</span><span class="p">,</span><span class="s1">&#39;Rep&#39;</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;Price&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1207,6 +1069,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_42863/1265594602.py:1: FutureWarning: The provided callable &lt;function mean at 0x10f8080e0&gt; is currently using DataFrameGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+  pd.pivot_table(sales_df, index=[&quot;Manager&quot;,&quot;Rep&quot;], values=[&quot;Price&quot;], aggfunc=[np.mean, len])
+</pre></div>
+</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1291,6 +1157,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_42863/3052684454.py:1: FutureWarning: The provided callable &lt;function sum at 0x10b73afc0&gt; is currently using DataFrameGroupBy.sum. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;sum&quot; instead.
+  pd.pivot_table(sales_df,index=[&quot;Manager&quot;,&quot;Rep&quot;,&quot;Product&quot;],
+/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_42863/3052684454.py:1: FutureWarning: The provided callable &lt;function mean at 0x10f8080e0&gt; is currently using DataFrameGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+  pd.pivot_table(sales_df,index=[&quot;Manager&quot;,&quot;Rep&quot;,&quot;Product&quot;],
+</pre></div>
+</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1466,6 +1338,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_42863/1669582107.py:1: FutureWarning: The provided callable &lt;function mean at 0x10f8080e0&gt; is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+  table = pd.pivot_table(sales_df,
+</pre></div>
+</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1527,10 +1403,10 @@ document.write(`
     <tr>
       <th rowspan="4" valign="top">Debra Henley</th>
       <th>declined</th>
-      <td>35000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>35000.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>2</td>
       <td>0</td>
       <td>0</td>
@@ -1538,10 +1414,10 @@ document.write(`
     </tr>
     <tr>
       <th>pending</th>
-      <td>40000</td>
-      <td>5000</td>
-      <td>0</td>
-      <td>0</td>
+      <td>40000.0</td>
+      <td>5000.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1</td>
       <td>2</td>
       <td>0</td>
@@ -1549,10 +1425,10 @@ document.write(`
     </tr>
     <tr>
       <th>presented</th>
-      <td>30000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>10000</td>
+      <td>30000.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>10000.0</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
@@ -1560,10 +1436,10 @@ document.write(`
     </tr>
     <tr>
       <th>won</th>
-      <td>65000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>65000.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
@@ -1572,10 +1448,10 @@ document.write(`
     <tr>
       <th rowspan="4" valign="top">Fred Anderson</th>
       <th>declined</th>
-      <td>65000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>65000.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
@@ -1583,10 +1459,10 @@ document.write(`
     </tr>
     <tr>
       <th>pending</th>
-      <td>0</td>
-      <td>5000</td>
-      <td>0</td>
-      <td>0</td>
+      <td>0.0</td>
+      <td>5000.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
@@ -1594,10 +1470,10 @@ document.write(`
     </tr>
     <tr>
       <th>presented</th>
-      <td>30000</td>
-      <td>0</td>
-      <td>5000</td>
-      <td>10000</td>
+      <td>30000.0</td>
+      <td>0.0</td>
+      <td>5000.0</td>
+      <td>10000.0</td>
       <td>1</td>
       <td>0</td>
       <td>1</td>
@@ -1605,10 +1481,10 @@ document.write(`
     </tr>
     <tr>
       <th>won</th>
-      <td>82500</td>
-      <td>7000</td>
-      <td>0</td>
-      <td>0</td>
+      <td>82500.0</td>
+      <td>7000.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>2</td>
       <td>1</td>
       <td>0</td>
@@ -1691,10 +1567,10 @@ document.write(`
     <tr>
       <th rowspan="4" valign="top">Debra Henley</th>
       <th>declined</th>
-      <td>35000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>35000.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>2</td>
       <td>0</td>
       <td>0</td>
@@ -1702,10 +1578,10 @@ document.write(`
     </tr>
     <tr>
       <th>pending</th>
-      <td>40000</td>
-      <td>5000</td>
-      <td>0</td>
-      <td>0</td>
+      <td>40000.0</td>
+      <td>5000.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1</td>
       <td>2</td>
       <td>0</td>
@@ -1713,10 +1589,10 @@ document.write(`
     </tr>
     <tr>
       <th>presented</th>
-      <td>30000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>10000</td>
+      <td>30000.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>10000.0</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
@@ -1724,10 +1600,10 @@ document.write(`
     </tr>
     <tr>
       <th>won</th>
-      <td>65000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>65000.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
@@ -1806,10 +1682,10 @@ document.write(`
     <tr>
       <th rowspan="2" valign="top">Debra Henley</th>
       <th>pending</th>
-      <td>40000</td>
-      <td>5000</td>
-      <td>0</td>
-      <td>0</td>
+      <td>40000.0</td>
+      <td>5000.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1</td>
       <td>2</td>
       <td>0</td>
@@ -1817,10 +1693,10 @@ document.write(`
     </tr>
     <tr>
       <th>won</th>
-      <td>65000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>65000.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
@@ -1829,10 +1705,10 @@ document.write(`
     <tr>
       <th rowspan="2" valign="top">Fred Anderson</th>
       <th>pending</th>
-      <td>0</td>
-      <td>5000</td>
-      <td>0</td>
-      <td>0</td>
+      <td>0.0</td>
+      <td>5000.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
@@ -1840,10 +1716,10 @@ document.write(`
     </tr>
     <tr>
       <th>won</th>
-      <td>82500</td>
-      <td>7000</td>
-      <td>0</td>
-      <td>0</td>
+      <td>82500.0</td>
+      <td>7000.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>2</td>
       <td>1</td>
       <td>0</td>
@@ -1857,8 +1733,7 @@ document.write(`
 </section>
 <section id="melt">
 <h2><span class="section-number">2.7.2. </span>melt<a class="headerlink" href="#melt" title="Permalink to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">melt()</span></code> 是用于将一个很宽的的表转换为长。这个函数通常用于数据重塑（data reshaping）操作，以便更容易进行数据分析和可视化。根据其英文名，又可被理解成，将一个宽表，“融化”成一个长表。</p>
-<p>通过这种方式，可以将宽格式数据表格中的多列数据整合到一个列中，可以理解为透视表 <code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code> 的反操作。</p>
+<p><code class="docutils literal notranslate"><span class="pre">melt()</span></code> 是用于将一个很宽的的表转换为长。这个函数通常用于数据重塑（data reshaping）操作，以便更容易进行数据分析和可视化。根据其英文名，又可被理解成，将一个宽表，“融化”成一个长表。通过这种方式，可以将宽格式数据表格中的多列数据整合到一个列中，可以理解为透视表 <code class="docutils literal notranslate"><span class="pre">pivot_table()</span></code> 的反操作。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d1</span> <span class="o">=</span> <span class="p">{</span>
@@ -2033,6 +1908,12 @@ document.write(`
 </div></div></div>
 </div>
 <p>数据重塑时，通常需要使用 <code class="docutils literal notranslate"><span class="pre">value_vars</span></code> 来指定需要 “融化” 的列，使它们被整合为一列。比如本例中，将 Math, English,History 整合为一列： Subject 列。</p>
+<figure class="align-default" id="melt-img">
+<a class="reference internal image-reference" href="../_images/melt.svg"><img alt="../_images/melt.svg" src="../_images/melt.svg" width="500px" /></a>
+<figcaption>
+<p><span class="caption-number">图 2.11 </span><span class="caption-text">melt(): 数据融化</span><a class="headerlink" href="#melt-img" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>我们回到 <code class="docutils literal notranslate"><span class="pre">melt()</span></code> 函数的参数。完整的参数形式为:<code class="docutils literal notranslate"><span class="pre">pandas.melt(frame,</span> <span class="pre">id_vars=None,</span> <span class="pre">value_vars=None,</span> <span class="pre">var_name=None,</span> <span class="pre">value_name='value',</span> <span class="pre">col_level=None)</span></code>。</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">frame</span></code> 指的是要进行重塑操作的 DataFrame 。</p></li>
@@ -2041,11 +1922,6 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">var_name</span></code> 用于存储融化后的列名的新列的名称。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">value_name</span></code> 用于存储融化后的值的新列的名称。</p></li>
 </ul>
-<figure class="align-default" id="melt-img">
-<img alt="../_images/melt.svg" src="../_images/melt.svg" /><figcaption>
-<p><span class="caption-number">图 2.3 </span><span class="caption-text">melt(): 数据融化</span><a class="headerlink" href="#melt-img" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
 </section>
 </section>
 

@@ -414,10 +414,10 @@ document.write(`
 <p>之前的操作主要在单个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> ，实际上，我们经常需要对多个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 联合起来进行分析。pandas 提供了多 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 之间的合并和连接的操作，分别是 <code class="docutils literal notranslate"><span class="pre">merge()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">concat()</span></code> 函数。比如，我们可以将两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 合并成一个，且保留所有的列。</p>
 <section id="merge">
 <h2><span class="section-number">2.6.1. </span>merge<a class="headerlink" href="#merge" title="Permalink to this heading">#</a></h2>
-<p>pandas 的 <code class="docutils literal notranslate"><span class="pre">merge</span></code> 操作可以合并两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>（或者称为表） ，类似于 SQL 中的 JOIN 操作。 我们可以想象成：一个大表被拆分成两个小表，两个小表都包含一些同样的数据。现在我们需要把两个小表合并，生成一个大表，大表包含了两个小表的字段。</p>
+<p>pandas 的 <code class="docutils literal notranslate"><span class="pre">merge()</span></code> 操作可以合并两个 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>（或者称为表） ，类似于 SQL 中的 JOIN 操作。 我们可以想象成：一个大表被拆分成两个小表，两个小表都包含一些同样的数据。现在我们需要把两个小表合并，生成一个大表，大表包含了两个小表的字段。</p>
 <figure class="align-default" id="merge-img">
 <img alt="../_images/merge.svg" src="../_images/merge.svg" /><figcaption>
-<p><span class="caption-number">图 2.2 </span><span class="caption-text">对两个 DataFrame 进行 merge 操作</span><a class="headerlink" href="#merge-img" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">图 2.8 </span><span class="caption-text">对两个 DataFrame 进行 merge 操作</span><a class="headerlink" href="#merge-img" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="cell docutils container">
@@ -942,7 +942,13 @@ document.write(`
 </section>
 <section id="concat">
 <h2><span class="section-number">2.6.2. </span>concat<a class="headerlink" href="#concat" title="Permalink to this heading">#</a></h2>
-<p>与 <code class="docutils literal notranslate"><span class="pre">merge</span></code> 对表结构进行横向的操作不同，<code class="docutils literal notranslate"><span class="pre">concat</span></code> 函数默认是进行纵向的合并，也就是将多行进行 ** 堆叠式 ** 的合并。</p>
+<p>与 <code class="docutils literal notranslate"><span class="pre">merge()</span></code> 对表结构进行横向的操作不同，<code class="docutils literal notranslate"><span class="pre">concat()</span></code> 函数默认是进行纵向的合并，也就是将多行进行 <strong>堆叠式</strong> 的合并，如 <a class="reference internal" href="#concat-img"><span class="std std-numref">图 2.9</span></a> 所示。</p>
+<figure class="align-default" id="concat-img">
+<a class="reference internal image-reference" href="../_images/concat.svg"><img alt="../_images/concat.svg" src="../_images/concat.svg" width="600px" /></a>
+<figcaption>
+<p><span class="caption-number">图 2.9 </span><span class="caption-text">对两个 DataFrame 进行 concat 操作</span><a class="headerlink" href="#concat-img" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>比如下面的例子，把所有的行和所有的列合并在一起，缺失的填充 <code class="docutils literal notranslate"><span class="pre">NaN</span></code>。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

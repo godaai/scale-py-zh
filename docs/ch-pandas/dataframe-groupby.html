@@ -408,11 +408,11 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1><span class="section-number">2.5. </span>分组汇总<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
-<p>实际的数据分析中，经常需要对某一类数据进行统计分析。比如，假如我们拥有全国所有人的身高和体重数据，我们想按照省份分组，统计每个省的平均身高和平均体重，这时候就需要使用分组操作。pandas 提供了 <code class="docutils literal notranslate"><span class="pre">groupby</span></code> 函数进行类似的分组汇总操作。<a class="reference internal" href="#groupby-img"><span class="std std-numref">图 2.1</span></a> 计算平均身高的分组汇总流程，主要包括两部分：分组与汇总。其中分组阶段将同一类的内容归结到相同的组中；汇总阶段将所关心的数据进行计算，比如求和、求平均等。</p>
+<p>实际的数据分析中，经常需要对某一类数据进行统计分析。比如，假如我们拥有全国所有人的身高和体重数据，我们想按照省份分组，统计每个省的平均身高和平均体重，这时候就需要使用分组操作。pandas 提供了 <code class="docutils literal notranslate"><span class="pre">groupby</span></code> 函数进行类似的分组汇总操作。<a class="reference internal" href="#groupby-img"><span class="std std-numref">图 2.7</span></a> 计算平均身高的分组汇总流程，主要包括两部分：分组与汇总。其中分组阶段将同一类的内容归结到相同的组中；汇总阶段将所关心的数据进行计算，比如求和、求平均等。</p>
 <p>按哪些字段进行分组，这些字段又被成为 ** 分组变量 **。对其他字段进行汇总，其他汇总字段被成为 ** 汇总变量 **。对汇总变量进行计算，被称为 ** 汇总统计量 **。</p>
 <figure class="align-default" id="groupby-img">
 <img alt="../_images/groupby.svg" src="../_images/groupby.svg" /><figcaption>
-<p><span class="caption-number">图 2.1 </span><span class="caption-text">分组与汇总</span><a class="headerlink" href="#groupby-img" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">图 2.7 </span><span class="caption-text">分组与汇总</span><a class="headerlink" href="#groupby-img" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="cell tag_hide-cell docutils container">
@@ -554,31 +554,342 @@ document.write(`
 <p>例如按照 <code class="docutils literal notranslate"><span class="pre">year</span></code> 汇总 <code class="docutils literal notranslate"><span class="pre">tcgdp</span></code> 和 <code class="docutils literal notranslate"><span class="pre">POP</span></code>，在 <code class="docutils literal notranslate"><span class="pre">.groupby</span></code> 后直接使用 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 筛选相应列，再接汇总统计量。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">])[[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">File ~/anaconda3/envs/pyds/lib/python3.11/site-packages/pandas/core/groupby/generic.py:1960,</span> in <span class="ni">DataFrameGroupBy.__getitem__</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1956</span> <span class="c1"># per GH 23566</span>
-<span class="g g-Whitespace">   </span><span class="mi">1957</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1958</span>     <span class="c1"># if len == 1, then it becomes a SeriesGroupBy and this is actually</span>
-<span class="g g-Whitespace">   </span><span class="mi">1959</span>     <span class="c1"># valid syntax, so don&#39;t raise</span>
-<span class="ne">-&gt; </span><span class="mi">1960</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1961</span>         <span class="s2">&quot;Cannot subset columns with a tuple with more than one element. &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1962</span>         <span class="s2">&quot;Use a list instead.&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1963</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1964</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="ne">ValueError</span>: Cannot subset columns with a tuple with more than one element. Use a list instead.
-</pre></div>
-</div>
-</div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tcgdp</th>
+      <th>POP</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1950</th>
+      <td>3954.394467</td>
+      <td>16239.392063</td>
+    </tr>
+    <tr>
+      <th>1951</th>
+      <td>4541.917011</td>
+      <td>16461.731179</td>
+    </tr>
+    <tr>
+      <th>1952</th>
+      <td>5150.946930</td>
+      <td>16730.487389</td>
+    </tr>
+    <tr>
+      <th>1953</th>
+      <td>5483.995310</td>
+      <td>17019.548668</td>
+    </tr>
+    <tr>
+      <th>1954</th>
+      <td>5692.811775</td>
+      <td>17326.304137</td>
+    </tr>
+    <tr>
+      <th>1955</th>
+      <td>6196.465477</td>
+      <td>17657.801874</td>
+    </tr>
+    <tr>
+      <th>1956</th>
+      <td>6640.264851</td>
+      <td>17999.434226</td>
+    </tr>
+    <tr>
+      <th>1957</th>
+      <td>7104.041128</td>
+      <td>18364.700442</td>
+    </tr>
+    <tr>
+      <th>1958</th>
+      <td>7528.454605</td>
+      <td>18730.439042</td>
+    </tr>
+    <tr>
+      <th>1959</th>
+      <td>8148.510891</td>
+      <td>19043.260395</td>
+    </tr>
+    <tr>
+      <th>1960</th>
+      <td>8828.605776</td>
+      <td>19242.437274</td>
+    </tr>
+    <tr>
+      <th>1961</th>
+      <td>9128.455879</td>
+      <td>19423.141142</td>
+    </tr>
+    <tr>
+      <th>1962</th>
+      <td>9687.307082</td>
+      <td>19760.533626</td>
+    </tr>
+    <tr>
+      <th>1963</th>
+      <td>10351.917775</td>
+      <td>20233.695226</td>
+    </tr>
+    <tr>
+      <th>1964</th>
+      <td>11269.680061</td>
+      <td>20719.860558</td>
+    </tr>
+    <tr>
+      <th>1965</th>
+      <td>12105.691273</td>
+      <td>21182.282832</td>
+    </tr>
+    <tr>
+      <th>1966</th>
+      <td>13176.722813</td>
+      <td>21655.463121</td>
+    </tr>
+    <tr>
+      <th>1967</th>
+      <td>14051.084235</td>
+      <td>22121.536947</td>
+    </tr>
+    <tr>
+      <th>1968</th>
+      <td>15421.584740</td>
+      <td>22606.150837</td>
+    </tr>
+    <tr>
+      <th>1969</th>
+      <td>17218.758987</td>
+      <td>23113.133937</td>
+    </tr>
+    <tr>
+      <th>1970</th>
+      <td>21282.567279</td>
+      <td>23618.829389</td>
+    </tr>
+    <tr>
+      <th>1971</th>
+      <td>23432.910689</td>
+      <td>24137.869711</td>
+    </tr>
+    <tr>
+      <th>1972</th>
+      <td>25833.379310</td>
+      <td>24644.483005</td>
+    </tr>
+    <tr>
+      <th>1973</th>
+      <td>29159.646600</td>
+      <td>25140.115900</td>
+    </tr>
+    <tr>
+      <th>1974</th>
+      <td>32601.678050</td>
+      <td>25623.884663</td>
+    </tr>
+    <tr>
+      <th>1975</th>
+      <td>36109.970163</td>
+      <td>26088.471411</td>
+    </tr>
+    <tr>
+      <th>1976</th>
+      <td>40165.947722</td>
+      <td>26535.470116</td>
+    </tr>
+    <tr>
+      <th>1977</th>
+      <td>44691.033777</td>
+      <td>26979.055474</td>
+    </tr>
+    <tr>
+      <th>1978</th>
+      <td>50393.152251</td>
+      <td>27418.046916</td>
+    </tr>
+    <tr>
+      <th>1979</th>
+      <td>56983.540963</td>
+      <td>27873.890479</td>
+    </tr>
+    <tr>
+      <th>1980</th>
+      <td>63850.748602</td>
+      <td>28329.849105</td>
+    </tr>
+    <tr>
+      <th>1981</th>
+      <td>70997.231877</td>
+      <td>28790.876000</td>
+    </tr>
+    <tr>
+      <th>1982</th>
+      <td>75786.116966</td>
+      <td>29287.531784</td>
+    </tr>
+    <tr>
+      <th>1983</th>
+      <td>81059.066064</td>
+      <td>29795.689879</td>
+    </tr>
+    <tr>
+      <th>1984</th>
+      <td>88303.031984</td>
+      <td>30288.007526</td>
+    </tr>
+    <tr>
+      <th>1985</th>
+      <td>94477.342887</td>
+      <td>30791.765868</td>
+    </tr>
+    <tr>
+      <th>1986</th>
+      <td>101596.414215</td>
+      <td>31313.561847</td>
+    </tr>
+    <tr>
+      <th>1987</th>
+      <td>109494.183517</td>
+      <td>31863.784021</td>
+    </tr>
+    <tr>
+      <th>1988</th>
+      <td>118048.078421</td>
+      <td>32417.290021</td>
+    </tr>
+    <tr>
+      <th>1989</th>
+      <td>126221.579493</td>
+      <td>32964.028537</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>144220.075333</td>
+      <td>33516.168453</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>151894.234358</td>
+      <td>34055.531837</td>
+    </tr>
+    <tr>
+      <th>1992</th>
+      <td>159301.705863</td>
+      <td>34567.649100</td>
+    </tr>
+    <tr>
+      <th>1993</th>
+      <td>168690.980704</td>
+      <td>35065.424347</td>
+    </tr>
+    <tr>
+      <th>1994</th>
+      <td>178947.613269</td>
+      <td>35548.469784</td>
+    </tr>
+    <tr>
+      <th>1995</th>
+      <td>190126.580304</td>
+      <td>36030.590795</td>
+    </tr>
+    <tr>
+      <th>1996</th>
+      <td>200132.766116</td>
+      <td>36513.694642</td>
+    </tr>
+    <tr>
+      <th>1997</th>
+      <td>210946.889843</td>
+      <td>36991.605037</td>
+    </tr>
+    <tr>
+      <th>1998</th>
+      <td>216481.948520</td>
+      <td>37462.231458</td>
+    </tr>
+    <tr>
+      <th>1999</th>
+      <td>228114.840291</td>
+      <td>37920.696968</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>244206.601784</td>
+      <td>38307.409353</td>
+    </tr>
+    <tr>
+      <th>2001</th>
+      <td>255312.487062</td>
+      <td>38742.535742</td>
+    </tr>
+    <tr>
+      <th>2002</th>
+      <td>269661.409286</td>
+      <td>39176.028268</td>
+    </tr>
+    <tr>
+      <th>2003</th>
+      <td>286959.704885</td>
+      <td>39606.837547</td>
+    </tr>
+    <tr>
+      <th>2004</th>
+      <td>312186.334350</td>
+      <td>40040.118863</td>
+    </tr>
+    <tr>
+      <th>2005</th>
+      <td>344724.420195</td>
+      <td>40475.047642</td>
+    </tr>
+    <tr>
+      <th>2006</th>
+      <td>379205.674317</td>
+      <td>40909.750389</td>
+    </tr>
+    <tr>
+      <th>2007</th>
+      <td>416504.775669</td>
+      <td>41347.240695</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>446441.988262</td>
+      <td>41731.031032</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>448186.871127</td>
+      <td>42174.566563</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="id4">
@@ -712,7 +1023,7 @@ document.write(`
 <p>例如，按照 <code class="docutils literal notranslate"><span class="pre">country</span></code> 和 <code class="docutils literal notranslate"><span class="pre">year</span></code> 顺序对 <code class="docutils literal notranslate"><span class="pre">tcgdp</span></code> 和 <code class="docutils literal notranslate"><span class="pre">POP</span></code> 进行分组汇总，汇总统计量为最小值和最大值。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -850,7 +1161,7 @@ document.write(`
 <p>例如，查询各个国家 <code class="docutils literal notranslate"><span class="pre">country</span></code> 各年 <code class="docutils literal notranslate"><span class="pre">year</span></code> 人口 <code class="docutils literal notranslate"><span class="pre">POP</span></code> 的最小值。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_query</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_query</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span><span class="s1">&#39;POP&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
 <span class="n">df_query</span><span class="p">[</span><span class="s1">&#39;POP&#39;</span><span class="p">][</span><span class="s1">&#39;min&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
