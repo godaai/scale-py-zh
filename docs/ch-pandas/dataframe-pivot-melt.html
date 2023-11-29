@@ -1064,15 +1064,11 @@ document.write(`
 <p>例：对 Price 显示 <code class="docutils literal notranslate"><span class="pre">mean</span></code> 和 <code class="docutils literal notranslate"><span class="pre">len</span></code> 两列结果。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">sales_df</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Manager&quot;</span><span class="p">,</span><span class="s2">&quot;Rep&quot;</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">],</span> <span class="n">aggfunc</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="nb">len</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">sales_df</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Manager&quot;</span><span class="p">,</span><span class="s2">&quot;Rep&quot;</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Price&quot;</span><span class="p">],</span> <span class="n">aggfunc</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_42863/1265594602.py:1: FutureWarning: The provided callable &lt;function mean at 0x10f8080e0&gt; is currently using DataFrameGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
-  pd.pivot_table(sales_df, index=[&quot;Manager&quot;,&quot;Rep&quot;], values=[&quot;Price&quot;], aggfunc=[np.mean, len])
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1157,9 +1153,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_42863/3052684454.py:1: FutureWarning: The provided callable &lt;function sum at 0x10b73afc0&gt; is currently using DataFrameGroupBy.sum. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;sum&quot; instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_81386/3052684454.py:1: FutureWarning: The provided callable &lt;function sum at 0x110c4f060&gt; is currently using DataFrameGroupBy.sum. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;sum&quot; instead.
   pd.pivot_table(sales_df,index=[&quot;Manager&quot;,&quot;Rep&quot;,&quot;Product&quot;],
-/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_42863/3052684454.py:1: FutureWarning: The provided callable &lt;function mean at 0x10f8080e0&gt; is currently using DataFrameGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_81386/3052684454.py:1: FutureWarning: The provided callable &lt;function mean at 0x110c60180&gt; is currently using DataFrameGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
   pd.pivot_table(sales_df,index=[&quot;Manager&quot;,&quot;Rep&quot;,&quot;Product&quot;],
 </pre></div>
 </div>
@@ -1338,7 +1334,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_42863/1669582107.py:1: FutureWarning: The provided callable &lt;function mean at 0x10f8080e0&gt; is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_81386/1669582107.py:1: FutureWarning: The provided callable &lt;function mean at 0x110c60180&gt; is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
   table = pd.pivot_table(sales_df,
 </pre></div>
 </div>
