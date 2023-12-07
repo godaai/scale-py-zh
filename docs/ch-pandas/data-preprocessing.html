@@ -452,7 +452,7 @@ document.write(`
 </div>
 <section id="id2">
 <h2><span class="section-number">2.4.1. </span>处理重复值<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
-<p>检测数据集的记录是否存在重复，可以使用 <code class="docutils literal notranslate"><span class="pre">.duplicated</span></code> 函数进行验证，但是该函数返回的是数据集每一行的检测结果，即 n 行数据会返回 n 个布尔值。为了能够得到最直接的结果，可以使用 <code class="docutils literal notranslate"><span class="pre">any</span></code> 函数。该函数表示的是在多个条件判断中，只要有一个条件为 True，则 <code class="docutils literal notranslate"><span class="pre">any</span></code> 返回的结果为 True。</p>
+<p>检测数据集的记录是否存在重复，可以使用 <code class="docutils literal notranslate"><span class="pre">.duplicated()</span></code> 函数进行验证，但是该函数返回的是数据集每一行的检测结果，即 n 行数据会返回 n 个布尔值。为了能够得到最直接的结果，可以使用 <code class="docutils literal notranslate"><span class="pre">any</span></code> 函数。该函数表示的是在多个条件判断中，只要有一个条件为 True，则 <code class="docutils literal notranslate"><span class="pre">any</span></code> 返回的结果为 True。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">any</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">())</span>
@@ -465,7 +465,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>如果有重复项，可以通过 <code class="docutils literal notranslate"><span class="pre">.drop_duplicated()</span></code> 删除。该函数有 inplace 参数，设置为 True 表示直接在原始数据集上做操作：<code class="docutils literal notranslate"><span class="pre">df.drop_duplicated(inplace</span> <span class="pre">=</span> <span class="pre">True)</span></code>。</p>
+<p>如果有重复项，可以通过 <code class="docutils literal notranslate"><span class="pre">.drop_duplicated()</span></code> 删除。该函数有 <code class="docutils literal notranslate"><span class="pre">inplace</span></code> 参数，设置为 True 表示直接在原始数据集上做操作：<code class="docutils literal notranslate"><span class="pre">df.drop_duplicated(inplace</span> <span class="pre">=</span> <span class="pre">True)</span></code>。</p>
 </section>
 <section id="id3">
 <h2><span class="section-number">2.4.2. </span>处理缺失值<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
@@ -524,7 +524,7 @@ dtype: int64
 <p>一般而言，遇到缺失值时，可以采用三种方法处理，分别是删除法、替换法或插补法。</p>
 <p>删除法是指当缺失的观测比例非常低（如 5% 以内），直接删除存在缺失的观测，或者当某些变量的缺失比例非常高时（如 85% 以上），直接删除这些缺失的变量。</p>
 <p>可以使用 <code class="docutils literal notranslate"><span class="pre">.dropna()</span></code> 函数删除有缺失值的行或列。具体形式：<code class="docutils literal notranslate"><span class="pre">df.dropna(axis=0,</span> <span class="pre">how='any',</span> <span class="pre">inplace=False)</span></code>。</p>
-<p>这个函数有参数 <code class="docutils literal notranslate"><span class="pre">axis</span></code>，<code class="docutils literal notranslate"><span class="pre">axis</span></code> 用来指定要删除的轴。<code class="docutils literal notranslate"><span class="pre">axis=0</span></code> 表示删除行（默认），axis=1 表示删除列。<code class="docutils literal notranslate"><span class="pre">how</span></code> 用来指定删除的条件。<code class="docutils literal notranslate"><span class="pre">how='any'</span></code> 表示删除包含任何缺失值的行（默认），<code class="docutils literal notranslate"><span class="pre">how='all'</span></code> 表示只删除所有值都是缺失值的行。<code class="docutils literal notranslate"><span class="pre">inplace</span></code> 用于指定是否在原始 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 上进行修改，默认为 False，表示不修改原始 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>，而是返回一个新的 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>。</p>
+<p>这个函数有参数 <code class="docutils literal notranslate"><span class="pre">axis</span></code>，<code class="docutils literal notranslate"><span class="pre">axis</span></code> 用来指定要删除的轴。<code class="docutils literal notranslate"><span class="pre">axis=0</span></code> 表示删除行（默认），<code class="docutils literal notranslate"><span class="pre">axis=1</span></code> 表示删除列。<code class="docutils literal notranslate"><span class="pre">how</span></code> 用来指定删除的条件。<code class="docutils literal notranslate"><span class="pre">how='any'</span></code> 表示删除包含任何缺失值的行（默认），<code class="docutils literal notranslate"><span class="pre">how='all'</span></code> 表示只删除所有值都是缺失值的行。<code class="docutils literal notranslate"><span class="pre">inplace</span></code> 用于指定是否在原始 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 上进行修改，默认为 False，表示不修改原始 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>，而是返回一个新的 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>。</p>
 <p>例如，删除包含任何缺失值的行。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -891,7 +891,7 @@ dtype: float64
 <p>11400 rows × 37 columns</p>
 </div></div></div>
 </div>
-<p>在这个例子中，<code class="docutils literal notranslate"><span class="pre">apply</span></code> 有个参数为 <code class="docutils literal notranslate"><span class="pre">axis</span></code>，<code class="docutils literal notranslate"><span class="pre">axis</span> <span class="pre">=</span> <span class="pre">1</span></code> 设置函数对每一行操作；`axis = 0`` 设置函数对每一列操作；默认 axis = 0。</p>
+<p>在这个例子中，<code class="docutils literal notranslate"><span class="pre">apply</span></code> 有个参数为 <code class="docutils literal notranslate"><span class="pre">axis</span></code>，<code class="docutils literal notranslate"><span class="pre">axis</span> <span class="pre">=</span> <span class="pre">1</span></code> 设置函数对每一行操作；<code class="docutils literal notranslate"><span class="pre">axis</span> <span class="pre">=</span> <span class="pre">0</span></code> 设置函数对每一列操作；默认 <code class="docutils literal notranslate"><span class="pre">axis</span> <span class="pre">=</span> <span class="pre">0</span></code>。</p>
 <p>例：和 <code class="docutils literal notranslate"><span class="pre">.loc[]</span></code> 一起使用，进行更高级的数据切片。<code class="docutils literal notranslate"><span class="pre">.apply()</span></code> 返回对每一行做条件判断的一系列布尔值，以 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 操作选择部分列。下面的选择条件为：如果 <code class="docutils literal notranslate"><span class="pre">country</span></code> 列属于特定国家，且 <code class="docutils literal notranslate"><span class="pre">POP</span> <span class="pre">&gt;</span> <span class="pre">40000</span></code>；如果 <code class="docutils literal notranslate"><span class="pre">country</span></code> 列不属于特定国家，且 <code class="docutils literal notranslate"><span class="pre">POP</span> <span class="pre">&lt;</span> <span class="pre">20000</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

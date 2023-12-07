@@ -392,7 +392,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.3.1. 主要方法</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.3.1.1. 使用 [] 进行选择</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.3.1.1. 使用 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 进行选择</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iloc-loc">2.3.1.2. iloc 或者 loc</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#query">2.3.1.3. query</a></li>
 </ul>
@@ -466,8 +466,16 @@ document.write(`
 <li><p>使用 <code class="docutils literal notranslate"><span class="pre">.query</span></code> 函数</p></li>
 </ul>
 <section id="id3">
-<h3><span class="section-number">2.3.1.1. </span>使用 [] 进行选择<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
-<p>选择第 2 行到第 5 行（不包括第 5 行）的数据：</p>
+<h3><span class="section-number">2.3.1.1. </span>使用 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 进行选择<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>选择行</p></li>
+</ul>
+<p>直接使用数字索引即可，<code class="docutils literal notranslate"><span class="pre">df[a,b]</span></code>表示选择 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 的第<code class="docutils literal notranslate"><span class="pre">a</span></code>行到第<code class="docutils literal notranslate"><span class="pre">b-1</span></code>行。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Python中的索引区间都是左闭右开区间，这意味着左边端点可以取到，而右边端点取不到。</p>
+</div>
+<p>例：对上一章节的PWT案例数据 df 选择第 2 行到第 5 行（不包括第 5 行）的数据。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
@@ -594,7 +602,11 @@ document.write(`
 <p>3 rows × 37 columns</p>
 </div></div></div>
 </div>
-<p>要选择列，我们可以传递一个列表，其中包含所需列的列名，为字符串形式。</p>
+<ul class="simple">
+<li><p>选择列</p></li>
+</ul>
+<p>我们可以传递一个列表，其中包含所需列的列名，为字符串形式。</p>
+<p>例：选择 country 和 tcgdp 两列。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;tcgdp&#39;</span><span class="p">]]</span>
@@ -686,7 +698,10 @@ document.write(`
 </div></div></div>
 </div>
 <p>如果只选取一列，<code class="docutils literal notranslate"><span class="pre">df['country']</span></code> 等价于 <code class="docutils literal notranslate"><span class="pre">df.country</span></code>。</p>
-<p><code class="docutils literal notranslate"><span class="pre">[]</span></code> 还可以用来选择符合特定条件的数据。 例如，选取 POP 大于 20000 的行。判断语句 <code class="docutils literal notranslate"><span class="pre">df.POP&gt;</span> <span class="pre">20000</span></code> 会返回一系列布尔值，符合 POP 大于 20000 条件的会返回为 <code class="docutils literal notranslate"><span class="pre">True</span></code>。如果想要选择这些符合条件的数据，则需要：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[]</span></code> 选择符合特定条件的数据。</p></li>
+</ul>
+<p>例如，选取 POP 大于 20000 的行。判断语句 <code class="docutils literal notranslate"><span class="pre">df.POP&gt;</span> <span class="pre">20000</span></code> 会返回一系列布尔值，符合 POP 大于 20000 条件的会返回为 <code class="docutils literal notranslate"><span class="pre">True</span></code>。如果想要选择这些符合条件的数据，则需要：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">POP</span><span class="o">&gt;=</span> <span class="mi">20000</span><span class="p">]</span>
@@ -1005,7 +1020,7 @@ document.write(`
 <p>2223 rows × 37 columns</p>
 </div></div></div>
 </div>
-<p>如果选择 cc 列和 cg 列的和大于 80 并且 POP 小于 20000 的行：</p>
+<p>例：选择 cc 列和 cg 列的和大于 80 并且 POP 小于 20000 的行。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">cc</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">cg</span><span class="o">&gt;=</span> <span class="mi">80</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">POP</span> <span class="o">&lt;=</span> <span class="mi">20000</span><span class="p">)]</span>
@@ -1388,7 +1403,7 @@ document.write(`
 </div></div></div>
 </div>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">loc</span></code> 函数进行选择，与 <code class="docutils literal notranslate"><span class="pre">iloc</span></code> 的区别在于，<code class="docutils literal notranslate"><span class="pre">loc</span></code> 除了接受整数外，还可以接受标签（<code class="docutils literal notranslate"><span class="pre">a</span></code>、<code class="docutils literal notranslate"><span class="pre">b</span></code> 这样的列名）、表示整数位置的 index、<code class="docutils literal notranslate"><span class="pre">boolean</span></code> 。</p>
-<p>选择第 2 行到第 5 行（不包括第 5 行），<code class="docutils literal notranslate"><span class="pre">country</span></code> 和 <code class="docutils literal notranslate"><span class="pre">tcgdp</span></code> 列：</p>
+<p>例：选择第 2 行到第 5 行（不包括第 5 行），country 和 tcgdp 列。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;tcgdp&#39;</span><span class="p">]]</span>
@@ -1438,7 +1453,7 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-<p>使用 <code class="docutils literal notranslate"><span class="pre">loc</span></code> 函数选择 POP 列最大值的行：</p>
+<p>例：使用 <code class="docutils literal notranslate"><span class="pre">loc</span></code> 函数选择 POP 列最大值的行。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">POP</span> <span class="o">==</span> <span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">POP</span><span class="p">)]</span>
@@ -1542,6 +1557,7 @@ document.write(`
 </div></div></div>
 </div>
 <p>还可以使用这种形式：<code class="docutils literal notranslate"><span class="pre">.loc[,]</span></code>，两个参数用逗号隔开，第一个参数接受条件，第二个参数接受我们想要返回的列名，得到的是符合条件的特定的列。</p>
+<p>例：选择满足 cc 列加 cg 列大于等于80，POP小于等于20000条件的 country, year, POP 三列。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">cc</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">cg</span><span class="o">&gt;=</span> <span class="mi">80</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">POP</span> <span class="o">&lt;=</span> <span class="mi">20000</span><span class="p">),</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;POP&#39;</span><span class="p">]]</span>
@@ -2353,7 +2369,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.3.1. 主要方法</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.3.1.1. 使用 [] 进行选择</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.3.1.1. 使用 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 进行选择</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iloc-loc">2.3.1.2. iloc 或者 loc</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#query">2.3.1.3. query</a></li>
 </ul>
