@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>3.2. 数据加载与查看 &#8212; Python 分布式编程</title>
+    <title>3.2. 数据加载、查看与保存 &#8212; Python 分布式编程</title>
   
   
   
@@ -62,7 +62,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ch-ray-data/ray-data-load-inspect';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch-ray-data/ray-data-load-inspect-save';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. MPI" href="../ch-mpi/index.html" />
@@ -186,7 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">3. Ray Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="ray-data-intro.html">3.1. Ray Data 简介</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.2. 数据加载与查看</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.2. 数据加载、查看与保存</a></li>
 </ul>
 </li>
 </ul>
@@ -271,7 +271,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/godaai/distributed-python/issues/new?title=Issue%20on%20page%20%2Fch-ray-data/ray-data-load-inspect.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/godaai/distributed-python/issues/new?title=Issue%20on%20page%20%2Fch-ray-data/ray-data-load-inspect-save.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -301,7 +301,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/ch-ray-data/ray-data-load-inspect.ipynb" target="_blank"
+      <li><a href="../_sources/ch-ray-data/ray-data-load-inspect-save.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -383,7 +383,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>数据加载与查看</h1>
+    <h1>数据加载、查看与保存</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -404,6 +404,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.2.3.2. 随机迭代</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">3.2.4. 保存数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3.2.4.1. 写入文件系统</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">3.2.4.2. 转化成其他框架格式</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -415,8 +420,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="ray-data-load-inspect">
-<span id="id1"></span><h1><span class="section-number">3.2. </span>数据加载与查看<a class="headerlink" href="#ray-data-load-inspect" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="ray-data-load-inspect-save">
+<span id="id1"></span><h1><span class="section-number">3.2. </span>数据加载、查看与保存<a class="headerlink" href="#ray-data-load-inspect-save" title="Permalink to this heading">#</a></h1>
 <p>Ray Data 可以兼容多种多样的数据源，包括文件、内存数据和数据库。</p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
@@ -429,7 +434,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">urllib.request</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
 <span class="kn">import</span> <span class="nn">ray</span>
 
 <span class="k">if</span> <span class="n">ray</span><span class="o">.</span><span class="n">is_initialized</span><span class="p">:</span>
@@ -518,6 +523,28 @@ document.write(`
 <div class="cell_output docutils container">
 </div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>业内经常使用文件系统前缀（Scheme）来标识不同的文件系统，并调用不同的库来读写文件系统。<a class="reference internal" href="#uri-schemes"><span class="std std-numref">表 3.1</span></a> 是几个 Scheme 例子。一个数据集地址，应该是一个统一资源标识（Uniform Resource Identifier，URI），URI 包括 Scheme 和具体的地址。比如：<code class="docutils literal notranslate"><span class="pre">local:///tmp/tripdata.parquet</span></code> 或 <code class="docutils literal notranslate"><span class="pre">s3://tmp/tripdata.parquet</span></code>。</p>
+<table class="table" id="uri-schemes">
+<caption><span class="caption-number">表 3.1 </span><span class="caption-text">URI Scheme</span><a class="headerlink" href="#uri-schemes" title="Permalink to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head text-center"><p></p></th>
+<th class="head text-center"><p>本地</p></th>
+<th class="head text-center"><p>S3</p></th>
+<th class="head text-center"><p>MongoDB</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Scheme</p></td>
+<td class="text-center"><p>local://</p></td>
+<td class="text-center"><p>s3://</p></td>
+<td class="text-center"><p>mongo://</p></td>
+</tr>
+</tbody>
+</table>
+<p>如果数据集地址没有加任何 Scheme，会假设是本地可访问的文件系统，即该计算节点可以直接读写和访问的文件系统。比如，网络文件系统（Network File System，NFS）是分布式文件系统，可被挂载到多个计算节点的 <code class="docutils literal notranslate"><span class="pre">/mnt/nfs</span></code> 目录，使用 Ray Data 读写该目录时，可直接使用 <code class="docutils literal notranslate"><span class="pre">/mnt/nfs</span></code> 这个目录。</p>
+</div>
 <p>查看这份数据集的数据模式（Schema）：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -551,14 +578,15 @@ Airport_fee            double
 </div>
 </div>
 </div>
-<p>其他类型的文件格式（CSV、TFRecord 等）读取方法如 <a class="reference internal" href="#ray-data-read-files"><span class="std std-numref">表 3.1</span></a> 所示。</p>
+<p>其他类型的文件格式（CSV、TFRecord 等）读取方法如 <a class="reference internal" href="#ray-data-read-files"><span class="std std-numref">表 3.2</span></a> 所示。</p>
 <table class="table" id="ray-data-read-files">
-<caption><span class="caption-number">表 3.1 </span><span class="caption-text">Ray Data 数据读取方法</span><a class="headerlink" href="#ray-data-read-files" title="Permalink to this table">#</a></caption>
+<caption><span class="caption-number">表 3.2 </span><span class="caption-text">Ray Data 数据读取方法</span><a class="headerlink" href="#ray-data-read-files" title="Permalink to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head text-center"><p></p></th>
 <th class="head text-center"><p>Parquet</p></th>
 <th class="head text-center"><p>Text</p></th>
 <th class="head text-center"><p>CSV</p></th>
+<th class="head text-center"><p>JSON</p></th>
 <th class="head text-center"><p>TFRecord</p></th>
 <th class="head"><p>二进制</p></th>
 </tr>
@@ -568,6 +596,7 @@ Airport_fee            double
 <td class="text-center"><p>read_parquet()</p></td>
 <td class="text-center"><p>read_text()</p></td>
 <td class="text-center"><p>read_csv()</p></td>
+<td class="text-center"><p>read_json()</p></td>
 <td class="text-center"><p>read_tfrecords()</p></td>
 <td><p>read_binary_files()</p></td>
 </tr>
@@ -725,7 +754,7 @@ payment_type     int64
 </div>
 </div>
 </div>
-<p>深度学习框架 PyTorch 和 TensorFlow 经常对批次数据进行训练或推理，Ray Data 为了更好地与之融合，提供了 [Dataset.iter_torch_batches()`](<a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.iter_torch_batches.html">https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.iter_torch_batches.html</a>) 和 [`Dataset.iter_tf_batches()`](<a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.iter_tf_batches.html">https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.iter_tf_batches.html</a>) 方法，这两个方法会把数据转化为 PyTorch 和 TensorFlow 的 `Tensor` 数据格式。</p>
+<p>深度学习框架 PyTorch 和 TensorFlow 经常对批次数据进行训练或推理，Ray Data 为了更好地与之融合，提供了 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.iter_torch_batches.html"><code class="docutils literal notranslate"><span class="pre">Dataset.iter_torch_batches()</span></code></a> 和 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.iter_tf_batches.html"><code class="docutils literal notranslate"><span class="pre">Dataset.iter_tf_batches()</span></code></a> 方法，这两个方法会把数据转化为 PyTorch 和 TensorFlow 的 <code class="docutils literal notranslate"><span class="pre">Tensor</span></code> 数据格式。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
@@ -755,7 +784,7 @@ payment_type     int64
 <li><p>全量数据 Shuffle</p></li>
 <li><p>本地缓存 Shuffle</p></li>
 </ul>
-<p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.random_shuffle.html"><code class="docutils literal notranslate"><span class="pre">Dataset.random_shuffle()</span></code></a> 方法对全量数据所有数据进行洗牌，这意味着散落在不同计算节点的数据将相互交换，将产生大量节点间通信开销，速度很慢。</p>
+<p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.random_shuffle.html"><code class="docutils literal notranslate"><span class="pre">Dataset.random_shuffle()</span></code></a> 方法对全量所有数据进行洗牌，这意味着散落在不同计算节点的数据将相互交换，将产生大量节点间通信开销，速度很慢。</p>
 <p>本地缓存 Shuffle 指在计算节点上使用一块缓存区域，缓存区域的数据进行洗牌，这意味着随机性会大大降低，但性能会比全量数据 Shuffle 速度快很多，节点间通信开销也大大降低。我们只需要在迭代方法中使用 <code class="docutils literal notranslate"><span class="pre">local_shuffle_buffer_size</span></code> 参数；并用 <code class="docutils literal notranslate"><span class="pre">local_shuffle_seed</span></code> 设置随机种子。</p>
 <p>下面的例子中，设置了一块缓存区域，该缓存区域至少包含 250 行数据，也就是说，在至少 250 行数据上洗牌。</p>
 <div class="cell docutils container">
@@ -770,11 +799,11 @@ payment_type     int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;passenger_count&#39;: tensor([1, 1]), &#39;tip_amount&#39;: tensor([15.1500,  6.1600], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
-{&#39;passenger_count&#39;: tensor([1, 1]), &#39;tip_amount&#39;: tensor([8.9600, 6.0400], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
-{&#39;passenger_count&#39;: tensor([2, 1]), &#39;tip_amount&#39;: tensor([27.5000, 16.4500], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
-{&#39;passenger_count&#39;: tensor([2, 1]), &#39;tip_amount&#39;: tensor([11.8900, 16.8000], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
-{&#39;passenger_count&#39;: tensor([1, 1]), &#39;tip_amount&#39;: tensor([16.4500,  6.4400], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;passenger_count&#39;: tensor([1, 1]), &#39;tip_amount&#39;: tensor([16.1100, 12.5500], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
+{&#39;passenger_count&#39;: tensor([2, 2]), &#39;tip_amount&#39;: tensor([18.5000, 12.3900], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
+{&#39;passenger_count&#39;: tensor([0, 2]), &#39;tip_amount&#39;: tensor([10.0000, 11.8200], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
+{&#39;passenger_count&#39;: tensor([1, 1]), &#39;tip_amount&#39;: tensor([10.0000, 15.9600], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
+{&#39;passenger_count&#39;: tensor([2, 1]), &#39;tip_amount&#39;: tensor([8.0000, 9.5200], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
 </pre></div>
 </div>
 </div>
@@ -783,6 +812,83 @@ payment_type     int64
 <p class="admonition-title">Note</p>
 <p>本地缓存 Shuffle 是一种在随机度和性能之间平衡的策略。在机器学习中，随机度越高，机器学习模型的准确度越高。</p>
 </div>
+</section>
+</section>
+<section id="id9">
+<h2><span class="section-number">3.2.4. </span>保存数据<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
+<p>数据的保存可分为两类：</p>
+<ul class="simple">
+<li><p>数据保存到本地或共享的文件系统，比如本地文件系统或 S3。</p></li>
+<li><p>数据转化为其他格式的数据或写入特定的数据库，比如 pandas 或 MongoDB。</p></li>
+</ul>
+<section id="id10">
+<h3><span class="section-number">3.2.4.1. </span>写入文件系统<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<p><a class="reference internal" href="#ray-data-save"><span class="std std-numref">表 3.3</span></a> 列举了几个将 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 保存为不同文件格式的 API。</p>
+<table class="table" id="ray-data-save">
+<caption><span class="caption-number">表 3.3 </span><span class="caption-text">将 Dataset 写入文件系统</span><a class="headerlink" href="#ray-data-save" title="Permalink to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head text-center"><p></p></th>
+<th class="head text-center"><p>Parquet</p></th>
+<th class="head text-center"><p>CSV</p></th>
+<th class="head text-center"><p>JSON</p></th>
+<th class="head text-center"><p>TFRecord</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>方法</p></td>
+<td class="text-center"><p>Dataset.write_parquet()</p></td>
+<td class="text-center"><p>Dataset.write_csv()</p></td>
+<td class="text-center"><p>Dataset.write_json()</p></td>
+<td class="text-center"><p>Dataset.write_tfrecords()</p></td>
+</tr>
+</tbody>
+</table>
+<p>将数据持久化到文件系统时，注意写明文件系统的 Scheme。比如，写入本地的 <code class="docutils literal notranslate"><span class="pre">/tmp/trip</span></code> 目录：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">write_parquet</span><span class="p">(</span><span class="s2">&quot;local:///tmp/trip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+<p>默认情况下，Ray Data 在写数据时，是以多个文件的形式写入文件系统，每个 <code class="docutils literal notranslate"><span class="pre">Block</span></code> 对应一个文件，有多少个 <code class="docutils literal notranslate"><span class="pre">Block</span></code> 就会有多少个文件。可以使用 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.repartition.html"><code class="docutils literal notranslate"><span class="pre">repartition()</span></code></a> 修改文件数量。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">repartition</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">write_csv</span><span class="p">(</span><span class="s2">&quot;/tmp/files/&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;/tmp/files/&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;3c84fa3e359e458bbbaf92e64c98e39a_000002_000000.csv&#39;, &#39;18d11d7bca764bf493a5cf9ea2831a2e_000002_000000.csv&#39;, &#39;76ba236cab454b12bb316953723f7172_000001_000000.csv&#39;, &#39;3c84fa3e359e458bbbaf92e64c98e39a_000000_000000.csv&#39;, &#39;18d11d7bca764bf493a5cf9ea2831a2e_000000_000000.csv&#39;, &#39;76ba236cab454b12bb316953723f7172_000002_000000.csv&#39;, &#39;18d11d7bca764bf493a5cf9ea2831a2e_000001_000000.csv&#39;, &#39;3c84fa3e359e458bbbaf92e64c98e39a_000001_000000.csv&#39;, &#39;76ba236cab454b12bb316953723f7172_000000_000000.csv&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id11">
+<h3><span class="section-number">3.2.4.2. </span>转化成其他框架格式<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<p>我们可以将 Ray Data 的数据转化为单机运行的 pandas DataFrame 或者分布式的 Dask DataFrame，如 <a class="reference internal" href="#ray-data-convert-other-library"><span class="std std-numref">表 3.4</span></a> 所示。</p>
+<table class="table" id="ray-data-convert-other-library">
+<caption><span class="caption-number">表 3.4 </span><span class="caption-text">将 Dataset 保存为其他框架数据格式</span><a class="headerlink" href="#ray-data-convert-other-library" title="Permalink to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head text-center"><p></p></th>
+<th class="head text-center"><p>pandas</p></th>
+<th class="head text-center"><p>Dask</p></th>
+<th class="head text-center"><p>Spark</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>方法</p></td>
+<td class="text-center"><p>Dataset.to_pandas()</p></td>
+<td class="text-center"><p>Dataset.to_dask()</p></td>
+<td class="text-center"><p>Dataset.to_spark()</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 </section>
@@ -859,6 +965,11 @@ payment_type     int64
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.2.3. 迭代数据</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.2.3.1. 顺序迭代</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.2.3.2. 随机迭代</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">3.2.4. 保存数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3.2.4.1. 写入文件系统</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">3.2.4.2. 转化成其他框架格式</a></li>
 </ul>
 </li>
 </ul>

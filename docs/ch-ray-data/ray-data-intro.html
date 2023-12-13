@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch-ray-data/ray-data-intro';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3.2. 数据加载与查看" href="ray-data-load-inspect.html" />
+    <link rel="next" title="3.2. 数据加载、查看与保存" href="ray-data-load-inspect-save.html" />
     <link rel="prev" title="3. Ray Data" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -186,7 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">3. Ray Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">3.1. Ray Data 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ray-data-load-inspect.html">3.2. 数据加载与查看</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ray-data-load-inspect-save.html">3.2. 数据加载、查看与保存</a></li>
 </ul>
 </li>
 </ul>
@@ -417,9 +417,9 @@ document.write(`
 <p>Ray Data 对数据提供了一个抽象的类，<code class="docutils literal notranslate"><span class="pre">ray.data.Dataset</span></code>，在 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 上提供了常见的大数据处理的原语，覆盖了数据处理的大部分阶段，例如：</p>
 <ul class="simple">
 <li><p>数据的读取，比如读取 Parquet 文件等。</p></li>
-<li><p>对数据的转换（Transformation）操作，比如 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.map_batches.html#ray.data.Dataset.map_batches"><code class="docutils literal notranslate"><span class="pre">map_batches()</span></code></a>。</p></li>
-<li><p>分组聚合操作，比如 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.groupby.html#ray.data.Dataset.groupby"><code class="docutils literal notranslate"><span class="pre">groupby()</span></code></a></p></li>
-<li><p>涉及数据在计算节点间的交换，比如 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.random_shuffle.html#ray.data.Dataset.random_shuffle"><code class="docutils literal notranslate"><span class="pre">random_shuffle()</span></code></a> 和 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.repartition.html#ray.data.Dataset.repartition">repartition()</a> 等。</p></li>
+<li><p>对数据的转换（Transformation）操作，比如 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.map_batches.html"><code class="docutils literal notranslate"><span class="pre">map_batches()</span></code></a>。</p></li>
+<li><p>分组聚合操作，比如 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.groupby.html"><code class="docutils literal notranslate"><span class="pre">groupby()</span></code></a></p></li>
+<li><p>涉及数据在计算节点间的交换，比如 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.random_shuffle.html"><code class="docutils literal notranslate"><span class="pre">random_shuffle()</span></code></a> 和 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.repartition.htmln">`repartition()``</a> 等。</p></li>
 </ul>
 <section id="id1">
 <h2><span class="section-number">3.1.1. </span>关键概念<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
@@ -509,11 +509,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="ray-data-load-inspect.html"
+       href="ray-data-load-inspect-save.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3.2. </span>数据加载与查看</p>
+        <p class="prev-next-title"><span class="section-number">3.2. </span>数据加载、查看与保存</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

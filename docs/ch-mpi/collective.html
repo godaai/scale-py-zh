@@ -186,7 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-data/index.html">3. Ray Data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/ray-data-intro.html">3.1. Ray Data 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/ray-data-load-inspect.html">3.2. 数据加载与查看</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/ray-data-load-inspect-save.html">3.2. 数据加载、查看与保存</a></li>
 </ul>
 </li>
 </ul>
@@ -518,13 +518,13 @@ Rank: 3, data: [0. 1. 2. 3. 4.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rank: 0, to be scattered: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rank: 1, after scatter: [1 1 1 1 1 1 1 1]
+Rank: 0, to be scattered: 
 [[0 0 0 0 0 0 0 0]
  [1 1 1 1 1 1 1 1]
  [2 2 2 2 2 2 2 2]
  [3 3 3 3 3 3 3 3]]
 Rank: 0, after scatter: [0 0 0 0 0 0 0 0]
-Rank: 1, after scatter: [1 1 1 1 1 1 1 1]
 Rank: 2, after scatter: [2 2 2 2 2 2 2 2]
 Rank: 3, after scatter: [3 3 3 3 3 3 3 3]
 </pre></div>

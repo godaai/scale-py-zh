@@ -26,7 +26,7 @@ parts:
     - file: ch-ray-data/index
       sections:
         - file: ch-ray-data/ray-data-intro
-        - file: ch-ray-data/ray-data-load-inspect
+        - file: ch-ray-data/ray-data-load-inspect-save
 
   - caption: mpi4py
     numbered: true

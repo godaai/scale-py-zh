@@ -188,7 +188,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-data/index.html">3. Ray Data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/ray-data-intro.html">3.1. Ray Data 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/ray-data-load-inspect.html">3.2. 数据加载与查看</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/ray-data-load-inspect-save.html">3.2. 数据加载、查看与保存</a></li>
 </ul>
 </li>
 </ul>
@@ -548,21 +548,19 @@ Received: [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.], to rank: 1.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Worker: worker ID: 0; count: 44
+Worker: worker ID: 1; count: 37
 Worker: worker ID: 2; count: 40
 Worker: worker ID: 3; count: 24
-Worker: worker ID: 1; count: 37
 Worker: worker ID: 4; count: 46
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Worker: worker ID: 6; count: 10
 Worker: worker ID: 5; count: 99
-Master: worker ID: 4; count: 46
-Master: worker ID: 1; count: 37
+Worker: worker ID: 6; count: 10
+Master: worker ID: 2; count: 40
 Master: worker ID: 3; count: 24
 Master: worker ID: 0; count: 44
-Master: worker ID: 5; count: 99
+Master: worker ID: 1; count: 37
+Master: worker ID: 4; count: 46
 Master: worker ID: 6; count: 10
-Master: worker ID: 2; count: 40
+Master: worker ID: 5; count: 99
 </pre></div>
 </div>
 </div>
@@ -633,7 +631,7 @@ Master: worker ID: 2; count: 40
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Simulated PI: 3.1415926238, Relative Error：0.0000000095
-Time：7.955s
+Time：4.575s
 </pre></div>
 </div>
 </div>

@@ -6,9 +6,9 @@ Ray Data 是基于 Ray Core 的数据处理框架，主要解决机器学习模�
 Ray Data 对数据提供了一个抽象的类，`ray.data.Dataset`，在 `Dataset` 上提供了常见的大数据处理的原语，覆盖了数据处理的大部分阶段，例如：
 
 * 数据的读取，比如读取 Parquet 文件等。
-* 对数据的转换（Transformation）操作，比如 [`map_batches()`](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.map_batches.html#ray.data.Dataset.map_batches)。
-* 分组聚合操作，比如 [`groupby()`](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.groupby.html#ray.data.Dataset.groupby)
-* 涉及数据在计算节点间的交换，比如 [`random_shuffle()`](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.random_shuffle.html#ray.data.Dataset.random_shuffle) 和 [repartition()](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.repartition.html#ray.data.Dataset.repartition) 等。
+* 对数据的转换（Transformation）操作，比如 [`map_batches()`](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.map_batches.html)。
+* 分组聚合操作，比如 [`groupby()`](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.groupby.html)
+* 涉及数据在计算节点间的交换，比如 [`random_shuffle()`](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.random_shuffle.html) 和 [`repartition()``](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.repartition.htmln) 等。
 
 ## 关键概念
 
