@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>4.2. MPI Hello World &#8212; Python 分布式编程</title>
+    <title>3.1. Ray Data 简介 &#8212; Python 分布式编程</title>
   
   
   
@@ -62,11 +62,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ch-mpi/mpi-hello-world';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch-ray-data/ray-data-intro';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.3. 点对点通信" href="point-to-point.html" />
-    <link rel="prev" title="4.1. MPI 简介" href="mpi-intro.html" />
+    <link rel="next" title="3.2. 数据加载与查看" href="ray-data-load-inspect.html" />
+    <link rel="prev" title="3. Ray Data" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,7 +175,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ray</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-core/index.html">2. Ray</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-intro.html">2.1. Ray 简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-function.html">2.2. 分布式函数</a></li>
@@ -184,20 +184,20 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-internal.html">2.5. Ray 系统与设计</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-data/index.html">3. Ray Data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/ray-data-intro.html">3.1. Ray Data 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/ray-data-load-inspect.html">3.2. 数据加载与查看</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">3. Ray Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.1. Ray Data 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ray-data-load-inspect.html">3.2. 数据加载与查看</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">mpi4py</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">4. MPI</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="mpi-intro.html">4.1. MPI 简介</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.2. MPI Hello World</a></li>
-<li class="toctree-l2"><a class="reference internal" href="point-to-point.html">4.3. 点对点通信</a></li>
-<li class="toctree-l2"><a class="reference internal" href="collective.html">4.4. 集合通信</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-memory-access.html">4.5. 远程内存访问</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">4. MPI</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-intro.html">4.1. MPI 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-hello-world.html">4.2. MPI Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/point-to-point.html">4.3. 点对点通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/collective.html">4.4. 集合通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/remote-memory-access.html">4.5. 远程内存访问</a></li>
 </ul>
 </li>
 </ul>
@@ -271,7 +271,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/godaai/distributed-python/issues/new?title=Issue%20on%20page%20%2Fch-mpi/mpi-hello-world.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/godaai/distributed-python/issues/new?title=Issue%20on%20page%20%2Fch-ray-data/ray-data-intro.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -301,7 +301,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/ch-mpi/mpi-hello-world.ipynb" target="_blank"
+      <li><a href="../_sources/ch-ray-data/ray-data-intro.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -311,7 +311,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -383,7 +383,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>MPI Hello World</h1>
+    <h1>Ray Data 简介</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -393,10 +393,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.2.1. 通信模式</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#world-rank">4.2.2. World 和 Rank</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">4.2.3. 案例：Hello World</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#communicator">4.2.4. Communicator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.1.1. 关键概念</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">3.1.2. Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.1.3. 数据操作与底层实现</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.1.3.1. 数据读写</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.1.3.2. 数据转换</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -408,89 +411,61 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="mpi-hello-world">
-<span id="id1"></span><h1><span class="section-number">4.2. </span>MPI Hello World<a class="headerlink" href="#mpi-hello-world" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="ray-data">
+<span id="ray-data-intro"></span><h1><span class="section-number">3.1. </span>Ray Data 简介<a class="headerlink" href="#ray-data" title="Permalink to this heading">#</a></h1>
+<p>Ray Data 是基于 Ray Core 的数据处理框架，主要解决机器学习模型训练或推理相关的数据准备与处理问题，即数据的最后一公里问题（Last-mile Preprocessing）。</p>
+<p>Ray Data 对数据提供了一个抽象的类，<code class="docutils literal notranslate"><span class="pre">ray.data.Dataset</span></code>，在 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 上提供了常见的大数据处理的原语，覆盖了数据处理的大部分阶段，例如：</p>
+<ul class="simple">
+<li><p>数据的读取，比如读取 Parquet 文件等。</p></li>
+<li><p>对数据的转换（Transformation）操作，比如 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.map_batches.html#ray.data.Dataset.map_batches"><code class="docutils literal notranslate"><span class="pre">map_batches()</span></code></a>。</p></li>
+<li><p>分组聚合操作，比如 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.groupby.html#ray.data.Dataset.groupby"><code class="docutils literal notranslate"><span class="pre">groupby()</span></code></a></p></li>
+<li><p>涉及数据在计算节点间的交换，比如 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.random_shuffle.html#ray.data.Dataset.random_shuffle"><code class="docutils literal notranslate"><span class="pre">random_shuffle()</span></code></a> 和 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.repartition.html#ray.data.Dataset.repartition">repartition()</a> 等。</p></li>
+</ul>
+<section id="id1">
+<h2><span class="section-number">3.1.1. </span>关键概念<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>Ray Data 面向机器学习，其设计理念也与机器学习的流程高度一致。它主要包括了：</p>
+<ul class="simple">
+<li><p>数据读取与存储</p></li>
+<li><p>数据转换</p></li>
+<li><p>机器学习特征预处理</p></li>
+<li><p>数据集与机器学习模型的紧密结合</p></li>
+</ul>
+</section>
+<section id="dataset">
+<h2><span class="section-number">3.1.2. </span>Dataset<a class="headerlink" href="#dataset" title="Permalink to this heading">#</a></h2>
+<p>Ray Data 主要基于 <code class="docutils literal notranslate"><span class="pre">ray.data.Dataset</span></code> 对象。<code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 是一个分布式的数据对象，<code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 底层的基本单元是 <code class="docutils literal notranslate"><span class="pre">Block</span></code>。<code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 是多个 <code class="docutils literal notranslate"><span class="pre">Block</span></code> 组成的分布式的 <code class="docutils literal notranslate"><span class="pre">ObjectRef[Block]</span></code>。 <code class="docutils literal notranslate"><span class="pre">Block</span></code> 是一个基于 Apache Arrow 格式的数据结构。</p>
+<p><a class="reference internal" href="#ray-dataset-arch"><span class="std std-numref">图 3.1</span></a> 是一个示意图，这个数据由 3 个 <code class="docutils literal notranslate"><span class="pre">Block</span></code> 组成，每个 <code class="docutils literal notranslate"><span class="pre">Block</span></code> 有 1,000 行数据。</p>
+<figure class="align-default" id="ray-dataset-arch">
+<a class="reference internal image-reference" href="../_images/dataset-arch.svg"><img alt="../_images/dataset-arch.svg" src="../_images/dataset-arch.svg" width="600px" /></a>
+<figcaption>
+<p><span class="caption-number">图 3.1 </span><span class="caption-text">Ray Dataset 底层架构示意图</span><a class="headerlink" href="#ray-dataset-arch" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>我们可以使用 <code class="docutils literal notranslate"><span class="pre">from_*()</span></code> API 从其他系统或格式导入成 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>，比如 <code class="docutils literal notranslate"><span class="pre">from_pandas()</span></code> 、<code class="docutils literal notranslate"><span class="pre">from_spark()</span></code>。或者使用 <code class="docutils literal notranslate"><span class="pre">read_*()</span></code> API 从持久化的文件系统重读取，比如 <code class="docutils literal notranslate"><span class="pre">read_parquet()</span></code>、<code class="docutils literal notranslate"><span class="pre">read_json()</span></code> 等。</p>
+</section>
 <section id="id2">
-<h2><span class="section-number">4.2.1. </span>通信模式<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
-<p>MPI 提供的能力更加底层，对于通信模式，通常有两种：双边和单边。</p>
-<ul class="simple">
-<li><p>双边（Cooperative）：通信双方均同意数据的收发。发送进程调用发送函数，接收进程调用接收函数。</p></li>
-<li><p>单边（One-sided）：一方远程读或者写另一方的数据，一方无需等待另一方。</p></li>
-</ul>
-<figure class="align-default" id="mpi-communications">
-<a class="reference internal image-reference" href="../_images/communications.svg"><img alt="../_images/communications.svg" src="../_images/communications.svg" width="600px" /></a>
+<h2><span class="section-number">3.1.3. </span>数据操作与底层实现<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<section id="id3">
+<h3><span class="section-number">3.1.3.1. </span>数据读写<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>如 <a class="reference internal" href="#ray-dataset-read"><span class="std std-numref">图 3.2</span></a> 所示，Ray Data 使用 Ray Task 并行地读写数据，Ray Task 的思想很直观，每个 Task 读取一小部分数据，得到多个 <code class="docutils literal notranslate"><span class="pre">Block</span></code>，读取时可以设置 <code class="docutils literal notranslate"><span class="pre">parallelism</span></code>。</p>
+<figure class="align-default" id="ray-dataset-read">
+<a class="reference internal image-reference" href="../_images/dataset-read.svg"><img alt="../_images/dataset-read.svg" src="../_images/dataset-read.svg" width="600px" /></a>
 <figcaption>
-<p><span class="caption-number">图 4.1 </span><span class="caption-text">两种通讯模式：双边和单边</span><a class="headerlink" href="#mpi-communications" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">图 3.2 </span><span class="caption-text">数据读取原理示意图</span><a class="headerlink" href="#ray-dataset-read" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
-<section id="world-rank">
-<h2><span class="section-number">4.2.2. </span>World 和 Rank<a class="headerlink" href="#world-rank" title="Permalink to this heading">#</a></h2>
-<p>在进行 MPI 编程时，进程之间要互相通信，我们首先要解决两个问题：在 MPI 的众多进程中，“我是谁？”，除了我，“还有谁？”。 <code class="docutils literal notranslate"><span class="pre">MPI_Comm_rank</span></code> 定义了我是谁。<code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> 定义了还有谁的问题。 开始一个 MPI 程序时，要先定义一个 World，这个世界里有 <code class="docutils literal notranslate"><span class="pre">size</span></code> 个进程，每个进程有一个识别自己的号码，这个号码被称为 Rank，Rank 是 0 到 <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">-</span> <span class="pre">1</span></code> 的整数。更严肃地阐述：</p>
-<ul class="simple">
-<li><p>MPI 中的 World 是指所有参与并行计算的进程的总集合。在一个 MPI 程序中，所有的进程都属于一个默认的通信域，这个通信域就被称为 <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code>。所有在这个通信域中的进程都可以进行通信。</p></li>
-<li><p>World 中的每个进程都有一个唯一的 Rank，Rank 用来标识进程在通信域中的位置。由于每个进程有自己的 Rank 号码，那在编程时，可以控制，使得 Rank 为 0 的进程发送数据给 Rank 为 1 的进程。</p></li>
-</ul>
-</section>
-<section id="hello-world">
-<h2><span class="section-number">4.2.3. </span>案例：Hello World<a class="headerlink" href="#hello-world" title="Permalink to this heading">#</a></h2>
-<p>下面使用一个简单的例子来演示 MPI 编程。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
-
-
-<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello! I&#39;m rank </span><span class="si">{</span><span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">comm</span><span class="o">.</span><span class="n">Get_size</span><span class="p">()</span><span class="si">}</span><span class="s2"> running on host </span><span class="si">{</span><span class="n">MPI</span><span class="o">.</span><span class="n">Get_processor_name</span><span class="p">()</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-
-<span class="n">comm</span><span class="o">.</span><span class="n">Barrier</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>在这段程序中，<code class="docutils literal notranslate"><span class="pre">print</span></code> 是上单个进程内执行的，打印出当前进程的 Rank 和主机名。<code class="docutils literal notranslate"><span class="pre">comm.Barrier()</span></code> 将每个进程做了阻断，直到所有进程执行完毕后，才会进行下面的操作。本例中，<code class="docutils literal notranslate"><span class="pre">comm.Barrier()</span></code> 后无其他操作，程序将退出。</p>
-<p>如果在个人电脑上，启动 8 个进程，在命令行中执行：</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">8</span><span class="w"> </span>python<span class="w"> </span>hello.py
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello! I&#39;m rank 0 of 8 running on host lu-mbp.
-Hello! I&#39;m rank 1 of 8 running on host lu-mbp.
-Hello! I&#39;m rank 2 of 8 running on host lu-mbp.
-Hello! I&#39;m rank 4 of 8 running on host lu-mbp.
-Hello! I&#39;m rank 6 of 8 running on host lu-mbp.
-Hello! I&#39;m rank 7 of 8 running on host lu-mbp.
-Hello! I&#39;m rank 3 of 8 running on host lu-mbp.
-Hello! I&#39;m rank 5 of 8 running on host lu-mbp.
-</pre></div>
-</div>
-</div>
-</div>
-<p>不同厂商的 <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> 的参数会有一些区别。相比 C/C++ 或 Fortran，mpi4py 的方便之处在于不需要使用 <code class="docutils literal notranslate"><span class="pre">mpicc</span></code> 编译器进行编译，直接执行即可。</p>
-<p>如果有一个集群，且集群挂载了一个共享的文件系统，即集群上每个节点上的特定目录的内容是一样的，<code class="docutils literal notranslate"><span class="pre">hello.py</span></code> 和 <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> 是一模一样的。可以这样拉起：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpiexec<span class="w"> </span>–hosts<span class="w"> </span>h1:4,h2:4,h3:4,h4:4<span class="w"> </span>–n<span class="w"> </span><span class="m">16</span><span class="w"> </span>python<span class="w"> </span>hello.py
-</pre></div>
-</div>
-<p>这个启动命令一共在 16 个进程上执行，16 个进程分布在 4 个计算节点上，每个节点使用了 4 个进程。如果节点比较多，还可以单独编写一个节点信息文件，比如命名为 <code class="docutils literal notranslate"><span class="pre">hf</span></code>，内容为：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h1</span><span class="p">:</span><span class="mi">8</span>
-<span class="n">h2</span><span class="p">:</span><span class="mi">8</span>
-</pre></div>
-</div>
-<p>这样执行：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mpiexec –hostfile hf –n 16 python hello.py
-</pre></div>
-</div>
-</section>
-<section id="communicator">
-<h2><span class="section-number">4.2.4. </span>Communicator<a class="headerlink" href="#communicator" title="Permalink to this heading">#</a></h2>
-<p>刚才我们提到了 World 的概念，并使用了 <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code>，更准确地说，<code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> 是一个 Communicator。MPI 将进程划分到不同的组（Group）中，每个 Group 有不同的 Color，Group 和 Color 共同组成了 Communicator，或者说 Communicator 是 Group + Color 的名字，一个默认的 Communicator 就是 <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code>。</p>
-<p>对于一个进程，它可能在不同的 Communicator 中，因此它在不同 Communicator 中的 Rank 可能也不一样。<a class="reference internal" href="#mpi-communicatitor"><span class="std std-numref">图 4.2</span></a> (a) 、(b) 和（c）为三个 Communicator，圆圈为进程。当我们启动一个  MPI 程序时，就创建了默认的 Communicator（<code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code>），如 <a class="reference internal" href="#mpi-communicatitor"><span class="std std-numref">图 4.2</span></a> (a) 所示。每个进程在 Communicator 内被分配了一个 Rank 号码，图中圆圈上的数字是进程在这个 Communicator 中的 Rank。同样的进程可以被划归到不同的 Communicator 中，且相同的进程在不同 Communicator 的 Rank 可以不一样，如 <a class="reference internal" href="#mpi-communicatitor"><span class="std std-numref">图 4.2</span></a> (b)和(c)所示。每个  Communicator 内进程通信是相互独立的。大部分简单的程序，<code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> 就足够了。</p>
-<figure class="align-default" id="mpi-communicatitor">
-<a class="reference internal image-reference" href="../_images/communicator.svg"><img alt="../_images/communicator.svg" src="../_images/communicator.svg" width="800px" /></a>
+<section id="id4">
+<h3><span class="section-number">3.1.3.2. </span>数据转换<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p>如 <a class="reference internal" href="#ray-dataset-map"><span class="std std-numref">图 3.3</span></a> 所示，数据转换操作底层使用 Ray Task 或 Ray Actor 对各个 <code class="docutils literal notranslate"><span class="pre">Block</span></code> 的数据进行操作。对于无状态的转换操作，底层实现主要使用 Ray Task；对于有状态的转换操作，底层实现主要使用 Ray Actor。</p>
+<figure class="align-default" id="ray-dataset-map">
+<a class="reference internal image-reference" href="../_images/dataset-map.svg"><img alt="../_images/dataset-map.svg" src="../_images/dataset-map.svg" width="600px" /></a>
 <figcaption>
-<p><span class="caption-number">图 4.2 </span><span class="caption-text">Communicator</span><a class="headerlink" href="#mpi-communicatitor" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">图 3.3 </span><span class="caption-text">数据转换原理示意图</span><a class="headerlink" href="#ray-dataset-map" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<p>接下来我们详细介绍几类数据操作及其原理。</p>
+</section>
 </section>
 </section>
 
@@ -507,7 +482,7 @@ Hello! I&#39;m rank 5 of 8 running on host lu-mbp.
         },
         kernelOptions: {
             name: "python3",
-            path: "./ch-mpi"
+            path: "./ch-ray-data"
         },
         predefinedOutput: true
     }
@@ -525,20 +500,20 @@ Hello! I&#39;m rank 5 of 8 running on host lu-mbp.
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="mpi-intro.html"
+       href="index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4.1. </span>MPI 简介</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Ray Data</p>
       </div>
     </a>
     <a class="right-next"
-       href="point-to-point.html"
+       href="ray-data-load-inspect.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4.3. </span>点对点通信</p>
+        <p class="prev-next-title"><span class="section-number">3.2. </span>数据加载与查看</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -557,10 +532,13 @@ Hello! I&#39;m rank 5 of 8 running on host lu-mbp.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.2.1. 通信模式</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#world-rank">4.2.2. World 和 Rank</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">4.2.3. 案例：Hello World</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#communicator">4.2.4. Communicator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.1.1. 关键概念</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">3.1.2. Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.1.3. 数据操作与底层实现</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.1.3.1. 数据读写</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.1.3.2. 数据转换</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

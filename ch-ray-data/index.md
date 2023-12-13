@@ -1,4 +1,4 @@
-# Ray AIR
+# Ray Data
 
 ```{tableofcontents}
 ```

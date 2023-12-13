@@ -3,3 +3,6 @@ dask[complete]
 matplotlib
 numpy
 pandas
+grpcio
+tqdm
+ipywidgets
