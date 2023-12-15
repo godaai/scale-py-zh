@@ -1,0 +1,775 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>3.3. 数据转换 &#8212; Python 分布式编程</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch-ray-data/data-transform';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.4. Preprocessor" href="preprocessor.html" />
+    <link rel="prev" title="3.2. 数据加载、查看与保存" href="data-load-inspect-save.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Python 分布式编程 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Python 分布式编程 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Python 分布式编程
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dask</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-dask/index.html">1. Dask</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-dask/dask-intro.html">1.1. Dask 简介</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ray</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-core/index.html">2. Ray</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-intro.html">2.1. Ray 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-function.html">2.2. 分布式函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-object.html">2.3. 分布式对象存储</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-class.html">2.4. 分布式类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-internal.html">2.5. Ray 系统与设计</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">3. Ray Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ray-data-intro.html">3.1. Ray Data 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-load-inspect-save.html">3.2. 数据加载、查看与保存</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.3. 数据转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">3.4. Preprocessor</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">mpi4py</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">4. MPI</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-intro.html">4.1. MPI 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-hello-world.html">4.2. MPI Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/point-to-point.html">4.3. 点对点通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/collective.html">4.4. 集合通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/remote-memory-access.html">4.5. 远程内存访问</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/godaai/distributed-python" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/godaai/distributed-python/issues/new?title=Issue%20on%20page%20%2Fch-ray-data/data-transform.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ch-ray-data/data-transform.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>数据转换</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.3.1. 转换</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map-map-batches">3.3.1.1. map() 与 map_batches()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-actor">3.3.1.2. Task 与 Actor</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.3.2. 分组</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ray-data-transform">
+<span id="id1"></span><h1><span class="section-number">3.3. </span>数据转换<a class="headerlink" href="#ray-data-transform" title="Permalink to this heading">#</a></h1>
+<p>数据处理的核心在于对数据进行一系列的转换（Transform），比如：</p>
+<ul class="simple">
+<li><p>如何对一条、一批次进行转换</p></li>
+<li><p>如何进行分组 <code class="docutils literal notranslate"><span class="pre">groupby</span></code></p></li>
+</ul>
+<section id="id2">
+<h2><span class="section-number">3.3.1. </span>转换<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<section id="map-map-batches">
+<h3><span class="section-number">3.3.1.1. </span>map() 与 map_batches()<a class="headerlink" href="#map-map-batches" title="Permalink to this heading">#</a></h3>
+<p>Ray Data 提供了两类数据转换操作，如 <a class="reference internal" href="#id3"><span class="std std-numref">图 3.4</span></a> 所示：</p>
+<ul class="simple">
+<li><p>每行数据，可以用 <code class="docutils literal notranslate"><span class="pre">Dataset.map()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Dataset.flat_map()</span></code> 这两个 API，即对每一条数据一一进行转换。这与其他大数据框架（Spark 或者 Flink）类似。输入一条数据，输出一条数据。</p></li>
+<li><p>将多行数据打包为一个批次（Batch），对一个批次的数据进行转换：<a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.map_batches.html"><code class="docutils literal notranslate"><span class="pre">Dataset.map_batches()</span></code></a>。输入一个 Batch，输出一个 Batch。</p></li>
+</ul>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/map-map-batches.svg"><img alt="../_images/map-map-batches.svg" src="../_images/map-map-batches.svg" width="800px" /></a>
+<figcaption>
+<p><span class="caption-number">图 3.4 </span><span class="caption-text">map() v.s. map_batches()</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>我们仍以纽约出租车数据为例，演示如何使用这两类转换操作。</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">ray</span>
+
+<span class="k">if</span> <span class="n">ray</span><span class="o">.</span><span class="n">is_initialized</span><span class="p">:</span>
+    <span class="n">ray</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+
+<span class="n">ray</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+<span class="n">folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;../data/nyc-taxi&quot;</span><span class="p">)</span>
+<span class="n">download_url</span> <span class="o">=</span> <span class="s2">&quot;https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-06.parquet&quot;</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="n">download_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">parquet_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
+    <span class="c1"># 创建文件夹</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;文件夹 </span><span class="si">{</span><span class="n">folder_path</span><span class="si">}</span><span class="s2"> 不存在，已创建。&quot;</span><span class="p">)</span>
+    <span class="c1"># 下载并保存 Parquet 文件</span>
+    <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">download_url</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">parquet_file_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_file</span><span class="p">:</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">copyfileobj</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">out_file</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;数据已下载并保存为 Parquet 文件。&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;文件夹 </span><span class="si">{</span><span class="n">folder_path</span><span class="si">}</span><span class="s2"> 已存在，无需操作。&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>文件夹 /Users/luweizheng/Projects/py-101/distributed-python/ch-ray-data/../data/nyc-taxi 已存在，无需操作。
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>读取数据到 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 类，先查看原有的数据格式，其中 <code class="docutils literal notranslate"><span class="pre">tpep_pickup_datetime</span></code> 和 <code class="docutils literal notranslate"><span class="pre">tpep_dropoff_datetime</span></code> 分别为乘客上车和下车时间，包含了日期和时间。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">parquet_file_path</span><span class="p">)</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;VendorID&#39;: 1,
+  &#39;tpep_pickup_datetime&#39;: datetime.datetime(2023, 6, 1, 0, 8, 48),
+  &#39;tpep_dropoff_datetime&#39;: datetime.datetime(2023, 6, 1, 0, 29, 41),
+  &#39;passenger_count&#39;: 1,
+  &#39;trip_distance&#39;: 3.4,
+  &#39;RatecodeID&#39;: 1,
+  &#39;store_and_fwd_flag&#39;: &#39;N&#39;,
+  &#39;PULocationID&#39;: 140,
+  &#39;DOLocationID&#39;: 238,
+  &#39;payment_type&#39;: 1,
+  &#39;fare_amount&#39;: 21.9,
+  &#39;extra&#39;: 3.5,
+  &#39;mta_tax&#39;: 0.5,
+  &#39;tip_amount&#39;: 6.7,
+  &#39;tolls_amount&#39;: 0.0,
+  &#39;improvement_surcharge&#39;: 1.0,
+  &#39;total_amount&#39;: 33.6,
+  &#39;congestion_surcharge&#39;: 2.5,
+  &#39;Airport_fee&#39;: 0.0}]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ray Data 的各类操作都是延迟（Lazy）执行的，即这些操作不是立即执行的，而是遇到数据查看或保存操作时，才会执行，比如：<code class="docutils literal notranslate"><span class="pre">show()</span></code>、<code class="docutils literal notranslate"><span class="pre">take()</span></code>、<code class="docutils literal notranslate"><span class="pre">iter_rows()</span></code>、<code class="docutils literal notranslate"><span class="pre">write_parquet()</span></code> 等操作会触发转换操作。</p>
+</div>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">map()</span></code> 对这两个字段进行格式化，丢弃日期，只保留24小时制的时间。<code class="docutils literal notranslate"><span class="pre">map()</span></code> 的最重要的参数是一个自定义的函数 <code class="docutils literal notranslate"><span class="pre">fn</span></code>，这个函数对每一条数据进行转换，返回一条。输入数据有 Schema，每条数据是一个 Key-Value 的字典，Key 是 Schema 中的字段名，Value 是对应的数值。</p>
+<p>下面的例子，我们提取出了每次订单的时长、距离和价格，其他的字段先忽略。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transform_row</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">result</span><span class="p">[</span><span class="s2">&quot;trip_duration&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;tpep_dropoff_datetime&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;tpep_pickup_datetime&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+    <span class="n">result</span><span class="p">[</span><span class="s2">&quot;trip_distance&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;trip_distance&quot;</span><span class="p">]</span>
+    <span class="n">result</span><span class="p">[</span><span class="s2">&quot;fare_amount&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;fare_amount&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="n">row_ds</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">transform_row</span><span class="p">)</span>
+<span class="n">row_ds</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;trip_duration&#39;: 1253.0, &#39;trip_distance&#39;: 3.4, &#39;fare_amount&#39;: 21.9}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>与 <code class="docutils literal notranslate"><span class="pre">map()</span></code> 有所区别的是，<code class="docutils literal notranslate"><span class="pre">map_batches()</span></code> 是对一个批次进行处理，它模拟的是单机处理时，对整个数据集的操作。其设计思想主要为了方便将之前编写好的、单机的程序，无缝地迁移到 Ray 上：用户先编写一个单机的程序，然后使用 Ray Data 迁移到集群上。<code class="docutils literal notranslate"><span class="pre">map_batches()</span></code> 每个批次的数据格式为 <code class="docutils literal notranslate"><span class="pre">Dict[str,</span> <span class="pre">np.ndarray]</span></code> 或 <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> 或 <code class="docutils literal notranslate"><span class="pre">pyarrow.Table</span></code>，分别对应 NumPy 、pandas 和 Arrow。</p>
+<p>下面的例子与 <code class="docutils literal notranslate"><span class="pre">map()</span></code> 实现的功能类似，只不过通过 pandas 的形式，对每个 Batch 进行操作。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transform_df</span><span class="p">(</span><span class="n">input_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="n">result_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">result_df</span><span class="p">[</span><span class="s2">&quot;trip_duration&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">input_df</span><span class="p">[</span><span class="s2">&quot;tpep_dropoff_datetime&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">input_df</span><span class="p">[</span><span class="s2">&quot;tpep_pickup_datetime&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">seconds</span>
+    <span class="n">result_df</span><span class="p">[</span><span class="s2">&quot;trip_distance&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">input_df</span><span class="p">[</span><span class="s2">&quot;trip_distance&quot;</span><span class="p">]</span>
+    <span class="n">result_df</span><span class="p">[</span><span class="s2">&quot;fare_amount&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">input_df</span><span class="p">[</span><span class="s2">&quot;fare_amount&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">result_df</span>
+
+<span class="n">batch_ds</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map_batches</span><span class="p">(</span><span class="n">transform_df</span><span class="p">,</span> <span class="n">batch_format</span><span class="o">=</span><span class="s2">&quot;pandas&quot;</span><span class="p">)</span>
+<span class="n">batch_ds</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;trip_duration&#39;: 1253, &#39;trip_distance&#39;: 3.4, &#39;fare_amount&#39;: 21.9},
+ {&#39;trip_duration&#39;: 614, &#39;trip_distance&#39;: 3.4, &#39;fare_amount&#39;: 15.6},
+ {&#39;trip_duration&#39;: 1123, &#39;trip_distance&#39;: 10.2, &#39;fare_amount&#39;: 40.8},
+ {&#39;trip_duration&#39;: 1406, &#39;trip_distance&#39;: 9.83, &#39;fare_amount&#39;: 39.4},
+ {&#39;trip_duration&#39;: 514, &#39;trip_distance&#39;: 1.17, &#39;fare_amount&#39;: 9.3},
+ {&#39;trip_duration&#39;: 796, &#39;trip_distance&#39;: 3.6, &#39;fare_amount&#39;: 18.4},
+ {&#39;trip_duration&#39;: 1136, &#39;trip_distance&#39;: 3.08, &#39;fare_amount&#39;: 19.8},
+ {&#39;trip_duration&#39;: 527, &#39;trip_distance&#39;: 1.1, &#39;fare_amount&#39;: 10.0},
+ {&#39;trip_duration&#39;: 237, &#39;trip_distance&#39;: 0.99, &#39;fare_amount&#39;: 6.5},
+ {&#39;trip_duration&#39;: 171, &#39;trip_distance&#39;: 0.73, &#39;fare_amount&#39;: 5.1}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>在实现 <code class="docutils literal notranslate"><span class="pre">map()</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">map_batch()</span></code> 时，也可以使用 Python 的 lambda 表达式，即一个匿名的 Python 函数。比如：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filterd_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map_batches</span><span class="p">(</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;trip_distance&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">],</span> <span class="n">batch_format</span><span class="o">=</span><span class="s2">&quot;pandas&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;过滤后的行数：</span><span class="si">{</span><span class="n">filterd_dataset</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>过滤后的行数：730352
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-actor">
+<h3><span class="section-number">3.3.1.2. </span>Task 与 Actor<a class="headerlink" href="#task-actor" title="Permalink to this heading">#</a></h3>
+<p>可以看到，转换操作本质上是在执行 <code class="docutils literal notranslate"><span class="pre">fn</span></code> ，这个函数接收一个输入，进行转换，得到输出。默认情况下，Ray Data 使用 Task 并行执行转换操作。Ray Task 比较适合无状态的计算，即 <code class="docutils literal notranslate"><span class="pre">fn</span></code> 内不需要被不同数据反复依赖的数据。如果是有状态的计算，需要使用 Ray Actor。比如，加载一个机器学习模型，并用这个模型对所有数据进行预测。下面的例子模拟了机器学习模型预测的过程，模型本身是被反复使用的，所以是有状态的计算。这个例子仅仅作为演示，所使用的并非是训练好的模型，而是一个等价变换 <code class="docutils literal notranslate"><span class="pre">torch.nn.Identity()</span></code>，它将输入原封不动地转换为输出。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TorchPredictor</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">as_tensor</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;trip_distance&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">inference_mode</span><span class="p">():</span>
+            <span class="n">pred</span><span class="p">[</span><span class="s2">&quot;output&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">pred</span>
+
+<span class="n">pred_ds</span> <span class="o">=</span> <span class="n">batch_ds</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">map_batches</span><span class="p">(</span><span class="n">TorchPredictor</span><span class="p">,</span> <span class="n">compute</span><span class="o">=</span><span class="n">ray</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ActorPoolStrategy</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">pred_ds</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;output&#39;: 3.4000000953674316},
+ {&#39;output&#39;: 3.4000000953674316},
+ {&#39;output&#39;: 10.199999809265137}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>使用 Actor 大概分为 3 步骤：</p>
+<ol class="arabic simple">
+<li><p>创建一个类，这个类包含一个 <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> 方法和一个 <code class="docutils literal notranslate"><span class="pre">__call__()</span></code> 方法。<code class="docutils literal notranslate"><span class="pre">__init__()</span></code> 方法初始化一些可被反复使用的状态数据，<code class="docutils literal notranslate"><span class="pre">__call__()</span></code> 方法实现转换操作。可以参考刚才实现的 <code class="docutils literal notranslate"><span class="pre">TorchPredictor</span></code> 类。</p></li>
+<li><p>创建一个 <code class="docutils literal notranslate"><span class="pre">ActorPoolStrategy</span></code>，指定一共多少个 Worker。</p></li>
+<li><p>调用 <code class="docutils literal notranslate"><span class="pre">map_batch()</span></code> 方法，将 <code class="docutils literal notranslate"><span class="pre">ActorPoolStrategy</span></code> 传递给 <code class="docutils literal notranslate"><span class="pre">compute</span></code> 参数。</p></li>
+</ol>
+</section>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.3.2. </span>分组<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<p>数据处理中另外一个经常使用的原语是分组聚合，Ray Data 提供了： <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.groupby.html">groupby()</a>。Ray Data 先调用 <code class="docutils literal notranslate"><span class="pre">groupby()</span></code>，对数据按照某些字段进行分组，再调用 <code class="docutils literal notranslate"><span class="pre">map_groups()</span></code> 对分组之后的数据进行聚合。</p>
+<p><code class="docutils literal notranslate"><span class="pre">groupby(key)</span></code> 的参数 <code class="docutils literal notranslate"><span class="pre">key</span></code> 是需要进行分组的字段；<code class="docutils literal notranslate"><span class="pre">map_groups(fn)</span></code> 的参数 <code class="docutils literal notranslate"><span class="pre">fn</span></code>，对同一个组的数据进行操作。Ray Data 预置了一些聚合函数，比如常见的求和 <code class="docutils literal notranslate"><span class="pre">sum()</span></code>，最大值 <code class="docutils literal notranslate"><span class="pre">max()</span></code>，平均值 <code class="docutils literal notranslate"><span class="pre">mean()</span></code> 等。比如下面的例子使用 <code class="docutils literal notranslate"><span class="pre">mean()</span></code> 对 <code class="docutils literal notranslate"><span class="pre">value</span></code> 字段进行聚合。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">from_items</span><span class="p">([</span>
+    <span class="p">{</span><span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}])</span>
+<span class="n">mean_ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;group&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+<span class="n">mean_ds</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;group&#39;: 1, &#39;mean(value)&#39;: 1.5}
+{&#39;group&#39;: 2, &#39;mean(value)&#39;: 3.5}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ch-ray-data"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="data-load-inspect-save.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3.2. </span>数据加载、查看与保存</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="preprocessor.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.4. </span>Preprocessor</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.3.1. 转换</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map-map-batches">3.3.1.1. map() 与 map_batches()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-actor">3.3.1.2. Task 与 Actor</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.3.2. 分组</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 鲁蔚征
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
