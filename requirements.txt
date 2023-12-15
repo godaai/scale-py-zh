@@ -3,6 +3,9 @@ dask[complete]
 matplotlib
 numpy
 pandas
+torch
+torchvision
 grpcio
 tqdm
 ipywidgets
+ipykernel
