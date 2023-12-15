@@ -1,0 +1,714 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>3.4. Preprocessor &#8212; Python 分布式编程</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch-ray-data/preprocessor';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. MPI" href="../ch-mpi/index.html" />
+    <link rel="prev" title="3.3. 数据转换" href="data-transform.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Python 分布式编程 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Python 分布式编程 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Python 分布式编程
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dask</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-dask/index.html">1. Dask</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-dask/dask-intro.html">1.1. Dask 简介</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ray</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-core/index.html">2. Ray</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-intro.html">2.1. Ray 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-function.html">2.2. 分布式函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-object.html">2.3. 分布式对象存储</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-class.html">2.4. 分布式类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-internal.html">2.5. Ray 系统与设计</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">3. Ray Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ray-data-intro.html">3.1. Ray Data 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-load-inspect-save.html">3.2. 数据加载、查看与保存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-transform.html">3.3. 数据转换</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.4. Preprocessor</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">mpi4py</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">4. MPI</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-intro.html">4.1. MPI 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-hello-world.html">4.2. MPI Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/point-to-point.html">4.3. 点对点通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/collective.html">4.4. 集合通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/remote-memory-access.html">4.5. 远程内存访问</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/godaai/distributed-python" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/godaai/distributed-python/issues/new?title=Issue%20on%20page%20%2Fch-ray-data/preprocessor.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ch-ray-data/preprocessor.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Preprocessor</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.4.1. 使用</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.4.2. 分类</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.4.2.1. 分类变量</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.4.2.2. 数值变量</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="preprocessor">
+<span id="ray-data-preprocessor"></span><h1><span class="section-number">3.4. </span>Preprocessor<a class="headerlink" href="#preprocessor" title="Permalink to this heading">#</a></h1>
+<p><a class="reference internal" href="data-transform.html#ray-data-transform"><span class="std std-numref">章节 3.3</span></a> 介绍了通用接口 <code class="docutils literal notranslate"><span class="pre">map()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">map_batches()</span></code>。对于结构化的表格类数据，Ray Data 在 <code class="docutils literal notranslate"><span class="pre">map()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">map_batches()</span></code> 基础上，增加了一个高阶的 API：预处理器（Preprocessor）。Preprocessor 是一系列特征处理操作，可与机器学习模型训练和推理更好地结合。对于非结构化数据，比如图片、视频等，仍然建议使用 <code class="docutils literal notranslate"><span class="pre">map()</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">map_batches()</span></code>。</p>
+<section id="id1">
+<h2><span class="section-number">3.4.1. </span>使用<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>Preprocessor 主要有 4 类操作：</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fit()</span></code>：计算 Ray Data <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 状态信息，比如计算某一列数据的方差或者均值。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transform()</span></code>：执行转换操作。如果这个转换操作是有状态的，那必须先进行 <code class="docutils literal notranslate"><span class="pre">fit()</span></code>。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transform_batch()</span></code>：对一个批次数据进行转换操作。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fit_transform()</span></code>：结合了 <code class="docutils literal notranslate"><span class="pre">fit()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">transform()</span></code> 的一个操作，先对 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 进行 <code class="docutils literal notranslate"><span class="pre">fit()</span></code>，再进行 <code class="docutils literal notranslate"><span class="pre">transform()</span></code>。</p></li>
+</ol>
+<p>下面根据出租车数据集，来演示一下如何使用 Preprocessor。出租车数据是一个典型的结构化数据，里面有很多列，比如该旅程的距离，这些列可被用来作为机器学习算法的特征，而喂给机器学习模型前，需要进行特征处理。比如 <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code> 将特征进行归一化：</p>
+<div class="math notranslate nohighlight">
+\[
+x' = \frac{x - \min(x)}{\max(x) - \min(x)}
+\]</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="kn">import</span> <span class="nn">ray</span>
+
+<span class="k">if</span> <span class="n">ray</span><span class="o">.</span><span class="n">is_initialized</span><span class="p">:</span>
+    <span class="n">ray</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+
+<span class="n">ray</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+<span class="n">folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;../data/nyc-taxi&quot;</span><span class="p">)</span>
+<span class="n">download_url</span> <span class="o">=</span> <span class="s2">&quot;https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-06.parquet&quot;</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="n">download_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">parquet_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
+    <span class="c1"># 创建文件夹</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;文件夹 </span><span class="si">{</span><span class="n">folder_path</span><span class="si">}</span><span class="s2"> 不存在，已创建。&quot;</span><span class="p">)</span>
+    <span class="c1"># 下载并保存 Parquet 文件</span>
+    <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">download_url</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">parquet_file_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_file</span><span class="p">:</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">copyfileobj</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">out_file</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;数据已下载并保存为 Parquet 文件。&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;文件夹 </span><span class="si">{</span><span class="n">folder_path</span><span class="si">}</span><span class="s2"> 已存在，无需操作。&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>文件夹 /Users/luweizheng/Projects/py-101/distributed-python/ch-ray-data/../data/nyc-taxi 已存在，无需操作。
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ray.data.preprocessors</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">parquet_file_path</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;trip_distance&quot;</span><span class="p">])</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;trip_distance&#39;: 3.4}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>经过 <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code> 归一化之后，原来的值变为一个归一化之后的值。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;trip_distance&quot;</span><span class="p">])</span>
+<span class="n">preprocessor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+<span class="n">minmax_ds</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+<span class="n">minmax_ds</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;trip_distance&#39;: 1.8353531664835362e-05}]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">minmax_ds_ft</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+<span class="n">minmax_ds_ft</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;trip_distance&#39;: 1.8353531664835362e-05}]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2><span class="section-number">3.4.2. </span>分类<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>Ray Data 的 Preprocessor 可处理以下几类数据：</p>
+<section id="id3">
+<h3><span class="section-number">3.4.2.1. </span>分类变量<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>原始数据是分类（Categorical）变量，但机器学习模型无法接受分类变量，所以需要进行一些转换。<a class="reference internal" href="#categorical-data-preprocessor"><span class="std std-numref">表 3.5</span></a> 是几个处理分类变量的 Preprocessor。</p>
+<table class="table" id="categorical-data-preprocessor">
+<caption><span class="caption-number">表 3.5 </span><span class="caption-text">用于处理分类变量的 Preprocessor</span><a class="headerlink" href="#categorical-data-preprocessor" title="Permalink to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Preprocessor</p></th>
+<th class="head text-center"><p>变量类型</p></th>
+<th class="head text-center"><p>案例</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code></p></td>
+<td class="text-center"><p>无序分类</p></td>
+<td class="text-center"><p>猫，狗，牛，羊</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code></p></td>
+<td class="text-center"><p>有序分类</p></td>
+<td class="text-center"><p>高中，本科，硕士，博士</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">MultiHotEncoder</span></code></p></td>
+<td class="text-center"><p>多分类</p></td>
+<td class="text-center"><p>[“喜剧”, “动画”], [“悬疑”, “动作”]</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id4">
+<h3><span class="section-number">3.4.2.2. </span>数值变量<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p>原始数据是数值变量，使用下面的转换将数据进行转换，以适应特定的机器学习模型，<a class="reference internal" href="#numerical-data-preprocessor"><span class="std std-numref">表 3.6</span></a> 是几个处理数值变量的 Preprocessor。</p>
+<table class="table" id="numerical-data-preprocessor">
+<caption><span class="caption-number">表 3.6 </span><span class="caption-text">用于处理数值变量的 Preprocessor</span><a class="headerlink" href="#numerical-data-preprocessor" title="Permalink to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Preprocessor</p></th>
+<th class="head"><p>变量类型</p></th>
+<th class="head"><p>计算方式</p></th>
+<th class="head"><p>备注</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RobustScaler</span></code></p></td>
+<td><p>有离群值</p></td>
+<td><p><span class="math notranslate nohighlight">\(x' = \frac{x - \mu_{1/2}}{\mu_h - \mu_l}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mu_{1/2}\)</span> 是中位数，<span class="math notranslate nohighlight">\(\mu_h\)</span> 是最大值，<span class="math notranslate nohighlight">\(\mu_l\)</span> 是最小值</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MaxAbsScaler</span></code></p></td>
+<td><p>数据稀疏</p></td>
+<td><p><span class="math notranslate nohighlight">\(x' = \frac{x}{\max{\vert x \vert}}\)</span></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PowerTransformer</span></code></p></td>
+<td><p>将数据变为正太分布</p></td>
+<td><p>Yeo-Johnson 或 Box-Cox</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Normalizer</span></code></p></td>
+<td><p>需要对数据进行正则化</p></td>
+<td><p><span class="math notranslate nohighlight">\(x' = \frac{x}{\lVert x \rVert_p}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(p\)</span> 是正则方式，比如 <code class="docutils literal notranslate"><span class="pre">l1</span></code> 正则是绝对值求和</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ch-ray-data"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="data-transform.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3.3. </span>数据转换</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../ch-mpi/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>MPI</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.4.1. 使用</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.4.2. 分类</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.4.2.1. 分类变量</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.4.2.2. 数值变量</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 鲁蔚征
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
