@@ -1,7 +1,11 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
+<<<<<<< HEAD
 title: Python 分布式编程
+=======
+title: Python 数据科学实战
+>>>>>>> upstream/main
 author: 鲁蔚征
 logo: logo.png
 
@@ -9,8 +13,11 @@ logo: logo.png
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: cache
+<<<<<<< HEAD
   timeout: 2000
   stderr_output: "remove"
+=======
+>>>>>>> upstream/main
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -23,7 +30,11 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
+<<<<<<< HEAD
   url: https://github.com/godaai/distributed-python  # Online location of your book
+=======
+  url: https://github.com/godaai/python-data-science  # Online location of your book
+>>>>>>> upstream/main
   path_to_book: docs  # Optional path to your book, relative to the repository root
   branch: main  # Which branch of the repository should be used when creating links (optional)
 

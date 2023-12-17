@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ray[data,train,tune,rllib]
 dask[complete]
 matplotlib
@@ -6,3 +7,8 @@ pandas
 grpcio
 tqdm
 ipywidgets
+=======
+pandas
+matplotlib
+numpy
+>>>>>>> upstream/main

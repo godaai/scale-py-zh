@@ -1,0 +1,3168 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>2.4. 数据处理 &#8212; Python 数据科学实战</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch-pandas/data-preprocessing';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.5. 分组汇总" href="dataframe-groupby.html" />
+    <link rel="prev" title="2.3. 数据切片" href="dataframe-slicing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Python 数据科学实战 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Python 数据科学实战 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Python 数据科学实战
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">数据处理与计算</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-numpy/index.html">1. NumPy</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/numpy-intro.html">1.1. NumPy 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/ndarray.html">1.2. ndarray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/ndarray-slicing-index.html">1.3. 切片与索引</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-numpy/random.html">1.4. 随机数生成</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">2. pandas</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pandas-intro.html">2.1. pandas 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="series-dataframe.html">2.2. Series 与 DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-slicing.html">2.3. 数据切片</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.4. 数据处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-groupby.html">2.5. 分组汇总</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-merge-concat.html">2.6. 多表操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe-pivot-melt.html">2.7. 数据透视</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">数据可视化</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-matplotlib/index.html">3. Matplotlib</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-intro.html">3.1. Matplotlib 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-figure-axes.html">3.2. <code class="docutils literal notranslate"><span class="pre">Figure</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Axes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-data.html">3.3. Matplotlib 输入数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-other-parameters.html">3.4. matplotlib 其他画图参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-coding-styles.html">3.5. matplotlib 编程方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-matplotlib/matplotlib-plot-types.html">3.6. 图形种类</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/godaai/python-data-science" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/godaai/python-data-science/issues/new?title=Issue%20on%20page%20%2Fch-pandas/data-preprocessing.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ch-pandas/data-preprocessing.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>数据处理</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.4.1. 处理重复值</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.4.2. 处理缺失值</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply">2.4.3. Apply 函数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">2.4.4. 更改 DataFrame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.4.5. 数据排序</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><span class="section-number">2.4. </span>数据处理<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>数据处理工作包括处理重复值、缺失值和异常值，生成新的列或者行等。</p>
+<div class="cell tag_hide_code tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;../data/pwt&quot;</span><span class="p">)</span>
+<span class="n">download_url</span> <span class="o">=</span> <span class="s2">&quot;https://www.rug.nl/ggdc/docs/pwt70_06032011version.zip&quot;</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="n">download_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
+    <span class="c1"># 创建文件夹</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;文件夹不存在，已创建。&quot;</span><span class="p">)</span>
+
+    <span class="n">zip_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+
+    <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">download_url</span><span class="p">,</span> <span class="n">zip_file_path</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+        <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;数据已下载并解压缩。&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;文件夹已存在，无需操作。&quot;</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="s2">&quot;pwt70_w_country_names.csv&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>文件夹已存在，无需操作。
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="id2">
+<h2><span class="section-number">2.4.1. </span>处理重复值<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>检测数据集的记录是否存在重复，可以使用 <code class="docutils literal notranslate"><span class="pre">.duplicated()</span></code> 函数进行验证，但是该函数返回的是数据集每一行的检测结果，即 n 行数据会返回 n 个布尔值。为了能够得到最直接的结果，可以使用 <code class="docutils literal notranslate"><span class="pre">any</span></code> 函数。该函数表示的是在多个条件判断中，只要有一个条件为 True，则 <code class="docutils literal notranslate"><span class="pre">any</span></code> 返回的结果为 True。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">any</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>如果有重复项，可以通过 <code class="docutils literal notranslate"><span class="pre">.drop_duplicated()</span></code> 删除。该函数有 <code class="docutils literal notranslate"><span class="pre">inplace</span></code> 参数，设置为 True 表示直接在原始数据集上做操作：<code class="docutils literal notranslate"><span class="pre">df.drop_duplicated(inplace</span> <span class="pre">=</span> <span class="pre">True)</span></code>。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">2.4.2. </span>处理缺失值<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<p>缺失值是指数据集中的某些观测存在遗漏。数据缺失可能有两方面原因：一方面是人为原因，如记录过程中的遗漏、个人隐私而不愿意透露等；另一方面是机器或设备的故障所导致。</p>
+<p>可以使用 <code class="docutils literal notranslate"><span class="pre">.isna()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">.isnull()</span></code> 函数查看缺失值。这两个函数返回 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 每个元素是否有缺失值，如果有缺失值，比如 N/A 或<code class="docutils literal notranslate"><span class="pre">null</span></code>，则返回 True；否则返回 False。</p>
+<p>例如：通过 <code class="docutils literal notranslate"><span class="pre">.sum()</span></code> 查看每一列的空缺值计数。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country              0
+isocode              0
+year                 0
+POP                  2
+XRAT              1237
+Currency_Unit     1237
+ppp               2655
+tcgdp             2655
+cgdp              2655
+cgdp2             2655
+cda2              2655
+cc                2655
+cg                2655
+ci                2655
+p                 2655
+p2                2655
+pc                2655
+pg                2655
+pi                2655
+openc             2655
+cgnp              3095
+y                 2655
+y2                2655
+rgdpl             2675
+rgdpl2            2675
+rgdpch            2675
+kc                2675
+kg                2675
+ki                2675
+openk             2675
+rgdpeqa           2845
+rgdpwok           3223
+rgdpl2wok         3223
+rgdpl2pe         10555
+rgdpl2te          6001
+rgdpl2th          9126
+rgdptt            2655
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>一般而言，遇到缺失值时，可以采用三种方法处理，分别是删除法、替换法或插补法。</p>
+<p>删除法是指当缺失的观测比例非常低（如 5% 以内），直接删除存在缺失的观测，或者当某些变量的缺失比例非常高时（如 85% 以上），直接删除这些缺失的变量。</p>
+<p>可以使用 <code class="docutils literal notranslate"><span class="pre">.dropna()</span></code> 函数删除有缺失值的行或列。具体形式：<code class="docutils literal notranslate"><span class="pre">df.dropna(axis=0,</span> <span class="pre">how='any',</span> <span class="pre">inplace=False)</span></code>。</p>
+<p>这个函数有参数 <code class="docutils literal notranslate"><span class="pre">axis</span></code>，<code class="docutils literal notranslate"><span class="pre">axis</span></code> 用来指定要删除的轴。<code class="docutils literal notranslate"><span class="pre">axis=0</span></code> 表示删除行（默认），<code class="docutils literal notranslate"><span class="pre">axis=1</span></code> 表示删除列。<code class="docutils literal notranslate"><span class="pre">how</span></code> 用来指定删除的条件。<code class="docutils literal notranslate"><span class="pre">how='any'</span></code> 表示删除包含任何缺失值的行（默认），<code class="docutils literal notranslate"><span class="pre">how='all'</span></code> 表示只删除所有值都是缺失值的行。<code class="docutils literal notranslate"><span class="pre">inplace</span></code> 用于指定是否在原始 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 上进行修改，默认为 False，表示不修改原始 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>，而是返回一个新的 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>。</p>
+<p>例如，删除包含任何缺失值的行。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ddf</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">.fillna()</span></code> 函数填补数据框中的缺失值。例如，将 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 中的缺失值用 0 填充。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fill_zero_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>对于时间类型的数据集，可以用 <code class="docutils literal notranslate"><span class="pre">.fillna()</span></code> 的 <code class="docutils literal notranslate"><span class="pre">method</span></code> 参数，可以接受 <code class="docutils literal notranslate"><span class="pre">ffill</span></code> 和 <code class="docutils literal notranslate"><span class="pre">bfill</span></code> 两种值，分别代表前向填充和后向填充，使得数据前后具有连贯性，而一般的独立性样本并不适用该函数。（前向填充是指用缺失值的前一个值替换，而后向填充是指用缺失值的后一个值替换。）</p>
+</section>
+<section id="apply">
+<h2><span class="section-number">2.4.3. </span>Apply 函数<a class="headerlink" href="#apply" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">.apply()</span></code> 函数也是一个 pandas 中常用的函数。它可以对每行 / 列（也可以对基于切片选择特定的列或行）应用一个函数并返回一个 <code class="docutils literal notranslate"><span class="pre">Series</span></code>。该函数可以是一些内置函数，如 max 函数、lambda 函数或自定义函数。</p>
+<ul class="simple">
+<li><p>max 函数</p></li>
+</ul>
+<p>例如，返回 <code class="docutils literal notranslate"><span class="pre">year</span></code>, <code class="docutils literal notranslate"><span class="pre">POP</span></code>, <code class="docutils literal notranslate"><span class="pre">XRAT</span></code>, <code class="docutils literal notranslate"><span class="pre">tcgdp</span></code>, <code class="docutils literal notranslate"><span class="pre">cc</span></code>, <code class="docutils literal notranslate"><span class="pre">cg</span></code> 列的最大值（当该列有空值时，无法计算最大值，则返回空值）。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;POP&#39;</span><span class="p">,</span> <span class="s1">&#39;XRAT&#39;</span><span class="p">,</span> <span class="s1">&#39;tcgdp&#39;</span><span class="p">,</span> <span class="s1">&#39;cc&#39;</span><span class="p">,</span> <span class="s1">&#39;cg&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">max</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year        2009.0
+POP      1323592.0
+XRAT           NaN
+tcgdp          NaN
+cc             NaN
+cg             NaN
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>lambda 函数，形式为 <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">arguments:</span> <span class="pre">expression</span></code></p></li>
+</ul>
+<p>lambda 函数是一种没有函数名，但是可以被调用执行的函数。换句话说，lambda 函数不需要用 <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">func_name()</span></code> 来定义函数名，而是直接定义函数体中的计算部分。关于函数体部分，<code class="docutils literal notranslate"><span class="pre">arguments</span></code> 是参数列表，可以指定一个或多个参数，就像定义普通函数一样；<code class="docutils literal notranslate"><span class="pre">expression</span></code> 是一个表达式，定义了 lambda 函数的计算逻辑，通常包括使用参数执行哪些计算，并返回计算结果。lambda 函数通常用于一次性的、简单的操作。</p>
+<p>例如，对每一行返回数据本身，不做任何其他操作：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">row</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>isocode</th>
+      <th>year</th>
+      <th>POP</th>
+      <th>XRAT</th>
+      <th>Currency_Unit</th>
+      <th>ppp</th>
+      <th>tcgdp</th>
+      <th>cgdp</th>
+      <th>cgdp2</th>
+      <th>...</th>
+      <th>kg</th>
+      <th>ki</th>
+      <th>openk</th>
+      <th>rgdpeqa</th>
+      <th>rgdpwok</th>
+      <th>rgdpl2wok</th>
+      <th>rgdpl2pe</th>
+      <th>rgdpl2te</th>
+      <th>rgdpl2th</th>
+      <th>rgdptt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1950</td>
+      <td>8150.368</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1951</td>
+      <td>8284.473</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1952</td>
+      <td>8425.333</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1953</td>
+      <td>8573.217</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1954</td>
+      <td>8728.408</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>11395</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2005</td>
+      <td>11639.470</td>
+      <td>2.236364e+01</td>
+      <td>Zimbabwe Dollar</td>
+      <td>39.482829</td>
+      <td>1968.205961</td>
+      <td>169.097559</td>
+      <td>184.183929</td>
+      <td>...</td>
+      <td>6.995770</td>
+      <td>9.376272</td>
+      <td>89.399427</td>
+      <td>214.739197</td>
+      <td>418.970867</td>
+      <td>418.970867</td>
+      <td>NaN</td>
+      <td>390.907086</td>
+      <td>NaN</td>
+      <td>169.097559</td>
+    </tr>
+    <tr>
+      <th>11396</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2006</td>
+      <td>11544.326</td>
+      <td>1.643606e+02</td>
+      <td>Zimbabwe Dollar</td>
+      <td>384.899651</td>
+      <td>2132.305773</td>
+      <td>184.705956</td>
+      <td>192.953943</td>
+      <td>...</td>
+      <td>7.648020</td>
+      <td>14.986823</td>
+      <td>81.697014</td>
+      <td>217.543648</td>
+      <td>424.754259</td>
+      <td>407.262097</td>
+      <td>NaN</td>
+      <td>377.352394</td>
+      <td>NaN</td>
+      <td>179.368685</td>
+    </tr>
+    <tr>
+      <th>11397</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2007</td>
+      <td>11443.187</td>
+      <td>9.675781e+03</td>
+      <td>Zimbabwe Dollar</td>
+      <td>38583.323960</td>
+      <td>2107.937100</td>
+      <td>184.208918</td>
+      <td>198.215361</td>
+      <td>...</td>
+      <td>8.387106</td>
+      <td>15.787322</td>
+      <td>84.483374</td>
+      <td>202.707080</td>
+      <td>396.486201</td>
+      <td>376.163064</td>
+      <td>NaN</td>
+      <td>345.764991</td>
+      <td>NaN</td>
+      <td>173.113448</td>
+    </tr>
+    <tr>
+      <th>11398</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2008</td>
+      <td>11350.000</td>
+      <td>6.715424e+09</td>
+      <td>Zimbabwe Dollar</td>
+      <td>38723.957740</td>
+      <td>1772.209867</td>
+      <td>156.141839</td>
+      <td>162.112294</td>
+      <td>...</td>
+      <td>7.685312</td>
+      <td>13.444449</td>
+      <td>85.117130</td>
+      <td>174.178806</td>
+      <td>343.159758</td>
+      <td>332.649861</td>
+      <td>NaN</td>
+      <td>302.945712</td>
+      <td>NaN</td>
+      <td>142.329054</td>
+    </tr>
+    <tr>
+      <th>11399</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2009</td>
+      <td>11383.000</td>
+      <td>1.400000e+17</td>
+      <td>Zimbabwe Dollar</td>
+      <td>40289.958990</td>
+      <td>1906.049843</td>
+      <td>167.447056</td>
+      <td>174.419700</td>
+      <td>...</td>
+      <td>7.905525</td>
+      <td>14.743667</td>
+      <td>83.749534</td>
+      <td>182.613004</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>314.171069</td>
+      <td>NaN</td>
+      <td>151.435285</td>
+    </tr>
+  </tbody>
+</table>
+<p>11400 rows × 37 columns</p>
+</div></div></div>
+</div>
+<p>在这个例子中，<code class="docutils literal notranslate"><span class="pre">apply</span></code> 有个参数为 <code class="docutils literal notranslate"><span class="pre">axis</span></code>，<code class="docutils literal notranslate"><span class="pre">axis</span> <span class="pre">=</span> <span class="pre">1</span></code> 设置函数对每一行操作；<code class="docutils literal notranslate"><span class="pre">axis</span> <span class="pre">=</span> <span class="pre">0</span></code> 设置函数对每一列操作；默认 <code class="docutils literal notranslate"><span class="pre">axis</span> <span class="pre">=</span> <span class="pre">0</span></code>。</p>
+<p>例：和 <code class="docutils literal notranslate"><span class="pre">.loc[]</span></code> 一起使用，进行更高级的数据切片。<code class="docutils literal notranslate"><span class="pre">.apply()</span></code> 返回对每一行做条件判断的一系列布尔值，以 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 操作选择部分列。下面的选择条件为：如果 <code class="docutils literal notranslate"><span class="pre">country</span></code> 列属于特定国家，且 <code class="docutils literal notranslate"><span class="pre">POP</span> <span class="pre">&gt;</span> <span class="pre">40000</span></code>；如果 <code class="docutils literal notranslate"><span class="pre">country</span></code> 列不属于特定国家，且 <code class="docutils literal notranslate"><span class="pre">POP</span> <span class="pre">&lt;</span> <span class="pre">20000</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">complexCondition</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+<span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">row</span><span class="o">.</span><span class="n">POP</span> <span class="o">&gt;</span> <span class="mi">40000</span> <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">country</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Argentina&#39;</span><span class="p">,</span> <span class="s1">&#39;India&#39;</span><span class="p">,</span> <span class="s1">&#39;South Africa&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">row</span><span class="o">.</span><span class="n">POP</span> <span class="o">&lt;</span> <span class="mi">20000</span><span class="p">,</span>
+<span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;POP&#39;</span><span class="p">,</span> <span class="s1">&#39;XRAT&#39;</span><span class="p">,</span> <span class="s1">&#39;tcgdp&#39;</span><span class="p">]</span>
+<span class="n">complexCondition</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0        True
+ 1        True
+ 2        True
+ 3        True
+ 4        True
+          ... 
+ 11395    True
+ 11396    True
+ 11397    True
+ 11398    True
+ 11399    True
+ Length: 11400, dtype: bool,
+ [&#39;country&#39;, &#39;year&#39;, &#39;POP&#39;, &#39;XRAT&#39;, &#39;tcgdp&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">complexCondition</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>year</th>
+      <th>POP</th>
+      <th>XRAT</th>
+      <th>tcgdp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>1950</td>
+      <td>8150.368</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Afghanistan</td>
+      <td>1951</td>
+      <td>8284.473</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>1952</td>
+      <td>8425.333</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Afghanistan</td>
+      <td>1953</td>
+      <td>8573.217</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Afghanistan</td>
+      <td>1954</td>
+      <td>8728.408</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>11395</th>
+      <td>Zimbabwe</td>
+      <td>2005</td>
+      <td>11639.470</td>
+      <td>2.236364e+01</td>
+      <td>1968.205961</td>
+    </tr>
+    <tr>
+      <th>11396</th>
+      <td>Zimbabwe</td>
+      <td>2006</td>
+      <td>11544.326</td>
+      <td>1.643606e+02</td>
+      <td>2132.305773</td>
+    </tr>
+    <tr>
+      <th>11397</th>
+      <td>Zimbabwe</td>
+      <td>2007</td>
+      <td>11443.187</td>
+      <td>9.675781e+03</td>
+      <td>2107.937100</td>
+    </tr>
+    <tr>
+      <th>11398</th>
+      <td>Zimbabwe</td>
+      <td>2008</td>
+      <td>11350.000</td>
+      <td>6.715424e+09</td>
+      <td>1772.209867</td>
+    </tr>
+    <tr>
+      <th>11399</th>
+      <td>Zimbabwe</td>
+      <td>2009</td>
+      <td>11383.000</td>
+      <td>1.400000e+17</td>
+      <td>1906.049843</td>
+    </tr>
+  </tbody>
+</table>
+<p>9231 rows × 5 columns</p>
+</div></div></div>
+</div>
+<p>则返回符合条件的行和列。</p>
+</section>
+<section id="dataframe">
+<h2><span class="section-number">2.4.4. </span>更改 DataFrame<a class="headerlink" href="#dataframe" title="Permalink to this heading">#</a></h2>
+<p>更改 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 的部分值（行、列）在数据分析过程中十分重要。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.where()</span></code> 函数保留行，并用其他值替代其余行。</p></li>
+</ul>
+<p>例：找出 POP 大于 20000 的行，保留这些行，其余部分用 <code class="docutils literal notranslate"><span class="pre">other</span></code> 替代，<code class="docutils literal notranslate"><span class="pre">other</span></code> 参数可以是任意值，比如 0 、”hello” 等。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">POP</span> <span class="o">&gt;</span> <span class="mi">20000</span><span class="p">,</span> <span class="n">other</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>isocode</th>
+      <th>year</th>
+      <th>POP</th>
+      <th>XRAT</th>
+      <th>Currency_Unit</th>
+      <th>ppp</th>
+      <th>tcgdp</th>
+      <th>cgdp</th>
+      <th>cgdp2</th>
+      <th>...</th>
+      <th>kg</th>
+      <th>ki</th>
+      <th>openk</th>
+      <th>rgdpeqa</th>
+      <th>rgdpwok</th>
+      <th>rgdpl2wok</th>
+      <th>rgdpl2pe</th>
+      <th>rgdpl2te</th>
+      <th>rgdpl2th</th>
+      <th>rgdptt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>11395</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>11396</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>11397</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>11398</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>11399</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+<p>11400 rows × 37 columns</p>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.loc[]</span></code> 函数指定想修改的列，并赋值。</p></li>
+</ul>
+<p>例：找出 cg 列的最大值，赋值为 1 。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">cg</span> <span class="o">==</span> <span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">cg</span><span class="p">),</span> <span class="s1">&#39;cg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.apply()</span></code> 函数，根据自定义函数修改行和列。</p></li>
+</ul>
+<p>例：将 POP 小于 10000 的修改为 1， 将 XRAT 缩小十倍。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_row</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+  <span class="c1"># modify POP</span>
+  <span class="n">row</span><span class="o">.</span><span class="n">POP</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">POP</span><span class="o">&lt;=</span> <span class="mi">10000</span> <span class="k">else</span> <span class="n">row</span><span class="o">.</span><span class="n">POP</span>
+
+  <span class="c1"># modify XRAT</span>
+  <span class="n">row</span><span class="o">.</span><span class="n">XRAT</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">XRAT</span> <span class="o">/</span> <span class="mi">10</span>
+  <span class="k">return</span> <span class="n">row</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">update_row</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>isocode</th>
+      <th>year</th>
+      <th>POP</th>
+      <th>XRAT</th>
+      <th>Currency_Unit</th>
+      <th>ppp</th>
+      <th>tcgdp</th>
+      <th>cgdp</th>
+      <th>cgdp2</th>
+      <th>...</th>
+      <th>kg</th>
+      <th>ki</th>
+      <th>openk</th>
+      <th>rgdpeqa</th>
+      <th>rgdpwok</th>
+      <th>rgdpl2wok</th>
+      <th>rgdpl2pe</th>
+      <th>rgdpl2te</th>
+      <th>rgdpl2th</th>
+      <th>rgdptt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1950</td>
+      <td>1.000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1951</td>
+      <td>1.000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1952</td>
+      <td>1.000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1953</td>
+      <td>1.000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1954</td>
+      <td>1.000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>11395</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2005</td>
+      <td>11639.470</td>
+      <td>2.236364e+00</td>
+      <td>Zimbabwe Dollar</td>
+      <td>39.482829</td>
+      <td>1968.205961</td>
+      <td>169.097559</td>
+      <td>184.183929</td>
+      <td>...</td>
+      <td>6.995770</td>
+      <td>9.376272</td>
+      <td>89.399427</td>
+      <td>214.739197</td>
+      <td>418.970867</td>
+      <td>418.970867</td>
+      <td>NaN</td>
+      <td>390.907086</td>
+      <td>NaN</td>
+      <td>169.097559</td>
+    </tr>
+    <tr>
+      <th>11396</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2006</td>
+      <td>11544.326</td>
+      <td>1.643606e+01</td>
+      <td>Zimbabwe Dollar</td>
+      <td>384.899651</td>
+      <td>2132.305773</td>
+      <td>184.705956</td>
+      <td>192.953943</td>
+      <td>...</td>
+      <td>7.648020</td>
+      <td>14.986823</td>
+      <td>81.697014</td>
+      <td>217.543648</td>
+      <td>424.754259</td>
+      <td>407.262097</td>
+      <td>NaN</td>
+      <td>377.352394</td>
+      <td>NaN</td>
+      <td>179.368685</td>
+    </tr>
+    <tr>
+      <th>11397</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2007</td>
+      <td>11443.187</td>
+      <td>9.675781e+02</td>
+      <td>Zimbabwe Dollar</td>
+      <td>38583.323960</td>
+      <td>2107.937100</td>
+      <td>184.208918</td>
+      <td>198.215361</td>
+      <td>...</td>
+      <td>8.387106</td>
+      <td>15.787322</td>
+      <td>84.483374</td>
+      <td>202.707080</td>
+      <td>396.486201</td>
+      <td>376.163064</td>
+      <td>NaN</td>
+      <td>345.764991</td>
+      <td>NaN</td>
+      <td>173.113448</td>
+    </tr>
+    <tr>
+      <th>11398</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2008</td>
+      <td>11350.000</td>
+      <td>6.715424e+08</td>
+      <td>Zimbabwe Dollar</td>
+      <td>38723.957740</td>
+      <td>1772.209867</td>
+      <td>156.141839</td>
+      <td>162.112294</td>
+      <td>...</td>
+      <td>7.685312</td>
+      <td>13.444449</td>
+      <td>85.117130</td>
+      <td>174.178806</td>
+      <td>343.159758</td>
+      <td>332.649861</td>
+      <td>NaN</td>
+      <td>302.945712</td>
+      <td>NaN</td>
+      <td>142.329054</td>
+    </tr>
+    <tr>
+      <th>11399</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2009</td>
+      <td>11383.000</td>
+      <td>1.400000e+16</td>
+      <td>Zimbabwe Dollar</td>
+      <td>40289.958990</td>
+      <td>1906.049843</td>
+      <td>167.447056</td>
+      <td>174.419700</td>
+      <td>...</td>
+      <td>7.905525</td>
+      <td>14.743667</td>
+      <td>83.749534</td>
+      <td>182.613004</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>314.171069</td>
+      <td>NaN</td>
+      <td>151.435285</td>
+    </tr>
+  </tbody>
+</table>
+<p>11400 rows × 37 columns</p>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.applymap()</span></code> 函数，修改 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 中的所有单独元素。</p></li>
+</ul>
+<p>例：将 DataFrame 中的数值型元素保留两位小数。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">!=</span><span class="nb">str</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_1192/832431325.py:1: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
+  df.applymap(lambda x : round(x, 2) if type(x)!=str else x)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>isocode</th>
+      <th>year</th>
+      <th>POP</th>
+      <th>XRAT</th>
+      <th>Currency_Unit</th>
+      <th>ppp</th>
+      <th>tcgdp</th>
+      <th>cgdp</th>
+      <th>cgdp2</th>
+      <th>...</th>
+      <th>kg</th>
+      <th>ki</th>
+      <th>openk</th>
+      <th>rgdpeqa</th>
+      <th>rgdpwok</th>
+      <th>rgdpl2wok</th>
+      <th>rgdpl2pe</th>
+      <th>rgdpl2te</th>
+      <th>rgdpl2th</th>
+      <th>rgdptt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1950</td>
+      <td>8150.37</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1951</td>
+      <td>8284.47</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1952</td>
+      <td>8425.33</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1953</td>
+      <td>8573.22</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1954</td>
+      <td>8728.41</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>11395</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2005</td>
+      <td>11639.47</td>
+      <td>2.236000e+01</td>
+      <td>Zimbabwe Dollar</td>
+      <td>39.48</td>
+      <td>1968.21</td>
+      <td>169.10</td>
+      <td>184.18</td>
+      <td>...</td>
+      <td>7.00</td>
+      <td>9.38</td>
+      <td>89.40</td>
+      <td>214.74</td>
+      <td>418.97</td>
+      <td>418.97</td>
+      <td>NaN</td>
+      <td>390.91</td>
+      <td>NaN</td>
+      <td>169.10</td>
+    </tr>
+    <tr>
+      <th>11396</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2006</td>
+      <td>11544.33</td>
+      <td>1.643600e+02</td>
+      <td>Zimbabwe Dollar</td>
+      <td>384.90</td>
+      <td>2132.31</td>
+      <td>184.71</td>
+      <td>192.95</td>
+      <td>...</td>
+      <td>7.65</td>
+      <td>14.99</td>
+      <td>81.70</td>
+      <td>217.54</td>
+      <td>424.75</td>
+      <td>407.26</td>
+      <td>NaN</td>
+      <td>377.35</td>
+      <td>NaN</td>
+      <td>179.37</td>
+    </tr>
+    <tr>
+      <th>11397</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2007</td>
+      <td>11443.19</td>
+      <td>9.675780e+03</td>
+      <td>Zimbabwe Dollar</td>
+      <td>38583.32</td>
+      <td>2107.94</td>
+      <td>184.21</td>
+      <td>198.22</td>
+      <td>...</td>
+      <td>8.39</td>
+      <td>15.79</td>
+      <td>84.48</td>
+      <td>202.71</td>
+      <td>396.49</td>
+      <td>376.16</td>
+      <td>NaN</td>
+      <td>345.76</td>
+      <td>NaN</td>
+      <td>173.11</td>
+    </tr>
+    <tr>
+      <th>11398</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2008</td>
+      <td>11350.00</td>
+      <td>6.715424e+09</td>
+      <td>Zimbabwe Dollar</td>
+      <td>38723.96</td>
+      <td>1772.21</td>
+      <td>156.14</td>
+      <td>162.11</td>
+      <td>...</td>
+      <td>7.69</td>
+      <td>13.44</td>
+      <td>85.12</td>
+      <td>174.18</td>
+      <td>343.16</td>
+      <td>332.65</td>
+      <td>NaN</td>
+      <td>302.95</td>
+      <td>NaN</td>
+      <td>142.33</td>
+    </tr>
+    <tr>
+      <th>11399</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2009</td>
+      <td>11383.00</td>
+      <td>1.400000e+17</td>
+      <td>Zimbabwe Dollar</td>
+      <td>40289.96</td>
+      <td>1906.05</td>
+      <td>167.45</td>
+      <td>174.42</td>
+      <td>...</td>
+      <td>7.91</td>
+      <td>14.74</td>
+      <td>83.75</td>
+      <td>182.61</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>314.17</td>
+      <td>NaN</td>
+      <td>151.44</td>
+    </tr>
+  </tbody>
+</table>
+<p>11400 rows × 37 columns</p>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">del</span></code> 函数删除指定列。</p></li>
+</ul>
+<p>例：删除 <code class="docutils literal notranslate"><span class="pre">ppp</span></code> 列。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;ppp&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df['new_column']</span> <span class="pre">=</span> <span class="pre">values</span></code> 增加新列。</p></li>
+</ul>
+<p>例：增加一列 <code class="docutils literal notranslate"><span class="pre">GDP</span> <span class="pre">percap</span></code> 显示人均 GDP。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;GDP percap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;tcgdp&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">astype()</span></code> 更改变量数据类型</p></li>
+</ul>
+<p>例：将 country 列改为字符串类型。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">country</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">country</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h2><span class="section-number">2.4.5. </span>数据排序<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<p>在很多分析任务中，需要按照某个或某些指标对数据进行排序。pandas 在排序时，根据排序的对象不同可细分为 <code class="docutils literal notranslate"><span class="pre">sort_values</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sort_index</span></code>, 与其字面意义相一致，分别代表了对值进行排序和对索引 index 进行排序。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.sort_values()</span></code> 函数，按照指定列排序。</p></li>
+</ul>
+<p>形如 <code class="docutils literal notranslate"><span class="pre">.sort_values(by='column1',</span> <span class="pre">ascending</span> <span class="pre">=</span> <span class="pre">True/False)</span></code>，<code class="docutils literal notranslate"><span class="pre">ascending</span></code> 参数设置为 True 表示升序，False 为降序。例如按照 POP 列升序排列：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;POP&#39;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>isocode</th>
+      <th>year</th>
+      <th>POP</th>
+      <th>XRAT</th>
+      <th>Currency_Unit</th>
+      <th>tcgdp</th>
+      <th>cgdp</th>
+      <th>cgdp2</th>
+      <th>cda2</th>
+      <th>...</th>
+      <th>ki</th>
+      <th>openk</th>
+      <th>rgdpeqa</th>
+      <th>rgdpwok</th>
+      <th>rgdpl2wok</th>
+      <th>rgdpl2pe</th>
+      <th>rgdpl2te</th>
+      <th>rgdpl2th</th>
+      <th>rgdptt</th>
+      <th>GDP percap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7740</th>
+      <td>Palau</td>
+      <td>PLW</td>
+      <td>1950</td>
+      <td>7.251</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7741</th>
+      <td>Palau</td>
+      <td>PLW</td>
+      <td>1951</td>
+      <td>7.448</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7742</th>
+      <td>Palau</td>
+      <td>PLW</td>
+      <td>1952</td>
+      <td>7.651</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7743</th>
+      <td>Palau</td>
+      <td>PLW</td>
+      <td>1953</td>
+      <td>7.859</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7744</th>
+      <td>Palau</td>
+      <td>PLW</td>
+      <td>1954</td>
+      <td>8.073</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2218</th>
+      <td>China Version 2</td>
+      <td>CH2</td>
+      <td>2008</td>
+      <td>1317066.000</td>
+      <td>6.95</td>
+      <td>Yuan Renminbi</td>
+      <td>10557315.23</td>
+      <td>8015.782984</td>
+      <td>8416.480345</td>
+      <td>7551.673672</td>
+      <td>...</td>
+      <td>37.629450</td>
+      <td>69.883127</td>
+      <td>7777.945871</td>
+      <td>11929.04952</td>
+      <td>11929.04952</td>
+      <td>NaN</td>
+      <td>11938.30669</td>
+      <td>NaN</td>
+      <td>7233.090071</td>
+      <td>8.015783</td>
+    </tr>
+    <tr>
+      <th>2219</th>
+      <td>China Version 2</td>
+      <td>CH2</td>
+      <td>2009</td>
+      <td>1323592.000</td>
+      <td>6.83</td>
+      <td>Yuan Renminbi</td>
+      <td>11342464.26</td>
+      <td>8569.456643</td>
+      <td>9227.187296</td>
+      <td>8531.307128</td>
+      <td>...</td>
+      <td>39.044203</td>
+      <td>61.240342</td>
+      <td>8247.646160</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>12658.65025</td>
+      <td>NaN</td>
+      <td>7747.331618</td>
+      <td>8.569457</td>
+    </tr>
+    <tr>
+      <th>2159</th>
+      <td>China Version 1</td>
+      <td>CHN</td>
+      <td>2009</td>
+      <td>1323592.000</td>
+      <td>6.83</td>
+      <td>Yuan Renminbi</td>
+      <td>10739325.58</td>
+      <td>8113.773410</td>
+      <td>8296.575690</td>
+      <td>7651.109254</td>
+      <td>...</td>
+      <td>46.707842</td>
+      <td>58.579480</td>
+      <td>7782.385295</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>11914.32395</td>
+      <td>NaN</td>
+      <td>7314.930606</td>
+      <td>8.113773</td>
+    </tr>
+    <tr>
+      <th>10020</th>
+      <td>Tajikistan</td>
+      <td>TJK</td>
+      <td>1950</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10021</th>
+      <td>Tajikistan</td>
+      <td>TJK</td>
+      <td>1951</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>11400 rows × 37 columns</p>
+</div></div></div>
+</div>
+<p>也可以对多个列排序。例如按照 POP 列和 year 列降序排列。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POP&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">],</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>isocode</th>
+      <th>year</th>
+      <th>POP</th>
+      <th>XRAT</th>
+      <th>Currency_Unit</th>
+      <th>tcgdp</th>
+      <th>cgdp</th>
+      <th>cgdp2</th>
+      <th>cda2</th>
+      <th>...</th>
+      <th>ki</th>
+      <th>openk</th>
+      <th>rgdpeqa</th>
+      <th>rgdpwok</th>
+      <th>rgdpl2wok</th>
+      <th>rgdpl2pe</th>
+      <th>rgdpl2te</th>
+      <th>rgdpl2th</th>
+      <th>rgdptt</th>
+      <th>GDP percap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2219</th>
+      <td>China Version 2</td>
+      <td>CH2</td>
+      <td>2009</td>
+      <td>1323592.000</td>
+      <td>6.830000</td>
+      <td>Yuan Renminbi</td>
+      <td>1.134246e+07</td>
+      <td>8569.456643</td>
+      <td>9227.187296</td>
+      <td>8531.307128</td>
+      <td>...</td>
+      <td>39.044203</td>
+      <td>61.240342</td>
+      <td>8247.646160</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>12658.65025</td>
+      <td>NaN</td>
+      <td>7747.331618</td>
+      <td>8.569457</td>
+    </tr>
+    <tr>
+      <th>2159</th>
+      <td>China Version 1</td>
+      <td>CHN</td>
+      <td>2009</td>
+      <td>1323592.000</td>
+      <td>6.830000</td>
+      <td>Yuan Renminbi</td>
+      <td>1.073933e+07</td>
+      <td>8113.773410</td>
+      <td>8296.575690</td>
+      <td>7651.109254</td>
+      <td>...</td>
+      <td>46.707842</td>
+      <td>58.579480</td>
+      <td>7782.385295</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>11914.32395</td>
+      <td>NaN</td>
+      <td>7314.930606</td>
+      <td>8.113773</td>
+    </tr>
+    <tr>
+      <th>2158</th>
+      <td>China Version 1</td>
+      <td>CHN</td>
+      <td>2008</td>
+      <td>1317066.000</td>
+      <td>6.950000</td>
+      <td>Yuan Renminbi</td>
+      <td>9.719402e+06</td>
+      <td>7379.586069</td>
+      <td>7529.397258</td>
+      <td>6747.223691</td>
+      <td>...</td>
+      <td>42.862836</td>
+      <td>68.760068</td>
+      <td>7132.315550</td>
+      <td>10938.84514</td>
+      <td>10929.28222</td>
+      <td>NaN</td>
+      <td>10937.76354</td>
+      <td>NaN</td>
+      <td>6635.526673</td>
+      <td>7.379586</td>
+    </tr>
+    <tr>
+      <th>2218</th>
+      <td>China Version 2</td>
+      <td>CH2</td>
+      <td>2008</td>
+      <td>1317066.000</td>
+      <td>6.950000</td>
+      <td>Yuan Renminbi</td>
+      <td>1.055732e+07</td>
+      <td>8015.782984</td>
+      <td>8416.480345</td>
+      <td>7551.673672</td>
+      <td>...</td>
+      <td>37.629450</td>
+      <td>69.883127</td>
+      <td>7777.945871</td>
+      <td>11929.04952</td>
+      <td>11929.04952</td>
+      <td>NaN</td>
+      <td>11938.30669</td>
+      <td>NaN</td>
+      <td>7233.090071</td>
+      <td>8.015783</td>
+    </tr>
+    <tr>
+      <th>2217</th>
+      <td>China Version 2</td>
+      <td>CH2</td>
+      <td>2007</td>
+      <td>1310584.000</td>
+      <td>7.607532</td>
+      <td>Yuan Renminbi</td>
+      <td>9.407736e+06</td>
+      <td>7178.278054</td>
+      <td>7437.401920</td>
+      <td>6803.244389</td>
+      <td>...</td>
+      <td>37.634047</td>
+      <td>69.245056</td>
+      <td>7357.713761</td>
+      <td>11290.43295</td>
+      <td>11290.43295</td>
+      <td>NaN</td>
+      <td>11288.33089</td>
+      <td>NaN</td>
+      <td>6690.086924</td>
+      <td>7.178278</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>7742</th>
+      <td>Palau</td>
+      <td>PLW</td>
+      <td>1952</td>
+      <td>7.651</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7741</th>
+      <td>Palau</td>
+      <td>PLW</td>
+      <td>1951</td>
+      <td>7.448</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7740</th>
+      <td>Palau</td>
+      <td>PLW</td>
+      <td>1950</td>
+      <td>7.251</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10021</th>
+      <td>Tajikistan</td>
+      <td>TJK</td>
+      <td>1951</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10020</th>
+      <td>Tajikistan</td>
+      <td>TJK</td>
+      <td>1950</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>11400 rows × 37 columns</p>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.sort_index()</span></code> 函数，按照现有的 index 索引排序，index 通常为打印 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> 时，最左侧没有任何列名的那一列。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>isocode</th>
+      <th>year</th>
+      <th>POP</th>
+      <th>XRAT</th>
+      <th>Currency_Unit</th>
+      <th>tcgdp</th>
+      <th>cgdp</th>
+      <th>cgdp2</th>
+      <th>cda2</th>
+      <th>...</th>
+      <th>ki</th>
+      <th>openk</th>
+      <th>rgdpeqa</th>
+      <th>rgdpwok</th>
+      <th>rgdpl2wok</th>
+      <th>rgdpl2pe</th>
+      <th>rgdpl2te</th>
+      <th>rgdpl2th</th>
+      <th>rgdptt</th>
+      <th>GDP percap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1950</td>
+      <td>8150.368</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1951</td>
+      <td>8284.473</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1952</td>
+      <td>8425.333</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1953</td>
+      <td>8573.217</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>1954</td>
+      <td>8728.408</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>11395</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2005</td>
+      <td>11639.470</td>
+      <td>2.236364e+01</td>
+      <td>Zimbabwe Dollar</td>
+      <td>1968.205961</td>
+      <td>169.097559</td>
+      <td>184.183929</td>
+      <td>203.065978</td>
+      <td>...</td>
+      <td>9.376272</td>
+      <td>89.399427</td>
+      <td>214.739197</td>
+      <td>418.970867</td>
+      <td>418.970867</td>
+      <td>NaN</td>
+      <td>390.907086</td>
+      <td>NaN</td>
+      <td>169.097559</td>
+      <td>0.169098</td>
+    </tr>
+    <tr>
+      <th>11396</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2006</td>
+      <td>11544.326</td>
+      <td>1.643606e+02</td>
+      <td>Zimbabwe Dollar</td>
+      <td>2132.305773</td>
+      <td>184.705956</td>
+      <td>192.953943</td>
+      <td>201.489048</td>
+      <td>...</td>
+      <td>14.986823</td>
+      <td>81.697014</td>
+      <td>217.543648</td>
+      <td>424.754259</td>
+      <td>407.262097</td>
+      <td>NaN</td>
+      <td>377.352394</td>
+      <td>NaN</td>
+      <td>179.368685</td>
+      <td>0.184706</td>
+    </tr>
+    <tr>
+      <th>11397</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2007</td>
+      <td>11443.187</td>
+      <td>9.675781e+03</td>
+      <td>Zimbabwe Dollar</td>
+      <td>2107.937100</td>
+      <td>184.208918</td>
+      <td>198.215361</td>
+      <td>199.155404</td>
+      <td>...</td>
+      <td>15.787322</td>
+      <td>84.483374</td>
+      <td>202.707080</td>
+      <td>396.486201</td>
+      <td>376.163064</td>
+      <td>NaN</td>
+      <td>345.764991</td>
+      <td>NaN</td>
+      <td>173.113448</td>
+      <td>0.184209</td>
+    </tr>
+    <tr>
+      <th>11398</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2008</td>
+      <td>11350.000</td>
+      <td>6.715424e+09</td>
+      <td>Zimbabwe Dollar</td>
+      <td>1772.209867</td>
+      <td>156.141839</td>
+      <td>162.112294</td>
+      <td>170.488034</td>
+      <td>...</td>
+      <td>13.444449</td>
+      <td>85.117130</td>
+      <td>174.178806</td>
+      <td>343.159758</td>
+      <td>332.649861</td>
+      <td>NaN</td>
+      <td>302.945712</td>
+      <td>NaN</td>
+      <td>142.329054</td>
+      <td>0.156142</td>
+    </tr>
+    <tr>
+      <th>11399</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>2009</td>
+      <td>11383.000</td>
+      <td>1.400000e+17</td>
+      <td>Zimbabwe Dollar</td>
+      <td>1906.049843</td>
+      <td>167.447056</td>
+      <td>174.419700</td>
+      <td>180.230237</td>
+      <td>...</td>
+      <td>14.743667</td>
+      <td>83.749534</td>
+      <td>182.613004</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>314.171069</td>
+      <td>NaN</td>
+      <td>151.435285</td>
+      <td>0.167447</td>
+    </tr>
+  </tbody>
+</table>
+<p>11400 rows × 37 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ch-pandas"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="dataframe-slicing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2.3. </span>数据切片</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="dataframe-groupby.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2.5. </span>分组汇总</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.4.1. 处理重复值</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.4.2. 处理缺失值</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply">2.4.3. Apply 函数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">2.4.4. 更改 DataFrame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.4.5. 数据排序</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 鲁蔚征
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
