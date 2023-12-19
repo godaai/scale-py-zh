@@ -1,14 +1,11 @@
-<<<<<<< HEAD
 ray[data,train,tune,rllib]
 dask[complete]
 matplotlib
 numpy
 pandas
+torch
+torchvision
 grpcio
 tqdm
 ipywidgets
-=======
-pandas
-matplotlib
-numpy
->>>>>>> upstream/main
+ipykernel

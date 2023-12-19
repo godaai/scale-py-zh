@@ -8,7 +8,7 @@ logo: logo.png
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: cache
+  execute_notebooks: 'off'
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -33,6 +33,9 @@ only_build_toc_files: true
 html:
   use_issues_button: true
   use_repository_button: true
+
+html:
+    announcement: "如果你觉得内容对你有帮助，请在 GitHub 上点个 star 吧！"
 
 sphinx:
   config:

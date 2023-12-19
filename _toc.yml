@@ -4,7 +4,15 @@
 format: jb-book
 root: index
 parts:
-  - caption: 数据处理与计算
+  - caption: 引言
+    numbered: true
+    chapters:
+    - file: ch-intro/index
+      sections:
+        - file: ch-intro/computer-architecture
+        - file: ch-intro/thread-process
+  
+  - caption: Dask
     numbered: true
     chapters:
     - file: ch-numpy/index
@@ -16,15 +24,20 @@ parts:
     
     - file: ch-pandas/index
       sections:
-        - file: ch-pandas/pandas-intro
-        - file: ch-pandas/series-dataframe
-        - file: ch-pandas/dataframe-slicing
-        - file: ch-pandas/data-preprocessing
-        - file: ch-pandas/dataframe-groupby
-        - file: ch-pandas/dataframe-merge-concat
-        - file: ch-pandas/dataframe-pivot-melt
+        - file: ch-ray-core/ray-intro
+        - file: ch-ray-core/remote-function
+        - file: ch-ray-core/remote-object
+        - file: ch-ray-core/remote-class
+        - file: ch-ray-core/ray-internal
     
-  - caption: 数据可视化
+    - file: ch-ray-data/index
+      sections:
+        - file: ch-ray-data/ray-data-intro
+        - file: ch-ray-data/data-load-inspect-save
+        - file: ch-ray-data/data-transform
+        - file: ch-ray-data/preprocessor
+
+  - caption: mpi4py
     numbered: true
     chapters:
     - file: ch-matplotlib/index

@@ -32,8 +32,9 @@
 :class-header: bg-light text-center
 **数据处理与计算 ✏️**
 ^^^
-
-使用NumPy 和 pandas 进行数学计算、数据预处理。使用 matplotlib 和 plotly 进行数据可视化。
+```{image} ./img/dask-logo.svg
+:height: 100
+```
 :::
 
 :::{card}
@@ -42,10 +43,23 @@
 :class-header: bg-light text-center
 **机器学习 🚀**
 ^^^
-
-使用 PyTorch、scikit-learn 和 statsmodels 进行机器学习。
+```{image} ./img/ray-logo.svg
+:height: 100
+```
 :::
 
+
+:::{card}
+:margin: 3
+:class-body: text-center
+:class-header: bg-light text-center
+
+**Xorbits**
+^^^
+```{image} ./img/xorbits-logo.svg
+:height: 100
+```
+:::
 ::::
 
 ## 主要作者
