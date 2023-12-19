@@ -1,4 +1,0 @@
-# Ray Data
-
-```{tableofcontents}
-```
