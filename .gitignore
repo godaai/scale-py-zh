@@ -1,6 +1,7 @@
 **/.ipynb_checkpoints
 **/__pycache__
 data/
+<<<<<<< HEAD
 *.json
 *.bkp
 *.params
@@ -12,6 +13,17 @@ _build/*
 !_build/eval/
 _build/eval/*
 !_build/eval/ch-*/
+=======
+datasets/
+docs/reports/
+!docs/datasets/
+*.json
+*.params
+*.DS_Store
+*egg-info*
+dist*
+_build/*
+>>>>>>> upstream/main
 test*.md
 run.sh
 .idea
