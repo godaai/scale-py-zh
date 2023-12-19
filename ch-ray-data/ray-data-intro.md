@@ -3,12 +3,12 @@
 
 Ray Data 是基于 Ray Core 的数据处理框架，主要解决机器学习模型训练或推理相关的数据准备与处理问题，即数据的最后一公里问题（Last-mile Preprocessing）。
 
-Ray Data 对数据提供了一个抽象的类，`ray.data.Dataset`，在 `Dataset` 上提供了常见的大数据处理的原语，覆盖了数据处理的大部分阶段，例如：
+Ray Data 对数据提供了一个抽象的类，[`ray.data.Dataset`](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.html)，在 `Dataset` 上提供了常见的大数据处理的原语，覆盖了数据处理的大部分阶段，例如：
 
 * 数据的读取，比如读取 Parquet 文件等。
 * 对数据的转换（Transformation）操作，比如 [`map_batches()`](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.map_batches.html)。
 * 分组聚合操作，比如 [`groupby()`](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.groupby.html)
-* 涉及数据在计算节点间的交换，比如 [`random_shuffle()`](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.random_shuffle.html) 和 [`repartition()``](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.repartition.htmln) 等。
+* 涉及数据在计算节点间的交换，比如 [`random_shuffle()`](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.random_shuffle.html) 和 [`repartition()`](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.repartition.htmln) 等。
 
 ## 关键概念
 
@@ -33,7 +33,7 @@ name: ray-dataset-arch
 Ray Dataset 底层架构示意图
 ```
 
-我们可以使用 `from_*()` API 从其他系统或格式导入成 `Dataset`，比如 `from_pandas()` 、`from_spark()`。或者使用 `read_*()` API 从持久化的文件系统重读取，比如 `read_parquet()`、`read_json()` 等。
+我们可以使用 `from_*()` API 从其他系统或格式导入成 `Dataset`，比如 [`from_pandas()`](https://docs.ray.io/en/latest/data/api/doc/ray.data.from_pandas.html) 、[`from_spark()`](https://docs.ray.io/en/latest/data/api/doc/ray.data.from_spark.html)。或者使用 `read_*()` API 从持久化的文件系统重读取，比如 [`read_parquet()`](https://docs.ray.io/en/latest/data/api/doc/ray.data.read_parquet.html)、[`read_json()`](https://docs.ray.io/en/latest/data/api/doc/ray.data.read_json.html) 等。
 
 ## 数据操作与底层实现
 
