@@ -1,6 +1,7 @@
 # Table of contents
 # Learn more at https://jupyterbook.org/customize/toc.html
 
+
 format: jb-book
 root: index
 parts:
@@ -15,14 +16,14 @@ parts:
   - caption: Dask
     numbered: true
     chapters:
-    - file: ch-numpy/index
+    - file: ch-dask/index
       sections:
-        - file: ch-numpy/numpy-intro
-        - file: ch-numpy/ndarray
-        - file: ch-numpy/ndarray-slicing-index
-        - file: ch-numpy/random
-    
-    - file: ch-pandas/index
+        - file: ch-dask/dask-intro
+
+  - caption: Ray
+    numbered: true
+    chapters:
+    - file: ch-ray-core/index
       sections:
         - file: ch-ray-core/ray-intro
         - file: ch-ray-core/remote-function
@@ -39,12 +40,11 @@ parts:
 
   - caption: mpi4py
     numbered: true
-    chapters:
-    - file: ch-matplotlib/index
+    chapters: 
+    - file: ch-mpi/index
       sections:
-        - file: ch-matplotlib/matplotlib-intro
-        - file: ch-matplotlib/matplotlib-figure-axes
-        - file: ch-matplotlib/matplotlib-data
-        - file: ch-matplotlib/matplotlib-other-parameters
-        - file: ch-matplotlib/matplotlib-coding-styles
-        - file: ch-matplotlib/matplotlib-plot-types
+        - file: ch-mpi/mpi-intro
+        - file: ch-mpi/mpi-hello-world
+        - file: ch-mpi/point-to-point
+        - file: ch-mpi/collective
+        - file: ch-mpi/remote-memory-access
