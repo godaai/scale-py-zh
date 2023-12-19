@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>3.2. 数据加载、查看与保存 &#8212; Python 分布式编程</title>
+    <title>4.2. 数据加载、查看与保存 &#8212; Python 分布式编程</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch-ray-data/data-load-inspect-save';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3.3. 数据转换" href="data-transform.html" />
-    <link rel="prev" title="3.1. Ray Data 简介" href="ray-data-intro.html" />
+    <link rel="next" title="4.3. 数据转换" href="data-transform.html" />
+    <link rel="prev" title="4.1. Ray Data 简介" href="ray-data-intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -119,6 +119,12 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content">如果你觉得内容对你有帮助，请在 GitHub 上点个 star 吧！</div>
+  </div>
+
   
     <nav class="bd-header navbar navbar-expand-lg bd-navbar">
     </nav>
@@ -167,39 +173,47 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dask</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">引言</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-dask/index.html">1. Dask</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-dask/dask-intro.html">1.1. Dask 简介</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-intro/index.html">1. 引言</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-intro/computer-architecture.html">1.1. 现代计算机体系结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-intro/thread-process.html">1.2. 线程和进程</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dask</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-dask/index.html">2. Dask</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-dask/dask-intro.html">2.1. Dask 简介</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ray</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-core/index.html">2. Ray</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-intro.html">2.1. Ray 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-function.html">2.2. 分布式函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-object.html">2.3. 分布式对象存储</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-class.html">2.4. 分布式类</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-internal.html">2.5. Ray 系统与设计</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-core/index.html">3. Ray</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-intro.html">3.1. Ray 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-function.html">3.2. 分布式函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-object.html">3.3. 分布式对象存储</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-class.html">3.4. 分布式类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-internal.html">3.5. Ray 系统与设计</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">3. Ray Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="ray-data-intro.html">3.1. Ray Data 简介</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.2. 数据加载、查看与保存</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data-transform.html">3.3. 数据转换</a></li>
-<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">3.4. Preprocessor</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">4. Ray Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ray-data-intro.html">4.1. Ray Data 简介</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.2. 数据加载、查看与保存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-transform.html">4.3. 数据转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessor.html">4.4. Preprocessor</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">mpi4py</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">4. MPI</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-intro.html">4.1. MPI 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-hello-world.html">4.2. MPI Hello World</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/point-to-point.html">4.3. 点对点通信</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/collective.html">4.4. 集合通信</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/remote-memory-access.html">4.5. 远程内存访问</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">5. MPI</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-intro.html">5.1. MPI 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-hello-world.html">5.2. MPI Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/point-to-point.html">5.3. 点对点通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/collective.html">5.4. 集合通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/remote-memory-access.html">5.5. 远程内存访问</a></li>
 </ul>
 </li>
 </ul>
@@ -243,53 +257,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/godaai/distributed-python" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/godaai/distributed-python/issues/new?title=Issue%20on%20page%20%2Fch-ray-data/data-load-inspect-save.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -395,20 +362,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2.1. 加载数据</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2.1.1. 列裁剪与行裁剪</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.2.1.2. 并行调优</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.2.1. 加载数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.2.1.1. 列裁剪与行裁剪</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.2.1.2. 并行调优</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.2.2. 查看数据</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.2.3. 迭代数据</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.2.3.1. 顺序迭代</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.2.3.2. 随机迭代</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4.2.2. 查看数据</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4.2.3. 迭代数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4.2.3.1. 顺序迭代</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4.2.3.2. 随机迭代</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">3.2.4. 保存数据</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3.2.4.1. 写入文件系统</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">3.2.4.2. 转化成其他框架格式</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4.2.4. 保存数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">4.2.4.1. 写入文件系统</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4.2.4.2. 转化成其他框架格式</a></li>
 </ul>
 </li>
 </ul>
@@ -423,7 +390,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ray-data-load-inspect-save">
-<span id="id1"></span><h1><span class="section-number">3.2. </span>数据加载、查看与保存<a class="headerlink" href="#ray-data-load-inspect-save" title="Permalink to this heading">#</a></h1>
+<span id="id1"></span><h1><span class="section-number">4.2. </span>数据加载、查看与保存<a class="headerlink" href="#ray-data-load-inspect-save" title="Permalink to this heading">#</a></h1>
 <p>Ray Data 可以兼容多种多样的数据源，包括文件、内存数据和数据库。</p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
@@ -447,6 +414,14 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/luweizheng/anaconda3/envs/dispy/lib/python3.11/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+2023-12-19 15:10:28,672	INFO util.py:159 -- Missing packages: [&#39;ipywidgets&#39;]. Run `pip install -U ipywidgets`, then restart the notebook server for rich notebook output.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:30,699	INFO worker.py:1673 -- Started a local Ray instance.
+</pre></div>
+</div>
 <div class="output text_html"><div class="lm-Widget p-Widget lm-Panel p-Panel jp-Cell-outputWrapper">
     <div style="margin-left: 50px;display: flex;flex-direction: row;align-items: center">
         <div class="jp-RenderedHTMLCommon" style="display: flex; flex-direction: row;">
@@ -481,7 +456,7 @@ document.write(`
 </details>
 </div>
 <section id="id2">
-<h2><span class="section-number">3.2.1. </span>加载数据<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">4.2.1. </span>加载数据<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>Ray Data 提供了很多预置的数据加载方法，包括读取文件、读取 pandas DataFrame 这种内存数据、读取数据库中的数据。这里我们以一个纽约出租车司机的例子来演示读取 Parquet 文件。</p>
 <p>首先下载该数据，下面的代码会判断是否下载到目标文件夹，如果已经下载，则无需重复下载。</p>
 <div class="cell tag_hide-output docutils container">
@@ -509,7 +484,7 @@ document.write(`
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>文件夹 /Users/luweizheng/Projects/py-101/distributed-python/ch-ray-data/../data/nyc-taxi 已存在，无需操作。
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>文件夹 /Users/luweizheng/Projects/godaai/distributed-python/ch-ray-data/../data/nyc-taxi 已存在，无需操作。
 </pre></div>
 </div>
 </div>
@@ -523,13 +498,19 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:33,084	INFO util.py:159 -- Missing packages: [&#39;ipywidgets&#39;]. Run `pip install -U ipywidgets`, then restart the notebook server for rich notebook output.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(pid=5864) Parquet Files Sample 0:   0%|                                                                                                          | 0/1 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
 </div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>业内经常使用文件系统前缀（Scheme）来标识不同的文件系统，并调用不同的库来读写文件系统。<a class="reference internal" href="#uri-schemes"><span class="std std-numref">表 3.1</span></a> 是几个 Scheme 例子。一个数据集地址，应该是一个统一资源标识（Uniform Resource Identifier，URI），URI 包括 Scheme 和具体的地址。比如：<code class="docutils literal notranslate"><span class="pre">local:///tmp/tripdata.parquet</span></code> 或 <code class="docutils literal notranslate"><span class="pre">s3://tmp/tripdata.parquet</span></code>。</p>
+<p>业内经常使用文件系统前缀（Scheme）来标识不同的文件系统，并调用不同的库来读写文件系统。<a class="reference internal" href="#uri-schemes"><span class="std std-numref">表 4.1</span></a> 是几个 Scheme 例子。一个数据集地址，应该是一个统一资源标识（Uniform Resource Identifier，URI），URI 包括 Scheme 和具体的地址。比如：<code class="docutils literal notranslate"><span class="pre">local:///tmp/tripdata.parquet</span></code> 或 <code class="docutils literal notranslate"><span class="pre">s3://tmp/tripdata.parquet</span></code>。</p>
 <table class="table" id="uri-schemes">
-<caption><span class="caption-number">表 3.1 </span><span class="caption-text">URI Scheme</span><a class="headerlink" href="#uri-schemes" title="Permalink to this table">#</a></caption>
+<caption><span class="caption-number">表 4.1 </span><span class="caption-text">URI Scheme</span><a class="headerlink" href="#uri-schemes" title="Permalink to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head text-center"><p></p></th>
 <th class="head text-center"><p>本地</p></th>
@@ -555,6 +536,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:35,385	INFO plan.py:757 -- Using autodetected parallelism=200 for stage ReadParquet to satisfy DataContext.get_current().min_parallelism=200.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:35,386	INFO plan.py:762 -- To satisfy the requested parallelism of 200, each read task output is split into 200 smaller blocks.
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Column                 Type
 ------                 ----
 VendorID               int32
@@ -580,9 +567,9 @@ Airport_fee            double
 </div>
 </div>
 </div>
-<p>其他类型的文件格式（CSV、TFRecord 等）读取方法如 <a class="reference internal" href="#ray-data-read-files"><span class="std std-numref">表 3.2</span></a> 所示。</p>
+<p>其他类型的文件格式（CSV、TFRecord 等）读取方法如 <a class="reference internal" href="#ray-data-read-files"><span class="std std-numref">表 4.2</span></a> 所示。</p>
 <table class="table" id="ray-data-read-files">
-<caption><span class="caption-number">表 3.2 </span><span class="caption-text">Ray Data 数据读取方法</span><a class="headerlink" href="#ray-data-read-files" title="Permalink to this table">#</a></caption>
+<caption><span class="caption-number">表 4.2 </span><span class="caption-text">Ray Data 数据读取方法</span><a class="headerlink" href="#ray-data-read-files" title="Permalink to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head text-center"><p></p></th>
 <th class="head text-center"><p>Parquet</p></th>
@@ -605,7 +592,7 @@ Airport_fee            double
 </tbody>
 </table>
 <section id="id3">
-<h3><span class="section-number">3.2.1.1. </span>列裁剪与行裁剪<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">4.2.1.1. </span>列裁剪与行裁剪<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>原始文件有很多列（Column），如果我们只关心某些特定的列，比如 <code class="docutils literal notranslate"><span class="pre">passenger_count</span></code>、<code class="docutils literal notranslate"><span class="pre">tip_amount</span></code>、<code class="docutils literal notranslate"><span class="pre">payment_type</span></code> 等，可以使用 <code class="docutils literal notranslate"><span class="pre">read_parquet()</span></code> 方法的 <code class="docutils literal notranslate"><span class="pre">columns</span></code> 参数。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -618,6 +605,15 @@ Airport_fee            double
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(pid=5864) Parquet Files Sample 0:   0%|                                                                                                          | 0/1 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:35,672	INFO plan.py:757 -- Using autodetected parallelism=173 for stage ReadParquet to satisfy output blocks of size at least DataContext.get_current().target_min_block_size=1.0MiB.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:35,672	INFO plan.py:762 -- To satisfy the requested parallelism of 173, each read task output is split into 173 smaller blocks.
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Column           Type
 ------           ----
 passenger_count  int64
@@ -643,16 +639,125 @@ payment_type     int64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(pid=5864) Parquet Files Sample 0: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00&lt;00:00,  9.17it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(pid=5864) Parquet Files Sample 0:   0%|                                                                                                          | 0/1 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:35,838	INFO dataset.py:2383 -- Tip: Use `take_batch()` instead of `take() / show()` to return records in pandas or numpy batch format.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:35,843	INFO split_read_output_blocks.py:101 -- Using autodetected parallelism=173 for stage ReadParquet to satisfy output blocks of size at least DataContext.get_current().target_min_block_size=1.0MiB.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:35,844	INFO split_read_output_blocks.py:106 -- To satisfy the requested parallelism of 173, each read task output is split into 173 smaller blocks.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:35,845	INFO streaming_executor.py:104 -- Executing DAG InputDataBuffer[Input] -&gt; TaskPoolMapOperator[ReadParquet] -&gt; LimitOperator[limit=2]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:35,846	INFO streaming_executor.py:105 -- Execution config: ExecutionOptions(resource_limits=ExecutionResources(cpu=None, gpu=None, object_store_memory=None), locality_with_output=False, preserve_order=False, actor_locality_enabled=True, verbose_progress=False)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:35,848	INFO streaming_executor.py:107 -- Tip: For detailed progress reporting, run `ray.data.DataContext.get_current().execution_options.verbose_progress = True`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running 0:   0%|                                                                                                                                | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.0 MiB/512.0 MiB object_store_memory:   0%|                                                                 | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(pid=5864) Parquet Files Sample 0: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00&lt;00:00,  9.68it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.0 MiB/512.0 MiB object_store_memory:   0%|                                                                 | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.03 MiB/512.0 MiB object_store_memory:   0%|                                                              | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.15 MiB/512.0 MiB object_store_memory:   0%|                                                              | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">(ReadParquet-&gt;SplitBlocks(173) pid=5864)</span> /Users/luweizheng/anaconda3/envs/dispy/lib/python3.11/site-packages/ray/data/_internal/arrow_block.py:128: FutureWarning: promote has been superseded by mode=&#39;default&#39;.
+
+Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.15 MiB/512.0 MiB object_store_memory:   0%|                                                              | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">(ReadParquet-&gt;SplitBlocks(173) pid=5864)</span>   return transform_pyarrow.concat(tables)
+
+Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.15 MiB/512.0 MiB object_store_memory:   0%|                                                              | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 176.61 MiB/512.0 MiB object_store_memory:   0%|                                                              | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 176.61 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/1 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 176.61 MiB/512.0 MiB object_store_memory: 100%|████████████████████████████████████████████████████████| 1/1 [00:00&lt;00:00,  3.51it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;passenger_count&#39;: 1, &#39;tip_amount&#39;: 6.7, &#39;payment_type&#39;: 1}
 {&#39;passenger_count&#39;: 1, &#39;tip_amount&#39;: 10.0, &#39;payment_type&#39;: 1}
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="id4">
-<h3><span class="section-number">3.2.1.2. </span>并行调优<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
-<p><a class="reference internal" href="ray-data-intro.html#ray-data-intro"><span class="std std-numref">章节 3.1</span></a> 我们提到，Ray Data 背后使用 Task 或 Actor 将数据处理过程并行化，在数据读取时，可以设置 <code class="docutils literal notranslate"><span class="pre">parallelism</span></code> 参数，以优化并行数据处理过程。包括 <code class="docutils literal notranslate"><span class="pre">read_parquet()</span></code>，Ray Data 提供的各类数据读取方法，都可以设置 <code class="docutils literal notranslate"><span class="pre">parallelism</span></code> 参数，来控制底层的并行执行的过程。如果不设置 <code class="docutils literal notranslate"><span class="pre">parallelism</span></code>，Ray Data 通过一下方式试探 <code class="docutils literal notranslate"><span class="pre">parallelism</span></code>：</p>
+<h3><span class="section-number">4.2.1.2. </span>并行调优<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p><a class="reference internal" href="ray-data-intro.html#ray-data-intro"><span class="std std-numref">章节 4.1</span></a> 我们提到，Ray Data 背后使用 Task 或 Actor 将数据处理过程并行化，在数据读取时，可以设置 <code class="docutils literal notranslate"><span class="pre">parallelism</span></code> 参数，以优化并行数据处理过程。包括 <code class="docutils literal notranslate"><span class="pre">read_parquet()</span></code>，Ray Data 提供的各类数据读取方法，都可以设置 <code class="docutils literal notranslate"><span class="pre">parallelism</span></code> 参数，来控制底层的并行执行的过程。如果不设置 <code class="docutils literal notranslate"><span class="pre">parallelism</span></code>，Ray Data 通过一下方式试探 <code class="docutils literal notranslate"><span class="pre">parallelism</span></code>：</p>
 <ol class="arabic simple">
 <li><p>Ray 获取集群中可用的 CPU 核数。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">parallelism</span></code> 被设置为 CPU 核数的 2 倍。如果 <code class="docutils literal notranslate"><span class="pre">parallelism</span></code> 小于 8，则设置为 8。</p></li>
@@ -662,7 +767,7 @@ payment_type     int64
 </section>
 </section>
 <section id="id5">
-<h2><span class="section-number">3.2.2. </span>查看数据<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">4.2.2. </span>查看数据<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
 <p>查看数据包括查看数据的模式、数据的某些行或某些批次。包括刚才使用的 <code class="docutils literal notranslate"><span class="pre">show()</span></code> 方法，以及接下来将要介绍的 <code class="docutils literal notranslate"><span class="pre">count()</span></code>、<code class="docutils literal notranslate"><span class="pre">take()</span></code> 等。</p>
 <p>查看数据集的样本数量：</p>
 <div class="cell docutils container">
@@ -672,6 +777,30 @@ payment_type     int64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:36,167	INFO plan.py:757 -- Using autodetected parallelism=173 for stage ReadParquet to satisfy output blocks of size at least DataContext.get_current().target_min_block_size=1.0MiB.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:36,168	INFO plan.py:762 -- To satisfy the requested parallelism of 173, each read task output is split into 173 smaller blocks.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:36,179	INFO plan.py:757 -- Using autodetected parallelism=173 for stage ReadParquet to satisfy output blocks of size at least DataContext.get_current().target_min_block_size=1.0MiB.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:36,179	INFO plan.py:762 -- To satisfy the requested parallelism of 173, each read task output is split into 173 smaller blocks.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Read progress 0:   0%|                                                                                                                            | 0/1 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Read progress 0: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00&lt;00:00,  2.84it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>474915
 </pre></div>
 </div>
@@ -685,6 +814,70 @@ payment_type     int64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:37,990	INFO split_read_output_blocks.py:101 -- Using autodetected parallelism=173 for stage ReadParquet to satisfy output blocks of size at least DataContext.get_current().target_min_block_size=1.0MiB.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:37,991	INFO split_read_output_blocks.py:106 -- To satisfy the requested parallelism of 173, each read task output is split into 173 smaller blocks.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:37,991	INFO streaming_executor.py:104 -- Executing DAG InputDataBuffer[Input] -&gt; TaskPoolMapOperator[ReadParquet] -&gt; LimitOperator[limit=1]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:37,992	INFO streaming_executor.py:105 -- Execution config: ExecutionOptions(resource_limits=ExecutionResources(cpu=None, gpu=None, object_store_memory=None), locality_with_output=False, preserve_order=False, actor_locality_enabled=True, verbose_progress=False)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:37,992	INFO streaming_executor.py:107 -- Tip: For detailed progress reporting, run `ray.data.DataContext.get_current().execution_options.verbose_progress = True`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running 0:   0%|                                                                                                                                | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.0 MiB/512.0 MiB object_store_memory:   0%|                                                                 | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.03 MiB/512.0 MiB object_store_memory:   0%|                                                              | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.15 MiB/512.0 MiB object_store_memory:   0%|                                                              | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 174.1 MiB/512.0 MiB object_store_memory:   0%|                                                               | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 174.1 MiB/512.0 MiB object_store_memory:   0%|                                                                 | 0/1 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 174.1 MiB/512.0 MiB object_store_memory: 100%|█████████████████████████████████████████████████████████| 1/1 [00:00&lt;00:00,  4.43it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">(ReadParquet-&gt;SplitBlocks(173) pid=5859)</span> /Users/luweizheng/anaconda3/envs/dispy/lib/python3.11/site-packages/ray/data/_internal/arrow_block.py:128: FutureWarning: promote has been superseded by mode=&#39;default&#39;.
+
+Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 174.1 MiB/512.0 MiB object_store_memory: 100%|█████████████████████████████████████████████████████████| 1/1 [00:00&lt;00:00,  4.43it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">(ReadParquet-&gt;SplitBlocks(173) pid=5859)</span>   return transform_pyarrow.concat(tables)
+
+Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 174.1 MiB/512.0 MiB object_store_memory: 100%|█████████████████████████████████████████████████████████| 1/1 [00:00&lt;00:00,  4.43it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;passenger_count&#39;: 1, &#39;tip_amount&#39;: 6.7, &#39;payment_type&#39;: 1}]
 </pre></div>
 </div>
@@ -699,6 +892,48 @@ payment_type     int64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:38,253	INFO split_read_output_blocks.py:101 -- Using autodetected parallelism=173 for stage ReadParquet to satisfy output blocks of size at least DataContext.get_current().target_min_block_size=1.0MiB.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:38,254	INFO split_read_output_blocks.py:106 -- To satisfy the requested parallelism of 173, each read task output is split into 173 smaller blocks.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:38,255	INFO streaming_executor.py:104 -- Executing DAG InputDataBuffer[Input] -&gt; TaskPoolMapOperator[ReadParquet] -&gt; LimitOperator[limit=2]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:38,255	INFO streaming_executor.py:105 -- Execution config: ExecutionOptions(resource_limits=ExecutionResources(cpu=None, gpu=None, object_store_memory=None), locality_with_output=False, preserve_order=False, actor_locality_enabled=True, verbose_progress=False)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:38,256	INFO streaming_executor.py:107 -- Tip: For detailed progress reporting, run `ray.data.DataContext.get_current().execution_options.verbose_progress = True`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running 0:   0%|                                                                                                                                | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.0 MiB/512.0 MiB object_store_memory:   0%|                                                                 | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.03 MiB/512.0 MiB object_store_memory:   0%|                                                              | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.09 MiB/512.0 MiB object_store_memory:   0%|                                                              | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.84 MiB/512.0 MiB object_store_memory:   0%|                                                              | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.84 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/1 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.84 MiB/512.0 MiB object_store_memory: 100%|████████████████████████████████████████████████████████| 1/1 [00:00&lt;00:00,  5.74it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;passenger_count&#39;: array([1, 1]),
  &#39;tip_amount&#39;: array([ 6.7, 10. ]),
  &#39;payment_type&#39;: array([1, 1])}
@@ -708,9 +943,9 @@ payment_type     int64
 </div>
 </section>
 <section id="id6">
-<h2><span class="section-number">3.2.3. </span>迭代数据<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">4.2.3. </span>迭代数据<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
 <section id="id7">
-<h3><span class="section-number">3.2.3.1. </span>顺序迭代<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">4.2.3.1. </span>顺序迭代<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
 <p>Ray Data 提供了迭代数据的方法，<a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.iter_rows.html"><code class="docutils literal notranslate"><span class="pre">Dataset.iter_rows()</span></code></a> 和 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.iter_batches.html"><code class="docutils literal notranslate"><span class="pre">Dataset.iter_batches()</span></code></a>，<code class="docutils literal notranslate"><span class="pre">iter_rows()</span></code> 迭代每一行，<code class="docutils literal notranslate"><span class="pre">iter_batches()</span></code> 迭代每一个批次。</p>
 <p>比如，我们迭代前 5 行：</p>
 <div class="cell docutils container">
@@ -780,7 +1015,7 @@ payment_type     int64
 </div>
 </section>
 <section id="id8">
-<h3><span class="section-number">3.2.3.2. </span>随机迭代<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">4.2.3.2. </span>随机迭代<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <p>机器学习中经常要对样本数据进行随机洗牌（Shuffle），Ray Data 提供了两种方式：</p>
 <ul class="simple">
 <li><p>全量数据 Shuffle</p></li>
@@ -801,11 +1036,11 @@ payment_type     int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;passenger_count&#39;: tensor([1, 1]), &#39;tip_amount&#39;: tensor([ 6.4400, 15.8200], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
-{&#39;passenger_count&#39;: tensor([1, 4]), &#39;tip_amount&#39;: tensor([16.8000,  7.7700], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
-{&#39;passenger_count&#39;: tensor([1, 1]), &#39;tip_amount&#39;: tensor([ 9.5200, 11.8700], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
-{&#39;passenger_count&#39;: tensor([1, 1]), &#39;tip_amount&#39;: tensor([10.3500, 11.2800], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
-{&#39;passenger_count&#39;: tensor([1, 1]), &#39;tip_amount&#39;: tensor([11.1900,  7.8500], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;passenger_count&#39;: tensor([1, 1]), &#39;tip_amount&#39;: tensor([10.0000,  7.0800], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
+{&#39;passenger_count&#39;: tensor([1, 1]), &#39;tip_amount&#39;: tensor([12.3300,  7.0600], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
+{&#39;passenger_count&#39;: tensor([1, 1]), &#39;tip_amount&#39;: tensor([ 8.0000, 11.7500], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
+{&#39;passenger_count&#39;: tensor([1, 1]), &#39;tip_amount&#39;: tensor([13.0000, 12.2000], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
+{&#39;passenger_count&#39;: tensor([5, 1]), &#39;tip_amount&#39;: tensor([15., 10.], dtype=torch.float64), &#39;payment_type&#39;: tensor([1, 1])}
 </pre></div>
 </div>
 </div>
@@ -817,17 +1052,17 @@ payment_type     int64
 </section>
 </section>
 <section id="id9">
-<h2><span class="section-number">3.2.4. </span>保存数据<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">4.2.4. </span>保存数据<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
 <p>数据的保存可分为两类：</p>
 <ul class="simple">
 <li><p>数据保存到本地或共享的文件系统，比如本地文件系统或 S3。</p></li>
 <li><p>数据转化为其他格式的数据或写入特定的数据库，比如 pandas 或 MongoDB。</p></li>
 </ul>
 <section id="id10">
-<h3><span class="section-number">3.2.4.1. </span>写入文件系统<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
-<p><a class="reference internal" href="#ray-data-save"><span class="std std-numref">表 3.3</span></a> 列举了几个将 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 保存为不同文件格式的 API。</p>
+<h3><span class="section-number">4.2.4.1. </span>写入文件系统<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<p><a class="reference internal" href="#ray-data-save"><span class="std std-numref">表 4.3</span></a> 列举了几个将 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 保存为不同文件格式的 API。</p>
 <table class="table" id="ray-data-save">
-<caption><span class="caption-number">表 3.3 </span><span class="caption-text">将 Dataset 写入文件系统</span><a class="headerlink" href="#ray-data-save" title="Permalink to this table">#</a></caption>
+<caption><span class="caption-number">表 4.3 </span><span class="caption-text">将 Dataset 写入文件系统</span><a class="headerlink" href="#ray-data-save" title="Permalink to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head text-center"><p></p></th>
 <th class="head text-center"><p>Parquet</p></th>
@@ -853,6 +1088,135 @@ payment_type     int64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:40,209	INFO split_read_output_blocks.py:101 -- Using autodetected parallelism=173 for stage ReadParquet to satisfy output blocks of size at least DataContext.get_current().target_min_block_size=1.0MiB.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:40,210	INFO split_read_output_blocks.py:106 -- To satisfy the requested parallelism of 173, each read task output is split into 173 smaller blocks.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:40,210	INFO streaming_executor.py:104 -- Executing DAG InputDataBuffer[Input] -&gt; TaskPoolMapOperator[ReadParquet] -&gt; TaskPoolMapOperator[Write]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:40,211	INFO streaming_executor.py:105 -- Execution config: ExecutionOptions(resource_limits=ExecutionResources(cpu=None, gpu=None, object_store_memory=None), locality_with_output=False, preserve_order=False, actor_locality_enabled=True, verbose_progress=False)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:40,212	INFO streaming_executor.py:107 -- Tip: For detailed progress reporting, run `ray.data.DataContext.get_current().execution_options.verbose_progress = True`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running 0:   0%|                                                                                                                                | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.0 MiB/512.0 MiB object_store_memory:   0%|                                                                 | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.03 MiB/512.0 MiB object_store_memory:   0%|                                                              | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.09 MiB/512.0 MiB object_store_memory:   0%|                                                              | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 175.23 MiB/512.0 MiB object_store_memory:   0%|                                                              | 0/173 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 175.23 MiB/512.0 MiB object_store_memory:   1%|▎                                                     | 1/173 [00:00&lt;00:35,  4.83it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 175.35 MiB/512.0 MiB object_store_memory:   1%|▎                                                     | 1/173 [00:00&lt;00:35,  4.83it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 175.54 MiB/512.0 MiB object_store_memory:   5%|██▍                                                   | 8/173 [00:00&lt;00:34,  4.83it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 175.79 MiB/512.0 MiB object_store_memory:   9%|████▌                                                | 15/173 [00:00&lt;00:32,  4.83it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 176.99 MiB/512.0 MiB object_store_memory:  13%|██████▋                                              | 22/173 [00:00&lt;00:31,  4.83it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 176.99 MiB/512.0 MiB object_store_memory:  13%|███████                                              | 23/173 [00:00&lt;00:01, 90.30it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 178.05 MiB/512.0 MiB object_store_memory:  17%|████████▉                                            | 29/173 [00:00&lt;00:01, 90.30it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 179.06 MiB/512.0 MiB object_store_memory:  25%|█████████████▏                                       | 43/173 [00:00&lt;00:01, 90.30it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 180.32 MiB/512.0 MiB object_store_memory:  25%|█████████████▏                                       | 43/173 [00:00&lt;00:01, 90.30it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 7.29 MiB/512.0 MiB object_store_memory:  29%|███████████████▉                                       | 50/173 [00:00&lt;00:01, 90.30it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 7.29 MiB/512.0 MiB object_store_memory:   0%|                                                     | 50/29929 [00:00&lt;05:30, 90.30it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 7.29 MiB/512.0 MiB object_store_memory:   0%|                                                    | 51/29929 [00:00&lt;03:18, 150.43it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 6.79 MiB/512.0 MiB object_store_memory:   0%|                                                    | 57/29929 [00:00&lt;03:18, 150.43it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 6.29 MiB/512.0 MiB object_store_memory:   0%|                                                    | 65/29929 [00:00&lt;03:18, 150.43it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 5.78 MiB/512.0 MiB object_store_memory:   0%|▏                                                   | 73/29929 [00:00&lt;03:18, 150.43it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 5.28 MiB/512.0 MiB object_store_memory:   0%|▏                                                   | 81/29929 [00:00&lt;03:18, 150.43it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 4.78 MiB/512.0 MiB object_store_memory:   0%|▏                                                   | 89/29929 [00:00&lt;03:18, 150.43it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 4.78 MiB/512.0 MiB object_store_memory:   0%|▏                                                   | 90/29929 [00:00&lt;02:12, 224.68it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 4.28 MiB/512.0 MiB object_store_memory:   0%|▏                                                   | 97/29929 [00:00&lt;02:12, 224.68it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 3.77 MiB/512.0 MiB object_store_memory:   0%|▏                                                  | 105/29929 [00:00&lt;02:12, 224.68it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 3.27 MiB/512.0 MiB object_store_memory:   0%|▏                                                  | 113/29929 [00:00&lt;02:12, 224.68it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 2.77 MiB/512.0 MiB object_store_memory:   0%|▏                                                  | 121/29929 [00:00&lt;02:12, 224.68it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 2.27 MiB/512.0 MiB object_store_memory:   0%|▏                                                  | 129/29929 [00:00&lt;02:12, 224.68it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 2.27 MiB/512.0 MiB object_store_memory:   0%|▏                                                  | 130/29929 [00:00&lt;01:53, 263.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 1.76 MiB/512.0 MiB object_store_memory:   0%|▏                                                  | 137/29929 [00:00&lt;01:53, 263.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 1.26 MiB/512.0 MiB object_store_memory:   0%|▏                                                  | 145/29929 [00:00&lt;01:53, 263.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.76 MiB/512.0 MiB object_store_memory:   1%|▎                                                  | 153/29929 [00:00&lt;01:52, 263.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.25 MiB/512.0 MiB object_store_memory:   1%|▎                                                  | 161/29929 [00:00&lt;01:52, 263.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.0 MiB/512.0 MiB object_store_memory:   1%|▎                                                   | 169/29929 [00:00&lt;01:52, 263.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.0 MiB/512.0 MiB object_store_memory:   1%|▎                                                   | 170/29929 [00:00&lt;01:38, 301.36it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.0 MiB/512.0 MiB object_store_memory: 100%|██████████████████████████████████████████████████████| 173/173 [00:00&lt;00:00, 301.36it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </div>
 </div>
 <p>默认情况下，Ray Data 在写数据时，是以多个文件的形式写入文件系统，每个 <code class="docutils literal notranslate"><span class="pre">Block</span></code> 对应一个文件，有多少个 <code class="docutils literal notranslate"><span class="pre">Block</span></code> 就会有多少个文件。可以使用 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.repartition.html"><code class="docutils literal notranslate"><span class="pre">repartition()</span></code></a> 修改文件数量。</p>
@@ -866,17 +1230,311 @@ payment_type     int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;2c83422c40244f738717b6477d2af656_000000_000000.csv&#39;, &#39;2c83422c40244f738717b6477d2af656_000002_000000.csv&#39;, &#39;2c83422c40244f738717b6477d2af656_000001_000000.csv&#39;]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:41,048	INFO split_read_output_blocks.py:101 -- Using autodetected parallelism=173 for stage ReadParquet to satisfy output blocks of size at least DataContext.get_current().target_min_block_size=1.0MiB.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:41,049	INFO split_read_output_blocks.py:106 -- To satisfy the requested parallelism of 173, each read task output is split into 173 smaller blocks.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:41,049	INFO streaming_executor.py:104 -- Executing DAG InputDataBuffer[Input] -&gt; TaskPoolMapOperator[ReadParquet] -&gt; AllToAllOperator[Repartition] -&gt; TaskPoolMapOperator[Write]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:41,050	INFO streaming_executor.py:105 -- Execution config: ExecutionOptions(resource_limits=ExecutionResources(cpu=None, gpu=None, object_store_memory=None), locality_with_output=False, preserve_order=False, actor_locality_enabled=True, verbose_progress=False)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:10:41,050	INFO streaming_executor.py:107 -- Tip: For detailed progress reporting, run `ray.data.DataContext.get_current().execution_options.verbose_progress = True`
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Repartition 1:   0%|                                                                                                                            | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Split Repartition 2:   0%|                                                                                                                        | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  *- Split Repartition:   0%|                                                                                                                     | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running 0:   0%|                                                                                                                                  | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.0 MiB/512.0 MiB object_store_memory:   0%|                                                                   | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Repartition: 0 active, 0 queued, 0.0 MiB objects, 0 output:   0%|                                                                               | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.03 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.09 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.34 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">(ReadParquet-&gt;SplitBlocks(173) pid=5862)</span> /Users/luweizheng/anaconda3/envs/dispy/lib/python3.11/site-packages/ray/data/_internal/arrow_block.py:128: FutureWarning: promote has been superseded by mode=&#39;default&#39;.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Repartition: 0 active, 0 queued, 0.0 MiB objects, 0 output:   0%|                                                                               | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  *- Split Repartition:   0%|                                                                                                                     | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.34 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">(ReadParquet-&gt;SplitBlocks(173) pid=5862)</span>   return transform_pyarrow.concat(tables)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Repartition: 0 active, 0 queued, 0.0 MiB objects, 0 output:   0%|                                                                               | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  *- Split Repartition:   0%|                                                                                                                     | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.34 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 177.3 MiB/512.0 MiB object_store_memory:   0%|                                                                 | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Repartition: 0 active, 18 queued, 1.13 MiB objects, 0 output:   0%|                                                                             | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 175.04 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Repartition: 0 active, 0 queued, 0.0 MiB objects, 0 output:   0%|                                                                               | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.78 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.4 MiB/512.0 MiB object_store_memory:   0%|                                                                 | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.28 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.22 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.28 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.15 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.4 MiB/512.0 MiB object_store_memory:   0%|                                                                 | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.22 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.34 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.22 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.34 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.28 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.15 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 173.22 MiB/512.0 MiB object_store_memory:   0%|                                                                | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.0 MiB/512.0 MiB object_store_memory:   0%|                                                                   | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  *- Split Repartition:  33%|████████████████████████████████████▎                                                                        | 1/3 [00:00&lt;00:01,  1.98it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Repartition: 0 active, 0 queued, 0.0 MiB objects, 3 output:   0%|                                                                               | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Repartition: 0 active, 0 queued, 0.0 MiB objects, 3 output:  33%|███████████████████████▋                                               | 1/3 [00:00&lt;00:01,  1.93it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 10.87 MiB/512.0 MiB object_store_memory:   0%|                                                                 | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Repartition: 0 active, 0 queued, 0.0 MiB objects, 0 output: 100%|███████████████████████████████████████████████████████████████████████| 3/3 [00:00&lt;00:00,  1.93it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 1.0/8.0 CPU, 0.0/0.0 GPU, 3.62 MiB/512.0 MiB object_store_memory:   0%|                                                                  | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.0 MiB/512.0 MiB object_store_memory:   0%|                                                                   | 0/3 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.0 MiB/512.0 MiB object_store_memory:  33%|███████████████████▋                                       | 1/3 [00:00&lt;00:01,  1.73it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                                        
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;5125befe7930417490bc521184b11b57_000001_000000.csv&#39;, &#39;5125befe7930417490bc521184b11b57_000002_000000.csv&#39;, &#39;5125befe7930417490bc521184b11b57_000000_000000.csv&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="id11">
-<h3><span class="section-number">3.2.4.2. </span>转化成其他框架格式<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
-<p>我们可以将 Ray Data 的数据转化为单机运行的 pandas DataFrame 或者分布式的 Dask DataFrame，如 <a class="reference internal" href="#ray-data-convert-other-library"><span class="std std-numref">表 3.4</span></a> 所示。</p>
+<h3><span class="section-number">4.2.4.2. </span>转化成其他框架格式<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<p>我们可以将 Ray Data 的数据转化为单机运行的 pandas DataFrame 或者分布式的 Dask DataFrame，如 <a class="reference internal" href="#ray-data-convert-other-library"><span class="std std-numref">表 4.4</span></a> 所示。</p>
 <table class="table" id="ray-data-convert-other-library">
-<caption><span class="caption-number">表 3.4 </span><span class="caption-text">将 Dataset 保存为其他框架数据格式</span><a class="headerlink" href="#ray-data-convert-other-library" title="Permalink to this table">#</a></caption>
+<caption><span class="caption-number">表 4.4 </span><span class="caption-text">将 Dataset 保存为其他框架数据格式</span><a class="headerlink" href="#ray-data-convert-other-library" title="Permalink to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head text-center"><p></p></th>
 <th class="head text-center"><p>pandas</p></th>
@@ -932,7 +1590,7 @@ payment_type     int64
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3.1. </span>Ray Data 简介</p>
+        <p class="prev-next-title"><span class="section-number">4.1. </span>Ray Data 简介</p>
       </div>
     </a>
     <a class="right-next"
@@ -940,7 +1598,7 @@ payment_type     int64
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3.3. </span>数据转换</p>
+        <p class="prev-next-title"><span class="section-number">4.3. </span>数据转换</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -959,20 +1617,20 @@ payment_type     int64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2.1. 加载数据</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2.1.1. 列裁剪与行裁剪</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.2.1.2. 并行调优</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.2.1. 加载数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.2.1.1. 列裁剪与行裁剪</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.2.1.2. 并行调优</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.2.2. 查看数据</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.2.3. 迭代数据</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.2.3.1. 顺序迭代</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.2.3.2. 随机迭代</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4.2.2. 查看数据</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4.2.3. 迭代数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4.2.3.1. 顺序迭代</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4.2.3.2. 随机迭代</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">3.2.4. 保存数据</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3.2.4.1. 写入文件系统</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">3.2.4.2. 转化成其他框架格式</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4.2.4. 保存数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">4.2.4.1. 写入文件系统</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4.2.4.2. 转化成其他框架格式</a></li>
 </ul>
 </li>
 </ul>

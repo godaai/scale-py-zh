@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>2.4. 分布式类 &#8212; Python 分布式编程</title>
+    <title>3.4. 分布式类 &#8212; Python 分布式编程</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch-ray-core/remote-class';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.5. Ray 系统与设计" href="ray-internal.html" />
-    <link rel="prev" title="2.3. 分布式对象存储" href="remote-object.html" />
+    <link rel="next" title="3.5. Ray 系统与设计" href="ray-internal.html" />
+    <link rel="prev" title="3.3. 分布式对象存储" href="remote-object.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -119,6 +119,12 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content">如果你觉得内容对你有帮助，请在 GitHub 上点个 star 吧！</div>
+  </div>
+
   
     <nav class="bd-header navbar navbar-expand-lg bd-navbar">
     </nav>
@@ -167,39 +173,47 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dask</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">引言</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-dask/index.html">1. Dask</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-dask/dask-intro.html">1.1. Dask 简介</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-intro/index.html">1. 引言</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-intro/computer-architecture.html">1.1. 现代计算机体系结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-intro/thread-process.html">1.2. 线程和进程</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dask</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-dask/index.html">2. Dask</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-dask/dask-intro.html">2.1. Dask 简介</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ray</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">2. Ray</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="ray-intro.html">2.1. Ray 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-function.html">2.2. 分布式函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-object.html">2.3. 分布式对象存储</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.4. 分布式类</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ray-internal.html">2.5. Ray 系统与设计</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">3. Ray</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ray-intro.html">3.1. Ray 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-function.html">3.2. 分布式函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-object.html">3.3. 分布式对象存储</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.4. 分布式类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ray-internal.html">3.5. Ray 系统与设计</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-data/index.html">3. Ray Data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/ray-data-intro.html">3.1. Ray Data 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/data-load-inspect-save.html">3.2. 数据加载、查看与保存</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/data-transform.html">3.3. 数据转换</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/preprocessor.html">3.4. Preprocessor</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-data/index.html">4. Ray Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/ray-data-intro.html">4.1. Ray Data 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/data-load-inspect-save.html">4.2. 数据加载、查看与保存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/data-transform.html">4.3. 数据转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/preprocessor.html">4.4. Preprocessor</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">mpi4py</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">4. MPI</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-intro.html">4.1. MPI 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-hello-world.html">4.2. MPI Hello World</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/point-to-point.html">4.3. 点对点通信</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/collective.html">4.4. 集合通信</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/remote-memory-access.html">4.5. 远程内存访问</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">5. MPI</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-intro.html">5.1. MPI 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-hello-world.html">5.2. MPI Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/point-to-point.html">5.3. 点对点通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/collective.html">5.4. 集合通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-mpi/remote-memory-access.html">5.5. 远程内存访问</a></li>
 </ul>
 </li>
 </ul>
@@ -243,53 +257,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/godaai/distributed-python" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/godaai/distributed-python/issues/new?title=Issue%20on%20page%20%2Fch-ray-core/remote-class.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -395,10 +362,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.4.1. 案例1：分布式计数器</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor">2.4.2. Actor 编程模型</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.4.3. 案例2：排行榜</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor-pool">2.4.4. 案例3：Actor Pool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.4.1. 案例1：分布式计数器</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor">3.4.2. Actor 编程模型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.4.3. 案例2：排行榜</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor-pool">3.4.4. 案例3：Actor Pool</a></li>
 </ul>
             </nav>
         </div>
@@ -411,10 +378,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="remote-class">
-<span id="id1"></span><h1><span class="section-number">2.4. </span>分布式类<a class="headerlink" href="#remote-class" title="Permalink to this heading">#</a></h1>
-<p><a class="reference internal" href="remote-function.html#remote-function"><span class="std std-numref">章节 2.2</span></a> 展示了如何将一个无状态的函数扩展到 Ray 集群上进行分布式计算，但实际的场景中，我们经常需要进行有状态的计算。最简单的有状态计算包括维护一个计数器，每遇到某种条件，计数器加一。这类有状态的计算对于给定的输入，不一定得到确定的输出。单机场景我们可以使用 Python 的类（Class）来实现，计数器可作为类的成员变量。Ray 可以将 Python 类拓展到集群上，即远程类（Remote Class），又被称为行动者（Actor）。Actor 的名字来自 Actor 编程模型 <span id="id2">[<a class="reference internal" href="#id11" title="Carl Hewitt, Peter Boehler Bishop, and Richard Steiger. A universal modular ACTOR formalism for artificial intelligence. In Proceedings of the 3rd International Joint Conference on Artificial Intelligence. Standford, CA, USA, August 20-23, 1973, 235–245. William Kaufmann, 1973.">Hewitt <em>et al.</em>, 1973</a>]</span> ，这是一个典型的分布式计算编程模型，被广泛应用在大数据和人工智能领域，但 Actor 编程模型比较抽象，我们先从计数器的案例来入手。</p>
+<span id="id1"></span><h1><span class="section-number">3.4. </span>分布式类<a class="headerlink" href="#remote-class" title="Permalink to this heading">#</a></h1>
+<p><a class="reference internal" href="remote-function.html#remote-function"><span class="std std-numref">章节 3.2</span></a> 展示了如何将一个无状态的函数扩展到 Ray 集群上进行分布式计算，但实际的场景中，我们经常需要进行有状态的计算。最简单的有状态计算包括维护一个计数器，每遇到某种条件，计数器加一。这类有状态的计算对于给定的输入，不一定得到确定的输出。单机场景我们可以使用 Python 的类（Class）来实现，计数器可作为类的成员变量。Ray 可以将 Python 类拓展到集群上，即远程类（Remote Class），又被称为行动者（Actor）。Actor 的名字来自 Actor 编程模型 <span id="id2">[<a class="reference internal" href="#id11" title="Carl Hewitt, Peter Boehler Bishop, and Richard Steiger. A universal modular ACTOR formalism for artificial intelligence. In Proceedings of the 3rd International Joint Conference on Artificial Intelligence. Standford, CA, USA, August 20-23, 1973, 235–245. William Kaufmann, 1973.">Hewitt <em>et al.</em>, 1973</a>]</span> ，这是一个典型的分布式计算编程模型，被广泛应用在大数据和人工智能领域，但 Actor 编程模型比较抽象，我们先从计数器的案例来入手。</p>
 <section id="id3">
-<h2><span class="section-number">2.4.1. </span>案例1：分布式计数器<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.4.1. </span>案例1：分布式计数器<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -433,6 +400,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/luweizheng/anaconda3/envs/dispy/lib/python3.11/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:08:49,112	INFO util.py:159 -- Missing packages: [&#39;ipywidgets&#39;]. Run `pip install -U ipywidgets`, then restart the notebook server for rich notebook output.
+</pre></div>
+</div>
 <div class="output text_html"><div class="lm-Widget p-Widget lm-Panel p-Panel jp-Cell-outputWrapper">
     <div style="margin-left: 50px;display: flex;flex-direction: row;align-items: center">
         <div class="jp-RenderedHTMLCommon" style="display: flex; flex-direction: row;">
@@ -456,7 +430,7 @@ document.write(`
     </tr>
     <tr>
         <td style="text-align: left"><b>Ray version:</b></td>
-        <td style="text-align: left"><b>2.8.0</b></td>
+        <td style="text-align: left"><b>2.8.1</b></td>
     </tr>
     
 </table>
@@ -543,7 +517,7 @@ document.write(`
 </div>
 </section>
 <section id="actor">
-<h2><span class="section-number">2.4.2. </span>Actor 编程模型<a class="headerlink" href="#actor" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.4.2. </span>Actor 编程模型<a class="headerlink" href="#actor" title="Permalink to this heading">#</a></h2>
 <p>Actor 编程模型是一种分布式编程的范式，每门编程语言或框架有自己的实现。Actor 编程模型的基本要素是 Actor 实例，即每个 Actor 对象都是唯一的。我们可以把单个 Actor 实例理解成单个带地址信息的进程。每个 Actor 都拥有地址信息，我们就可以从别的 Actor 向这个 Actor 发送信息，就像我们通过手机号或电子邮件地址互相发送信息一样。一个 Actor 可以有一个地址，也可以有多个地址，多个 Actor 可以共享同一个地址，拥有多少个地址主要取决于我们想以怎样的方式收发数据。多个 Actor 共享同一个地址，就像公司里有一个群组邮箱，群组包含了多个人，有个对外的公共的地址，向这个群组发邮件，群组中的每个人都可以收到消息。</p>
 <p>拥有地址和内存空间，Actor 可以做以下事情：</p>
 <ul class="simple">
@@ -557,7 +531,7 @@ document.write(`
 <p>Actor 编程模型是消息驱动的，给某个 Actor 发送消息，它就会对该消息进行响应，修改自身的状态或者继续给其他 Actor 发送消息。Actor 编程模型不需要显式地在多个进程之间同步数据，因此也没有锁的问题以及同步等待的时间。Actor 编程模型可被用于大量异步操作的场景。</p>
 </section>
 <section id="id4">
-<h2><span class="section-number">2.4.3. </span>案例2：排行榜<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.4.3. </span>案例2：排行榜<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p>接下来我们基于 Actor 实现一个更加复杂的案例：成绩排行榜。这个排行榜的状态是一个键值对，名为 <code class="docutils literal notranslate"><span class="pre">self.board</span></code>，键是名字（<code class="docutils literal notranslate"><span class="pre">name</span></code>），是一个 <code class="docutils literal notranslate"><span class="pre">str</span></code> 类型，值是分数（<code class="docutils literal notranslate"><span class="pre">score</span></code>），是一个 <code class="docutils literal notranslate"><span class="pre">float</span></code> 类型。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -678,11 +652,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">(Ranking pid=62841)</span> The data type of score should be float but we receive &lt;class &#39;str&#39;&gt;.
-<span class=" -Color -Color-Cyan">ray::Ranking.pop()</span> (pid=62841, ip=127.0.0.1, actor_id=15261cd71f0c6e0a405a29ce01000000, repr=&lt;__main__.Ranking object at 0x111a2f2d0&gt;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">ray::Ranking.pop()</span> (pid=1832, ip=127.0.0.1, actor_id=b3537ef5896c47597d2d433d01000000, repr=&lt;__main__.Ranking object at 0x11010b2d0&gt;)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_62371/1570506600.py&quot;, line 29, in pop
+  File &quot;/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_1374/1570506600.py&quot;, line 29, in pop
 Exception: The board is empty.
 </pre></div>
 </div>
@@ -690,7 +663,7 @@ Exception: The board is empty.
 </div>
 </section>
 <section id="actor-pool">
-<h2><span class="section-number">2.4.4. </span>案例3：Actor Pool<a class="headerlink" href="#actor-pool" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.4.4. </span>案例3：Actor Pool<a class="headerlink" href="#actor-pool" title="Permalink to this heading">#</a></h2>
 <p>实践上，经常创建一个 Actor 资源池（Actor Pool），Actor Pool 有点像 <code class="docutils literal notranslate"><span class="pre">multiprocessing.Pool</span></code>，Actor Pool 中有包含多个 Actor，每个 Actor 功能一样，而且可以分式地在多个计算节点上运行。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -738,6 +711,9 @@ Exception: The board is empty.
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">(Ranking pid=1832)</span> The data type of score should be float but we receive &lt;class &#39;str&#39;&gt;.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
 8
 10
@@ -813,7 +789,7 @@ Exception: The board is empty.
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2.3. </span>分布式对象存储</p>
+        <p class="prev-next-title"><span class="section-number">3.3. </span>分布式对象存储</p>
       </div>
     </a>
     <a class="right-next"
@@ -821,7 +797,7 @@ Exception: The board is empty.
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2.5. </span>Ray 系统与设计</p>
+        <p class="prev-next-title"><span class="section-number">3.5. </span>Ray 系统与设计</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -840,10 +816,10 @@ Exception: The board is empty.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.4.1. 案例1：分布式计数器</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor">2.4.2. Actor 编程模型</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.4.3. 案例2：排行榜</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor-pool">2.4.4. 案例3：Actor Pool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.4.1. 案例1：分布式计数器</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor">3.4.2. Actor 编程模型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.4.3. 案例2：排行榜</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor-pool">3.4.4. 案例3：Actor Pool</a></li>
 </ul>
   </nav></div>
 

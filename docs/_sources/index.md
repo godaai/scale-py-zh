@@ -32,7 +32,7 @@
 :class-header: bg-light text-center
 **Dask**
 ^^^
-```{image} https://docs.dask.org/en/latest/_images/dask_horizontal.svg
+```{image} ./img/dask-logo.svg
 :height: 100
 ```
 :::
@@ -57,7 +57,7 @@
 
 **Xorbits**
 ^^^
-```{image} https://doc.xorbits.io/en/latest/_static/xorbits.svg
+```{image} ./img/xorbits-logo.svg
 :height: 100
 ```
 :::

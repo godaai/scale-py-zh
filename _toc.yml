@@ -5,6 +5,14 @@
 format: jb-book
 root: index
 parts:
+  - caption: 引言
+    numbered: true
+    chapters:
+    - file: ch-intro/index
+      sections:
+        - file: ch-intro/computer-architecture
+        - file: ch-intro/thread-process
+  
   - caption: Dask
     numbered: true
     chapters:

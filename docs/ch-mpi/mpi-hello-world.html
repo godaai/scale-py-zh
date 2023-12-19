@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>4.2. MPI Hello World &#8212; Python 分布式编程</title>
+    <title>5.2. MPI Hello World &#8212; Python 分布式编程</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch-mpi/mpi-hello-world';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.3. 点对点通信" href="point-to-point.html" />
-    <link rel="prev" title="4.1. MPI 简介" href="mpi-intro.html" />
+    <link rel="next" title="5.3. 点对点通信" href="point-to-point.html" />
+    <link rel="prev" title="5.1. MPI 简介" href="mpi-intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -119,6 +119,12 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content">如果你觉得内容对你有帮助，请在 GitHub 上点个 star 吧！</div>
+  </div>
+
   
     <nav class="bd-header navbar navbar-expand-lg bd-navbar">
     </nav>
@@ -167,39 +173,47 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dask</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">引言</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-dask/index.html">1. Dask</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-dask/dask-intro.html">1.1. Dask 简介</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-intro/index.html">1. 引言</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-intro/computer-architecture.html">1.1. 现代计算机体系结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-intro/thread-process.html">1.2. 线程和进程</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dask</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-dask/index.html">2. Dask</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-dask/dask-intro.html">2.1. Dask 简介</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ray</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-core/index.html">2. Ray</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-intro.html">2.1. Ray 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-function.html">2.2. 分布式函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-object.html">2.3. 分布式对象存储</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-class.html">2.4. 分布式类</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-internal.html">2.5. Ray 系统与设计</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-core/index.html">3. Ray</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-intro.html">3.1. Ray 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-function.html">3.2. 分布式函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-object.html">3.3. 分布式对象存储</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/remote-class.html">3.4. 分布式类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-core/ray-internal.html">3.5. Ray 系统与设计</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-data/index.html">3. Ray Data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/ray-data-intro.html">3.1. Ray Data 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/data-load-inspect-save.html">3.2. 数据加载、查看与保存</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/data-transform.html">3.3. 数据转换</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/preprocessor.html">3.4. Preprocessor</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-data/index.html">4. Ray Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/ray-data-intro.html">4.1. Ray Data 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/data-load-inspect-save.html">4.2. 数据加载、查看与保存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/data-transform.html">4.3. 数据转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/preprocessor.html">4.4. Preprocessor</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">mpi4py</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">4. MPI</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="mpi-intro.html">4.1. MPI 简介</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.2. MPI Hello World</a></li>
-<li class="toctree-l2"><a class="reference internal" href="point-to-point.html">4.3. 点对点通信</a></li>
-<li class="toctree-l2"><a class="reference internal" href="collective.html">4.4. 集合通信</a></li>
-<li class="toctree-l2"><a class="reference internal" href="remote-memory-access.html">4.5. 远程内存访问</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">5. MPI</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mpi-intro.html">5.1. MPI 简介</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.2. MPI Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point-to-point.html">5.3. 点对点通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collective.html">5.4. 集合通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-memory-access.html">5.5. 远程内存访问</a></li>
 </ul>
 </li>
 </ul>
@@ -243,53 +257,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/godaai/distributed-python" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/godaai/distributed-python/issues/new?title=Issue%20on%20page%20%2Fch-mpi/mpi-hello-world.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -395,10 +362,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.2.1. 通信模式</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#world-rank">4.2.2. World 和 Rank</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">4.2.3. 案例：Hello World</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#communicator">4.2.4. Communicator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.2.1. 通信模式</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#world-rank">5.2.2. World 和 Rank</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">5.2.3. 案例：Hello World</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#communicator">5.2.4. Communicator</a></li>
 </ul>
             </nav>
         </div>
@@ -411,9 +378,9 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mpi-hello-world">
-<span id="id1"></span><h1><span class="section-number">4.2. </span>MPI Hello World<a class="headerlink" href="#mpi-hello-world" title="Permalink to this heading">#</a></h1>
+<span id="id1"></span><h1><span class="section-number">5.2. </span>MPI Hello World<a class="headerlink" href="#mpi-hello-world" title="Permalink to this heading">#</a></h1>
 <section id="id2">
-<h2><span class="section-number">4.2.1. </span>通信模式<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.2.1. </span>通信模式<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>MPI 提供的能力更加底层，对于通信模式，通常有两种：双边和单边。</p>
 <ul class="simple">
 <li><p>双边（Cooperative）：通信双方均同意数据的收发。发送进程调用发送函数，接收进程调用接收函数。</p></li>
@@ -422,12 +389,12 @@ document.write(`
 <figure class="align-default" id="mpi-communications">
 <a class="reference internal image-reference" href="../_images/communications.svg"><img alt="../_images/communications.svg" src="../_images/communications.svg" width="600px" /></a>
 <figcaption>
-<p><span class="caption-number">图 4.1 </span><span class="caption-text">两种通讯模式：双边和单边</span><a class="headerlink" href="#mpi-communications" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">图 5.1 </span><span class="caption-text">两种通讯模式：双边和单边</span><a class="headerlink" href="#mpi-communications" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="world-rank">
-<h2><span class="section-number">4.2.2. </span>World 和 Rank<a class="headerlink" href="#world-rank" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.2.2. </span>World 和 Rank<a class="headerlink" href="#world-rank" title="Permalink to this heading">#</a></h2>
 <p>在进行 MPI 编程时，进程之间要互相通信，我们首先要解决两个问题：在 MPI 的众多进程中，“我是谁？”，除了我，“还有谁？”。 <code class="docutils literal notranslate"><span class="pre">MPI_Comm_rank</span></code> 定义了我是谁。<code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> 定义了还有谁的问题。 开始一个 MPI 程序时，要先定义一个 World，这个世界里有 <code class="docutils literal notranslate"><span class="pre">size</span></code> 个进程，每个进程有一个识别自己的号码，这个号码被称为 Rank，Rank 是 0 到 <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">-</span> <span class="pre">1</span></code> 的整数。更严肃地阐述：</p>
 <ul class="simple">
 <li><p>MPI 中的 World 是指所有参与并行计算的进程的总集合。在一个 MPI 程序中，所有的进程都属于一个默认的通信域，这个通信域就被称为 <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code>。所有在这个通信域中的进程都可以进行通信。</p></li>
@@ -435,7 +402,7 @@ document.write(`
 </ul>
 </section>
 <section id="hello-world">
-<h2><span class="section-number">4.2.3. </span>案例：Hello World<a class="headerlink" href="#hello-world" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.2.3. </span>案例：Hello World<a class="headerlink" href="#hello-world" title="Permalink to this heading">#</a></h2>
 <p>下面使用一个简单的例子来演示 MPI 编程。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
 
@@ -457,12 +424,12 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello! I&#39;m rank 0 of 8 running on host lu-mbp.
-Hello! I&#39;m rank 1 of 8 running on host lu-mbp.
 Hello! I&#39;m rank 2 of 8 running on host lu-mbp.
-Hello! I&#39;m rank 5 of 8 running on host lu-mbp.
-Hello! I&#39;m rank 6 of 8 running on host lu-mbp.
-Hello! I&#39;m rank 3 of 8 running on host lu-mbp.
 Hello! I&#39;m rank 4 of 8 running on host lu-mbp.
+Hello! I&#39;m rank 6 of 8 running on host lu-mbp.
+Hello! I&#39;m rank 1 of 8 running on host lu-mbp.
+Hello! I&#39;m rank 3 of 8 running on host lu-mbp.
+Hello! I&#39;m rank 5 of 8 running on host lu-mbp.
 Hello! I&#39;m rank 7 of 8 running on host lu-mbp.
 </pre></div>
 </div>
@@ -484,13 +451,13 @@ Hello! I&#39;m rank 7 of 8 running on host lu-mbp.
 </div>
 </section>
 <section id="communicator">
-<h2><span class="section-number">4.2.4. </span>Communicator<a class="headerlink" href="#communicator" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.2.4. </span>Communicator<a class="headerlink" href="#communicator" title="Permalink to this heading">#</a></h2>
 <p>刚才我们提到了 World 的概念，并使用了 <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code>，更准确地说，<code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> 是一个 Communicator。MPI 将进程划分到不同的组（Group）中，每个 Group 有不同的 Color，Group 和 Color 共同组成了 Communicator，或者说 Communicator 是 Group + Color 的名字，一个默认的 Communicator 就是 <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code>。</p>
-<p>对于一个进程，它可能在不同的 Communicator 中，因此它在不同 Communicator 中的 Rank 可能也不一样。<a class="reference internal" href="#mpi-communicatitor"><span class="std std-numref">图 4.2</span></a> (a) 、(b) 和（c）为三个 Communicator，圆圈为进程。当我们启动一个  MPI 程序时，就创建了默认的 Communicator（<code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code>），如 <a class="reference internal" href="#mpi-communicatitor"><span class="std std-numref">图 4.2</span></a> (a) 所示。每个进程在 Communicator 内被分配了一个 Rank 号码，图中圆圈上的数字是进程在这个 Communicator 中的 Rank。同样的进程可以被划归到不同的 Communicator 中，且相同的进程在不同 Communicator 的 Rank 可以不一样，如 <a class="reference internal" href="#mpi-communicatitor"><span class="std std-numref">图 4.2</span></a> (b)和(c)所示。每个  Communicator 内进程通信是相互独立的。大部分简单的程序，<code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> 就足够了。</p>
+<p>对于一个进程，它可能在不同的 Communicator 中，因此它在不同 Communicator 中的 Rank 可能也不一样。<a class="reference internal" href="#mpi-communicatitor"><span class="std std-numref">图 5.2</span></a> (a) 、(b) 和（c）为三个 Communicator，圆圈为进程。当我们启动一个  MPI 程序时，就创建了默认的 Communicator（<code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code>），如 <a class="reference internal" href="#mpi-communicatitor"><span class="std std-numref">图 5.2</span></a> (a) 所示。每个进程在 Communicator 内被分配了一个 Rank 号码，图中圆圈上的数字是进程在这个 Communicator 中的 Rank。同样的进程可以被划归到不同的 Communicator 中，且相同的进程在不同 Communicator 的 Rank 可以不一样，如 <a class="reference internal" href="#mpi-communicatitor"><span class="std std-numref">图 5.2</span></a> (b)和(c)所示。每个  Communicator 内进程通信是相互独立的。大部分简单的程序，<code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> 就足够了。</p>
 <figure class="align-default" id="mpi-communicatitor">
 <a class="reference internal image-reference" href="../_images/communicator.svg"><img alt="../_images/communicator.svg" src="../_images/communicator.svg" width="800px" /></a>
 <figcaption>
-<p><span class="caption-number">图 4.2 </span><span class="caption-text">Communicator</span><a class="headerlink" href="#mpi-communicatitor" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">图 5.2 </span><span class="caption-text">Communicator</span><a class="headerlink" href="#mpi-communicatitor" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -532,7 +499,7 @@ Hello! I&#39;m rank 7 of 8 running on host lu-mbp.
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4.1. </span>MPI 简介</p>
+        <p class="prev-next-title"><span class="section-number">5.1. </span>MPI 简介</p>
       </div>
     </a>
     <a class="right-next"
@@ -540,7 +507,7 @@ Hello! I&#39;m rank 7 of 8 running on host lu-mbp.
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4.3. </span>点对点通信</p>
+        <p class="prev-next-title"><span class="section-number">5.3. </span>点对点通信</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -559,10 +526,10 @@ Hello! I&#39;m rank 7 of 8 running on host lu-mbp.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.2.1. 通信模式</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#world-rank">4.2.2. World 和 Rank</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">4.2.3. 案例：Hello World</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#communicator">4.2.4. Communicator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.2.1. 通信模式</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#world-rank">5.2.2. World 和 Rank</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">5.2.3. 案例：Hello World</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#communicator">5.2.4. Communicator</a></li>
 </ul>
   </nav></div>
 
