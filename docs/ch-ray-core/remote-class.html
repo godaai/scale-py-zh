@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -145,6 +145,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../index.html">
@@ -173,23 +174,16 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">引言</span></p>
-<ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ch-intro/index.html">1. 引言</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-intro/computer-architecture.html">1.1. 现代计算机体系结构</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ch-intro/thread-process.html">1.2. 线程和进程</a></li>
 </ul>
 </li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dask</span></p>
-<ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ch-dask/index.html">2. Dask</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-dask/dask-intro.html">2.1. Dask 简介</a></li>
 </ul>
 </li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ray</span></p>
-<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">3. Ray</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="ray-intro.html">3.1. Ray 简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="remote-function.html">3.2. 分布式函数</a></li>
@@ -205,9 +199,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../ch-ray-data/preprocessor.html">4.4. Preprocessor</a></li>
 </ul>
 </li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">mpi4py</span></p>
-<ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ch-mpi/index.html">5. MPI</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-intro.html">5.1. MPI 简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ch-mpi/mpi-hello-world.html">5.2. MPI Hello World</a></li>
@@ -257,6 +248,21 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
+
+
+<a href="https://github.com/godaai/distributed-python" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
 
 
 
@@ -322,6 +328,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -331,6 +338,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -358,14 +366,14 @@ document.write(`
         <div id="jb-print-toc">
             
             <div>
-                <h2> Contents </h2>
+                <h2> 本节目录 </h2>
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.4.1. 案例1：分布式计数器</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor">3.4.2. Actor 编程模型</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.4.3. 案例2：排行榜</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor-pool">3.4.4. 案例3：Actor Pool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">案例1：分布式计数器</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor">Actor 编程模型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">案例2：排行榜</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor-pool">案例3：Actor Pool</a></li>
 </ul>
             </nav>
         </div>
@@ -381,7 +389,7 @@ document.write(`
 <span id="id1"></span><h1><span class="section-number">3.4. </span>分布式类<a class="headerlink" href="#remote-class" title="Permalink to this heading">#</a></h1>
 <p><a class="reference internal" href="remote-function.html#remote-function"><span class="std std-numref">章节 3.2</span></a> 展示了如何将一个无状态的函数扩展到 Ray 集群上进行分布式计算，但实际的场景中，我们经常需要进行有状态的计算。最简单的有状态计算包括维护一个计数器，每遇到某种条件，计数器加一。这类有状态的计算对于给定的输入，不一定得到确定的输出。单机场景我们可以使用 Python 的类（Class）来实现，计数器可作为类的成员变量。Ray 可以将 Python 类拓展到集群上，即远程类（Remote Class），又被称为行动者（Actor）。Actor 的名字来自 Actor 编程模型 <span id="id2">[<a class="reference internal" href="#id11" title="Carl Hewitt, Peter Boehler Bishop, and Richard Steiger. A universal modular ACTOR formalism for artificial intelligence. In Proceedings of the 3rd International Joint Conference on Artificial Intelligence. Standford, CA, USA, August 20-23, 1973, 235–245. William Kaufmann, 1973.">Hewitt <em>et al.</em>, 1973</a>]</span> ，这是一个典型的分布式计算编程模型，被广泛应用在大数据和人工智能领域，但 Actor 编程模型比较抽象，我们先从计数器的案例来入手。</p>
 <section id="id3">
-<h2><span class="section-number">3.4.1. </span>案例1：分布式计数器<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<h2>案例1：分布式计数器<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -400,47 +408,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/luweizheng/anaconda3/envs/dispy/lib/python3.11/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
-  from .autonotebook import tqdm as notebook_tqdm
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-12-19 15:08:49,112	INFO util.py:159 -- Missing packages: [&#39;ipywidgets&#39;]. Run `pip install -U ipywidgets`, then restart the notebook server for rich notebook output.
-</pre></div>
-</div>
-<div class="output text_html"><div class="lm-Widget p-Widget lm-Panel p-Panel jp-Cell-outputWrapper">
-    <div style="margin-left: 50px;display: flex;flex-direction: row;align-items: center">
-        <div class="jp-RenderedHTMLCommon" style="display: flex; flex-direction: row;">
-  <svg viewBox="0 0 567 224" fill="none" xmlns="http://www.w3.org/2000/svg" style="height: 3em;">
-    <g clip-path="url(#clip0_4338_178347)">
-        <path d="M341.29 165.561H355.29L330.13 129.051C345.63 123.991 354.21 112.051 354.21 94.2307C354.21 71.3707 338.72 58.1807 311.88 58.1807H271V165.561H283.27V131.661H311.8C314.25 131.661 316.71 131.501 319.01 131.351L341.25 165.561H341.29ZM283.29 119.851V70.0007H311.82C331.3 70.0007 342.34 78.2907 342.34 94.5507C342.34 111.271 331.34 119.861 311.82 119.861L283.29 119.851ZM451.4 138.411L463.4 165.561H476.74L428.74 58.1807H416L367.83 165.561H380.83L392.83 138.411H451.4ZM446.19 126.601H398L422 72.1407L446.24 126.601H446.19ZM526.11 128.741L566.91 58.1807H554.35L519.99 114.181L485.17 58.1807H472.44L514.01 129.181V165.541H526.13V128.741H526.11Z" fill="var(--jp-ui-font-color0)"/>
-        <path d="M82.35 104.44C84.0187 97.8827 87.8248 92.0678 93.1671 87.9146C98.5094 83.7614 105.083 81.5067 111.85 81.5067C118.617 81.5067 125.191 83.7614 130.533 87.9146C135.875 92.0678 139.681 97.8827 141.35 104.44H163.75C164.476 101.562 165.622 98.8057 167.15 96.2605L127.45 56.5605C121.071 60.3522 113.526 61.6823 106.235 60.3005C98.9443 58.9187 92.4094 54.9203 87.8602 49.0574C83.3109 43.1946 81.0609 35.8714 81.5332 28.4656C82.0056 21.0599 85.1679 14.0819 90.4252 8.8446C95.6824 3.60726 102.672 0.471508 110.08 0.0272655C117.487 -0.416977 124.802 1.86091 130.647 6.4324C136.493 11.0039 140.467 17.5539 141.821 24.8501C143.175 32.1463 141.816 39.6859 138 46.0505L177.69 85.7505C182.31 82.9877 187.58 81.4995 192.962 81.4375C198.345 81.3755 203.648 82.742 208.33 85.3976C213.012 88.0532 216.907 91.9029 219.616 96.5544C222.326 101.206 223.753 106.492 223.753 111.875C223.753 117.258 222.326 122.545 219.616 127.197C216.907 131.848 213.012 135.698 208.33 138.353C203.648 141.009 198.345 142.375 192.962 142.313C187.58 142.251 182.31 140.763 177.69 138L138 177.7C141.808 184.071 143.155 191.614 141.79 198.91C140.424 206.205 136.44 212.75 130.585 217.313C124.731 221.875 117.412 224.141 110.004 223.683C102.596 223.226 95.6103 220.077 90.3621 214.828C85.1139 209.58 81.9647 202.595 81.5072 195.187C81.0497 187.779 83.3154 180.459 87.878 174.605C92.4405 168.751 98.9853 164.766 106.281 163.401C113.576 162.035 121.119 163.383 127.49 167.19L167.19 127.49C165.664 124.941 164.518 122.182 163.79 119.3H141.39C139.721 125.858 135.915 131.673 130.573 135.826C125.231 139.98 118.657 142.234 111.89 142.234C105.123 142.234 98.5494 139.98 93.2071 135.826C87.8648 131.673 84.0587 125.858 82.39 119.3H60C58.1878 126.495 53.8086 132.78 47.6863 136.971C41.5641 141.163 34.1211 142.972 26.7579 142.059C19.3947 141.146 12.6191 137.574 7.70605 132.014C2.79302 126.454 0.0813599 119.29 0.0813599 111.87C0.0813599 104.451 2.79302 97.2871 7.70605 91.7272C12.6191 86.1673 19.3947 82.5947 26.7579 81.6817C34.1211 80.7686 41.5641 82.5781 47.6863 86.7696C53.8086 90.9611 58.1878 97.2456 60 104.44H82.35ZM100.86 204.32C103.407 206.868 106.759 208.453 110.345 208.806C113.93 209.159 117.527 208.258 120.522 206.256C123.517 204.254 125.725 201.276 126.771 197.828C127.816 194.38 127.633 190.677 126.253 187.349C124.874 184.021 122.383 181.274 119.205 179.577C116.027 177.88 112.359 177.337 108.826 178.042C105.293 178.746 102.113 180.654 99.8291 183.44C97.5451 186.226 96.2979 189.718 96.3 193.32C96.2985 195.364 96.7006 197.388 97.4831 199.275C98.2656 201.163 99.4132 202.877 100.86 204.32ZM204.32 122.88C206.868 120.333 208.453 116.981 208.806 113.396C209.159 109.811 208.258 106.214 206.256 103.219C204.254 100.223 201.275 98.0151 197.827 96.97C194.38 95.9249 190.676 96.1077 187.348 97.4873C184.02 98.8669 181.274 101.358 179.577 104.536C177.879 107.714 177.337 111.382 178.041 114.915C178.746 118.448 180.653 121.627 183.439 123.911C186.226 126.195 189.717 127.443 193.32 127.44C195.364 127.443 197.388 127.042 199.275 126.259C201.163 125.476 202.878 124.328 204.32 122.88ZM122.88 19.4205C120.333 16.8729 116.981 15.2876 113.395 14.9347C109.81 14.5817 106.213 15.483 103.218 17.4849C100.223 19.4868 98.0146 22.4654 96.9696 25.9131C95.9245 29.3608 96.1073 33.0642 97.4869 36.3922C98.8665 39.7202 101.358 42.4668 104.535 44.1639C107.713 45.861 111.381 46.4036 114.914 45.6992C118.447 44.9949 121.627 43.0871 123.911 40.301C126.195 37.515 127.442 34.0231 127.44 30.4205C127.44 28.3772 127.038 26.3539 126.255 24.4664C125.473 22.5788 124.326 20.8642 122.88 19.4205ZM19.42 100.86C16.8725 103.408 15.2872 106.76 14.9342 110.345C14.5813 113.93 15.4826 117.527 17.4844 120.522C19.4863 123.518 22.4649 125.726 25.9127 126.771C29.3604 127.816 33.0638 127.633 36.3918 126.254C39.7198 124.874 42.4664 122.383 44.1635 119.205C45.8606 116.027 46.4032 112.359 45.6988 108.826C44.9944 105.293 43.0866 102.114 40.3006 99.8296C37.5145 97.5455 34.0227 96.2983 30.42 96.3005C26.2938 96.3018 22.337 97.9421 19.42 100.86ZM100.86 100.86C98.3125 103.408 96.7272 106.76 96.3742 110.345C96.0213 113.93 96.9226 117.527 98.9244 120.522C100.926 123.518 103.905 125.726 107.353 126.771C110.8 127.816 114.504 127.633 117.832 126.254C121.16 124.874 123.906 122.383 125.604 119.205C127.301 116.027 127.843 112.359 127.139 108.826C126.434 105.293 124.527 102.114 121.741 99.8296C118.955 97.5455 115.463 96.2983 111.86 96.3005C109.817 96.299 107.793 96.701 105.905 97.4835C104.018 98.2661 102.303 99.4136 100.86 100.86Z" fill="#00AEEF"/>
-    </g>
-    <defs>
-        <clipPath id="clip0_4338_178347">
-            <rect width="566.93" height="223.75" fill="white"/>
-        </clipPath>
-    </defs>
-  </svg>
-</div>
-
-        <table class="jp-RenderedHTMLCommon" style="border-collapse: collapse;color: var(--jp-ui-font-color1);font-size: var(--jp-ui-font-size1);">
-    <tr>
-        <td style="text-align: left"><b>Python version:</b></td>
-        <td style="text-align: left"><b>3.11.5</b></td>
-    </tr>
-    <tr>
-        <td style="text-align: left"><b>Ray version:</b></td>
-        <td style="text-align: left"><b>2.8.1</b></td>
-    </tr>
-    
-</table>
-
-    </div>
-</div>
-</div></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "c873d22011234552a5da4bb3bfc9f76f", "version_major": 2, "version_minor": 0}</script></div>
 </details>
 </div>
-<p>Ray 的 Remote Class 也使用 <code class="docutils literal notranslate"><span class="pre">ray.remote()</span></code> 来装饰。</p>
+<p>Ray 的 Remote Class 也使用 <a class="reference external" href="https://docs.ray.io/en/latest/ray-core/api/doc/ray.remote.html"><code class="docutils literal notranslate"><span class="pre">ray.remote()</span></code></a> 来装饰。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@ray</span><span class="o">.</span><span class="n">remote</span>
@@ -494,6 +465,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Faint -Color-Faint-Yellow">(raylet)</span> [2023-10-31 17:16:11,991 E 64054 59177832] (raylet) file_system_monitor.cc:111: /tmp/ray/session_2023-10-31_17-15-57_239394_63766 is over 95% full, available space: 49435729920; capacity: 1000240963584. Object creation will fail if spilling is required.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 </pre></div>
 </div>
@@ -517,7 +491,7 @@ document.write(`
 </div>
 </section>
 <section id="actor">
-<h2><span class="section-number">3.4.2. </span>Actor 编程模型<a class="headerlink" href="#actor" title="Permalink to this heading">#</a></h2>
+<h2>Actor 编程模型<a class="headerlink" href="#actor" title="Permalink to this heading">#</a></h2>
 <p>Actor 编程模型是一种分布式编程的范式，每门编程语言或框架有自己的实现。Actor 编程模型的基本要素是 Actor 实例，即每个 Actor 对象都是唯一的。我们可以把单个 Actor 实例理解成单个带地址信息的进程。每个 Actor 都拥有地址信息，我们就可以从别的 Actor 向这个 Actor 发送信息，就像我们通过手机号或电子邮件地址互相发送信息一样。一个 Actor 可以有一个地址，也可以有多个地址，多个 Actor 可以共享同一个地址，拥有多少个地址主要取决于我们想以怎样的方式收发数据。多个 Actor 共享同一个地址，就像公司里有一个群组邮箱，群组包含了多个人，有个对外的公共的地址，向这个群组发邮件，群组中的每个人都可以收到消息。</p>
 <p>拥有地址和内存空间，Actor 可以做以下事情：</p>
 <ul class="simple">
@@ -531,7 +505,7 @@ document.write(`
 <p>Actor 编程模型是消息驱动的，给某个 Actor 发送消息，它就会对该消息进行响应，修改自身的状态或者继续给其他 Actor 发送消息。Actor 编程模型不需要显式地在多个进程之间同步数据，因此也没有锁的问题以及同步等待的时间。Actor 编程模型可被用于大量异步操作的场景。</p>
 </section>
 <section id="id4">
-<h2><span class="section-number">3.4.3. </span>案例2：排行榜<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<h2>案例2：排行榜<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p>接下来我们基于 Actor 实现一个更加复杂的案例：成绩排行榜。这个排行榜的状态是一个键值对，名为 <code class="docutils literal notranslate"><span class="pre">self.board</span></code>，键是名字（<code class="docutils literal notranslate"><span class="pre">name</span></code>），是一个 <code class="docutils literal notranslate"><span class="pre">str</span></code> 类型，值是分数（<code class="docutils literal notranslate"><span class="pre">score</span></code>），是一个 <code class="docutils literal notranslate"><span class="pre">float</span></code> 类型。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -587,7 +561,7 @@ document.write(`
 </div>
 </div>
 <p>这里的 <code class="docutils literal notranslate"><span class="pre">ranking</span></code> 是一个 Actor 的引用（Actor Handle），有点像 <code class="docutils literal notranslate"><span class="pre">ObjectRef</span></code>，我们用 <code class="docutils literal notranslate"><span class="pre">ranking</span></code> 这个 Actor Handle 来管理这个 Actor。一旦 Actor Handle 被销毁，对应的 Actor 以及其状态也被销毁。</p>
-<p>我们可以创建多个 Actor 实例，每个实例管理自己的状态。还可以用 <code class="docutils literal notranslate"><span class="pre">ActorClass.options</span></code> 给这些 Actor 实例设置一些选项，起名字，设置 CPU、GPU 计算资源等。</p>
+<p>我们可以创建多个 Actor 实例，每个实例管理自己的状态。还可以用 <a class="reference external" href="https://docs.ray.io/en/latest/ray-core/api/doc/ray.actor.ActorClass.options.html"><code class="docutils literal notranslate"><span class="pre">ActorClass.options</span></code></a> 给这些 Actor 实例设置一些选项，起名字，设置 CPU、GPU 计算资源等。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 创建一个数学排行榜 math_ranking</span>
@@ -601,7 +575,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>有了名字之后，就可以通过 <code class="docutils literal notranslate"><span class="pre">ray.get_actor()</span></code> 来获取 Actor Handle，</p>
+<p>有了名字之后，就可以通过 <a class="reference external" href="https://docs.ray.io/en/latest/ray-core/api/doc/ray.get_actor.html"><code class="docutils literal notranslate"><span class="pre">ray.get_actor()</span></code></a> 来获取 Actor Handle，</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 获取名为 Chemistry 的 Actor Handle</span>
@@ -652,10 +626,17 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">ray::Ranking.pop()</span> (pid=1832, ip=127.0.0.1, actor_id=b3537ef5896c47597d2d433d01000000, repr=&lt;__main__.Ranking object at 0x11010b2d0&gt;)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_1374/1570506600.py&quot;, line 29, in pop
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Faint -Color-Faint-Cyan">(Ranking pid=53871)</span> The data type of score should be float but we receive &lt;class &#39;str&#39;&gt;.
+<span class=" -Color -Color-Cyan">ray::Ranking.pop()</span> (pid=53871, ip=127.0.0.1, actor_id=b765fed53d3f5536b2056cd901000000, repr=&lt;__main__.Ranking object at 0x7fcb041eb730&gt;)
+  File &quot;/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_53185/1570506600.py&quot;, line 29, in pop
+Exception: The board is empty.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Faint -Color-Faint-Cyan">(Ranking pid=64481)</span> The data type of score should be float but we receive &lt;class &#39;str&#39;&gt;.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">ray::Ranking.pop()</span> (pid=64481, ip=127.0.0.1, actor_id=b0dd04160e75747cf6ebc7de01000000, repr=&lt;__main__.Ranking object at 0x7fb6f9f92c20&gt;)
+  File &quot;/var/folders/4n/v40br47s46ggrjm9bdm64lwh0000gn/T/ipykernel_63766/1570506600.py&quot;, line 29, in pop
 Exception: The board is empty.
 </pre></div>
 </div>
@@ -663,8 +644,8 @@ Exception: The board is empty.
 </div>
 </section>
 <section id="actor-pool">
-<h2><span class="section-number">3.4.4. </span>案例3：Actor Pool<a class="headerlink" href="#actor-pool" title="Permalink to this heading">#</a></h2>
-<p>实践上，经常创建一个 Actor 资源池（Actor Pool），Actor Pool 有点像 <code class="docutils literal notranslate"><span class="pre">multiprocessing.Pool</span></code>，Actor Pool 中有包含多个 Actor，每个 Actor 功能一样，而且可以分式地在多个计算节点上运行。</p>
+<h2>案例3：Actor Pool<a class="headerlink" href="#actor-pool" title="Permalink to this heading">#</a></h2>
+<p>实践上，经常创建一个 Actor 资源池（Actor Pool），<a class="reference external" href="https://docs.ray.io/en/latest/ray-core/api/doc/ray.util.ActorPool.html">Actor Pool</a> 有点像 <code class="docutils literal notranslate"><span class="pre">multiprocessing.Pool</span></code>，Actor Pool 中有包含多个 Actor，每个 Actor 功能一样，而且可以分式地在多个计算节点上运行。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ray.util</span> <span class="kn">import</span> <span class="n">ActorPool</span>
@@ -686,7 +667,7 @@ Exception: The board is empty.
 </div>
 </div>
 </div>
-<p>如果我们想调用加入到 ActorPool 中的 Actor，可以使用 <code class="docutils literal notranslate"><span class="pre">map(fn,</span> <span class="pre">values)</span></code> 和 <code class="docutils literal notranslate"><span class="pre">submit(fn,</span> <span class="pre">value)</span></code> 方法。这两个方法非常相似，所接收的参数是一个函数 <code class="docutils literal notranslate"><span class="pre">fn</span></code> 和参数 <code class="docutils literal notranslate"><span class="pre">value</span></code> 或者参数列表 <code class="docutils literal notranslate"><span class="pre">values</span></code>。<code class="docutils literal notranslate"><span class="pre">map()</span></code> 的 <code class="docutils literal notranslate"><span class="pre">values</span></code> 是一个列表，让函数并行地分发给多个 Actor 去处理；<code class="docutils literal notranslate"><span class="pre">submit()</span></code> 的 <code class="docutils literal notranslate"><span class="pre">value</span></code> 是单个值，每次从 ActorPool 中选择一个 Actor 去执行。<code class="docutils literal notranslate"><span class="pre">fn</span></code> 是一个 Lambda 表达式，或者说是一个匿名函数。这个 Lambda 表达式有两个参数：<code class="docutils literal notranslate"><span class="pre">actor</span></code> 和 <code class="docutils literal notranslate"><span class="pre">value</span></code>，<code class="docutils literal notranslate"><span class="pre">actor</span></code> 就是我们定义的单个 Actor 的函数调用，<code class="docutils literal notranslate"><span class="pre">value</span></code> 是这个函数的参数。</p>
+<p>如果我们想调用加入到 ActorPool 中的 Actor，可以使用 <a class="reference external" href="https://docs.ray.io/en/latest/ray-core/api/doc/ray.util.ActorPool.map.html#ray.util.ActorPool.map"><code class="docutils literal notranslate"><span class="pre">map(fn,</span> <span class="pre">values)</span></code></a> 和 <a class="reference external" href="https://docs.ray.io/en/latest/ray-core/api/doc/ray.util.ActorPool.submit.html#ray.util.ActorPool.submit"><code class="docutils literal notranslate"><span class="pre">submit(fn,</span> <span class="pre">value)</span></code></a> 方法。这两个方法非常相似，所接收的参数是一个函数 <code class="docutils literal notranslate"><span class="pre">fn</span></code> 和参数 <code class="docutils literal notranslate"><span class="pre">value</span></code> 或者参数列表 <code class="docutils literal notranslate"><span class="pre">values</span></code>。<code class="docutils literal notranslate"><span class="pre">map()</span></code> 的 <code class="docutils literal notranslate"><span class="pre">values</span></code> 是一个列表，让函数并行地分发给多个 Actor 去处理；<code class="docutils literal notranslate"><span class="pre">submit()</span></code> 的 <code class="docutils literal notranslate"><span class="pre">value</span></code> 是单个值，每次从 ActorPool 中选择一个 Actor 去执行。<code class="docutils literal notranslate"><span class="pre">fn</span></code> 是一个 Lambda 表达式，或者说是一个匿名函数。这个 Lambda 表达式有两个参数：<code class="docutils literal notranslate"><span class="pre">actor</span></code> 和 <code class="docutils literal notranslate"><span class="pre">value</span></code>，<code class="docutils literal notranslate"><span class="pre">actor</span></code> 就是我们定义的单个 Actor 的函数调用，<code class="docutils literal notranslate"><span class="pre">value</span></code> 是这个函数的参数。</p>
 <p>函数的第一个参数是 ActorPool 中的 Actor，第二个参数是函数的参数。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -698,7 +679,7 @@ Exception: The board is empty.
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">map()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">submit()</span></code> 将计算任务提交到了 ActorPool 中，ActorPool 并不是直接返回结果，而是异步地分发给后台不同的 Actor 去执行。需要使用 <code class="docutils literal notranslate"><span class="pre">get_next()</span></code> 阻塞地返回结果。</p>
+<p><code class="docutils literal notranslate"><span class="pre">map()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">submit()</span></code> 将计算任务提交到了 ActorPool 中，ActorPool 并不是直接返回结果，而是异步地分发给后台不同的 Actor 去执行。需要使用 <a class="reference external" href="https://docs.ray.io/en/latest/ray-core/api/doc/ray.util.ActorPool.get_next.html#ray.util.ActorPool.get_next"><code class="docutils literal notranslate"><span class="pre">get_next()</span></code></a> 阻塞地返回结果。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -711,9 +692,6 @@ Exception: The board is empty.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">(Ranking pid=1832)</span> The data type of score should be float but we receive &lt;class &#39;str&#39;&gt;.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
 8
 10
@@ -781,7 +759,7 @@ Exception: The board is empty.
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="remote-object.html"
@@ -812,14 +790,14 @@ Exception: The board is empty.
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
+    <i class="fa-solid fa-list"></i> 本节目录
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.4.1. 案例1：分布式计数器</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor">3.4.2. Actor 编程模型</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.4.3. 案例2：排行榜</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor-pool">3.4.4. 案例3：Actor Pool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">案例1：分布式计数器</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor">Actor 编程模型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">案例2：排行榜</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actor-pool">案例3：Actor Pool</a></li>
 </ul>
   </nav></div>
 
@@ -834,13 +812,14 @@ Exception: The board is empty.
   <div class="footer-item">
     
 <p class="component-author">
-By 鲁蔚征
+By Weizheng Lu
 </p>
 
   </div>
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2022.
@@ -867,8 +846,8 @@ By 鲁蔚征
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>
