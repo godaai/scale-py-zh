@@ -2,7 +2,7 @@
 
 set -e
 
-jupyter-book build ./
+sphinx-build -b html ./ ./_build/html
 
 rm -rf docs
 mkdir docs
