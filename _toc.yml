@@ -9,6 +9,7 @@ subtrees:
   - file: ch-dask/index
     entries:
     - file: ch-dask/dask-intro
+    - file: ch-dask/dask-dataframe-intro
   - file: ch-ray-core/index
     entries:
       - file: ch-ray-core/ray-intro
