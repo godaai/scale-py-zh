@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'ch-dask/dask-intro';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Ray" href="../ch-ray-core/index.html" />
+    <link rel="next" title="2.2. Dask DataFrame" href="dask-dataframe-intro.html" />
     <link rel="prev" title="2. Dask" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -182,6 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">2. Dask</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">2.1. Dask 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dask-dataframe-intro.html">2.2. Dask DataFrame</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ch-ray-core/index.html">3. Ray</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -375,7 +376,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="dask">
 <h1><span class="section-number">2.1. </span>Dask 简介<a class="headerlink" href="#dask" title="Permalink to this heading">#</a></h1>
 <p>Dask 是一个面向 Python 的并行计算框架，可以将计算任务扩展到多核和集群上。它提供了两类 API：高层的 DataFrame 和 Array 模拟了 pandas 和 NumPy 的 API，开箱即用；底层的基于计算图的 API 可以与很多 Python 包相结合。基于这两种 API，Dask 已经形成了一些生态，以应对越来越大的数据量和各种各样数据科学任务。</p>
-<p>Dask 的核心思想是构建任务计算图（Task Graph），将一个大计算任务分解为任务（Task），每个任务调用那些原始的 Python 包（比如 pandas 和 NumPy）作为执行后端。</p>
+<p>Dask 的核心思想是构建任务计算图（Task Graph），将一个大计算任务分解为任务（Task），每个任务调用那些单机的 Python 包（比如 pandas 和 NumPy）作为执行后端。</p>
 <p><a class="reference internal" href="#dask-overview"><span class="std std-numref">图 2.1</span></a> 展示了 Dask API 和 Task Graph 并最后调度到计算设备上的示意图。</p>
 <figure class="align-default" id="dask-overview">
 <a class="reference internal image-reference" href="../_images/dask-overview.svg"><img alt="../_images/dask-overview.svg" src="../_images/dask-overview.svg" width="800px" /></a>
@@ -434,11 +435,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../ch-ray-core/index.html"
+       href="dask-dataframe-intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Ray</p>
+        <p class="prev-next-title"><span class="section-number">2.2. </span>Dask DataFrame</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
