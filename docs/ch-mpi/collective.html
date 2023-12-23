@@ -397,11 +397,11 @@ document.write(`
 <p><a class="reference internal" href="point-to-point.html#mpi-point2point"><span class="std std-ref">点对点通信</span></a> 介绍了点对点通信，即发送方和接收方之间相互传输数据。本节主要介绍一种全局的通信方式：集合通信，即在一个组里的多个进程间同时传输数据。集合通信目前只有阻塞的方式。</p>
 <p>常用的集合通信主要有以下几类：</p>
 <ul class="simple">
-<li><p>同步，比如 <code class="docutils literal notranslate"><span class="pre">Comm.Barrier</span></code>。</p></li>
-<li><p>数据移动，比如 <code class="docutils literal notranslate"><span class="pre">Comm.Bcast</span></code>， <code class="docutils literal notranslate"><span class="pre">Comm.Scatter</span></code>，<code class="docutils literal notranslate"><span class="pre">Comm.Gather</span></code>等。</p></li>
-<li><p>集合计算，比如 <code class="docutils literal notranslate"><span class="pre">Comm.Reduce</span></code>， <code class="docutils literal notranslate"><span class="pre">Intracomm.Scan</span></code> 等。</p></li>
+<li><p>同步，比如 <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.Barrier"><code class="docutils literal notranslate"><span class="pre">Comm.Barrier</span></code></a>。</p></li>
+<li><p>数据移动，比如 <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.Bcast"><code class="docutils literal notranslate"><span class="pre">Comm.Bcast</span></code></a>， <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.Scatter"><code class="docutils literal notranslate"><span class="pre">Comm.Scatter</span></code></a>，<a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.Gather"><code class="docutils literal notranslate"><span class="pre">Comm.Gather</span></code></a>等。</p></li>
+<li><p>集合计算，比如 <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.Reduce"><code class="docutils literal notranslate"><span class="pre">Comm.Reduce</span></code></a>， <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Intracomm.html#mpi4py.MPI.Intracomm.Scan"><code class="docutils literal notranslate"><span class="pre">Intracomm.Scan</span></code></a> 等。</p></li>
 </ul>
-<p>首字母大写的函数是基于缓存的，比如 <code class="docutils literal notranslate"><span class="pre">Comm.Bcast</span></code>， <code class="docutils literal notranslate"><span class="pre">Comm.Scatter</span></code>，<code class="docutils literal notranslate"><span class="pre">Comm.Gather</span></code>，<code class="docutils literal notranslate"><span class="pre">Comm.Allgather</span></code>, <code class="docutils literal notranslate"><span class="pre">Comm.Alltoall</span></code>。首字母小写的函数可以收发 Python 对象，比如 <code class="docutils literal notranslate"><span class="pre">Comm.bcast</span></code>，<code class="docutils literal notranslate"><span class="pre">Comm.scatter</span></code>，<code class="docutils literal notranslate"><span class="pre">Comm.gather</span></code>，<code class="docutils literal notranslate"><span class="pre">Comm.allgather</span></code>, <code class="docutils literal notranslate"><span class="pre">Comm.alltoall</span></code>。</p>
+<p>首字母大写的函数是基于缓存的，比如 <code class="docutils literal notranslate"><span class="pre">Comm.Bcast</span></code>， <code class="docutils literal notranslate"><span class="pre">Comm.Scatter</span></code>，<code class="docutils literal notranslate"><span class="pre">Comm.Gather</span></code>，<a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.Allgather"><code class="docutils literal notranslate"><span class="pre">Comm.Allgather</span></code></a>, <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.Alltoall"><code class="docutils literal notranslate"><span class="pre">Comm.Alltoall</span></code></a>。首字母小写的函数可以收发 Python 对象，比如 <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.bcast"><code class="docutils literal notranslate"><span class="pre">Comm.bcast</span></code></a>，<a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.scatter"><code class="docutils literal notranslate"><span class="pre">Comm.scatter</span></code></a>，<a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.gather"><code class="docutils literal notranslate"><span class="pre">Comm.gather</span></code></a>，<a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.allgather"><code class="docutils literal notranslate"><span class="pre">Comm.allgather</span></code></a>, <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.alltoall"><code class="docutils literal notranslate"><span class="pre">Comm.alltoall</span></code></a>。</p>
 <section id="id2">
 <h2>同步<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>MPI 的计算分布在多个进程，每个进程的计算速度有快有慢。<code class="docutils literal notranslate"><span class="pre">Comm.Barrier</span></code> 对 Communicator 里所有进程都执行同步等待，就像 Barrier 的英文名一样，设置一个屏障，等待所有进程都执行完。计算比较快的进程们达到 <code class="docutils literal notranslate"><span class="pre">Comm.Barrier</span></code>，无法执行 <code class="docutils literal notranslate"><span class="pre">Comm.Barrier</span></code> 之后的计算逻辑，必须等待其他所有进程都到达这里才行。</p>
@@ -420,7 +420,9 @@ document.write(`
 </section>
 <section id="id5">
 <h3>案例1：广播<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
-<p>下面的例子中，我们将一个 NumPy 数组广播到所有的进程中：</p>
+<p><a class="reference internal" href="#mpi-broadcast-py"><span class="std std-numref">代码片段 5.7</span></a> 对如何将一个 NumPy 数组广播到所有的进程中进行了演示</p>
+<div class="literal-block-wrapper docutils container" id="mpi-broadcast-py">
+<div class="code-block-caption"><span class="caption-number">代码片段 5.7 </span><span class="caption-text"><a class="reference external" href="http://broadcast.py">broadcast.py</a></span><a class="headerlink" href="#mpi-broadcast-py" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
 
@@ -440,6 +442,7 @@ document.write(`
 <span class="c1"># 验证所有节点上的 A</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rank:</span><span class="si">%2d</span><span class="s2">, data:</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">,</span> <span class="n">A</span><span class="p">))</span>
 </pre></div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -471,6 +474,9 @@ Rank: 3, data:[0. 1. 2. 3. 4.]
 </section>
 <section id="scatter">
 <h3>案例2：Scatter<a class="headerlink" href="#scatter" title="Permalink to this heading">#</a></h3>
+<p><a class="reference internal" href="#mpi-scatter"><span class="std std-numref">代码片段 5.8</span></a> 演示了如何使用 Scatter 将数据分散到所有进程。</p>
+<div class="literal-block-wrapper docutils container" id="mpi-scatter">
+<div class="code-block-caption"><span class="caption-number">代码片段 5.8 </span><span class="caption-text"><a class="reference external" href="http://scatter.py">scatter.py</a></span><a class="headerlink" href="#mpi-scatter" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -488,6 +494,7 @@ Rank: 3, data:[0. 1. 2. 3. 4.]
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rank: </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">, after scatter: </span><span class="si">{</span><span class="n">recvbuf</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">recvbuf</span><span class="p">,</span> <span class="n">rank</span><span class="p">)</span>
 </pre></div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -531,7 +538,7 @@ Rank: 3, after scatter: [3 3 3 3 3 3 3 3]
 </section>
 <section id="id6">
 <h2>集合计算<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
-<p>集合计算指的是在将散落在不同进程的数据聚合在一起的时候，对数据进行计算，比如 <code class="docutils literal notranslate"><span class="pre">Comm.Reduce</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Intracomm</span></code> 等。如 <a class="reference internal" href="#mpi-reduce"><span class="std std-numref">图 5.10</span></a> 和 <a class="reference internal" href="#mpi-scan"><span class="std std-numref">图 5.11</span></a> 所示，数据归集到某个进程时，还执行了聚合函数 <code class="docutils literal notranslate"><span class="pre">f</span></code>，常用的聚合函数有求和 <code class="docutils literal notranslate"><span class="pre">MPI.SUM</span></code> 等。</p>
+<p>集合计算指的是在将散落在不同进程的数据聚合在一起的时候，对数据进行计算，比如 <code class="docutils literal notranslate"><span class="pre">Comm.Reduce</span></code> 和 <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Intracomm.html"><code class="docutils literal notranslate"><span class="pre">Intracomm</span></code></a> 等。如 <a class="reference internal" href="#mpi-reduce"><span class="std std-numref">图 5.10</span></a> 和 <a class="reference internal" href="#mpi-scan"><span class="std std-numref">图 5.11</span></a> 所示，数据归集到某个进程时，还执行了聚合函数 <code class="docutils literal notranslate"><span class="pre">f</span></code>，常用的聚合函数有求和 <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.SUM.html"><code class="docutils literal notranslate"><span class="pre">MPI.SUM</span></code></a> 等。</p>
 <figure class="align-default" id="mpi-reduce">
 <a class="reference internal image-reference" href="../_images/reduce.png"><img alt="../_images/reduce.png" src="../_images/reduce.png" style="width: 600px;" /></a>
 <figcaption>
