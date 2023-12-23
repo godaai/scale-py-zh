@@ -404,7 +404,7 @@ document.write(`
 </section>
 <section id="world-rank">
 <h2>World 和 Rank<a class="headerlink" href="#world-rank" title="Permalink to this heading">#</a></h2>
-<p>在进行 MPI 编程时，进程之间要互相通信，我们首先要解决两个问题：在 MPI 的众多进程中，“我是谁？”，除了我，“还有谁？”。 <code class="docutils literal notranslate"><span class="pre">MPI_Comm_rank</span></code> 定义了我是谁。<code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> 定义了还有谁的问题。 开始一个 MPI 程序时，要先定义一个 World，这个世界里有 <code class="docutils literal notranslate"><span class="pre">size</span></code> 个进程，每个进程有一个识别自己的号码，这个号码被称为 Rank，Rank 是 0 到 <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">-</span> <span class="pre">1</span></code> 的整数。更严肃地阐述：</p>
+<p>在进行 MPI 编程时，进程之间要互相通信，我们首先要解决两个问题：在 MPI 的众多进程中，“我是谁？”，除了我，“还有谁？”。MPI 标准中， <a class="reference external" href="https://learn.microsoft.com/en-us/message-passing-interface/mpi-comm-rank-function"><code class="docutils literal notranslate"><span class="pre">MPI_Comm_rank</span></code></a> 定义了我是谁。<a class="reference external" href="https://learn.microsoft.com/en-us/message-passing-interface/mpi-comm-size-function"><code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code></a> 定义了还有谁的问题。 开始一个 MPI 程序时，要先定义一个 World，这个世界里有 <code class="docutils literal notranslate"><span class="pre">size</span></code> 个进程，每个进程有一个识别自己的号码，这个号码被称为 Rank，Rank 是 0 到 <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">-</span> <span class="pre">1</span></code> 的整数。更严肃地阐述：</p>
 <ul class="simple">
 <li><p>MPI 中的 World 是指所有参与并行计算的进程的总集合。在一个 MPI 程序中，所有的进程都属于一个默认的通信域，这个通信域就被称为 <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code>。所有在这个通信域中的进程都可以进行通信。</p></li>
 <li><p>World 中的每个进程都有一个唯一的 Rank，Rank 用来标识进程在通信域中的位置。由于每个进程有自己的 Rank 号码，那在编程时，可以控制，使得 Rank 为 0 的进程发送数据给 Rank 为 1 的进程。</p></li>
@@ -425,7 +425,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<p>在这段程序中，<code class="docutils literal notranslate"><span class="pre">print</span></code> 是上单个进程内执行的，打印出当前进程的 Rank 和主机名。<code class="docutils literal notranslate"><span class="pre">comm.Barrier()</span></code> 将每个进程做了阻断，直到所有进程执行完毕后，才会进行下面的操作。本例中，<code class="docutils literal notranslate"><span class="pre">comm.Barrier()</span></code> 后无其他操作，程序将退出。</p>
+<p>在这段程序中，<code class="docutils literal notranslate"><span class="pre">print</span></code> 是上单个进程内执行的，打印出当前进程的 Rank 和主机名。<a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.Barrier"><code class="docutils literal notranslate"><span class="pre">comm.Barrier()</span></code></a> 将每个进程做了阻断，直到所有进程执行完毕后，才会进行下面的操作。本例中，<code class="docutils literal notranslate"><span class="pre">comm.Barrier()</span></code> 后无其他操作，程序将退出。</p>
 <p>如果在个人电脑上，启动 8 个进程，在命令行中执行：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -434,14 +434,14 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello! I&#39;m rank 0 of 8 running on host lu-mbp.
-Hello! I&#39;m rank 3 of 8 running on host lu-mbp.
-Hello! I&#39;m rank 7 of 8 running on host lu-mbp.
-Hello! I&#39;m rank 1 of 8 running on host lu-mbp.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello! I&#39;m rank 5 of 8 running on host lu-mbp.Hello! I&#39;m rank 1 of 8 running on host lu-mbp.
 Hello! I&#39;m rank 2 of 8 running on host lu-mbp.
+
 Hello! I&#39;m rank 4 of 8 running on host lu-mbp.
-Hello! I&#39;m rank 5 of 8 running on host lu-mbp.
 Hello! I&#39;m rank 6 of 8 running on host lu-mbp.
+Hello! I&#39;m rank 7 of 8 running on host lu-mbp.
+Hello! I&#39;m rank 3 of 8 running on host lu-mbp.
+Hello! I&#39;m rank 0 of 8 running on host lu-mbp.
 </pre></div>
 </div>
 </div>

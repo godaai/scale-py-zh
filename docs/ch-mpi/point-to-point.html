@@ -408,7 +408,10 @@ document.write(`
 </section>
 <section id="python">
 <h2>案例1：发送 Python 对象<a class="headerlink" href="#python" title="Permalink to this heading">#</a></h2>
-<p>比如，我们发送一个 Python 对象。Python 对象在通信过程中的序列化使用的是 <a class="reference external" href="https://docs.python.org/3/library/pickle.html#module-pickle">pickle</a>。将这份代码保存文件为 <code class="docutils literal notranslate"><span class="pre">send-py-object.py</span></code>。</p>
+<p>比如，我们发送一个 Python 对象。Python 对象在通信过程中的序列化使用的是 <a class="reference external" href="https://docs.python.org/3/library/pickle.html#module-pickle">pickle</a>。</p>
+<p><a class="reference internal" href="#mpi-send-py-object"><span class="std std-numref">代码片段 5.2</span></a> 演示了如何发送一个 Python 对象。</p>
+<div class="literal-block-wrapper docutils container" id="mpi-send-py-object">
+<div class="code-block-caption"><span class="caption-number">代码片段 5.2 </span><span class="caption-text"><a class="reference external" href="http://send-py-object.py">send-py-object.py</a></span><a class="headerlink" href="#mpi-send-py-object" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
 
 <span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
@@ -423,7 +426,8 @@ document.write(`
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Received: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">, to rank: </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>在命令行中这样启动：</p>
+</div>
+<p>将这份代码保存文件为 <code class="docutils literal notranslate"><span class="pre">send-py-object.py</span></code>，在命令行中这样启动：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">2</span><span class="w"> </span>python<span class="w"> </span>send-py-object.py
@@ -440,7 +444,10 @@ Received: {&#39;a&#39;: 7, &#39;b&#39;: 3.14}, to rank: 1.
 </section>
 <section id="numpy-ndarray">
 <h2>案例2：发送 NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code><a class="headerlink" href="#numpy-ndarray" title="Permalink to this heading">#</a></h2>
-<p>或者发送一个 NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>，保存如下代码为 <code class="docutils literal notranslate"><span class="pre">send-np.py</span></code> 文件：</p>
+<p>或者发送一个 NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>：</p>
+<p><a class="reference internal" href="#mpi-send-np"><span class="std std-numref">代码片段 5.3</span></a> 演示了如何发送一个 NumPy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>。</p>
+<div class="literal-block-wrapper docutils container" id="mpi-send-np">
+<div class="code-block-caption"><span class="caption-number">代码片段 5.3 </span><span class="caption-text"><a class="reference external" href="http://send-np.py">send-np.py</a></span><a class="headerlink" href="#mpi-send-np" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -469,6 +476,8 @@ Received: {&#39;a&#39;: 7, &#39;b&#39;: 3.14}, to rank: 1.
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Received: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">, to rank: </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<p>以上代码保存为 <code class="docutils literal notranslate"><span class="pre">send-np.py</span></code> 文件。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">2</span><span class="w"> </span>python<span class="w"> </span>send-np.py
@@ -492,6 +501,9 @@ Sended: [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.], from rank: 0.
 <section id="master-worker">
 <h2>案例3：Master-Worker<a class="headerlink" href="#master-worker" title="Permalink to this heading">#</a></h2>
 <p>现在我们做一个 Master-Worker 案例，共有 <code class="docutils literal notranslate"><span class="pre">size</span></code> 个进程，前 <code class="docutils literal notranslate"><span class="pre">size-1</span></code> 个进程作为 Worker，随机生成数据，最后一个进程（Rank 为 <code class="docutils literal notranslate"><span class="pre">size-1</span></code>）作为 Master，接收数据，并将数据的大小打印出来。</p>
+<p><a class="reference internal" href="#mpi-master-worker"><span class="std std-numref">代码片段 5.4</span></a> 对 Master 与 Worker 进程间，数据的发送和接收过程进行了演示。</p>
+<div class="literal-block-wrapper docutils container" id="mpi-master-worker">
+<div class="code-block-caption"><span class="caption-number">代码片段 5.4 </span><span class="caption-text"><a class="reference external" href="http://master-worker.py">master-worker.py</a></span><a class="headerlink" href="#mpi-master-worker" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -516,6 +528,7 @@ Sended: [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.], from rank: 0.
 
 <span class="n">comm</span><span class="o">.</span><span class="n">Barrier</span><span class="p">()</span>
 </pre></div>
+</div>
 </div>
 <p>在这个例子中，<code class="docutils literal notranslate"><span class="pre">rank</span></code> 小于 <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">-</span> <span class="pre">1</span></code> 的进程是 Worker，随机生成数据，并发送出给最后一个进程（进程 Rank 号为 <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">-</span> <span class="pre">1</span></code>）。最后一个进程接收数据，并打印出接收数据的大小。</p>
 <div class="cell docutils container">
@@ -554,6 +567,9 @@ Master: worker ID: 6; count: 10
 </figcaption>
 </figure>
 <p>假设此时有 <code class="docutils literal notranslate"><span class="pre">size</span></code> 个进程参与计算，首先求每个进程需要处理的长方形数量 (<code class="docutils literal notranslate"><span class="pre">N/size</span></code>)。每个进程各自计算长方形面积之和，并发送给 Master 进程。第一个进程作为 Master，接收各 Worker 发送数据，汇总所有矩形面积，从而近似计算出 <span class="math notranslate nohighlight">\(\pi\)</span> 值。</p>
+<p><a class="reference internal" href="#mpi-rectangle-pi"><span class="std std-numref">代码片段 5.5</span></a> 演示了长方形模拟求 <span class="math notranslate nohighlight">\(\pi\)</span> 值的过程。</p>
+<div class="literal-block-wrapper docutils container" id="mpi-rectangle-pi">
+<div class="code-block-caption"><span class="caption-number">代码片段 5.5 </span><span class="caption-text"><a class="reference external" href="http://rectangle-pi.py">rectangle-pi.py</a></span><a class="headerlink" href="#mpi-rectangle-pi" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
@@ -600,6 +616,7 @@ Master: worker ID: 6; count: 10
     <span class="n">communicator</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">total_area</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
 <p>上述例子中，我们设置参数为：<code class="docutils literal notranslate"><span class="pre">R=1</span></code>, <code class="docutils literal notranslate"><span class="pre">N=64*1024*1024</span></code>，保存文件为 <code class="docutils literal notranslate"><span class="pre">rectangle_pi.py</span></code>：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -643,7 +660,10 @@ Time：7.361s
 </section>
 <section id="id4">
 <h3>非阻塞<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
-<p>非阻塞式通信调用后直接返回 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 句柄（Handle），程序员接下来再对 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 做处理，比如等待 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 涉及的数据传输完毕。非阻塞式通信有大写的 i（I） 作为前缀， <code class="docutils literal notranslate"><span class="pre">Irecv</span></code> 的函数参数与之前相差不大，只不过返回值是一个 <code class="docutils literal notranslate"><span class="pre">Request</span></code>：<code class="docutils literal notranslate"><span class="pre">Request</span> <span class="pre">=</span> <span class="pre">Isend(buf,</span> <span class="pre">dest,</span> <span class="pre">tag=0</span></code>。 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 类提供了 <code class="docutils literal notranslate"><span class="pre">wait</span></code> 方法，显示地调用 <code class="docutils literal notranslate"><span class="pre">wait()</span></code> 可以等待数据传输完毕。用 <code class="docutils literal notranslate"><span class="pre">Isend</span></code> 写的阻塞式的代码，可以改为 <code class="docutils literal notranslate"><span class="pre">Isend</span></code> + <code class="docutils literal notranslate"><span class="pre">Request.wait()</span></code> 以非阻塞方式实现。</p>
+<p>非阻塞式通信调用后直接返回 <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Request.html#mpi4py.MPI.Request"><code class="docutils literal notranslate"><span class="pre">Request</span></code></a> 句柄（Handle），程序员接下来再对 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 做处理，比如等待 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 涉及的数据传输完毕。非阻塞式通信有大写的 i（I） 作为前缀， <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Comm.html#mpi4py.MPI.Comm.irecv"><code class="docutils literal notranslate"><span class="pre">Irecv</span></code></a> 的函数参数与之前相差不大，只不过返回值是一个 <code class="docutils literal notranslate"><span class="pre">Request</span></code>。 <code class="docutils literal notranslate"><span class="pre">Request</span></code> 类提供了 <code class="docutils literal notranslate"><span class="pre">wait</span></code> 方法，显示地调用 <code class="docutils literal notranslate"><span class="pre">wait()</span></code> 可以等待数据传输完毕。用 <code class="docutils literal notranslate"><span class="pre">Isend</span></code> 写的阻塞式的代码，可以改为 <code class="docutils literal notranslate"><span class="pre">Isend</span></code> + <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Request.html#mpi4py.MPI.Request.wait"><code class="docutils literal notranslate"><span class="pre">Request.wait()</span></code></a> 以非阻塞方式实现。</p>
+<p><a class="reference internal" href="#mpi-non-blocking"><span class="std std-numref">代码片段 5.6</span></a> 展示了一个非阻塞式通信的例子。</p>
+<div class="literal-block-wrapper docutils container" id="mpi-non-blocking">
+<div class="code-block-caption"><span class="caption-number">代码片段 5.6 </span><span class="caption-text"><a class="reference external" href="http://non-blocking.py">non-blocking.py</a></span><a class="headerlink" href="#mpi-non-blocking" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
 
 <span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
@@ -661,6 +681,7 @@ Time：7.361s
     <span class="n">data</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Received: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">, to rank: </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 </pre></div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

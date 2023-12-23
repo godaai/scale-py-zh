@@ -397,12 +397,12 @@ document.write(`
 <h2>使用<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p>Preprocessor 主要有 4 类操作：</p>
 <ol class="arabic simple">
-<li><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessor.Preprocessor.fit.html#ray.data.preprocessor.Preprocessor.fit"><code class="docutils literal notranslate"><span class="pre">fit()</span></code></a>：计算 Ray Data <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 状态信息，比如计算某一列数据的方差或者均值。</p></li>
-<li><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessor.Preprocessor.transform.html#ray.data.preprocessor.Preprocessor.transform"><code class="docutils literal notranslate"><span class="pre">transform()</span></code></a>：执行转换操作。如果这个转换操作是有状态的，那必须先进行 <code class="docutils literal notranslate"><span class="pre">fit()</span></code>。</p></li>
-<li><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessor.Preprocessor.transform_batch.html#ray.data.preprocessor.Preprocessor.transform_batch"><code class="docutils literal notranslate"><span class="pre">transform_batch()</span></code></a>：对一个批次数据进行转换操作。</p></li>
-<li><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessor.Preprocessor.fit_transform.html#ray.data.preprocessor.Preprocessor.fit_transform"><code class="docutils literal notranslate"><span class="pre">fit_transform()</span></code></a>：结合了 <code class="docutils literal notranslate"><span class="pre">fit()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">transform()</span></code> 的一个操作，先对 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 进行 <code class="docutils literal notranslate"><span class="pre">fit()</span></code>，再进行 <code class="docutils literal notranslate"><span class="pre">transform()</span></code>。</p></li>
+<li><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessor.Preprocessor.fit.html"><code class="docutils literal notranslate"><span class="pre">fit()</span></code></a>：计算 Ray Data <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 状态信息，比如计算某一列数据的方差或者均值。</p></li>
+<li><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessor.Preprocessor.transform.html"><code class="docutils literal notranslate"><span class="pre">transform()</span></code></a>：执行转换操作。如果这个转换操作是有状态的，那必须先进行 <code class="docutils literal notranslate"><span class="pre">fit()</span></code>。</p></li>
+<li><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessor.Preprocessor.transform_batch.html"><code class="docutils literal notranslate"><span class="pre">transform_batch()</span></code></a>：对一个批次数据进行转换操作。</p></li>
+<li><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessor.Preprocessor.fit_transform.html"><code class="docutils literal notranslate"><span class="pre">fit_transform()</span></code></a>：结合了 <code class="docutils literal notranslate"><span class="pre">fit()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">transform()</span></code> 的一个操作，先对 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 进行 <code class="docutils literal notranslate"><span class="pre">fit()</span></code>，再进行 <code class="docutils literal notranslate"><span class="pre">transform()</span></code>。</p></li>
 </ol>
-<p>下面根据出租车数据集，来演示一下如何使用 Preprocessor。出租车数据是一个典型的结构化数据，里面有很多列，比如该旅程的距离，这些列可被用来作为机器学习算法的特征，而喂给机器学习模型前，需要进行特征处理。比如 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.MinMaxScaler.html#ray.data.preprocessors.MinMaxScaler"><code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code></a> 将特征进行归一化：</p>
+<p>下面根据出租车数据集，来演示一下如何使用 Preprocessor。出租车数据是一个典型的结构化数据，里面有很多列，比如该旅程的距离，这些列可被用来作为机器学习算法的特征，而喂给机器学习模型前，需要进行特征处理。比如 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.MinMaxScaler.html"><code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code></a> 将特征进行归一化：</p>
 <div class="math notranslate nohighlight">
 \[
 x' = \frac{x - \min(x)}{\max(x) - \min(x)}
@@ -591,15 +591,15 @@ Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.0 MiB/512.0 MiB object_store_memory:   0%| 
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-center"><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.LabelEncoder.html#ray.data.preprocessors.LabelEncoder"><code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code></a></p></td>
+<tr class="row-even"><td class="text-center"><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.LabelEncoder.html"><code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code></a></p></td>
 <td class="text-center"><p>无序分类</p></td>
 <td class="text-center"><p>猫，狗，牛，羊</p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.OrdinalEncoder.html#ray.data.preprocessors.OrdinalEncoder"><code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code></a></p></td>
+<tr class="row-odd"><td class="text-center"><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.OrdinalEncoder.html"><code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code></a></p></td>
 <td class="text-center"><p>有序分类</p></td>
 <td class="text-center"><p>高中，本科，硕士，博士</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.MultiHotEncoder.html#ray.data.preprocessors.MultiHotEncoder"><code class="docutils literal notranslate"><span class="pre">MultiHotEncoder</span></code></a></p></td>
+<tr class="row-even"><td class="text-center"><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.MultiHotEncoder.html"><code class="docutils literal notranslate"><span class="pre">MultiHotEncoder</span></code></a></p></td>
 <td class="text-center"><p>多分类</p></td>
 <td class="text-center"><p>[“喜剧”, “动画”], [“悬疑”, “动作”]</p></td>
 </tr>
@@ -619,22 +619,22 @@ Running: 0.0/8.0 CPU, 0.0/0.0 GPU, 0.0 MiB/512.0 MiB object_store_memory:   0%| 
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.RobustScaler.html#ray.data.preprocessors.RobustScaler"><code class="docutils literal notranslate"><span class="pre">RobustScaler</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.RobustScaler.html"><code class="docutils literal notranslate"><span class="pre">RobustScaler</span></code></a></p></td>
 <td><p>有离群值</p></td>
 <td><p><span class="math notranslate nohighlight">\(x' = \frac{x - \mu_{1/2}}{\mu_h - \mu_l}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mu_{1/2}\)</span> 是中位数，<span class="math notranslate nohighlight">\(\mu_h\)</span> 是最大值，<span class="math notranslate nohighlight">\(\mu_l\)</span> 是最小值</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.MaxAbsScaler.html#ray.data.preprocessors.MaxAbsScaler"><code class="docutils literal notranslate"><span class="pre">MaxAbsScaler</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.MaxAbsScaler.html"><code class="docutils literal notranslate"><span class="pre">MaxAbsScaler</span></code></a></p></td>
 <td><p>数据稀疏</p></td>
 <td><p><span class="math notranslate nohighlight">\(x' = \frac{x}{\max{\vert x \vert}}\)</span></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.PowerTransformer.html#ray.data.preprocessors.PowerTransformer"><code class="docutils literal notranslate"><span class="pre">PowerTransformer</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.PowerTransformer.html"><code class="docutils literal notranslate"><span class="pre">PowerTransformer</span></code></a></p></td>
 <td><p>将数据变为正太分布</p></td>
 <td><p>Yeo-Johnson 或 Box-Cox</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.Normalizer.html#ray.data.preprocessors.Normalizer"><code class="docutils literal notranslate"><span class="pre">Normalizer</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.preprocessors.Normalizer.html"><code class="docutils literal notranslate"><span class="pre">Normalizer</span></code></a></p></td>
 <td><p>需要对数据进行正则化</p></td>
 <td><p><span class="math notranslate nohighlight">\(x' = \frac{x}{\lVert x \rVert_p}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(p\)</span> 是正则方式，比如 <code class="docutils literal notranslate"><span class="pre">l1</span></code> 正则是绝对值求和</p></td>

@@ -391,7 +391,7 @@ document.write(`
 <p><a class="reference internal" href="mpi-hello-world.html#mpi-hello-world"><span class="std std-numref">章节 5.2</span></a> 中我们介绍了两种通信模式，即双边和单边。前几章节的点对点通信和集合通信主要针对的双边通信，本节主要介绍单边通信。单边通信是进程间直接访问远程内存，又称为远程内存访问（Remote Memory Access，RMA）。</p>
 <section id="window">
 <h2>Window<a class="headerlink" href="#window" title="Permalink to this heading">#</a></h2>
-<p>任何进程所分配的内存都是私有的，即只被进程自己访问，远程内存访问要把进程自己的内存区域暴露给其他进程访问，这部分内存不再私有，而变成了公共的，需要特别处理。在 MPI 中，使用窗口（Window）定义可被远程访问的内存区域。某个内存区域被设置为允许远程访问，所有 Window 内的进程都可对这个区域进行读写。<a class="reference internal" href="#rma-window"><span class="std std-numref">图 5.12</span></a> 分别介绍了私有的内存区域和可被远程访问的 Window。mpi4py 提供了 <code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win</span></code> 类进行 Window 相关操作。</p>
+<p>任何进程所分配的内存都是私有的，即只被进程自己访问，远程内存访问要把进程自己的内存区域暴露给其他进程访问，这部分内存不再私有，而变成了公共的，需要特别处理。在 MPI 中，使用窗口（Window）定义可被远程访问的内存区域。某个内存区域被设置为允许远程访问，所有 Window 内的进程都可对这个区域进行读写。<a class="reference internal" href="#rma-window"><span class="std std-numref">图 5.12</span></a> 分别介绍了私有的内存区域和可被远程访问的 Window。mpi4py 提供了 <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Win.html#mpi4py.MPI.Win"><code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win</span></code></a> 类进行 Window 相关操作。</p>
 <figure class="align-default" id="rma-window">
 <a class="reference internal image-reference" href="../_images/rma-window.svg"><img alt="../_images/rma-window.svg" src="../_images/rma-window.svg" width="600px" /></a>
 <figcaption>
@@ -401,15 +401,15 @@ document.write(`
 </section>
 <section id="id2">
 <h2>创建 Window<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
-<p>我们可以使用 <code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Allocate</span></code> 和 <code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Create</span></code> 创建 Window。其中 <code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Allocate</span></code> 创建新的内存缓存，并且该缓存可被远程访问；<code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Create</span></code> 将现有的某个内存缓存区域设置为可远程访问。具体而言，这个区别主要体现在这两个方法的第一个参数，<code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Allocate(size)</span></code> 传入的要创建内存缓存的字节数 <code class="docutils literal notranslate"><span class="pre">size</span></code>； <code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Create(memory)</span></code> 传入的是内存地址 <code class="docutils literal notranslate"><span class="pre">memory</span></code>。</p>
+<p>我们可以使用 <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Win.html#mpi4py.MPI.Win.Allocate"><code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Allocate</span></code></a> 和 <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Win.html#mpi4py.MPI.Win.Create"><code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Create</span></code></a> 创建 Window。其中 <code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Allocate</span></code> 创建新的内存缓存，并且该缓存可被远程访问；<code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Create</span></code> 将现有的某个内存缓存区域设置为可远程访问。具体而言，这个区别主要体现在这两个方法的第一个参数，<code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Allocate(size)</span></code> 传入的要创建内存缓存的字节数 <code class="docutils literal notranslate"><span class="pre">size</span></code>； <code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Create(memory)</span></code> 传入的是内存地址 <code class="docutils literal notranslate"><span class="pre">memory</span></code>。</p>
 </section>
 <section id="id3">
 <h2>读写操作<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
-<p>创建好可远程访问的 Window 后，可以使用三类方法来向内存区域读写数据：<code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Put</span></code>，<code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Get</span></code> 和 <code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Accumulate</span></code>。这三类方法都有两个参数：<code class="docutils literal notranslate"><span class="pre">origin</span></code> 和 <code class="docutils literal notranslate"><span class="pre">target_rank</span></code>，分别表示源进程和目标进程。源进程指的是调用读写方法的进程，目标进程是远程的进程。</p>
+<p>创建好可远程访问的 Window 后，可以使用三类方法来向内存区域读写数据：<a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Win.html#mpi4py.MPI.Win.Put"><code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Put</span></code></a>，<a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Win.html#mpi4py.MPI.Win.Get"><code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Get</span></code></a> 和 <a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.Win.html#mpi4py.MPI.Win.Accumulate"><code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.Win.Accumulate</span></code></a>。这三类方法都有两个参数：<code class="docutils literal notranslate"><span class="pre">origin</span></code> 和 <code class="docutils literal notranslate"><span class="pre">target_rank</span></code>，分别表示源进程和目标进程。源进程指的是调用读写方法的进程，目标进程是远程的进程。</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Win.Put</span></code> 将数据从源进程移动至目标进程。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Win.Get</span></code> 将数据从目标进程移动至源进程。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Win.Accumulate</span></code> 与 <code class="docutils literal notranslate"><span class="pre">Win.Put</span></code> 类似，也是将数据从源进程移动至目标进程，同时对源进程的数据和目标进程的数据进行了聚合操作，聚合操作的操作符包括：<code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.SUM</span></code>、<code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.PROD</span></code> 等。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Win.Accumulate</span></code> 与 <code class="docutils literal notranslate"><span class="pre">Win.Put</span></code> 类似，也是将数据从源进程移动至目标进程，同时对源进程的数据和目标进程的数据进行了聚合操作，聚合操作的操作符包括：<a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.SUM.html"><code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.SUM</span></code></a>、<a class="reference external" href="https://mpi4py.readthedocs.io/en/stable/reference/mpi4py.MPI.PROD.html"><code class="docutils literal notranslate"><span class="pre">mpi4py.MPI.PROD</span></code></a> 等。</p></li>
 </ul>
 </section>
 <section id="id4">
@@ -437,7 +437,9 @@ document.write(`
 <li><p>数据同步</p></li>
 <li><p>数据读写</p></li>
 </ol>
-<p>下面是一个案例，将其保存为 <code class="docutils literal notranslate"><span class="pre">rma_lock.py</span></code>：</p>
+<p><a class="reference internal" href="#mpi-rma-lock"><span class="std std-numref">代码片段 5.9</span></a> 展示了一个案例，其代码保存为 <code class="docutils literal notranslate"><span class="pre">rma-lock.py</span></code>。</p>
+<div class="literal-block-wrapper docutils container" id="mpi-rma-lock">
+<div class="code-block-caption"><span class="caption-number">代码片段 5.9 </span><span class="caption-text"><a class="reference external" href="http://rma-lock.py">rma-lock.py</a></span><a class="headerlink" href="#mpi-rma-lock" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
 <span class="kn">from</span> <span class="nn">mpi4py.util</span> <span class="kn">import</span> <span class="n">dtlib</span>
@@ -470,6 +472,7 @@ document.write(`
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;win.Get failed on Rank </span><span class="si">{</span><span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 </pre></div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

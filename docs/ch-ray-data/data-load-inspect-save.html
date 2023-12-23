@@ -494,7 +494,7 @@ document.write(`
 </div>
 </details>
 </div>
-<p>使用 <code class="docutils literal notranslate"><span class="pre">ray.data</span></code> 提供的 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.read_parquet.html#ray.data.read_parquet"><code class="docutils literal notranslate"><span class="pre">read_parquet()</span></code></a> 方法读取数据，得到一个 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>。</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">ray.data</span></code> 提供的 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.read_parquet.html"><code class="docutils literal notranslate"><span class="pre">read_parquet()</span></code></a> 方法读取数据，得到一个 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">parquet_file_path</span><span class="p">)</span>
@@ -691,7 +691,7 @@ payment_type     int64
 </div>
 </div>
 </div>
-<p>查看数据的某几行，可以使用 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.take.html#ray.data.Dataset.take"><code class="docutils literal notranslate"><span class="pre">Dataset.take()</span></code></a> 或 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.take_all.html#ray.data.Dataset.take_all"><code class="docutils literal notranslate"><span class="pre">Dataset.take_all()</span></code></a> 两个方法。<code class="docutils literal notranslate"><span class="pre">take()</span></code> 方法把 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 中的某一行取出，以字典的形式打印出来，字典的 Key 是字段名，字典的 Value 是对应的值。</p>
+<p>查看数据的某几行，可以使用 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.take.html"><code class="docutils literal notranslate"><span class="pre">Dataset.take()</span></code></a> 或 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.take_all.html"><code class="docutils literal notranslate"><span class="pre">Dataset.take_all()</span></code></a> 两个方法。<code class="docutils literal notranslate"><span class="pre">take()</span></code> 方法把 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 中的某一行取出，以字典的形式打印出来，字典的 Key 是字段名，字典的 Value 是对应的值。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -713,7 +713,7 @@ payment_type     int64
 </div>
 </div>
 </div>
-<p>也可以将 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 拆分为小的批次（Batch），使用 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.take_batch.html#ray.data.Dataset.take_batch"><code class="docutils literal notranslate"><span class="pre">Dataset.take_batch()</span></code></a> 查看一个 Batch 的数据。<code class="docutils literal notranslate"><span class="pre">take_batch()</span></code> 方法的一个重要参数是 <code class="docutils literal notranslate"><span class="pre">batch_size</span></code>，用来设置 Batch 大小。</p>
+<p>也可以将 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> 拆分为小的批次（Batch），使用 <a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.take_batch.html"><code class="docutils literal notranslate"><span class="pre">Dataset.take_batch()</span></code></a> 查看一个 Batch 的数据。<code class="docutils literal notranslate"><span class="pre">take_batch()</span></code> 方法的一个重要参数是 <code class="docutils literal notranslate"><span class="pre">batch_size</span></code>，用来设置 Batch 大小。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">batch</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">take_batch</span><span class="p">(</span><span class="n">batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -869,10 +869,10 @@ payment_type     int64
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-center"><p>方法</p></td>
-<td class="text-center"><p>Dataset.write_parquet()</p></td>
-<td class="text-center"><p>Dataset.write_csv()</p></td>
-<td class="text-center"><p>Dataset.write_json()</p></td>
-<td class="text-center"><p>Dataset.write_tfrecords()</p></td>
+<td class="text-center"><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.write_parquet.html">Dataset.write_parquet()</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.write_csv.html">Dataset.write_csv()</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.write_json.html">Dataset.write_json()</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.write_tfrecords.html">Dataset.write_tfrecords()</a></p></td>
 </tr>
 </tbody>
 </table>
