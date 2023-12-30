@@ -4,8 +4,8 @@ sphinx_copybutton
 myst_nb
 sphinx_comments
 sphinx_external_toc
-sphinx.ext.intersphinx
 sphinx_design
 sphinx_book_theme
-sphinxcontrib.bibtex
-sphinx_jupyterbook_latex
+sphinxcontrib-bibtex
+sphinx-jupyterbook-latex
+sphinxcontrib-jsmath
