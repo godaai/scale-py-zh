@@ -10,6 +10,7 @@ subtrees:
     entries:
     - file: ch-dask/dask-intro
     - file: ch-dask/dask-dataframe-intro
+    - file: ch-dask/dask-distributed
   - file: ch-ray-core/index
     entries:
       - file: ch-ray-core/ray-intro
