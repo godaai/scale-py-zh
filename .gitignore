@@ -9,10 +9,6 @@ data/
 *egg-info*
 dist*
 _build/*
-!_build/eval/
-_build/eval/*
-!_build/eval/ch-*/
 test*.md
-run.sh
 .idea
 env
