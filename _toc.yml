@@ -11,6 +11,11 @@ subtrees:
     - file: ch-dask/dask-intro
     - file: ch-dask/dask-dataframe-intro
     - file: ch-dask/dask-distributed
+    - file: ch-dask/task-graph-partitioning
+  - file: ch-dask-dataframe/index
+    entries:
+    - file: ch-dask-dataframe/dask-pandas
+    - file: ch-dask-dataframe/read-write
   - file: ch-ray-core/index
     entries:
       - file: ch-ray-core/ray-intro
