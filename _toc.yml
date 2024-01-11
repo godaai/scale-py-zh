@@ -36,3 +36,6 @@ subtrees:
     - file: ch-mpi/point-to-point
     - file: ch-mpi/collective
     - file: ch-mpi/remote-memory-access
+  - file: ch-mpi-large-model/index
+    entries:
+    - file: ch-mpi/nccl.md
