@@ -1,1 +1,94 @@
-<mxfile host="Electron" modified="2023-11-04T02:24:10.303Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/20.7.4 Chrome/106.0.5249.199 Electron/21.3.3 Safari/537.36" version="20.7.4" etag="n8lZwULQt2dpo8Mf5MBe" type="device"><diagram id="7onhE7s8I3OeBTNW9OX0" name="第 1 页">7Vpbj6M2FP41ftwKGzDwCAlp1YtUzWzV9qliwRPQEpyCM0n219c3wjUzSRoys7uRIsU+to/NOd+5GYA5W+1+LKN1+htNSA6QkeyAOQcIQQNh/icoe0XBJlSEZZklelJDeMy+kHqlpm6yhFSdiYzSnGXrLjGmRUFi1qFFZUm33WlPNO/uuo6WZEB4jKN8SP0zS1iqqC5yGvpPJFum9c4Qe2pkFdWT9ZNUaZTQbYtkhsCclZQy1VrtZiQXwqvlotYtjoweDlaSgp2y4Nfdz58/fkGrh39++aN42j8sbCP9YCouz1G+0Q+sD8v2tQRIkfhCkLxX0IITg5Stct6DvFnSTZEQsYPBe0+0YFqFyOL9ipX080Fu/IkDxZ0kA6E3TwEPsuGgInRFWLnnU7aN9G0t0bQl+JpWkjxi2XOXfaRBsDywO+zwO834xsjQgEWG5qPhiiyjy6KimzImelVb2j1G+DVGLCqXhA0Y8UbrsRuSVOYZirVGFItzJpSyjoqOhvG/G4FBqb0PlVSfzycga72TGqvHeWsp/0MbuAvgQRB6wDWAyxsYeBgEXr0HP7LaRq/oY4qRHesCSUFlRnNaNkB7yvK8R4rybFnwbszxQjg9eCYly7i9+npglSWJ2CbYphkjj+soFntuuXcawFWLiDMgu3PhWKsZ210119begqs3AlfTOI7MDhTO1bt9N+gXDdrsS/5Sgx4wmtig8ZQGjYEbAt+WdmyBAN8N+qBm+MYGDeGkFk12GftLjP1g697feqZoz3ftzr4j5nds82bPVC18mc0PGMHb2jxER41e6PEUo4fHjP6joSY8kPiZ/4HQBT4CfiAaAQ/qJggd4Qx8t97yU/m/NhT8ghnwTJE/+HPguTKRmIHAl+7GAb4hGoEJPLt1nPoUwknxozlyaAEClYfwhW0npcTyrp1UywKhdR2nBXEPp87QaUFrxOCcybzWWGFxXrg6jlyoJjxyt/d1xacJVH8olLXq4amqny5gjZUe94D1YsByYUeJyHYuDFh9Rv2zTB2wpi0/vkXd26Z3nWRlwOjWycpYhXJc93EeVVUWn6h+6S6TqErlYOO/v6ZSFDpW11Xbl5ai1iuMpta0M9S0yuBE5ejJhiXzyLlovPtYjK4Ui/u1IzStQSy+be3ojpjktbIwJCfgaCVkW3yq1nLQGEvzscjoA5ndu3Pgh63sfnCVeJ1iQ+WGsqoJFqKA4Bt5AfDC4Ym/8wTS6ieQeAjaQ33RQa07FWq9exJxZmix3N7bhksTyAGjGyeQ9fX5JDceppow9v7CEfcJwmdxV8V91uJadx7f+82EhXtJKX7r8rR2JpMgzKoR9sJVVyv0+bCOgfJ3x9xVMGfbPcy5I5irU7XbYG7a1+zfYkSzrWuVxX1GNy6L0XnXYeeVxZOrnx9TyvlVh/pWOHGNrnptfGFRPcDJjYtqdN7V2Qk4Gd6QjDvb9+sEkNv7uuJi5ZrmRE6Ad5tPuNT05kM4M/wP</diagram></mxfile>
+<mxfile host="Electron" modified="2024-01-11T01:04:10.914Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.11 Chrome/114.0.5735.289 Electron/25.9.8 Safari/537.36" etag="3Sr-gA52h_FsYlCV4HgN" version="22.1.11" type="device">
+  <diagram id="7onhE7s8I3OeBTNW9OX0" name="第 1 页">
+    <mxGraphModel dx="954" dy="617" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-3" value="" style="endArrow=none;html=1;rounded=0;fontSize=24;strokeWidth=2;fontFamily=Times New Roman;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="200" y="240" as="sourcePoint" />
+            <mxPoint x="600" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-4" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;发送方&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="665" y="220" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-5" value="" style="endArrow=none;html=1;rounded=0;fontSize=24;strokeWidth=2;fontFamily=Times New Roman;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="200" y="330" as="sourcePoint" />
+            <mxPoint x="600" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-6" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;接收方&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="665" y="310" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-11" value="" style="endArrow=none;html=1;rounded=0;fontSize=24;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fontFamily=Times New Roman;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="230" y="346" as="sourcePoint" />
+            <mxPoint x="230" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-12" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;T0: Recv 被调用&lt;br style=&quot;font-size: 14px;&quot;&gt;缓存区无法被用户读写&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="160" y="370" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-13" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;T1: Send&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="210" y="170" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-14" value="" style="endArrow=none;html=1;rounded=0;fontSize=24;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fontFamily=Times New Roman;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="281" y="257" as="sourcePoint" />
+            <mxPoint x="281" y="221" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-15" value="" style="endArrow=none;html=1;rounded=0;fontSize=24;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fontFamily=Times New Roman;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="539" y="346" as="sourcePoint" />
+            <mxPoint x="539" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-16" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;dashed=1;strokeWidth=2;fontFamily=Times New Roman;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="174" y="150" as="sourcePoint" />
+            <mxPoint x="644" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-17" value="时间轴" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="665" y="134" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-18" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;T2:&amp;nbsp; 缓存数据被发送&lt;br style=&quot;font-size: 14px;&quot;&gt;Send 返回&amp;nbsp;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="410" y="164" width="160" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-19" value="" style="endArrow=none;html=1;rounded=0;fontSize=24;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fontFamily=Times New Roman;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="257" as="sourcePoint" />
+            <mxPoint x="480" y="221" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-20" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;T3: 发送结束&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="469" y="360" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-22" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;T4: 缓存区被填充&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="559" y="380" width="165" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-23" value="" style="endArrow=none;html=1;rounded=0;fontSize=24;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fontFamily=Times New Roman;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="549" y="346" as="sourcePoint" />
+            <mxPoint x="549" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-24" value="" style="endArrow=classic;html=1;rounded=0;fontSize=24;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fontFamily=Times New Roman;" parent="1" source="LxJkTz2mR_KUnfyRF50h-22" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="809" y="560" as="sourcePoint" />
+            <mxPoint x="549" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LxJkTz2mR_KUnfyRF50h-25" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;fontSize=14;fontFamily=Times New Roman;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="285" y="260" as="sourcePoint" />
+            <mxPoint x="533" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

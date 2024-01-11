@@ -1,0 +1,55 @@
+<mxfile host="Electron" modified="2024-01-11T02:47:08.469Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.11 Chrome/114.0.5735.289 Electron/25.9.8 Safari/537.36" etag="NiW-IWaVPkMKCnXsZ0Jt" version="22.1.11" type="device">
+  <diagram name="第 1 页" id="pyjEM-jicQO8_g4XQQeG">
+    <mxGraphModel dx="954" dy="617" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tXq19mEmbgu8rRgs-pd1-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#90C9E6;opacity=70;strokeColor=#90C9E6;" vertex="1" parent="1">
+          <mxGeometry x="155" y="168" width="446" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="tXq19mEmbgu8rRgs-pd1-2" value="&lt;font style=&quot;font-size: 18px;&quot; face=&quot;Times New Roman&quot;&gt;&lt;b style=&quot;&quot;&gt;Ray AlR&lt;/b&gt; enables simple scaling of Al workloads.&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="153" y="173" width="377" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="tXq19mEmbgu8rRgs-pd1-4" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 18px;&quot;&gt;Data&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#219EBC;" vertex="1" parent="1">
+          <mxGeometry x="165" y="214" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tXq19mEmbgu8rRgs-pd1-5" value="&lt;font style=&quot;font-size: 18px;&quot; face=&quot;Times New Roman&quot;&gt;Train&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#219EBC;" vertex="1" parent="1">
+          <mxGeometry x="251" y="214" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tXq19mEmbgu8rRgs-pd1-6" value="&lt;font style=&quot;font-size: 18px;&quot; face=&quot;Times New Roman&quot;&gt;Tune&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#219EBC;" vertex="1" parent="1">
+          <mxGeometry x="337" y="214" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tXq19mEmbgu8rRgs-pd1-7" value="&lt;font style=&quot;font-size: 18px;&quot; face=&quot;Times New Roman&quot;&gt;Serve&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#219EBC;" vertex="1" parent="1">
+          <mxGeometry x="423" y="214" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tXq19mEmbgu8rRgs-pd1-8" value="&lt;font style=&quot;font-size: 18px;&quot; face=&quot;Times New Roman&quot;&gt;RLlib&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#219EBC;" vertex="1" parent="1">
+          <mxGeometry x="509" y="214" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tXq19mEmbgu8rRgs-pd1-10" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;opacity=90;strokeColor=#E6E6E6;" vertex="1" parent="1">
+          <mxGeometry x="155" y="311" width="693" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tXq19mEmbgu8rRgs-pd1-11" value="&lt;font style=&quot;font-size: 18px;&quot; face=&quot;Times New Roman&quot;&gt;Tasks&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#B3B3B3;" vertex="1" parent="1">
+          <mxGeometry x="185" y="321" width="210" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="tXq19mEmbgu8rRgs-pd1-12" value="&lt;font style=&quot;font-size: 18px;&quot; face=&quot;Times New Roman&quot;&gt;Actors&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#B3B3B3;" vertex="1" parent="1">
+          <mxGeometry x="395" y="321" width="210" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="tXq19mEmbgu8rRgs-pd1-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="tXq19mEmbgu8rRgs-pd1-13" target="tXq19mEmbgu8rRgs-pd1-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tXq19mEmbgu8rRgs-pd1-13" value="&lt;font style=&quot;font-size: 18px;&quot; face=&quot;Times New Roman&quot;&gt;Objects&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#B3B3B3;" vertex="1" parent="1">
+          <mxGeometry x="605" y="321" width="210" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="tXq19mEmbgu8rRgs-pd1-14" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;opacity=90;strokeColor=#E6E6E6;" vertex="1" parent="1">
+          <mxGeometry x="610" y="168" width="238" height="142" as="geometry" />
+        </mxCell>
+        <mxCell id="tXq19mEmbgu8rRgs-pd1-15" value="&lt;div style=&quot;font-size: 18px;&quot;&gt;&lt;font style=&quot;font-size: 18px;&quot; face=&quot;Times New Roman&quot;&gt;&lt;b&gt;Ray Core&lt;/b&gt; enables scalable&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 18px;&quot;&gt;&lt;font style=&quot;font-size: 18px;&quot; face=&quot;Times New Roman&quot;&gt;apps to be built in pure Python.&lt;/font&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="613" y="168" width="228" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="tXq19mEmbgu8rRgs-pd1-17" value="&lt;font style=&quot;font-size: 18px;&quot; face=&quot;Times New Roman&quot;&gt;Custom Applications&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#219EBC;dashed=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="631" y="221" width="192" height="82" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
