@@ -33,8 +33,9 @@ name: computer-arch
 
 如果不对计算任务（Task）进行并行加速，大部分计算任务是顺序执行的，即 {numref}`serial-timeline` 所示。这里的 Worker 可以是一个计算核心，也可以是集群中的一个节点。
 
-```{figure} ../img/ch-intro/serial-timeline.png
+```{figure} ../img/ch-intro/serial-timeline.svg
 ---
+width: 600px
 name: serial-timeline
 ---
 顺序执行的时间轴示意图
@@ -42,8 +43,9 @@ name: serial-timeline
 
 集群和异构计算提供了更多可利用的计算核心，并行计算将计算任务分布到多个 Worker 上，如 {ref}`distributed-timeline` 所示。无论是在单机多核编程，还是在集群多机，都需要一个调度器（Scheduler）将计算任务分布到不同的 Worker 上。
 
-```{figure} ../img/ch-intro/distributed-timeline.png
+```{figure} ../img/ch-intro/_distributed-timeline.svg
 ---
+width: 600px
 name: distributed-timeline
 ---
 分布式执行的时间轴示意图
