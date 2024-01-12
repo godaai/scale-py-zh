@@ -42,7 +42,7 @@ name: serial-timeline
 
 集群和异构计算提供了更多可利用的计算核心，并行计算将计算任务分布到多个 Worker 上，如 {ref}`distributed-timeline` 所示。无论是在单机多核编程，还是在集群多机，都需要一个调度器（Scheduler）将计算任务分布到不同的 Worker 上。
 
-```{figure} ../img/ch-intro/distributed-timeline.png
+```{figure} ../img/ch-intro/distributed-timeline.svg
 ---
 name: distributed-timeline
 ---

@@ -17,7 +17,7 @@ Ray Core 提供的 API 将 Python 任务横向扩展到集群上，最关键的 
 * 行动者（Actor）：面向类（Class）的接口，用于定义一个类，该类可以在集群中分布式地执行。
 * 对象（Object）：分布式的对象，对象不可变（Immutable），用于在 Task 和 Actor 之间传递数据。
 
-```{figure} ../img/ch-ray-core/ray-apis.png
+```{figure} ../img/ch-ray-core/ray-apis.svg
 ---
 width: 800px
 name: ray-core-apis
