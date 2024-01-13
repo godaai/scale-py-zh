@@ -13,7 +13,7 @@ html_logo = 'logo.png'
 html_sourcelink_suffix = ''
 html_theme = 'sphinx_book_theme'
 html_theme_options = {
-    'search_bar_text': 'Search this book...', 
+    'search_bar_text': '搜索...', 
     'launch_buttons': {'notebook_interface': 'classic', 'binderhub_url': '', 'jupyterhub_url': '', 'thebe': False, 'colab_url': ''}, 
     'path_to_docs': 'docs', 
     'repository_url': 'https://github.com/godaai/distributed-python', 
