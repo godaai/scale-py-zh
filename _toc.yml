@@ -6,6 +6,9 @@ subtrees:
     entries:
     - file: ch-intro/computer-architecture
     - file: ch-intro/thread-process
+  - file: ch-data-science/index
+    entries:
+    - file: ch-data-science/data-science-lifecycle
   - file: ch-dask/index
     entries:
     - file: ch-dask/dask-intro
@@ -36,3 +39,7 @@ subtrees:
     - file: ch-mpi/point-to-point
     - file: ch-mpi/collective
     - file: ch-mpi/remote-memory-access
+  - file: ch-mpi-large-model/index
+    entries:
+    - file: ch-mpi-large-model/nccl
+  - file: ref

@@ -1,3 +1,4 @@
+ipykernel
 ray[data,train,tune,rllib]
 dask[complete]
 graphviz
