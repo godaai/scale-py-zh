@@ -11,3 +11,4 @@ grpcio
 tqdm
 ipywidgets
 ipykernel
+scikit-learn

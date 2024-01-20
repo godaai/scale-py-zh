@@ -1,146 +1,110 @@
-<mxfile host="Electron" modified="2024-01-12T07:10:23.268Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.11 Chrome/114.0.5735.289 Electron/25.9.8 Safari/537.36" etag="ENF5Q1NdmRuSdkL6KEPd" version="22.1.11" type="device">
+<mxfile host="Electron" modified="2024-01-20T00:30:32.439Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.18 Chrome/120.0.6099.199 Electron/28.1.2 Safari/537.36" etag="QKVK4MtlKiOaFOLx8YyP" version="22.1.18" type="device">
   <diagram name="第 1 页" id="_Ih8QWEVDqEX9pq31nYS">
-    <mxGraphModel dx="1193" dy="771" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+    <mxGraphModel dx="1549" dy="991" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="3kyInW_LCxdXbSzIgime-41" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="177" y="135" width="1059" height="519" as="geometry" />
+        <mxCell id="VG9qgCdwZ4cWexaSaQvm-19" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;align=left;" vertex="1" parent="1">
+          <mxGeometry x="222" y="256" width="210" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-1" value="&lt;font face=&quot;Georgia&quot; style=&quot;font-size: 26px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Python&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="221" y="162" width="136" height="30" as="geometry" />
+        <mxCell id="VG9qgCdwZ4cWexaSaQvm-22" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;align=left;" vertex="1" parent="1">
+          <mxGeometry x="222" y="509" width="210" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-2" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=3;" edge="1" parent="1">
+        <mxCell id="VG9qgCdwZ4cWexaSaQvm-20" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;align=left;" vertex="1" parent="1">
+          <mxGeometry x="222" y="364" width="210" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="3kyInW_LCxdXbSzIgime-41" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="149" y="198" width="750" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="3kyInW_LCxdXbSzIgime-1" value="&lt;font face=&quot;Helvetica&quot; style=&quot;font-size: 26px;&quot;&gt;&lt;b style=&quot;&quot;&gt;单机 Python&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="247.5" y="217" width="179" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3kyInW_LCxdXbSzIgime-3" value="&lt;font face=&quot;Helvetica&quot; style=&quot;font-size: 26px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Ray APIs&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="506" y="217" width="136" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3kyInW_LCxdXbSzIgime-6" value="&lt;font face=&quot;Garamond&quot; style=&quot;font-size: 16px;&quot;&gt;def f(x):&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;# do something with x&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;y = ...&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;return y&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="229" y="258.5" width="200" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="3kyInW_LCxdXbSzIgime-8" value="&lt;font face=&quot;Garamond&quot; style=&quot;font-size: 16px;&quot;&gt;&lt;span style=&quot;&quot;&gt;class Cls():&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;def __init__(self, x):&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;def f(self, a):&lt;br&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;...&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;def g(self, a):&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;...&lt;/span&gt;&lt;/div&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="227" y="375.5" width="200" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="3kyInW_LCxdXbSzIgime-10" value="&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot; face=&quot;Garamond&quot;&gt;import numpy as np&lt;br&gt;a = np.arange(1, 10e6)&lt;br&gt;b = a * 2&lt;/font&gt;&lt;br&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="229" y="511.5" width="200" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="3kyInW_LCxdXbSzIgime-17" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;align=left;" parent="1" vertex="1">
+          <mxGeometry x="469" y="256" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="3kyInW_LCxdXbSzIgime-18" value="&lt;font face=&quot;Garamond&quot; style=&quot;font-size: 16px;&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot; color=&quot;#cc0000&quot;&gt;@ray.remote&lt;/font&gt;&lt;br&gt;def f(x):&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;# do something with x&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;y = ...&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;return y&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="474.5" y="258.5" width="200" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="3kyInW_LCxdXbSzIgime-19" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;align=left;" parent="1" vertex="1">
+          <mxGeometry x="469.5" y="364" width="209" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="3kyInW_LCxdXbSzIgime-20" value="&lt;font face=&quot;Garamond&quot; style=&quot;font-size: 16px;&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;span style=&quot;color: rgb(204, 0, 0);&quot;&gt;@ray.remote&lt;/span&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;br&gt;class Cls():&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;def __init__(self, x):&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;def f(self, a):&lt;br&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;...&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;def g(self, a):&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;...&lt;/span&gt;&lt;/div&gt;&lt;/font&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="474.5" y="372" width="200" height="114" as="geometry" />
+        </mxCell>
+        <mxCell id="3kyInW_LCxdXbSzIgime-21" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;align=left;" parent="1" vertex="1">
+          <mxGeometry x="469.5" y="511" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="3kyInW_LCxdXbSzIgime-22" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;font face=&quot;Garamond&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;import numpy as np&lt;/font&gt;&lt;br&gt;a = np.arange(1, 10e6)&lt;br&gt;obj_a = &lt;font color=&quot;#cc0000&quot;&gt;ray.put&lt;/font&gt;(a)&lt;br&gt;b = ray.get(obj_a) * 2&lt;/font&gt;&lt;br&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="479.5" y="521" width="200" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="3kyInW_LCxdXbSzIgime-24" value="&lt;font style=&quot;font-size: 26px;&quot;&gt;&lt;b&gt;分布式&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="716" y="214.5" width="115" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="VG9qgCdwZ4cWexaSaQvm-6" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=3;strokeColor=#CCCCCC;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="346" y="178" as="sourcePoint" />
-            <mxPoint x="416" y="178" as="targetPoint" />
+            <mxPoint x="424" y="230.47" as="sourcePoint" />
+            <mxPoint x="479" y="230.47" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-3" value="&lt;font face=&quot;Georgia&quot; style=&quot;font-size: 26px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Ray APIs&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="416" y="162" width="136" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-5" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;strokeColor=#B3B3B3;align=left;" vertex="1" parent="1">
-          <mxGeometry x="212" y="229" width="211" height="93" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-6" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Comic Sans MS&quot;&gt;def f(x):&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;# do something with x&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;y = ...&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;return y&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="234" y="227" width="179" height="95" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-7" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;strokeColor=#B3B3B3;align=left;" vertex="1" parent="1">
-          <mxGeometry x="212" y="367.5" width="212" height="114.5" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-8" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Comic Sans MS&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;class Cls():&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;def __init__(self, x):&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;def f(self, a):&lt;br&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;...&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;def g(self, a):&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;...&lt;/span&gt;&lt;/div&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="230" y="369" width="179" height="112" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-9" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;strokeColor=#B3B3B3;align=left;" vertex="1" parent="1">
-          <mxGeometry x="214" y="531" width="211" height="73" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-10" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;font color=&quot;#219ebc&quot;&gt;import numpy as np&lt;/font&gt;&lt;br&gt;a = np.arange(1, 10e6)&lt;br&gt;b = a * 2&lt;br&gt;&lt;/span&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="236" y="520" width="179" height="95" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-11" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=3;fontColor=#90C9E6;strokeColor=#90C9E6;" edge="1" parent="1">
+        <mxCell id="VG9qgCdwZ4cWexaSaQvm-7" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=3;strokeColor=#CCCCCC;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="454" y="274" as="sourcePoint" />
-            <mxPoint x="524" y="274" as="targetPoint" />
+            <mxPoint x="664" y="233" as="sourcePoint" />
+            <mxPoint x="719" y="233" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-12" value="&lt;font style=&quot;font-size: 18px;&quot; face=&quot;Times New Roman&quot;&gt;Task&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="454" y="243" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-13" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=3;fontColor=#90C9E6;strokeColor=#90C9E6;" edge="1" parent="1">
+        <mxCell id="VG9qgCdwZ4cWexaSaQvm-11" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=3;fontColor=#90C9E6;strokeColor=#90C9E6;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="454" y="427" as="sourcePoint" />
-            <mxPoint x="524" y="427" as="targetPoint" />
+            <mxPoint x="437" y="427" as="sourcePoint" />
+            <mxPoint x="467" y="426.75" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-14" value="&lt;font style=&quot;font-size: 18px;&quot; face=&quot;Times New Roman&quot;&gt;Actor&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="454" y="396" width="60" height="30" as="geometry" />
+        <mxCell id="VG9qgCdwZ4cWexaSaQvm-13" value="Worker" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;fillColor=#FB8402;strokeColor=#36393d;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="716" y="312.25" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-15" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=3;fontColor=#90C9E6;strokeColor=#90C9E6;" edge="1" parent="1">
+        <mxCell id="VG9qgCdwZ4cWexaSaQvm-14" value="Worker" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;fillColor=#FB8402;strokeColor=#36393d;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="716" y="396.75" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VG9qgCdwZ4cWexaSaQvm-15" value="Worker" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;fillColor=#FB8402;strokeColor=#36393d;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="716" y="477.25" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VG9qgCdwZ4cWexaSaQvm-16" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" target="VG9qgCdwZ4cWexaSaQvm-13">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="454" y="589" as="sourcePoint" />
-            <mxPoint x="524" y="589" as="targetPoint" />
+            <mxPoint x="692" y="427.25" as="sourcePoint" />
+            <mxPoint x="1018" y="387.25" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-16" value="&lt;font face=&quot;Times New Roman&quot;&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Distributed&lt;br&gt;immutable&lt;br&gt;object&lt;br&gt;&lt;/span&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="429" y="517" width="115" height="67" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-17" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;strokeColor=#B3B3B3;align=left;" vertex="1" parent="1">
-          <mxGeometry x="555" y="225" width="211" height="99" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-18" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Comic Sans MS&quot;&gt;&lt;font color=&quot;#cc0000&quot;&gt;@ray.remote&lt;/font&gt;&lt;br&gt;def f(x):&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;# do something with x&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;y = ...&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;return y&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="577" y="225" width="179" height="95" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-19" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;strokeColor=#B3B3B3;align=left;" vertex="1" parent="1">
-          <mxGeometry x="558" y="361.75" width="212" height="126.5" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-20" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Comic Sans MS&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;span style=&quot;color: rgb(204, 0, 0); font-family: &amp;quot;Comic Sans MS&amp;quot;; font-size: 14px;&quot;&gt;@ray.remote&lt;/span&gt;&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Comic Sans MS&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;class Cls():&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;def __init__(self, x):&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;def f(self, a):&lt;br&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;...&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;def g(self, a):&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;...&lt;/span&gt;&lt;/div&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="576" y="363.25" width="179" height="114" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-21" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;strokeColor=#B3B3B3;align=left;" vertex="1" parent="1">
-          <mxGeometry x="558" y="528" width="211" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-22" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;font color=&quot;#219ebc&quot;&gt;import numpy as np&lt;/font&gt;&lt;br&gt;a = np.arange(1, 10e6)&lt;br&gt;obj_a = ray.put(a)&lt;br&gt;b = ray.get(obj_a) * 2&lt;br&gt;&lt;/span&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="580" y="517" width="179" height="95" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-23" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=3;fontColor=#90C9E6;strokeColor=#90C9E6;" edge="1" parent="1">
+        <mxCell id="VG9qgCdwZ4cWexaSaQvm-17" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="VG9qgCdwZ4cWexaSaQvm-14">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="807" y="272" as="sourcePoint" />
-            <mxPoint x="888" y="272" as="targetPoint" />
+            <mxPoint x="692" y="427.25" as="sourcePoint" />
+            <mxPoint x="726" y="352.25" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-24" value="&lt;font face=&quot;Times New Roman&quot;&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Distributed&lt;br&gt;&lt;/span&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="789" y="231" width="115" height="35" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-25" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=3;fontColor=#90C9E6;strokeColor=#90C9E6;" edge="1" parent="1">
+        <mxCell id="VG9qgCdwZ4cWexaSaQvm-18" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" target="VG9qgCdwZ4cWexaSaQvm-15">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="805" y="431" as="sourcePoint" />
-            <mxPoint x="886" y="431" as="targetPoint" />
+            <mxPoint x="692" y="427.25" as="sourcePoint" />
+            <mxPoint x="1120" y="391.25" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-26" value="&lt;font face=&quot;Times New Roman&quot;&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Distributed&lt;br&gt;&lt;/span&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="787" y="390" width="115" height="35" as="geometry" />
+        <mxCell id="3kyInW_LCxdXbSzIgime-12" value="&lt;font face=&quot;Helvetica&quot; style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Task&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="625" y="254" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-27" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=3;fontColor=#90C9E6;strokeColor=#90C9E6;" edge="1" parent="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="807" y="576" as="sourcePoint" />
-            <mxPoint x="888" y="576" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="3kyInW_LCxdXbSzIgime-14" value="&lt;font face=&quot;Helvetica&quot; style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Actor&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="623" y="361.75" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-28" value="&lt;font face=&quot;Times New Roman&quot;&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Distributed&lt;br&gt;&lt;/span&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="789" y="535" width="115" height="35" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-29" value="&lt;font face=&quot;Comic Sans MS&quot; style=&quot;font-size: 18px;&quot;&gt;&lt;font color=&quot;#cc0000&quot;&gt;f()&lt;/font&gt;&lt;br&gt;Node&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#990000;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="933" y="248" width="93" height="49" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-30" value="&lt;font face=&quot;Comic Sans MS&quot; style=&quot;font-size: 18px;&quot;&gt;&lt;font color=&quot;#cc0000&quot;&gt;f()&lt;/font&gt;&lt;br&gt;Node&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#990000;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="1100" y="248" width="93" height="49" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-31" value="&lt;font face=&quot;Comic Sans MS&quot; style=&quot;font-size: 34px;&quot;&gt;...&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="1033" y="247" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-32" value="&lt;font face=&quot;Comic Sans MS&quot; style=&quot;font-size: 18px;&quot;&gt;&lt;font color=&quot;#cc0000&quot;&gt;Cls&lt;/font&gt;&lt;br&gt;Node&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#990000;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="933" y="407" width="93" height="49" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-33" value="&lt;font face=&quot;Comic Sans MS&quot; style=&quot;font-size: 18px;&quot;&gt;&lt;font color=&quot;#cc0000&quot;&gt;Cls()&lt;/font&gt;&lt;br&gt;Node&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#990000;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="1100" y="407" width="93" height="49" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-34" value="&lt;font face=&quot;Comic Sans MS&quot; style=&quot;font-size: 34px;&quot;&gt;...&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="1033" y="406" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-35" value="&lt;font face=&quot;Comic Sans MS&quot; style=&quot;font-size: 18px;&quot;&gt;&lt;br&gt;Node&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#990000;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="933" y="544" width="93" height="63" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-37" value="&lt;font face=&quot;Comic Sans MS&quot; style=&quot;font-size: 34px;&quot;&gt;...&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="1033" y="543" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-38" value="&lt;font face=&quot;Comic Sans MS&quot; style=&quot;font-size: 18px;&quot;&gt;a&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#90C9E6;strokeColor=#219EBC;" vertex="1" parent="1">
-          <mxGeometry x="941" y="553" width="75" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-39" value="&lt;font face=&quot;Comic Sans MS&quot; style=&quot;font-size: 18px;&quot;&gt;&lt;br&gt;Node&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#990000;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="1100" y="545" width="93" height="63" as="geometry" />
-        </mxCell>
-        <mxCell id="3kyInW_LCxdXbSzIgime-40" value="&lt;font color=&quot;#cc0000&quot; face=&quot;Comic Sans MS&quot; style=&quot;font-size: 18px;&quot;&gt;a&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#90C9E6;strokeColor=#219EBC;" vertex="1" parent="1">
-          <mxGeometry x="1108" y="554" width="75" height="20" as="geometry" />
+        <mxCell id="3kyInW_LCxdXbSzIgime-16" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;font face=&quot;Helvetica&quot;&gt;&lt;b&gt;Object&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="594" y="504" width="108.5" height="33.25" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

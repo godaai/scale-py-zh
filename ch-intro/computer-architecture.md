@@ -1,4 +1,4 @@
-(multi-core-cluster-heterogeneous-computing)=
+(computer-architecture)=
 # 现代计算机体系结构
 
 大数据与人工智能应用对算力要求极高，为应对飞速增长的算力需求，芯片与硬件厂商近年来重点发展多核、集群（Cluster）和异构计算（Heterogeneous Computing）。{numref}`computer-arch` 展示了现代计算机的体系结构。
@@ -23,30 +23,8 @@ name: computer-arch
 
 ## 网卡
 
-单台计算机的计算能力有限，为搭建一个高速互联的集群，数据中心服务器之间通常配置了高速网络，比如 RoCE（RDMA over Converged Ethernet）或 InfiniBand。每台计算机上配有至少一块高速网卡，多台计算机之间通过光纤互联，以获得极低的延迟和极高的吞吐率。这样不同节点之间的通信就像在单个节点上进行计算一样。
+单台计算机的计算能力有限，为搭建一个高速互联的集群，数据中心服务器之间通常配置了高速网络，比如 RoCE（RDMA over Converged Ethernet）或 InfiniBand。每台计算机上配有至少一块高速网卡，多台计算机之间通过光纤互联，以获得极低的延迟和极高的吞吐率。这样不同节点之间互相访问数据就像在单个节点上进行一样。
 
 ## 异构计算
 
-在异构计算的框架下，CPU 和主存通常被称为主机（Host），各类专用的加速器被称为设备（Device）。尽管异构计算是一个很宽泛的概念，但当前基于 GPU 的异构计算是主流，尤其是以英伟达为代表的 GPU 占据了大量市场份额，所以这里主要以 GPU 为例介绍异构计算。GPU 有区别于 CPU 的芯片微架构和编译软件栈。软件层面，英伟达的 GPU 提供了 CUDA（Compute Unified Device Architecture）编程接口，硬件层面，GPU 有很多个专用计算核心（CUDA Core）和 GPU 上的存储。通常，数据从主存到 GPU 存储之间搬运有一定成本。其他加速器与英伟达 GPU 整体结构也很相似。
-
-## 顺序执行与并行执行
-
-如果不对计算任务（Task）进行并行加速，大部分计算任务是顺序执行的，即 {numref}`serial-timeline` 所示。这里的 Worker 可以是一个计算核心，也可以是集群中的一个节点。
-
-```{figure} ../img/ch-intro/serial-timeline.svg
----
-width: 600px
-name: serial-timeline
----
-顺序执行的时间轴示意图
-```
-
-集群和异构计算提供了更多可利用的计算核心，并行计算将计算任务分布到多个 Worker 上，如 {ref}`distributed-timeline` 所示。无论是在单机多核编程，还是在集群多机，都需要一个调度器（Scheduler）将计算任务分布到不同的 Worker 上。
-
-```{figure} ../img/ch-intro/_distributed-timeline.svg
----
-width: 600px
-name: distributed-timeline
----
-分布式执行的时间轴示意图
-```
+在异构计算的框架下，CPU 和主存通常被称为主机（Host），各类专用的加速器被称为设备（Device）。尽管异构计算是一个很宽泛的概念，但当前基于 GPU 的异构计算是主流，尤其是以英伟达为代表的 GPU 占据了大量市场份额，所以这里主要以 GPU 为例介绍异构计算。GPU 有区别于 CPU 的芯片微架构和编译软件栈。软件层面，英伟达的 GPU 提供了 CUDA（Compute Unified Device Architecture）编程接口，硬件层面，GPU 有很多个专用计算核心（CUDA Core）和 GPU 上的存储（GPU Memory）。通常，数据从主存到 GPU 存储之间搬运有一定时间成本。其他加速器与英伟达 GPU 整体结构也很相似。

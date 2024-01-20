@@ -25,7 +25,7 @@ git clone https://github.com/godaai/python-data-science.git
 ```bash
 conda create -n dispy
 source activate dispy
-conda install python=3.11
+conda install python=3.11 anaconda::graphviz
 pip install -r requirements.txt
 ```
 
