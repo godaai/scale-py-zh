@@ -12,6 +12,8 @@ subtrees:
   - file: ch-data-science/index
     entries:
     - file: ch-data-science/data-science-lifecycle
+    - file: ch-data-science/machine-learning
+    - file: ch-data-science/python-ecosystem
   - file: ch-dask/index
     entries:
     - file: ch-dask/dask-intro
