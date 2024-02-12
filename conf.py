@@ -22,8 +22,8 @@ html_theme_options = {
     'home_page_in_toc': True,
     'icon_links': [
         {
-            "name": "English",
-            "url": "https://dp.godaai.org/",  # required
+            "name": "English Version",
+            "url": "https://godaai.github.io/distributed-python-en/",  # required
             "icon": "fa fa-language",
             "type": "fontawesome",
         },
