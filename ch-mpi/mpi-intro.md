@@ -1,7 +1,7 @@
 (mpi-intro)=
 # MPI 简介
 
-Message Passing Interface（MPI）是个经典的并行计算工具，由于它的“年龄”比较老，新一代程序员很少听说过这个“老古董”，也经常忽视其重要性。但随着人工智能大模型浪潮的到来，MPI 或者基于 MPI 思想的各类通讯库再次回到人们的视线内，因为大模型必须使用并行计算框架进行跨机通信。比如，大模型训练框架 deepspeed 就使用了 mpi4py 进行多机通信。
+Message Passing Interface（MPI）是个经典的并行计算工具，由于它的“年龄”比较老，新一代程序员很少听说过这个“老古董”，也经常忽视其重要性。但随着人工智能大模型浪潮的到来，MPI 或者基于 MPI 思想的各类通讯库再次回到人们的视线内，因为大模型必须使用并行计算框架进行跨机通信。比如，大模型训练框架 [DeepSpeed](https://github.com/microsoft/DeepSpeed) 就使用了 mpi4py 进行多机通信。
 
 ## 历史
 
@@ -53,5 +53,3 @@ pip install mpi4py
 conda install -c conda-forge mpich
 conda install -c conda-forge mpi4py
 ```
-
-大部分 MPI 程序均需要在命令行中先编译再拉起。为解决这个问题，我们还安装了 ipyparallel，可以在 Jupyter Notebook 中完成并行程序的拉起。

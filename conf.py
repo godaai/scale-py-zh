@@ -19,7 +19,21 @@ html_theme_options = {
     'repository_url': 'https://github.com/godaai/distributed-python', 
     'repository_branch': 'main', 
     'extra_footer': '', 
-    'home_page_in_toc': True, 
+    'home_page_in_toc': True,
+    'icon_links': [
+        {
+            "name": "English",
+            "url": "https://dp.godaai.org/",  # required
+            "icon": "fa fa-language",
+            "type": "fontawesome",
+        },
+        {
+            "name": "GitHub",
+            "url": "https://github.com/godaai/distributed-python",
+            "icon": "https://img.shields.io/github/stars/godaai/distributed-python?style=for-the-badge",
+            "type": "url",
+        },
+    ], 
     'announcement': "如果你觉得内容对你有帮助，请在 <a href=\"https://github.com/godaai/distributed-python\">GitHub</a> 上点个 star 吧！", 
     'analytics': {'google_analytics_id': ''}, 
     'use_repository_button': True, 

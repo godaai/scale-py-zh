@@ -7,7 +7,6 @@ data/
 *.DS_Store
 *.csv
 *egg-info*
-dist*
 _build/*
 test*.md
 .idea

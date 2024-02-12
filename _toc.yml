@@ -22,7 +22,6 @@ subtrees:
     - file: ch-dask/task-graph-partitioning
   - file: ch-dask-dataframe/index
     entries:
-    - file: ch-dask-dataframe/dask-pandas
     - file: ch-dask-dataframe/read-write
   - file: ch-ray-core/index
     entries:
