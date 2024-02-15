@@ -14,7 +14,13 @@ html_sourcelink_suffix = ''
 html_theme = 'sphinx_book_theme'
 html_theme_options = {
     'search_bar_text': '搜索...', 
-    'launch_buttons': {'notebook_interface': 'classic', 'binderhub_url': '', 'jupyterhub_url': '', 'thebe': False, 'colab_url': ''}, 
+    'launch_buttons': {
+        'notebook_interface': 'classic', 
+        'binderhub_url': '', 
+        'jupyterhub_url': '', 
+        'thebe': False, 
+        'colab_url': 'https://colab.research.google.com'
+    },
     'path_to_docs': 'docs', 
     'repository_url': 'https://github.com/godaai/distributed-python', 
     'repository_branch': 'main', 
@@ -41,6 +47,8 @@ html_theme_options = {
     'use_issues_button': False,
     "toc_title": "本节目录",
 }
+html_static_path = ["_static"]
+html_css_files = ["custom.css"]
 html_title = 'Python 分布式编程'
 latex_engine = 'pdflatex'
 myst_enable_extensions = ['colon_fence', 'dollarmath', 'linkify', 'substitution', 'tasklist']
