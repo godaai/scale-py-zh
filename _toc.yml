@@ -33,7 +33,11 @@ subtrees:
       - file: ch-ray-core/remote-function
       - file: ch-ray-core/remote-object
       - file: ch-ray-core/remote-class
-      - file: ch-ray-core/ray-internal 
+  - file: ch-ray-cluster/index
+    entries:
+      - file: ch-ray-cluster/ray-cluster
+      - file: ch-ray-cluster/ray-job
+      - file: ch-ray-cluster/ray-resource
   - file: ch-ray-data/index
     entries:
     - file: ch-ray-data/ray-data-intro
