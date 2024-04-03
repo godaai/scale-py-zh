@@ -1,7 +1,7 @@
 (data-parallel)=
 # 数据并行
 
-数据并行是一种最常见的大模型并行方法，相对其他并行，数据并行最简单。如 {numref}`data-parallel-img` 所示，模型被拷贝到不同的 GPU 设备上，训练数据被切分为多份，每份分给不同的 GPU 进行训练。
+数据并行是一种最常见的大模型并行方法，相对其他并行，数据并行最简单。如 {numref}`data-parallel-img` 所示，模型被拷贝到不同的 GPU 设备上，训练数据被切分为多份，每份分给不同的 GPU 进行训练。这种编程范式又被称为单程序多数据（Single Program Multiple Data，SPMD）。
 
 ```{figure} ../img/ch-mpi-large-model/data-parallel.svg
 ---

@@ -44,6 +44,9 @@ subtrees:
     - file: ch-ray-data/data-load-inspect-save
     - file: ch-ray-data/data-transform
     - file: ch-ray-data/preprocessor
+  - file: ch-ray-train-tune/index
+    entries:
+    - file: ch-ray-train-tune/ray-train
   - file: ch-mpi/index
     entries:
     - file: ch-mpi/mpi-intro
