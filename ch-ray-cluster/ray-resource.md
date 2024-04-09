@@ -112,7 +112,7 @@ remove_placement_group(pg)
 * `STRICT_SPREAD`：每个 Bundle 必须调度到不同的计算节点。
 * `SPREAD`：每个 Bundle 优先调度到不同的计算节点，如果无法满足条件，有些 Bundle 可以共用一个计算节点，如 {numref}`ray-pg-spread` 所示。
 
-```{figure} ../img/ch-ray-cluster/pg-pack.png
+```{figure} ../img/ch-ray-cluster/pg-pack.svg
 ---
 width: 600px
 name: ray-pg-pack
@@ -122,7 +122,7 @@ name: ray-pg-pack
 
 由于计算尽量调度到了少数计算节点，`STRICT_PACK` 和 `PACK` 的调度策略保证了数据的局部性（Data Locality），计算任务可以快速访问本地的数据。
 
-```{figure} ../img/ch-ray-cluster/pg-spread.png
+```{figure} ../img/ch-ray-cluster/pg-spread.svg
 ---
 width: 600px
 name: ray-pg-spread
