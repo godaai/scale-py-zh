@@ -1,4 +1,4 @@
-(data-parallel)=
+(sec-data-parallel)=
 # 数据并行
 
 数据并行是一种最常见的大模型并行方法，相对其他并行，数据并行最简单。如 {numref}`data-parallel-img` 所示，模型被拷贝到不同的 GPU 设备上，训练数据被切分为多份，每份分给不同的 GPU 进行训练。这种编程范式又被称为单程序多数据（Single Program Multiple Data，SPMD）。
@@ -13,7 +13,7 @@ name: data-parallel-img
 
 ## 非并行训练
 
-{numref}`machine-learning-intro` 介绍了神经网络模型训练的过程。我们先从非并行的场景开始，这里使用 MNIST 手写数字识别案例来演示，如 {numref}`data-parallel-single` 所示，它包含了一次前向传播和一次反向传播。
+{numref}`sec-machine-learning-intro` 介绍了神经网络模型训练的过程。我们先从非并行的场景开始，这里使用 MNIST 手写数字识别案例来演示，如 {numref}`data-parallel-single` 所示，它包含了一次前向传播和一次反向传播。
 
 ```{figure} ../img/ch-mpi-large-model/data-parallel-single.svg
 ---
