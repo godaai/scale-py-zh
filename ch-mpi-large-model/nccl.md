@@ -12,7 +12,7 @@ name: mpi-wo-gpu-direct
 
 MPI 与 NCCL 并不是完全是替代关系，NCCL 的很多通信原语，比如点对点通信和集合通信都借鉴了 MPI，可以说 NCCL 是在 MPI 基础上做的延展，更适合 GPU 集群。{numref}`gpu-communication` 展示了 NCCL 实现的通信原语。
 
-```{figure} ../img/ch-mpi-large-model/gpu-communication.png
+```{figure} ../img/ch-mpi-large-model/gpu-communication.svg
 ---
 width: 800px
 name: gpu-communication
@@ -25,6 +25,7 @@ NCCL 实现了常见的通信原语
 * AMD 提供了针对 ROCm 的 RCCL（ROCm Communication Collectives Library）
 * 华为提供了 HCCL（Huawei Collective Communication Library）
   
+
 这些集合通信库都是针对特定硬件的通信库，旨在解决特定集群的通信问题。
 
 NCCL 主要提供了 C/C++ 编程接口，Python 社区如果使用的话，可以考虑 PyTorch 的 `torch.distributed`。NCCL 也是 PyTorch 推荐的 GPU 并行计算后端。本书不再细致讲解 `torch.distributed` 的使用，而是继续用 MPI 来演示大模型训练和推理过程中涉及的各类通信问题。
