@@ -48,6 +48,7 @@ subtrees:
     entries:
     - file: ch-ray-train-tune/ray-train
     - file: ch-ray-train-tune/ray-tune
+    - file: ch-ray-train-tune/tune-algorithm-scheduler
   - file: ch-mpi/index
     entries:
     - file: ch-mpi/mpi-intro
