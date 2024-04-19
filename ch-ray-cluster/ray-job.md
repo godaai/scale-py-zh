@@ -1,4 +1,4 @@
-(ray-job)=
+(sec-ray-job)=
 # Ray 作业
 
 部署好一个 Ray 集群后，我们就可以向集群上提交作业了。Ray 作业指的是用户编写的，基于 Task、Actor 或者 Ray 各类生态（Ray Train 等）的具体的计算任务。向 Ray 集群上提交作业主要有三类方式：
