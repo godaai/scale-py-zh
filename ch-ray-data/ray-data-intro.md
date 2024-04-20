@@ -1,4 +1,4 @@
-(ray-data-intro)=
+(sec-ray-data-intro)=
 # Ray Data 简介
 
 Ray Data 是基于 Ray Core 的数据处理框架，主要解决机器学习模型训练或推理相关的数据准备与处理问题，即数据的最后一公里问题（Last-mile Preprocessing）。
@@ -23,12 +23,12 @@ Ray Data 面向机器学习，其设计理念也与机器学习的流程高度�
 
 Ray Data 主要基于 `ray.data.Dataset` 对象。`Dataset` 是一个分布式的数据对象，`Dataset` 底层的基本单元是 `Block`。`Dataset` 是多个 `Block` 组成的分布式的 `ObjectRef[Block]`。 `Block` 是一个基于 Apache Arrow 格式的数据结构。 
 
-{numref}`ray-dataset-arch` 是一个示意图，这个数据由 3 个 `Block` 组成，每个 `Block` 有 1,000 行数据。
+{numref}`fig-ray-dataset-arch` 是一个示意图，这个数据由 3 个 `Block` 组成，每个 `Block` 有 1,000 行数据。
 
 ```{figure} ../img/ch-ray-data/dataset-arch.svg
 ---
 width: 600px
-name: ray-dataset-arch
+name: fig-ray-dataset-arch
 ---
 Ray Dataset 底层架构示意图
 ```
@@ -39,24 +39,24 @@ Ray Dataset 底层架构示意图
 
 ### 数据读写
 
-如 {numref}`ray-dataset-read` 所示，Ray Data 使用 Ray Task 并行地读写数据，Ray Task 的思想很直观，每个 Task 读取一小部分数据，得到多个 `Block`，读取时可以设置 `parallelism`。
+如 {numref}`fig-ray-dataset-read` 所示，Ray Data 使用 Ray Task 并行地读写数据，Ray Task 的思想很直观，每个 Task 读取一小部分数据，得到多个 `Block`，读取时可以设置 `parallelism`。
 
 ```{figure} ../img/ch-ray-data/dataset-read.svg
 ---
 width: 600px
-name: ray-dataset-read
+name: fig-ray-dataset-read
 ---
 数据读取原理示意图
 ```
 
 ### 数据转换
 
-如 {numref}`ray-dataset-map` 所示，数据转换操作底层使用 Ray Task 或 Ray Actor 对各个 `Block` 的数据进行操作。对于无状态的转换操作，底层实现主要使用 Ray Task；对于有状态的转换操作，底层实现主要使用 Ray Actor。
+如 {numref}`fig-ray-dataset-map` 所示，数据转换操作底层使用 Ray Task 或 Ray Actor 对各个 `Block` 的数据进行操作。对于无状态的转换操作，底层实现主要使用 Ray Task；对于有状态的转换操作，底层实现主要使用 Ray Actor。
 
 ```{figure} ../img/ch-ray-data/dataset-map.svg
 ---
 width: 600px
-name: ray-dataset-map
+name: fig-ray-dataset-map
 ---
 数据转换原理示意图
 ```

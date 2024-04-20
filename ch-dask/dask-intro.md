@@ -4,12 +4,12 @@ Dask 是一个面向 Python 的并行计算框架，可以将计算任务扩展�
 
 Dask 的核心思想是构建任务计算图（Task Graph），将一个大计算任务分解为任务（Task），每个任务调用那些单机的 Python 包（比如 pandas 和 NumPy）作为执行后端。
 
-{numref}`dask-overview` 展示了 Dask API 和 Task Graph 并最后调度到计算设备上的示意图。
+{numref}`fig-dask-overview` 展示了 Dask API 和 Task Graph 并最后调度到计算设备上的示意图。
 
 ```{figure} ../img/ch-dask/dask-overview.svg
 ---
 width: 800px
-name: dask-overview
+name: fig-dask-overview
 ---
 Dask 架构图
 ```

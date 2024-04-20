@@ -1,7 +1,7 @@
-(python-ecosystem)=
+(sec-python-ecosystem)=
 # Python 软件生态
 
-Python 已经成为数据科学首选的编程语言。{numref}`python-ecosystem-img` 是一些主流的数据科学工具：
+Python 已经成为数据科学首选的编程语言。{numref}`fig-python-ecosystem-img` 是一些主流的数据科学工具：
 
 * NumPy 和 pandas 可以进行科学计算和数据处理。
 * PyTorch 和 TensorFlow 可以实现神经网络训练和推理。
@@ -10,7 +10,7 @@ Python 已经成为数据科学首选的编程语言。{numref}`python-ecosystem
 ```{figure} ../img/ch-data-science/python-ecosystem.svg
 ---
 width: 800px
-name: python-ecosystem-img
+name: fig-python-ecosystem-img
 ---
 Python 数据科学软件生态
 ```

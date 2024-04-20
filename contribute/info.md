@@ -8,7 +8,7 @@
 
 ## 克隆仓库
 
-参考 [Git 教程](https://git-scm.com/book/zh/v2/GitHub-对项目做出贡献) 创建 Fork，并将代码仓库克隆到本地。
+参考 [Github Desktop 教程](https://www.classicpress.net/github-desktop-a-really-really-simple-tutorial/) 或 [Git 教程](https://git-scm.com/book/zh/v2/GitHub-对项目做出贡献) 创建 Fork，并将代码仓库克隆到本地。
 
 ```bash
 git clone https://github.com/godaai/python-data-science.git

@@ -1,4 +1,4 @@
-(ray-computing-resource)=
+(sec-ray-computing-resource)=
 # 计算资源与资源组
 
 ## 计算资源
@@ -108,14 +108,14 @@ remove_placement_group(pg)
 创建 Placement Group 的 `placement_group()` 方法还接收 `strategy` 参数，用来设定不同的调度策略：或者是让这些预留资源尽量集中到少数计算节点上，或者是让这些预留资源尽量分散到多个计算节点。共有如下策略：
 
 * `STRICT_PACK`：所有 Bundle 都必须调度到单个计算节点。
-* `PACK`：所有 Bundle 优先调度到单个计算节点，如果无法满足条件，再调度到其他计算节点，如 {numref}`ray-pg-pack` 所示。如果不做设置，是默认的调度策略。
+* `PACK`：所有 Bundle 优先调度到单个计算节点，如果无法满足条件，再调度到其他计算节点，如 {numref}`fig-ray-pg-pack` 所示。如果不做设置，是默认的调度策略。
 * `STRICT_SPREAD`：每个 Bundle 必须调度到不同的计算节点。
-* `SPREAD`：每个 Bundle 优先调度到不同的计算节点，如果无法满足条件，有些 Bundle 可以共用一个计算节点，如 {numref}`ray-pg-spread` 所示。
+* `SPREAD`：每个 Bundle 优先调度到不同的计算节点，如果无法满足条件，有些 Bundle 可以共用一个计算节点，如 {numref}`fig-ray-pg-spread` 所示。
 
 ```{figure} ../img/ch-ray-cluster/pg-pack.svg
 ---
 width: 600px
-name: ray-pg-pack
+name: fig-ray-pg-pack
 ---
 `PACK` 策略优先将所有 Bundle 调度到单个计算节点。
 ```
@@ -125,7 +125,7 @@ name: ray-pg-pack
 ```{figure} ../img/ch-ray-cluster/pg-spread.svg
 ---
 width: 600px
-name: ray-pg-spread
+name: fig-ray-pg-spread
 ---
 `SPREAD` 策略优先将每个 Bundle 调度到不同的计算节点。
 ```

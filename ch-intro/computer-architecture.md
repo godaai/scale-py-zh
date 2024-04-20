@@ -1,12 +1,12 @@
-(computer-architecture)=
+(sec-computer-architecture)=
 # 现代计算机体系结构
 
-大数据与人工智能应用对算力要求极高，为应对飞速增长的算力需求，芯片与硬件厂商近年来重点发展多核、集群（Cluster）和异构计算（Heterogeneous Computing）。{numref}`computer-arch` 展示了现代计算机的体系结构。
+大数据与人工智能应用对算力要求极高，为应对飞速增长的算力需求，芯片与硬件厂商近年来重点发展多核、集群（Cluster）和异构计算（Heterogeneous Computing）。{numref}`fig-computer-arch` 展示了现代计算机的体系结构。
 
 ```{figure} ../img/ch-intro/computer-arch.svg
 ---
 width: 600px
-name: computer-arch
+name: fig-computer-arch
 ---
 现代计算机体系结构示意图
 ```

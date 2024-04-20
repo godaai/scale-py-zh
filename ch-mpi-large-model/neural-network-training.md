@@ -1,4 +1,4 @@
-(neural-network-training)=
+(sec-neural-network-training)=
 # 模型训练
 
 ## 模型训练的过程
