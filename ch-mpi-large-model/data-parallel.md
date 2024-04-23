@@ -5,7 +5,7 @@
 
 ```{figure} ../img/ch-mpi-large-model/data-parallel.svg
 ---
-width: 600px
+width: 500px
 name: fig-data-parallel-img
 ---
 数据并行示意图

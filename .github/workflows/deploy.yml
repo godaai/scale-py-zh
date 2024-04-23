@@ -34,4 +34,4 @@ jobs:
         run: ssh-keyscan -p ${{ secrets.REMOTE_PORT }} -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
       
       - name: Deploy with rsync
-        run: rsync -avz _build/html/* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:/var/www/distributed-python/
+        run: rsync -avz _build/html/* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:/var/www/scale-python/
