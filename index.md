@@ -1,19 +1,21 @@
-# Python 分布式编程
+# Python 数据科学加速
 
 ::::{grid} 2
 :reverse:
 
 :::{grid-item}
-:columns: 4
+:columns: 3
 :class: sd-m-auto
 
 
 :::
 
 :::{grid-item}
-:columns: 8
+:columns: 9
 :class: sd-fs-3
-开源的、面向下一代人工智能应用的 Python 分布式编程书籍。
+Dask、Ray、Xorbits、mpi4py
+
+开源的、面向下一代数据科学和人工智能应用的 Python 数据科学并行加速书籍。
 
 % The SVG rendering breaks latex builds for the GitHub badge, so only include in HTML
 ```{only} html
@@ -24,7 +26,7 @@
 
 ::::
 
-::::{card-carousel} 3
+::::{card-carousel} 2
 
 :::{card}
 :margin: 3
@@ -48,7 +50,9 @@
 :height: 100
 ```
 :::
+::::
 
+::::{card-carousel} 2
 
 :::{card}
 :margin: 3
@@ -61,6 +65,19 @@
 :height: 100
 ```
 :::
+
+:::{card}
+:margin: 3
+:class-body: text-center
+:class-header: bg-light text-center
+
+**mpi4py**
+^^^
+```{image} ./img/mpi-logo.png
+:height: 100
+```
+:::
+
 ::::
 
 ## 主要作者

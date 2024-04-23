@@ -49,7 +49,7 @@ html_theme_options = {
 }
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
-html_title = 'Python 分布式编程'
+html_title = 'Python 数据科学加速'
 latex_engine = 'pdflatex'
 myst_enable_extensions = ['colon_fence', 'dollarmath', 'linkify', 'substitution', 'tasklist']
 myst_url_schemes = ['mailto', 'http', 'https']
