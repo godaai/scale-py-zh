@@ -1,4 +1,4 @@
-# Ray Train 和 Ray Tune
+# Ray Train 和 Tune
 
 ```{tableofcontents}
 ```
