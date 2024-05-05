@@ -27,6 +27,9 @@ subtrees:
     - file: ch-dask-dataframe/indexing
     - file: ch-dask-dataframe/map-partitions
     - file: ch-dask-dataframe/shuffle
+  - file: ch-dask-ml/index
+    entries:
+    - file: ch-dask-ml/distributed-training
   - file: ch-ray-core/index
     entries:
       - file: ch-ray-core/ray-intro
