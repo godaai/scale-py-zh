@@ -25,4 +25,4 @@ ax.axis('off')
 rect = patches.Rectangle((-0.5, -0.5), harvest.shape[1], harvest.shape[0], linewidth=2, edgecolor='black', facecolor='none')
 ax.add_patch(rect)
 
-fig.savefig(r'C:\Users\LY\Desktop\figure.svg', format="svg")
+fig.savefig(r'./figure.svg', format="svg")

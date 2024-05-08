@@ -13,12 +13,15 @@ subtrees:
     entries:
     - file: ch-data-science/data-science-lifecycle
     - file: ch-data-science/machine-learning
+    - file: ch-data-science/deep-learning
+    - file: ch-data-science/hyperparameter
     - file: ch-data-science/python-ecosystem
   - file: ch-dask/index
     entries:
     - file: ch-dask/dask-intro
     - file: ch-dask/dask-dataframe-intro
     - file: ch-dask/dask-distributed
+    - file: ch-dask/gpu
     - file: ch-dask/task-graph-partitioning
   - file: ch-dask-dataframe/index
     entries:
@@ -29,6 +32,8 @@ subtrees:
     - file: ch-dask-dataframe/shuffle
   - file: ch-dask-ml/index
     entries:
+    - file: ch-dask-ml/preprocessing
+    - file: ch-dask-ml/hyperparameter
     - file: ch-dask-ml/distributed-training
   - file: ch-ray-core/index
     entries:
@@ -47,14 +52,11 @@ subtrees:
     - file: ch-ray-data/data-load-inspect-save
     - file: ch-ray-data/data-transform
     - file: ch-ray-data/preprocessor
-  - file: ch-ray-train-tune/index
+  - file: ch-ray-ml/index
     entries:
-    - file: ch-ray-train-tune/ray-train
-    - file: ch-ray-train-tune/ray-tune
-    - file: ch-ray-train-tune/tune-algorithm-scheduler
-  - file: ch-ray-serve/index
-    entries:
-    - file: ch-ray-serve/ray-serve
+    - file: ch-ray-ml/ray-train
+    - file: ch-ray-ml/ray-tune
+    - file: ch-ray-ml/ray-serve
   - file: ch-mpi/index
     entries:
     - file: ch-mpi/mpi-intro
