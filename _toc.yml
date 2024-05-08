@@ -13,6 +13,8 @@ subtrees:
     entries:
     - file: ch-data-science/data-science-lifecycle
     - file: ch-data-science/machine-learning
+    - file: ch-data-science/deep-learning
+    - file: ch-data-science/hyperparameter
     - file: ch-data-science/python-ecosystem
   - file: ch-dask/index
     entries:
@@ -54,11 +56,7 @@ subtrees:
     entries:
     - file: ch-ray-ml/ray-train
     - file: ch-ray-ml/ray-tune
-    - file: ch-ray-ml/tune-algorithm-scheduler
     - file: ch-ray-ml/ray-serve
-  - file: ch-ray-serve/index
-    entries:
-    - file: ch-ray-serve/ray-serve
   - file: ch-mpi/index
     entries:
     - file: ch-mpi/mpi-intro
