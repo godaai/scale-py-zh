@@ -2,13 +2,13 @@ root: index
 subtrees:
 - numbered: 2
   entries:
-  - file: ch-intro/index
+  - file: ch-parallel-computing/index
     entries:
-    - file: ch-intro/computer-architecture
-    - file: ch-intro/serial-parallel
-    - file: ch-intro/thread-process
-    - file: ch-intro/parallel-program-design
-    - file: ch-intro/performance-metrics
+    - file: ch-parallel-computing/computer-architecture
+    - file: ch-parallel-computing/serial-parallel
+    - file: ch-parallel-computing/thread-process
+    - file: ch-parallel-computing/parallel-program-design
+    - file: ch-parallel-computing/performance-metrics
   - file: ch-data-science/index
     entries:
     - file: ch-data-science/data-science-lifecycle
@@ -57,6 +57,10 @@ subtrees:
     - file: ch-ray-ml/ray-train
     - file: ch-ray-ml/ray-tune
     - file: ch-ray-ml/ray-serve
+  - file: ch-modin-xorbits/index
+    entries:
+    - file: ch-modin-xorbits/modin
+    - file: ch-modin-xorbits/xorbits
   - file: ch-mpi/index
     entries:
     - file: ch-mpi/mpi-intro
