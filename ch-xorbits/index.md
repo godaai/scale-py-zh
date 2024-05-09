@@ -1,4 +1,4 @@
-# Modin 与 Xorbits
+# Xorbits
 
 ```{tableofcontents}
 ```

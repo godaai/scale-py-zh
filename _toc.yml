@@ -52,15 +52,16 @@ subtrees:
     - file: ch-ray-data/data-load-inspect-save
     - file: ch-ray-data/data-transform
     - file: ch-ray-data/preprocessor
+    - file: ch-ray-data/modin
   - file: ch-ray-ml/index
     entries:
     - file: ch-ray-ml/ray-train
     - file: ch-ray-ml/ray-tune
     - file: ch-ray-ml/ray-serve
-  - file: ch-modin-xorbits/index
+  - file: ch-xorbits/index
     entries:
-    - file: ch-modin-xorbits/modin
-    - file: ch-modin-xorbits/xorbits
+    - file: ch-xorbits/xorbits
+    - file: ch-xorbits/xinference
   - file: ch-mpi/index
     entries:
     - file: ch-mpi/mpi-intro
