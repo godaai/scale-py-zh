@@ -5,7 +5,7 @@
 
 如何设计软件和算法，使得程序可以并行运行在多核或者集群上？早在 1995 年，Ian Foster 在其书中提出了 PCAM 方法 {cite}`foster1995designing`，其思想可以用来指导并行算法的设计。PCAM 主要有四个步骤：切分（Partitioning）、通信（Communication）、聚集（Agglomeration）和分发（Mapping）；{numref}`fig-pcam-img` 展示了这四个步骤。
 
-```{figure} ../img/ch-intro/pcam.svg
+```{figure} ../img/ch-parallel-computing/pcam.svg
 ---
 width: 400px
 name: fig-pcam-img
@@ -36,9 +36,9 @@ PCAM 方法
 
 Google 2004 年提出 MapReduce {cite}`dean2004MapReduce`，这是一种典型的大数据并行计算范式。{numref}`fig-map-reduce` 展示了使用 MapReduce 进行词频统计的处理方式。
 
-```{figure} ../img/ch-intro/map-reduce.svg
+```{figure} ../img/ch-parallel-computing/map-reduce.svg
 ---
-width: 600px
+width: 800px
 name: fig-map-reduce
 ---
 MapReduce 进行词频统计

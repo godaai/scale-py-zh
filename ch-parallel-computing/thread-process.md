@@ -7,7 +7,7 @@ CPU、GPU、网卡等都是硬件层面上的概念，在软件层面，经常�
 
 CPU、GPU、网卡等都是被操作系统（Operating System，OS）管理的。操作系统一方面管理硬件，另一方面通过各类应用软件为用户提供服务。正在运行的软件就是进程（Process）。以个人的笔记本电脑为例，使用浏览器浏览网页时，操作系统创建了一个浏览器的进程；使用文本编辑软件 Word 编写文字内容时，操作系统创建了一个 Word 进程。macOS 上的**活动监视器**（如 {numref}`fig-mac-process` 所示），和 Windows 上的**任务管理器**，都可以看到操作系统当前运行的进程，以及各个进程对 CPU、内存等资源的占用。
 
-```{figure} ../img/ch-intro/mac-process.png
+```{figure} ../img/ch-parallel-computing/mac-process.png
 ---
 width: 600px
 name: fig-mac-process
@@ -15,19 +15,19 @@ name: fig-mac-process
 macOS 的活动监视器
 ```
 
-技术层面上，操作系统管理所有进程的执行，为它们合理地分配资源：操作系统以进程为单位分配主存空间，每个进程都有自己的地址空间、数据栈等等。
+技术层面上，操作系统管理所有进程的执行，给进程们合理地分配资源：操作系统以进程为单位分配主存空间，每个进程都有自己的主存地址空间、数据栈等等。
 
-大部分编程语言实现时，一个进程包含多个线程，即 {numref}`fig-process-thread` 所示。每个线程运行在一个物理计算核心上，一个进程的多个线程可利用多个物理计算核心。
+大部分编程语言实现时，一个进程包含多个线程，如 {numref}`fig-process-thread` 所示。每个线程运行在一个物理计算核心上，一个进程的多个线程可利用多个物理计算核心。
 
-```{figure} ../img/ch-intro/process-thread.svg
+```{figure} ../img/ch-parallel-computing/process-thread.svg
 ---
-width: 500px
+width: 600px
 name: fig-process-thread
 ---
 进程和线程
 ```
 
-从 {numref}`fig-process-thread` 看到，一个进程拥有多个并发的执行线程。多个线程共享相同的上下文（data、files 等），线程间的数据共享和通信更加容易。
+从 {numref}`fig-process-thread` 看到，一个进程拥有多个并发的执行线程。多个线程共享相同的上下文（数据、文件等），线程间的数据共享和通信更加容易。
 
 进程之间是相互隔离的，如果多个进程之间要交换数据，必须通过进程间通信机制（Inter-Process Communication，IPC）来实现数据共享，比如多个进程共享内存（`multiprocessing.shared_memory`）或者 {numref}`sec-mpi-intro` 将要介绍的消息传递接口（Message Passing Interface，MPI）。
 
@@ -43,7 +43,7 @@ x = x - 1
 
 如果这三行计算被调度到三个线程上，数据 `x` 是被三个线程共享的，三个线程的执行顺序将严重影响计算的结果。{numref}`fig-thread-safe` 展示了三种不同的时序可能性，三种时序的计算结果可能各有不同。由于调度时序因素导致的问题，会使得并行计算的结果不符合预期，线程不安全。
 
-```{figure} ../img/ch-intro/thread-safe.svg
+```{figure} ../img/ch-parallel-computing/thread-safe.svg
 ---
 width: 600px
 name: fig-thread-safe
@@ -53,9 +53,9 @@ name: fig-thread-safe
 
 解决线程安全的最简单办法是加锁。如 {numref}`fig-thread-lock` 所示，对于共享的数据，每个线程对其进行修改前先加锁，修改完后再释放锁。
 
-```{figure} ../img/ch-intro/thread-lock.svg
+```{figure} ../img/ch-parallel-computing/thread-lock.svg
 ---
-width: 500px
+width: 600px
 name: fig-thread-lock
 ---
 线程锁
