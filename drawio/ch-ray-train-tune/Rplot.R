@@ -264,21 +264,25 @@ df$y.uci <- NULL
 df$y.uci[which(abs(df$xx-temp.df$x.uci)<0.01)] <- temp.df$y.uci
 
 # other curves
-x.o.1 <- seq(0, 8, 0.05)
+x.o.1 <- seq(0, 8.2, 0.05)
 y.o.1 <- splinefun(x=seq(0, 8, 1),
                    y=c(0, 0, 0, 0, 0, 0, 0, 0, 0))(x.o.1)
 
-x.o.2 <- seq(8, 8.5, 0.05)
-y.o.2 <- splinefun(x=c(8, 8.25, 8.5),
+x.o.2 <- seq(8.2, 8.8, 0.05)
+y.o.2 <- splinefun(x=c(8.2, 8.5, 8.8),
                    y=c(0, 1, 0))(x.o.2)
 
-x.o.3 <- seq(8.5, 10, 0.05)
-y.o.3 <- splinefun(x=c(8.5, 9, 9.5, 10),
+x.o.3 <- seq(8.8, 10, 0.05)
+y.o.3 <- splinefun(x=c(8.8, 9, 9.5, 10),
                    y=c(0, 0, 0, 0))(x.o.3)
 
 temp.df <- data.frame(x.o=c(x.o.1, x.o.2, x.o.3), 
                       y.o=c(y.o.1, y.o.2, y.o.3))
-temp.df <- temp.df[!duplicated(temp.df$x.o), ]
+# temp.df <- temp.df[!duplicated(temp.df$x.o), ]
+diff_x <- diff(temp.df$x.o)
+remove_rows <- which(diff_x < 0.01)
+temp.df <- temp.df[-(remove_rows + 1), ]
+
 
 df$y.o <- NULL
 df$y.o[which(abs(df$xx-temp.df$x.o)<0.01)] <- temp.df$y.o
