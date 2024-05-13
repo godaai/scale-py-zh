@@ -1,7 +1,7 @@
 (sec-ray-job)=
 # Ray 作业
 
-部署好一个 Ray 集群后，我们就可以向集群上提交作业了。Ray 作业指的是用户编写的，基于 Task、Actor 或者 Ray 各类生态（Ray Train、Ray Tune、Ray Serve、RLlib 等）的具体的计算任务。Ray 集群提供了多租户的服务，可以同时运行多个用户多种不同类型的计算任务。由于 Ray 集群提供多租户服务的特点，不同的 Ray 作业的源代码、配置文件和软件包环境不一样，因此，在提交作业时除了需要指定当前作业的 `__main__` 函数的入口外，还需要：
+部署好一个 Ray 集群后，我们就可以向集群上提交作业了。Ray 作业指的是用户编写的，基于 Task、Actor 或者 Ray 各类生态（Ray Train、Ray Tune、Ray Serve、RLlib 等）的具体的计算任务。Ray 集群正在尝试提供多租户的服务，可以同时运行多个用户多种不同类型的计算任务。由于 Ray 集群提供多租户服务的特点，不同的 Ray 作业的源代码、配置文件和软件包环境不一样，因此，在提交作业时除了需要指定当前作业的 `__main__` 函数的入口外，还需要：
 
 * 工作目录：这个作业所需要的 Python 源代码和配置文件
 * 软件环境：这个作业所依赖的 Python 软件包和环境变量
@@ -110,12 +110,12 @@ ray.get(gpu_task.remote())
 调用 Actor 和 Task 之前，Ray 分配了一个 GPU 给程序的入口。调用 Actor 和 Task 之后，又分别给 `gpu_actor` 和 `gpu_task` 分配了 1 个 GPU。
 
 :::{note}
-将提交作业到一个已有的 Ray 集群上，`ray.init()` 中不能设置 `num_cpus` 和 `num_gpus` 参数。
+提交作业到一个已有的 Ray 集群上时，`ray.init()` 中不能设置 `num_cpus` 和 `num_gpus` 参数。
 :::
 
 ### 依赖管理
 
-Ray 集群是多租户的，上面可能运行着不同的用户的作业，不同作业对 Python 各个依赖的版本要求不同，Ray 提供了运行时环境的功能，比如在启动这个作业时，设置 `--runtime-env-json`，他是一个 JSON，包括：需要 `pip` 安装的 Python 包，或环境变量（`env_vars`），或工作目录（`working_dir`）。Ray 集群的运行时环境大概原理是为每个作业创建一个独立的虚拟环境（[virtualenv](https://virtualenv.pypa.io/)）。
+Ray 集群是多租户的，上面可能运行着不同用户的作业，不同作业对 Python 各个依赖的版本要求不同，Ray 提供了运行时环境的功能，比如在启动这个作业时，设置 `--runtime-env-json`，他是一个 JSON，包括：需要 `pip` 安装的 Python 包，或环境变量（`env_vars`），或工作目录（`working_dir`）。Ray 集群的运行时环境大概原理是为每个作业创建一个独立的虚拟环境（[virtualenv](https://virtualenv.pypa.io/)）。
 
 ```json
 {

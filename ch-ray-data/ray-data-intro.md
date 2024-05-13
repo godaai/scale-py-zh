@@ -1,7 +1,7 @@
 (sec-ray-data-intro)=
 # Ray Data 简介
 
-Ray Data 是基于 Ray Core 的数据处理框架，主要解决机器学习模型训练或推理相关的数据准备与处理问题，即数据的最后一公里问题（Last-mile Preprocessing）。与 Dask DataFrame、Modin、Xorbits 相比，Ray Data 更通用，既可以处理二维表，也可以处理图片、视频；Ray Data 的通用也意味着它在很多方面还不够专业，比如 `groupby` 等操作相对比较粗糙。
+Ray Data 是基于 Ray Core 的数据处理框架，主要解决机器学习模型训练或推理相关的数据准备与处理问题，即数据的最后一公里问题（Last-mile Preprocessing）。与 Dask DataFrame、Modin、Xorbits 相比，Ray Data 更通用，既可以处理二维表，也可以处理图片、视频；Ray Data 的通用也意味着它在很多方面还不够专业，比如 `groupby` 等操作相对比较粗糙。除了 Ray Data 外，本章还会介绍 Modin。
 
 Ray Data 对数据提供了一个抽象的类，[`ray.data.Dataset`](https://docs.ray.io/en/latest/data/api/doc/ray.data.Dataset.html)，在 `Dataset` 上提供了常见的大数据处理的原语，覆盖了数据处理的大部分阶段，例如：
 

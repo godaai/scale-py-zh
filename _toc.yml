@@ -44,8 +44,8 @@ subtrees:
   - file: ch-ray-cluster/index
     entries:
       - file: ch-ray-cluster/ray-cluster
-      - file: ch-ray-cluster/ray-job
       - file: ch-ray-cluster/ray-resource
+      - file: ch-ray-cluster/ray-job
   - file: ch-ray-data/index
     entries:
     - file: ch-ray-data/ray-data-intro
