@@ -1,7 +1,7 @@
 # Ray 简介
 
 Ray 是一个可扩展的计算框架。它最初为强化学习设计，之后逐渐演变成一个面向数据科学和人工智能的框架。
-如 {numref}`fig-ray-ecosystem` 所示，当前 Ray 主要由底层的 Ray Core 和上层的各类 Ray AIR (Artificial Intelligence Runtime) 生态组成：Ray Core 是一系列底层 API, 可以将 Python 函数或者 Python 类等计算任务横向扩展到多个计算节点上；在 Ray Core 之上，Ray 封装了一些面向数据科学和人工智能的库（Ray AIR），可以进行数据的处理（Ray Data）、模型训练（Ray Train）、模型的超参数调优（Ray Tune），模型推理服务（Ray Serve），强化学习（RLib）等。
+如 {numref}`fig-ray-ecosystem` 所示，当前 Ray 主要由底层的 Ray Core 和上层的各类 Ray AI (Artificial Intelligence) 生态组成：Ray Core 是一系列底层 API, 可以将 Python 函数或者 Python 类等计算任务横向扩展到多个计算节点上；在 Ray Core 之上，Ray 封装了一些面向数据科学和人工智能的库（Ray AI Libraries），可以进行数据的处理（Ray Data）、模型训练（Ray Train）、模型的超参数调优（Ray Tune），模型推理服务（Ray Serve），强化学习（RLib）等。
 
 ```{figure} ../img/ch-ray-core/ray.svg
 ---
