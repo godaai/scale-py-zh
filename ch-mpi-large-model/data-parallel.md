@@ -44,7 +44,7 @@ $$
 }
 $$
 
-对这些分布在不同 GPU 上的梯度同步时，可以使用 MPI 提供的 `AllReduce` 原语。MPI 的 `AllReduce` 将每块 GPU 上分别计算得到的梯度收集起来，计算平均后，再将更新后的梯度重新分发给各块 GPU。
+同步不同 GPU 上的梯度，可以使用 MPI 提供的 `AllReduce` 原语。MPI 的 `AllReduce` 将每块 GPU 上分别计算得到的梯度收集起来，计算平均后，再将更新后的梯度重新分发给各块 GPU。
 
 如 {numref}`fig-data-parallel-all-reduce` 所示，梯度同步阶段，MPI 的 `AllReduce` 原语将各 GPU 上的梯度进行同步。
 
