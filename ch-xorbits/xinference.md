@@ -5,7 +5,7 @@ Xorbits Inference (Xinference) 是一款面向大模型的推理平台，支持�
 
 ## 推理引擎
 
-Xinference 可适配不同推理引擎，包括 Hugging Face Transformers、vLLM、GGML（llama.cpp）等，因此在安装时也要安装对应的推理引擎，比如 `pip install "xinference[transformers]"`。Transformers 完全基于 PyTorch，适配的模型最快最全，但性能较差；其他推理引擎，比如 vLLM、GGML 专注于性能优化，但模型覆盖度没 Transformers 高。
+Xinference 可适配不同推理引擎，包括 Hugging Face Transformers、[vLLM](https://github.com/vllm-project/vllm)、[llama.cpp](https://github.com/ggerganov/llama.cpp) 等，因此在安装时也要安装对应的推理引擎，比如 `pip install "xinference[transformers]"`。Transformers 完全基于 PyTorch，适配的模型最快最全，但性能较差；其他推理引擎，比如 vLLM、llama.cpp 专注于性能优化，但模型覆盖度没 Transformers 高。
 
 ## 集群
 

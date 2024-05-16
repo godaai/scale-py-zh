@@ -41,7 +41,7 @@ name: fig-pipeline-parallel-distributed
 
 ## 流水线并行 + 数据并行
 
-流水线并行与数据并行是相互正交的，两者可以结合起来同时使用。由于两种并行是正交的，互不干扰，为避免数据传输错乱，应使用 MPI 的 Communicator 来做隔离。在 {numref}`sec-mpi-hello-world` 中我们曾经提到，Communicator 可以被理解为 MPI 中的组，同一个 GPU 可以在不同的 Communicator 中。如 {numref}`fig-pipeline-parallel-data-parallel` 所示，我们创建了两类 Communicator：红色为流水线并行的 Communicator，蓝色为数据并行的 Communicator。同一个 GPU 既属于红色，也属于蓝色：既要实现流水线并行中模型层之间的通信，也要实现数据并行的梯度的同步。
+流水线并行与数据并行是相互正交的，两者可以结合起来同时使用。由于两种并行是正交的，互不干扰，为避免数据传输错乱，应使用 MPI 的 Communicator 来做隔离。在 {numref}`sec-mpi-hello-world` 中我们曾经提到，Communicator 可以被理解为 MPI 中的组，同一个 GPU 可以在不同的 Communicator 中。如 {numref}`fig-pipeline-parallel-data-parallel` 所示，我们创建了两类 Communicator：红色为流水线并行的 Communicator，蓝色为数据并行的 Communicator。同一个 GPU 既属于红色，也属于蓝色：既要实现流水线并行中模型层之间的通信，也要实现数据并行的梯度同步。
 
 ```{figure} ../img/ch-mpi-large-model/pipeline-parallel-data-parallel.svg
 ---
