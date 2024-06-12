@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-01-20T00:45:51.292Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.18 Chrome/120.0.6099.199 Electron/28.1.2 Safari/537.36" etag="Nq1pDth8GHvjLxu5t5sp" version="22.1.18" type="device">
+<mxfile host="Electron" modified="2024-06-09T12:19:45.334Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.18 Chrome/120.0.6099.199 Electron/28.1.2 Safari/537.36" etag="UbBgfVq2xdHHnB7JWpBs" version="22.1.18" type="device">
   <diagram name="第 1 页" id="RiyzWxT4RloGqWYnUwmC">
-    <mxGraphModel dx="852" dy="545" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+    <mxGraphModel dx="852" dy="553" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -153,7 +153,7 @@
         <mxCell id="P8Mqd3i1ZP-7e1r_wHSP-44" value="&lt;div style=&quot;font-size: 20px;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;font face=&quot;Garamond&quot;&gt;ray.data.read_csv(path)&lt;/font&gt;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="216" y="695" width="440" height="62" as="geometry" />
         </mxCell>
-        <mxCell id="P8Mqd3i1ZP-7e1r_wHSP-45" value="&lt;div style=&quot;font-size: 20px;&quot;&gt;&lt;div&gt;&lt;font face=&quot;Times New Roman&quot;&gt;Manually specifying parallelism:&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Comic Sans MS&quot;&gt;ray.data.read_csv(path, parallelism=2)&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+        <mxCell id="P8Mqd3i1ZP-7e1r_wHSP-45" value="&lt;div style=&quot;font-size: 20px;&quot;&gt;&lt;div&gt;&lt;font face=&quot;Times New Roman&quot;&gt;手动设置并行度：&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Garamond&quot;&gt;ray.data.read_csv(path, parallelism=2)&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="982" y="695" width="440" height="62" as="geometry" />
         </mxCell>
       </root>
