@@ -51,7 +51,7 @@ def nyc_taxi():
 
 @data_path_decorator
 def nyc_flights():
-    return ["https://dp.godaai.org/nyc-flights.zip"]
+    return ["https://scale-py.godaai.org/nyc-flights.zip"]
 
 
 @data_path_decorator
