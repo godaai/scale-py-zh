@@ -29,6 +29,7 @@ subtrees:
     - file: ch-dask-dataframe/indexing
     - file: ch-dask-dataframe/map-partitions
     - file: ch-dask-dataframe/shuffle
+    - file: ch-dask-dataframe/dask-case-study
   - file: ch-dask-ml/index
     entries:
     - file: ch-dask-ml/preprocessing
