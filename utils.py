@@ -76,3 +76,10 @@ def more_citi_bike():
 @data_path_decorator
 def adult():
     return ["https://archive.ics.uci.edu/static/public/2/adult.zip"]
+
+
+@data_path_decorator
+def mark_twain():
+    return [
+        "https://www.booksatwork.org/wp-content/uploads/2014/06/Twain-Million-Pound-Note.pdf"
+    ]
