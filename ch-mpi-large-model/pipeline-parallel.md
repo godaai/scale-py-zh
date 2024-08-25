@@ -1,7 +1,7 @@
 (sec-pipeline-parallel)=
 # 流水线并行
 
-流水线并行是另外一种常见的大模型并行方法。数据并行将模型权重在每个 GPU 上拷贝一份，如果模型大小没有超过单块 GPU 显存大小，数据并行是最简单易用的选项。但现在的模型大到已经无法放在单块 GPU 上，比如 175B 的 GPT-3，如果用 FP16 存储，也需要 350GB 存储空间，而单块 NVIDIA A100 和 H100 为 80GB。流水线并行可以解决这个问题，它将大模型的不同层切分到不同的 GPU 上。其核心思想如 {numref}`fig-pipeline-parallel-img` 所示。
+流水线并行是另一种常见的大型模型并行方法。当模型大小没有超过单个 GPU 显存容量时，数据并行通过在每个 GPU 上复制一份模型权重，成为最简单易用的选项。然而，现代的模型已经变得如此庞大，以至于无法放入单块 GPU 中，例如拥有 175B 参数的 GPT-3。即使使用 FP16 格式存储，也需要 350GB 的存储空间，而单块 NVIDIA A100 或 H100 GPU 的显存仅为 80GB。流水线并行提供了解决这一问题的方案，它通过将大模型的不同层分配到不同的 GPU 上来实现。这一核心思想在 {numref}`fig-pipeline-parallel-img` 中有详细展示。
 
 ```{figure} ../img/ch-mpi-large-model/pipeline-parallel.svg
 ---
@@ -41,7 +41,9 @@ name: fig-pipeline-parallel-distributed
 
 ## 流水线并行 + 数据并行
 
-流水线并行与数据并行是相互正交的，两者可以结合起来同时使用。由于两种并行是正交的，互不干扰，为避免数据传输错乱，应使用 MPI 的 Communicator 来做隔离。在 {numref}`sec-mpi-hello-world` 中我们曾经提到，Communicator 可以被理解为 MPI 中的组，同一个 GPU 可以在不同的 Communicator 中。如 {numref}`fig-pipeline-parallel-data-parallel` 所示，我们创建了两类 Communicator：红色为流水线并行的 Communicator，蓝色为数据并行的 Communicator。同一个 GPU 既属于红色，也属于蓝色：既要实现流水线并行中模型层之间的通信，也要实现数据并行的梯度同步。
+流水线并行与数据并行是两种互不干扰的方法，它们可以结合使用以提高计算效率。为了避免在数据传输过程中出现错乱，应使用 MPI 的 Communicator 来进行隔离和协调。正如我们在 {numref}`sec-mpi-hello-world` 中提到的，Communicator 在 MPI 中可以被理解为一个通信组，允许同一个 GPU 参与到多个不同的 Communicator 中。
+
+如 {numref}`fig-pipeline-parallel-data-parallel` 所示，我们创建了两种类型的 Communicator：红色的用于流水线并行，而蓝色的用于数据并行。同一个 GPU 可以同时属于这两个 Communicator，这样它既能处理流水线并行中模型层之间的通信，也能参与数据并行中的梯度同步。
 
 ```{figure} ../img/ch-mpi-large-model/pipeline-parallel-data-parallel.svg
 ---
