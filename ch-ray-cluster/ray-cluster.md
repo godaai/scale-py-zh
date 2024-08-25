@@ -13,25 +13,25 @@ name: fig-ray-cluster
 Ray 集群由头节点和多个工作节点组成，头节点上运行着一些管理进程。
 ```
 
-所有节点上都运行着一些进程：
+在 Ray 分布式计算环境中，所有节点上都运行着一些关键进程。
 
 * Worker
 
-每个计算节点上运行着一个或多个 Worker 进程，Worker 进程负责计算任务的运行。每个 Worker 进程运行特定的计算任务。Worker 进程或者是无状态的，即可以被反复执行 Remote Function 对应的 Task；又或者是一个 Actor，即只能执行有状态的 Remote Class 的方法。默认情况下，Worker 的数量等于其所在的计算节点的 CPU 核数。
+每个计算节点上运行着一个或多个 Worker 进程，这些进程负责执行计算任务。Worker 进程可以是无状态的，意味着它们可以反复执行 Task 对应的任务；它们也可以是有状态的 Actor，即执行远程类的方法。默认情况下，Worker 的数量等于其所在计算节点的 CPU 核心数。
 
 * Raylet
 
-每个计算节点上运行着一个 Raylet。与一个计算节点上运行多个 Worker 进程不同，每个计算节点上只有一个 Raylet 进程，或者说 Raylet 被多个 Worker 进程所共享。Raylet 主要有两个组件：一个调度器（Scheduler），负责资源管理、任务分配等。各个计算节点上的 Scheduler 共同组成了整个 Ray 集群的分布式调度器；一个基于共享内存的对象存储（Share-memory Object Store），负责本地的数据存储，各个计算节点上的 Object Store 共同组成了 Ray 的分布式对象存储。
+每个计算节点上运行着一个 Raylet。每个计算节点可能运行多个 Worker 进程，但每个计算节点上只有一个 Raylet 进程，或者说 Raylet 被多个 Worker 进程所共享。Raylet 主要包含两个组件：一个是调度器（Scheduler），它负责资源管理和任务分配；另一个是基于共享内存的对象存储（Shared-memory Object Store），它负责本地数据存储，各个计算节点上的 Object Store 共同构成了 Ray 集群的分布式对象存储。
 
 从 {numref}`fig-ray-cluster` 中也可以看到，头节点还多了：
 
 * Global Control Service（GCS）
 
-GCS 是 Ray 集群的全局元数据管理服务，这里的元数据信息包括：某个 Actor 被分配到哪个计算节点上。它管理的元数据是所有 Worker 共享的。
+GCS 是 Ray 集群的全局元数据管理服务，负责存储和管理诸如哪个 Actor 被分配到哪个计算节点等元数据信息。这些元数据是被所有 Worker 共享的。
 
 * Driver
 
-Driver 执行的是程序的入口，比如，作为 Python 入口的  `__main__` 函数。一般情况下，`__main__` 函数运行时不执行大规模的计算，只是把 Task 和 Actor 调度到具有足够资源的 Worker 上。
+Driver 用于执行程序的入口点。入口点指的是Python 的   `__main__` 函数。通常，`__main__` 在运行时不应该执行大规模计算，而是负责将 Task 和 Actor 调度到具备足够资源的 Worker 上。
 
 Ray 的头节点还运行着其他一些管理类的服务，比如计算资源自动缩放、作业提交等服务。
 

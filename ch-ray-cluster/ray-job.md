@@ -16,9 +16,9 @@
 
 ### `ray job`
 
-Ray Jobs 命令行指的是 `ray job` 一系列操作作业的脚本。在 Python 环境中安装好 Ray 之后（`pip install "ray[default]"`），也会安装命令行工具，其中 `ray job` 负责作业的全生命周期管理。
+`ray job` 命令行是指一系列用于操作Ray作业的工具。在 Python 环境中安装好 Ray 之后（通过命令 `pip install "ray[default]"`），会同时安装命令行工具。`ray job` 可以负责管理作业的整个生命周期。
 
-我们先写好一个基于 Ray 的脚本，放置在当前目录 `./` 下，名为 `scripy.py`：
+首先，我们需要编写一个基于Ray的脚本，并将其保存在当前目录下，文件名为 `scripy.py`：
 
 ```python
 import os
@@ -46,6 +46,7 @@ sequence_size = 10
 results = ray.get([generate_fibonacci.remote(sequence_size) for _ in range(os.cpu_count())])
 print(results)
 ```
+
 使用 `ray job submit` 提交这个作业：
 
 ```bash
@@ -154,18 +155,20 @@ logs = client.get_job_logs(job_id)
 print(logs)
 ```
 
-[`JobSubmissionClient.submit_job()`](https://docs.ray.io/en/latest/cluster/running-applications/job-submission/doc/ray.job_submission.JobSubmissionClient.submit_job.html) 作业提交是异步的，Ray 会马上返回作业的 ID。如果想要看到作业的运行情况，需要 `wait_until_status()` 函数，不断向 Ray 集群请求，查看该作业的状态。跟命令行类似，`submit_job()` 中传入 `runtime_env` 来指定工作目录或依赖的 Python 包；`entrypoint_num_cpus` 和 `entrypoint_num_gpus` 指定入口所需要的计算资源。
+[`JobSubmissionClient.submit_job()`](https://docs.ray.io/en/latest/cluster/running-applications/job-submission/doc/ray.job_submission.JobSubmissionClient.submit_job.html) 的作业提交是异步的。调用此方法后，Ray 会马上返回作业的 ID。如果想要查看作业的运行状态，可以使 `wait_until_status()` 函数。这个函数会不断向 Ray 集群请求，以检查作业的当前状态。
+
+与命令行操作类似，在 `submit_job()` 方法中，可以通过传入 `runtime_env` 参数来指定作业的工作目录或所需的 Python 包。此外，`entrypoint_num_cpus` 和 `entrypoint_num_gpus` 用于指定作用入口（`__main()__` 函数）所需要的计算资源。
 
 ## Ray 客户端
 
-Ray 客户端指的是在 Python 的 `ray.init()` 中直接指定 Ray 集群的地址：`ray.init("ray://<head-node-host>:<port>")`。
+Ray 客户端是指在 Python 中使用 `ray.init()` 函数，直接指定Ray集群的地址：`ray.init("ray://<head-node-host>:<port>")`。
 
 :::{note}
-注意，这里的 `port` 默认为 10001，或者在 `ray start --head` 时对 `--ray-client-server-port` 进行设置。
+注意，Ray集群默认的客户端服务端口为 10001。如果需要使用不同的端口，可以在启动Ray集群头节点时，通过 `--ray-client-server-port` 参数进行设置。
 :::
 
-客户端可以运行在个人电脑上，用户可以交互地调用集群的计算资源。需要注意的是，客户端的一些功能不如命令行和 SDK 完善，复杂的任务应优先使用命令行或者 SDK。
+客户端可以在个人计算机上运行，允许用户以交互方式调用Ray集群的计算资源。然而，需要注意的是，客户端的某些功能可能不如命令行工具和 Python. SDK 那样全面。对于执行复杂任务，建议优先使用命令行或 Python SDK。
 
-`ray.init()` 也接收 `runtime_env` 参数，用来指定 Python 包版本或工作目录。跟 Ray Jobs 命令行一样，Ray 会将工作目录中的数据传到 Ray 集群上。
+`ray.init()` 也接收 `runtime_env` 参数，该参数用于指定 Python 包版本或工作目录。跟 Ray Jobs 命令行工具一样，Ray 会将指定工作目录中的数据传输到Ray集群上。
 
-如果客户端与 Ray 集群的连接断开，这个客户端创建的分布式对象或引用都会被销毁。如果客户端和 Ray 集群意外断开，Ray 会在 30 秒后重新连接，重新连接失败后会把各类引用销毁。环境变量 `RAY_CLIENT_RECONNECT_GRACE_PERIOD` 可对这个时间进行自定义。
+如果客户端与Ray集群的连接中断，客户端创建的所有分布式对象或引用将被销毁。在客户端与Ray集群意外断开连接的情况下，Ray会尝试在30秒后重新建立连接。如果重新连接失败，Ray将销毁所有相关的引用。用户可以通过设置环境变量 `RAY_CLIENT_RECONNECT_GRACE_PERIOD` 来自定义这个重连尝试的时间间隔。
