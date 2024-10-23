@@ -1,4 +1,0 @@
-# Ray Serve
-
-```{tableofcontents}
-```
