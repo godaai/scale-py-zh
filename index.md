@@ -4,14 +4,15 @@
 :reverse:
 
 :::{grid-item}
-:columns: 3
-:class: sd-m-auto
+:columns: 4
 
-
+```{image} ./_static/scale-python-book.jpeg
+:width: 200px
+```
 :::
 
 :::{grid-item}
-:columns: 9
+:columns: 8
 :class: sd-fs-3
 Dask、Ray、Xorbits、mpi4py
 
@@ -20,6 +21,7 @@ Dask、Ray、Xorbits、mpi4py
 % The SVG rendering breaks latex builds for the GitHub badge, so only include in HTML
 ```{only} html
 [![](https://img.shields.io/github/stars/godaai/scale-py-zh?style=for-the-badge)](https://github.com/godaai/scale-py-zh)
+[![](https://img.shields.io/badge/JD-%E8%B4%AD%E4%B9%B0%E9%93%BE%E6%8E%A5-red?style=for-the-badge)](https://item.jd.com/14328461.html)
 ```
 
 :::

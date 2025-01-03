@@ -39,6 +39,12 @@ html_theme_options = {
             "icon": "https://img.shields.io/github/stars/godaai/scale-py-zh?style=for-the-badge",
             "type": "url",
         },
+        {
+            "name": "JD",
+            "url": "https://item.jd.com/14328461.html",
+            "icon": "https://img.shields.io/badge/JD-%E8%B4%AD%E4%B9%B0%E9%93%BE%E6%8E%A5-red",
+            "type": "url",
+        },
     ], 
     'announcement': "如果你觉得内容对你有帮助，请在 <a href=\"https://github.com/godaai/scale-py-zh\">GitHub</a> 上点个 star 吧！", 
     'analytics': {'google_analytics_id': ''}, 
