@@ -19,12 +19,12 @@ git clone https://github.com/<username>/scale-py-zh.git
 准备环境：
 
 * 选择一个包管理工具，比如 `conda`。
-* 安装 Python >= 3.8
+* 安装 Python >= 3.9
 * 安装 requirements.txt 和 requirements-dev.txt 中的各个依赖。包括本书各个案例所需要的工具 pandas 等，以及本电子书构建工具 Jupyter Book：
 
 ```bash
-conda create -n dispy
-source activate dispy
+conda create -n scalepy
+source activate scalepy
 conda install python=3.11 anaconda::graphviz
 pip install -r requirements.txt
 ```
